@@ -1,0 +1,887 @@
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T18:52:35.064Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T18:52:35.070Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T18:52:46.509Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T18:52:46.514Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T18:53:01.104Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T18:53:01.109Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T18:53:19.033Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T18:53:19.038Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T18:53:40.019Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T18:53:40.025Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T18:53:56.874Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T18:53:56.879Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T18:54:10.021Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T18:54:10.027Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T18:54:24.898Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T18:54:24.903Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T18:54:35.744Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T18:54:35.748Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T18:55:11.660Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T18:55:11.665Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T18:55:15.483Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T18:55:15.491Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:00:31.401Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:00:31.406Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:00:44.664Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:00:44.668Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:00:55.286Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:00:55.290Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:01:12.463Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:01:12.468Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:01:34.744Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:01:34.749Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:01:49.708Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:01:49.712Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:02:19.663Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:02:19.668Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:02:34.811Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:02:34.816Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:02:48.959Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:02:48.963Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:03:04.540Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:03:04.544Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:03:18.314Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:03:18.319Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:34:43.992Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:34:43.996Z"}
+{"level":"info","message":"GET /api/v1/auth/me 500 14ms ip=127.0.0.1 user=anon","timestamp":"2026-07-28T19:37:52.500Z"}
+{"level":"info","message":"POST /api/v1/auth/logout 200 25ms ip=127.0.0.1 user=anon","timestamp":"2026-07-28T19:37:52.611Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 175ms ip=127.0.0.1 user=anon","timestamp":"2026-07-28T19:37:55.584Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 27ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:37:55.883Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 84ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:37:58.534Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:37:58.553Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:38:02.530Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-28T19:40:04.568Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-28T19:42:25.460Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-28T19:42:25.465Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 190ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:47:21.056Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 16ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:47:21.075Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 69ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:49:00.377Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 15ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:49:37.437Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 134ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:59:43.797Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 20ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:59:45.567Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 45ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:59:46.858Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 111ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:59:47.340Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:59:47.353Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 15ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T19:59:50.148Z"}
+{"level":"info","message":"GET /api/v1/auth/me 500 5ms ip=127.0.0.1 user=anon","timestamp":"2026-07-28T20:00:09.418Z"}
+{"level":"info","message":"POST /api/v1/auth/logout 200 19ms ip=127.0.0.1 user=anon","timestamp":"2026-07-28T20:00:09.500Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-28T20:00:09.562Z"}
+{"level":"info","message":"GET /api/v1/assessments?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 3ms ip=127.0.0.1 user=anon","timestamp":"2026-07-28T20:00:09.601Z"}
+{"level":"info","message":"GET /api/v1/assessments?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-28T20:00:09.604Z"}
+{"level":"info","message":"GET /api/v1/auth/me 500 3ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:13:26.168Z"}
+{"level":"info","message":"POST /api/v1/auth/logout 200 74ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:13:26.250Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 3ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:18:42.023Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:18:42.028Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 263ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:18:47.805Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 12ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T02:18:48.100Z"}
+{"level":"info","message":"GET /api/v1/assessments?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:19:37.961Z"}
+{"level":"info","message":"GET /api/v1/assessments?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:19:37.964Z"}
+{"level":"info","message":"GET /api/v1/assessments?page=1&limit=200&sortBy=name&sortOrder=asc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:36:47.018Z"}
+{"level":"info","message":"GET /api/v1/assessments?page=1&limit=200&sortBy=name&sortOrder=asc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:36:47.020Z"}
+{"level":"info","message":"GET /api/v1/assessments?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:36:51.544Z"}
+{"level":"info","message":"GET /api/v1/assessments?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 500 3ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:36:51.549Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 306ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:43:54.180Z"}
+{"level":"info","message":"GET /api/v1/clients 200 97ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T02:44:10.825Z"}
+{"level":"info","message":"GET /api/v1/assessment 200 19ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T02:44:36.552Z"}
+{"level":"info","message":"POST /api/v1/assessment 500 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T02:45:57.306Z"}
+{"level":"info","message":"POST /api/v1/assessment 201 86ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T02:46:17.582Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 120ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T02:54:08.043Z"}
+{"level":"info","message":"GET /api/v1/assessments?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T02:55:40.244Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:03:19.474Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 132ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:03:27.821Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:03:27.871Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:03:27.876Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:06:23.492Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 15ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:06:30.113Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:06:30.190Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:06:30.194Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T03:08:19.222Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T03:08:19.230Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 500 144ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:14:58.065Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 157ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:14:58.069Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 4ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:19:04.826Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 500 3ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:19:04.831Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 7ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:19:04.841Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 500 4ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:19:04.850Z"}
+{"level":"info","message":"GET /api/v1/auth/me 500 4ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:19:09.057Z"}
+{"level":"info","message":"POST /api/v1/auth/logout 200 23ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:19:09.188Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 212ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:19:11.723Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:19:12.113Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 34ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:19:15.596Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 500 14ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:19:15.614Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 12ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:19:15.631Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 500 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:19:15.641Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T03:33:47.676Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T03:33:47.684Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 41ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:33:57.556Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 134ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:33:58.051Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 200 125ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:33:58.055Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 34ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:33:58.092Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 38ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:33:58.104Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 200 18ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:34:06.323Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 13ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:34:06.340Z"}
+{"level":"info","message":"POST /api/v1/assessment 201 82ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:35:15.460Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 23ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:35:15.493Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 200 121ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:42:31.021Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 117ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:42:31.023Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 13ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:42:31.038Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 15ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:42:31.045Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 45ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:42:36.206Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 12ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:42:36.585Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:42:36.596Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:42:36.599Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:42:36.609Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 206ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:43:25.822Z"}
+{"level":"info","message":"GET /api/candidates 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:45:07.040Z"}
+{"level":"info","message":"GET /api/candidate 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:45:14.440Z"}
+{"level":"info","message":"GET /api/v1/candidate 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:45:22.739Z"}
+{"level":"info","message":"GET /api/v1/candidates 200 16ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:45:28.231Z"}
+{"level":"info","message":"POST /api/v1/candidates 201 69ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:45:34.501Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:47:23.840Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:48:18.238Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 111ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:48:27.765Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:48:27.821Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:48:27.826Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 139ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:48:28.265Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 135ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:48:28.267Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 16ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:48:28.284Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 15ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:48:28.290Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:50:32.713Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T03:52:59.342Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 40ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:53:32.973Z"}
+{"level":"info","message":"POST /api/v1/candidates/4772fa33-40e5-4b94-8de9-a6e64a62f1b4/start 200 25ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:54:12.952Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:54:12.960Z"}
+{"level":"info","message":"POST /api/v1/candidates/4772fa33-40e5-4b94-8de9-a6e64a62f1b4/withdraw 200 24ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:54:27.413Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:54:27.420Z"}
+{"level":"info","message":"PUT /api/v1/candidates/4772fa33-40e5-4b94-8de9-a6e64a62f1b4 200 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:54:39.315Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:54:39.321Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 200 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:54:43.261Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:54:43.265Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 42ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:54:43.298Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:54:43.302Z"}
+{"level":"info","message":"POST /api/v1/candidates 201 24ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:55:19.833Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:55:19.843Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=ac&sortBy=createdAt&sortOrder=desc 200 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:55:40.840Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=acja&sortBy=createdAt&sortOrder=desc 200 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:55:42.637Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=ac&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:55:43.823Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=acha&sortBy=createdAt&sortOrder=desc 200 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:55:44.814Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=achal&sortBy=createdAt&sortOrder=desc 200 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:55:46.331Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=achal+T&sortBy=createdAt&sortOrder=desc 200 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:55:48.121Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=achal+Tur&sortBy=createdAt&sortOrder=desc 200 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:55:49.154Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=achal+Tu&sortBy=createdAt&sortOrder=desc 200 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:55:50.407Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:55:51.128Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&clientId=08bbe999-8cf0-4f19-bf89-a635900e69ef&sortBy=createdAt&sortOrder=desc 200 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:55:57.491Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&assessmentId=cf59e650-c463-4d3c-b20c-393d7cf672b1&clientId=08bbe999-8cf0-4f19-bf89-a635900e69ef&sortBy=createdAt&sortOrder=desc 200 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:00.379Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&assessmentId=cf59e650-c463-4d3c-b20c-393d7cf672b1&clientId=08bbe999-8cf0-4f19-bf89-a635900e69ef&status=WITHDRAWN&sortBy=createdAt&sortOrder=desc 200 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:05.514Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&assessmentId=cf59e650-c463-4d3c-b20c-393d7cf672b1&clientId=08bbe999-8cf0-4f19-bf89-a635900e69ef&status=EXPIRED&sortBy=createdAt&sortOrder=desc 200 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:08.582Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&assessmentId=cf59e650-c463-4d3c-b20c-393d7cf672b1&clientId=08bbe999-8cf0-4f19-bf89-a635900e69ef&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:12.562Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&assessmentId=91a5056a-b42f-49dc-bd85-253bb48f9188&clientId=08bbe999-8cf0-4f19-bf89-a635900e69ef&sortBy=createdAt&sortOrder=desc 200 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:15.079Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&assessmentId=cf59e650-c463-4d3c-b20c-393d7cf672b1&clientId=08bbe999-8cf0-4f19-bf89-a635900e69ef&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:18.795Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&assessmentId=cf59e650-c463-4d3c-b20c-393d7cf672b1&clientId=13b1617c-8e48-4f92-971c-10b1cfcd8f95&sortBy=createdAt&sortOrder=desc 200 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:25.249Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&assessmentId=cf59e650-c463-4d3c-b20c-393d7cf672b1&sortBy=createdAt&sortOrder=desc 200 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:27.691Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=a&assessmentId=cf59e650-c463-4d3c-b20c-393d7cf672b1&sortBy=createdAt&sortOrder=desc 200 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:36.214Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=ac&assessmentId=cf59e650-c463-4d3c-b20c-393d7cf672b1&sortBy=createdAt&sortOrder=desc 200 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:36.719Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=ac&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:41.040Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=acha&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:43.901Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&search=achal&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:44.889Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T03:56:48.977Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 122ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T04:03:36.993Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 12ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T04:03:37.334Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 5ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T04:03:42.521Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 50ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T04:03:49.865Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T04:03:49.871Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:07:13.278Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:07:13.281Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:07:28.608Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:07:28.610Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:07:45.430Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:07:45.433Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:07:59.410Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:07:59.413Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:08:12.514Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:08:12.517Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:08:29.182Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:08:29.185Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:08:45.521Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:08:45.524Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:09:03.355Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:09:03.358Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:10:42.236Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:10:42.239Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:11:34.282Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:11:34.285Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:13:14.770Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:13:14.773Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:29:32.548Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:29:32.551Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:29:42.018Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:29:42.021Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:29:54.835Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:29:54.837Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:30:12.134Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:30:12.137Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:30:28.482Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:30:28.485Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:30:40.207Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:30:40.210Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:30:58.921Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:30:58.924Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:31:08.771Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:31:08.774Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:31:12.481Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:31:12.484Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:31:29.979Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:31:29.982Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:31:41.876Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:31:41.879Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:31:52.715Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:31:52.717Z"}
+{"level":"info","message":"GET /api/v1/auth/me 500 7ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T04:35:03.140Z"}
+{"level":"info","message":"POST /api/v1/auth/logout 200 12ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T04:35:03.181Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 99ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T04:35:06.274Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 15ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:35:06.465Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:37:58.952Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:37:58.955Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:38:11.312Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:38:11.315Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:38:27.125Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:38:27.128Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:38:43.766Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:38:43.769Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:38:59.882Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:38:59.885Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:39:24.993Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:39:24.996Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:39:37.958Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:39:37.961Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:40:05.164Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:40:05.167Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:40:16.927Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:40:16.931Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:40:37.183Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:40:37.185Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:41:11.941Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:41:11.944Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:41:36.301Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:41:36.304Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:44:21.021Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:44:21.024Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:49:19.618Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:49:19.621Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 57ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:10.739Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:10.746Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:22.881Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:22.887Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:28.346Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 12ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:28.353Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:28.358Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:28.359Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:28.366Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:28.371Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:30.895Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:30.895Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:30.904Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:30.905Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 20ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:46.674Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T04:50:54.463Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:57:34.869Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:57:34.872Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:58:16.113Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:58:16.116Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:58:32.583Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:58:32.586Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:59:01.311Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:59:01.313Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:59:17.754Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:59:17.757Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T04:59:41.375Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T04:59:41.378Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T05:00:02.248Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T05:00:02.251Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T05:00:34.415Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T05:00:34.417Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T05:01:13.139Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T05:01:13.142Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T05:01:37.783Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T05:01:37.785Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T05:05:37.477Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T05:05:37.480Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T05:05:57.908Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T05:05:57.911Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T05:06:02.026Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T05:08:11.115Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T05:08:11.118Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 150ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T05:33:18.229Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 84ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T05:33:18.365Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T05:33:18.375Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 24ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T05:33:18.602Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T05:33:18.613Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 74ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T05:33:18.667Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T05:33:18.675Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 33ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T05:33:34.525Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T05:33:34.539Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 4ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T05:36:12.484Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 3ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T05:36:12.489Z"}
+{"level":"info","message":"GET /api/v1/auth/me 500 44ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T05:38:34.723Z"}
+{"level":"info","message":"POST /api/v1/auth/logout 200 106ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T05:38:34.892Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 199ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T05:38:36.759Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T05:38:37.011Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T05:38:44.891Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T05:38:52.658Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T05:38:52.664Z"}
+{"level":"info","message":"POST /api/v1/auth/logout 200 26ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T05:38:53.995Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 185ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T05:39:33.002Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 32ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T05:39:33.313Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 76ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T05:39:40.709Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 10ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T05:39:40.726Z"}
+{"level":"error","message":"Failed to send welcome email to abc@strive.com: Mail command failed: 530 5.7.1 Authentication required","timestamp":"2026-07-29T05:40:51.104Z"}
+{"level":"info","message":"POST /api/v1/companies 201 2727ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T05:40:51.132Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 200 47ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T05:40:51.189Z"}
+{"level":"info","message":"POST /api/v1/auth/logout 200 45ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T05:41:05.278Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 165ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T05:41:36.554Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 23ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:41:36.873Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 52ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:41:43.636Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 18ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:41:43.655Z"}
+{"level":"info","message":"POST /api/v1/clients 201 66ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:08.068Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 29ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:08.102Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 11ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:14.238Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 14ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:23.812Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 14ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:23.835Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 200 87ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:23.890Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 200 15ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:23.908Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 9ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:23.920Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:23.928Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 200 16ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:25.656Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 200 15ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:25.660Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:25.671Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:25.709Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 8ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:36.118Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:36.120Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 19ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:36.140Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 19ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:36.145Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:37.720Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:43:37.729Z"}
+{"level":"info","message":"POST /api/v1/assessment 201 57ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:44:45.634Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 7ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:44:45.648Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 21ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:44:57.851Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 24ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:44:57.866Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 200 14ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:44:57.869Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 22ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:44:57.894Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 14ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:44:57.899Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:44:57.907Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 48ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:45:00.098Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:45:00.109Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 200 93ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:45:00.149Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:45:00.157Z"}
+{"level":"info","message":"POST /api/v1/candidates 201 87ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:45:32.303Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 6ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:45:32.315Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:47:32.551Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 44ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:47:32.597Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 90ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:51:29.145Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:51:29.152Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 14ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:51:29.387Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 17ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:51:29.396Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 47ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:51:29.444Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T05:51:29.446Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 85ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:02:23.089Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:02:23.098Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 44ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:02:23.941Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 124ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:08:34.436Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 7ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:08:34.445Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 11ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:08:34.631Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:08:34.640Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 83ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:08:34.706Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:08:34.715Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&clientId=2dc459cd-2b13-467f-b254-36822f45c2f4&sortBy=createdAt&sortOrder=desc 200 16ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:08:40.294Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&assessmentId=7c662e47-1060-4afb-a929-4ed1d6ddf3dd&clientId=2dc459cd-2b13-467f-b254-36822f45c2f4&sortBy=createdAt&sortOrder=desc 200 15ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:08:43.681Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&assessmentId=7c662e47-1060-4afb-a929-4ed1d6ddf3dd&clientId=2dc459cd-2b13-467f-b254-36822f45c2f4&status=INVITED&sortBy=createdAt&sortOrder=desc 200 6ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:08:46.227Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 98ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:17:05.314Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:17:05.322Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 134ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:28:57.456Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:28:57.465Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 13ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:28:57.638Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 16ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:28:57.660Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 89ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:28:57.718Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:28:57.727Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 29ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:29:04.141Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 11ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:29:38.919Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 24ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:29:42.182Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 35ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:29:42.199Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 18ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:29:42.204Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 22ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:29:42.232Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 13ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:29:42.234Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 12ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:29:42.249Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 92ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:34:48.663Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 8ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:34:48.674Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 8ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:35:27.485Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 9ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:35:27.498Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 46ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:35:28.797Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 210ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:03.833Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 8ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:03.843Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 54ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:06.110Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 42ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:06.124Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 8ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:06.126Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:06.136Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 104ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:06.170Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 10ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:06.184Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 32ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:07.841Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 17ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:07.852Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 11ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:07.855Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 7ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:07.863Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 40ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T06:48:51.290Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T06:52:30.294Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T06:52:30.298Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T07:03:45.412Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T07:10:55.839Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T07:10:55.846Z"}
+{"level":"error","message":"Mailer: SMTP verification failed — Invalid login: 535 5.7.0 Invalid credentials","timestamp":"2026-07-29T07:10:58.610Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T07:18:33.673Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T07:18:33.679Z"}
+{"level":"error","message":"Mailer: SMTP verification failed — Invalid login: 535 5.7.0 Invalid credentials","timestamp":"2026-07-29T07:18:36.950Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T07:19:01.818Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T07:19:01.826Z"}
+{"level":"error","message":"Mailer: SMTP verification failed — Invalid login: 535 5.7.0 Invalid credentials","timestamp":"2026-07-29T07:19:04.393Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T07:24:01.546Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T07:24:07.385Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T07:24:07.390Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T07:24:10.386Z"}
+{"level":"info","message":"GET /api/v1/auth/me 500 10ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T07:34:53.857Z"}
+{"level":"info","message":"POST /api/v1/auth/logout 200 92ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T07:34:54.070Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 148ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T07:36:08.666Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 9ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T07:36:08.678Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 16ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T07:36:08.821Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 20ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T07:36:08.844Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 41ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T07:36:08.875Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T07:36:08.885Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 47ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T07:36:14.717Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T07:44:48.662Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T07:44:48.667Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T07:44:50.898Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T07:45:00.470Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T07:45:00.476Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T07:45:02.767Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T07:46:09.150Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T07:46:09.154Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T07:46:11.592Z"}
+{"level":"info","message":"POST /api/v1/auth/login 500 137ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:19:10.869Z"}
+{"level":"info","message":"POST /api/v1/auth/login 500 7ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:19:10.908Z"}
+{"level":"info","message":"POST /api/v1/auth/login 500 6ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:19:10.937Z"}
+{"level":"info","message":"POST /api/v1/auth/login 500 4ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:19:10.964Z"}
+{"level":"info","message":"POST /api/v1/auth/login 500 5ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:19:10.994Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 134ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:19:19.897Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 28ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T08:19:20.247Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 200 76ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T08:19:24.693Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 8ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T08:19:24.703Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 20ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T08:21:55.922Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 85ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T08:32:52.198Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T08:32:52.206Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 42ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T08:32:56.537Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 17ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T08:33:00.575Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 9ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T08:33:00.586Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 101ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T08:33:00.666Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 11ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T08:33:00.678Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T08:33:00.688Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T08:33:00.699Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 79ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T08:42:36.049Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 87ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T08:51:05.752Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitations?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:52:27.576Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 11ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T08:52:47.862Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitations 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:53:22.167Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:55:15.310Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitations 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:55:34.377Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:56:11.739Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitations 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:56:26.539Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:56:34.370Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 273ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T08:56:45.311Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 500 12ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T08:57:13.858Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T09:02:30.080Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T09:02:30.085Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T09:02:33.034Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T09:02:51.706Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T09:02:51.711Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T09:02:54.034Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T09:02:58.701Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T09:03:42.906Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T09:03:42.917Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T09:03:45.332Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 500 33ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T09:03:46.239Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 500 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T09:17:47.967Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 164ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:20:50.307Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 10ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:20:50.320Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 21ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:20:57.683Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 10ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:20:57.705Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 17ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:21:13.700Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 15ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:21:17.687Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 29ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:21:21.237Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 7ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:21:21.250Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 10ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:21:21.525Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 18ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:21:21.537Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 19ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:21:21.547Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 10ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:21:21.560Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 7ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:22:22.761Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 9ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:22:22.772Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 37ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T09:22:27.025Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T09:44:31.627Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T09:44:31.632Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 179ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T09:44:33.095Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 73ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T09:44:33.555Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T09:44:36.063Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 26ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T09:45:22.129Z"}
+{"level":"info","message":"GET /api/v1/permissions?grouped=false 500 3ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T09:45:22.177Z"}
+{"level":"info","message":"GET /api/v1/permissions?grouped=false 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T09:45:22.182Z"}
+{"level":"info","message":"GET /api/v1/permissions?grouped=true 500 4ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T09:46:14.169Z"}
+{"level":"info","message":"GET /api/v1/permissions?grouped=true 200 45ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T09:46:33.030Z"}
+{"level":"info","message":"GET /api/v1/permissions?grouped=false 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T09:55:58.431Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 169ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T09:56:41.055Z"}
+{"level":"info","message":"GET /api/v1/permissions?grouped=false 200 55ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T09:56:41.478Z"}
+{"level":"info","message":"GET /api/v1/permissions?grouped=false 304 14ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T09:56:41.498Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 150ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:02:53.537Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 58ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T10:07:04.962Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 293ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:07:16.652Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 15ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:07:16.670Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 16ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:07:25.628Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 30ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:07:25.661Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 38ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:07:25.703Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 155ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:07:25.797Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 19ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:07:25.819Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 10ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:07:25.830Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 43ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:07:36.108Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 29ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:07:36.127Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 18ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:07:36.132Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 13ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:07:36.147Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 18ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:11:33.645Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 21ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:11:33.655Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 15ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:11:33.671Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 9ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:11:33.673Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T10:15:32.453Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T10:15:32.461Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T10:15:34.384Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 500 48ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T10:15:49.210Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T10:16:50.953Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T10:22:01.363Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T10:22:01.371Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T10:22:03.938Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 500 57ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T10:22:19.550Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T10:22:56.629Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T10:26:16.631Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T10:26:16.638Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T10:26:18.912Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 500 48ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T10:26:22.819Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T10:26:55.268Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T10:37:29.949Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T10:37:29.955Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T10:37:32.284Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 500 36ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T10:37:44.466Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 26ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:38:56.934Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 115ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:38:57.128Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 10ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:38:57.140Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 27ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:38:57.325Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 13ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:38:57.342Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 110ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:38:57.425Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 16ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:38:57.443Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 49ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:00.329Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 23ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:00.398Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 17ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:00.400Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 13ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:00.404Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 21ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:00.427Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 18ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:00.430Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 14ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:00.435Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 49ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:02.512Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 10ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:08.984Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 14ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:09.001Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 17ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:11.853Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 13ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:11.923Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 13ms ip=127.0.0.1 user=66ae3b5d-bc43-408c-9cef-bc787c9fe4be","timestamp":"2026-07-29T10:39:11.939Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T10:40:43.061Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T10:41:13.747Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T10:41:13.755Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T10:41:15.970Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 500 40ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T10:41:56.572Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T10:43:47.798Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T10:48:14.812Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T10:48:14.818Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T10:48:17.054Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 234ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T10:50:46.510Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 39ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T10:50:47.064Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 104ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T10:52:47.746Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 11ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T10:52:47.760Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 17ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T10:52:53.601Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 12ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T10:52:53.619Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 131ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T10:54:15.201Z"}
+{"level":"info","message":"GET /api/v1/companies?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 10ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T10:54:15.214Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 229ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T10:58:28.117Z"}
+{"level":"error","message":"Unhandled error: PrismaClientValidationError: \nInvalid `prisma.candidateInvitation.findMany()` invocation in\nC:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.repository.js:88:32\n\n  85 };\n  86 \n  87 const [items, total] = await Promise.all([\n→ 88   prisma.candidateInvitation.findMany({\n         where: {\n           candidate: {\n             companyId: null,\n             ~~~~~~~~~\n       ?     is?: CandidateWhereInput,\n       ?     isNot?: CandidateWhereInput\n           }\n         },\n         skip: 0,\n         take: 10,\n         orderBy: {\n           createdAt: undefined\n         },\n         include: {\n           candidate: {\n             select: {\n               id: true,\n               firstName: true,\n               lastName: true,\n               email: true\n             }\n           }\n         }\n       })\n\nUnknown argument `companyId`. Available options are marked with ?.\n    at Nn (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:33:1363)\n    at ei.handleRequestError (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6911)\n    at ei.handleAndLogRequestError (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6593)\n    at ei.request (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6300)\n    at async a (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:134:9551)\n    at async Promise.all (index 0)\n    at async Object.list (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.repository.js:87:26)\n    at async Object.list (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.services.js:175:18)\n    at async C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.controller.js:67:28\n    at async C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\utils\\asyncHandler.js:7:13","timestamp":"2026-07-29T10:58:57.057Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 500 40ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T10:58:57.060Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 114ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T11:27:50.778Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation 200 42ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:28:07.746Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T11:30:58.096Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T11:31:13.560Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T11:31:13.564Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T11:31:15.577Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T11:31:54.205Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T11:31:54.207Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T11:31:56.193Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T11:32:01.235Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T11:32:22.554Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T11:32:22.557Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T11:32:24.478Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T11:33:28.607Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T11:33:28.610Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T11:33:30.777Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T11:33:44.359Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T11:33:44.362Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T11:33:46.394Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-07-29T11:34:04.576Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T11:37:46.835Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T11:37:46.838Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T11:37:48.832Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 17ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T11:37:53.217Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 8ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T11:37:55.517Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 80ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T11:38:39.534Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 12ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:38:39.750Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 42ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:38:44.542Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:38:44.548Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 200 15ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:38:44.824Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:38:44.832Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 200 49ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:38:44.860Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:38:44.865Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:38:50.326Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitations?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T11:39:00.226Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:39:00.235Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:39:25.606Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:39:43.525Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:39:46.585Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitations?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T11:39:46.921Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitations?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T11:39:46.923Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitations?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T11:45:09.835Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitations?page=1&limit=10&sortBy=createdAt&sortOrder=desc 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T11:45:26.385Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 44ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:46:37.730Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitations 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T11:47:13.824Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:47:23.972Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitations 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T11:47:25.868Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitations 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T11:47:26.837Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitations 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T11:47:27.843Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitations 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T11:47:37.488Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:06.412Z"}
+{"level":"info","message":"Mailer: sent \"cww invited you to complete an assessment\" to rahul.sharma@example.com (messageId: <2cac6f19-6edb-d2aa-7a2a-0bc7a7265ce8@gmail.com>)","timestamp":"2026-07-29T11:48:12.413Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitation 201 3703ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:12.422Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:12.433Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 57ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:23.964Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 13ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:24.005Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 23ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:24.030Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 14ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:24.046Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 79ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:24.074Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:24.081Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:24.084Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 200 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:29.576Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 200 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:29.578Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:29.585Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:29.587Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:39.658Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:40.015Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:40.021Z"}
+{"level":"info","message":"Mailer: sent \"cww invited you to complete an assessment\" to achalyturkar@gmail.com (messageId: <8e994ec6-703a-7f81-bcf8-6515f624d504@gmail.com>)","timestamp":"2026-07-29T11:48:59.668Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitation 201 3614ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:59.673Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:48:59.681Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 19ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:49:19.704Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:49:45.992Z"}
+{"level":"error","message":"Failed to send candidate invitation email: Message failed: 451-4.3.0 Mail server temporarily rejected message. For more information, go to\n451 4.3.0  https://support.google.com/a/answer/3221692 a92af1059eb24-13e7262c23bsm8096906c88.1 - gsmtp","timestamp":"2026-07-29T11:55:07.477Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitation/379e9050-44c3-4b9d-94d1-28e6c2eaeaf2/resend 200 3658ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:55:07.503Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 42ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:55:07.548Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 16ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:56:16.629Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:56:16.657Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:56:16.666Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:56:16.982Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:56:16.989Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 57ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:56:17.024Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T11:56:17.029Z"}
+{"level":"info","message":"GET /api/docs/ 304 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:00:14.798Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 75ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:04:49.863Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 49ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:11:25.027Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 18ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:14:38.804Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:14:39.621Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:14:40.403Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:14:40.599Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:14:40.799Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:14:41.005Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:14:41.208Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 50ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:12.678Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:12.684Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 16ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:14.433Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:14.439Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:14.443Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:14.452Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 66ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:14.486Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:14.494Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:16.060Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:16.064Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:16.070Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:16.071Z"}
+{"level":"info","message":"POST /api/v1/candidates 201 36ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:50.843Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:15:50.855Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:16:00.277Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 19ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:16:00.652Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:16:00.657Z"}
+{"level":"info","message":"Mailer: sent \"cww invited you to complete an assessment\" to achal.turkar002@gmail.com (messageId: <9950b089-b668-7095-1071-61d871cdf3e2@gmail.com>)","timestamp":"2026-07-29T12:16:36.406Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitation 201 3871ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:16:36.420Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:16:36.429Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/29df6c1ffbe5692199d0f6526c03a82949bb4b8115c3cfbf196fc1445ebc3f6d 200 46ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:28:42.611Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitation/token/29df6c1ffbe5692199d0f6526c03a82949bb4b8115c3cfbf196fc1445ebc3f6d/start 200 14ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:29:23.549Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 50ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:41:09.662Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 59ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:41:09.672Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 7ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:41:14.008Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 3ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:41:14.874Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 3ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:41:15.110Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:41:15.331Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 15ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:41:27.877Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 4ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:41:28.847Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 15ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:41:29.296Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:41:29.597Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:41:30.110Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 3ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:41:30.328Z"}
+{"level":"info","message":"Mailer: sent \"cww invited you to complete an assessment\" to achalyturkar@gmail.com (messageId: <14a6d096-39b3-585d-571a-d428b1ca0b80@gmail.com>)","timestamp":"2026-07-29T12:42:13.558Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitation/379e9050-44c3-4b9d-94d1-28e6c2eaeaf2/resend 200 3702ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:42:13.577Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:42:13.590Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/d39f1ee15944c04b0680c8fca10f321ea76c44a38200792d1ad855eb675d3229 200 3ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:42:31.004Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 23ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:42:31.030Z"}
+{"level":"info","message":"POST /api/v1/candidate-invitation/token/d39f1ee15944c04b0680c8fca10f321ea76c44a38200792d1ad855eb675d3229/start 200 13ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:42:50.112Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:43:22.431Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/d39f1ee15944c04b0680c8fca10f321ea76c44a38200792d1ad855eb675d3229 200 15ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:43:22.438Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:43:47.616Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:43:47.958Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:43:47.968Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:44:08.822Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:44:08.829Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 51ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:51:11.841Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 5ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T12:52:00.866Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 41ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:54:35.965Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T12:54:35.970Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T13:05:38.474Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T13:05:38.480Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T13:05:40.542Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 84ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T13:13:13.758Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 66ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:13:13.787Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 85ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:13.808Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:13.817Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:13.826Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/29df6c1ffbe5692199d0f6526c03a82949bb4b8115c3cfbf196fc1445ebc3f6d 200 12ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:13:13.860Z"}
+{"level":"info","message":"GET /api/v1/permissions?grouped=false 304 5ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T13:13:14.109Z"}
+{"level":"info","message":"GET /api/v1/permissions?grouped=false 304 4ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-07-29T13:13:14.115Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:14.174Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:14.181Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:20.191Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:20.193Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:20.203Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:20.207Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:20.212Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:20.219Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:32.546Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:32.547Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:32.554Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:32.555Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:42.823Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:42.868Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:13:42.874Z"}
+{"level":"info","message":"GET /api/v1/candidates?limit=20 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:13:47.944Z"}
+{"level":"info","message":"GET /api/v1/candidates?limit=20 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:13:48.259Z"}
+{"level":"info","message":"GET /api/v1/candidates?search=k&limit=20 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:13:55.381Z"}
+{"level":"info","message":"GET /api/v1/candidates?limit=20 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:13:56.449Z"}
+{"level":"info","message":"GET /api/v1/candidates?search=l&limit=20 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:13:57.212Z"}
+{"level":"info","message":"GET /api/v1/candidates?search=ll&limit=20 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:13:58.011Z"}
+{"level":"info","message":"GET /api/v1/candidates?search=lll&limit=20 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:13:58.320Z"}
+{"level":"info","message":"GET /api/v1/candidates?search=llllll&limit=20 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:13:59.060Z"}
+{"level":"info","message":"GET /api/v1/candidates?search=lllll&limit=20 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:13:59.659Z"}
+{"level":"info","message":"GET /api/v1/candidates?limit=20 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:14:00.278Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:14:18.961Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:14:18.969Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:14:19.265Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:14:19.272Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:14:19.273Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:14:19.278Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&clientId=08bbe999-8cf0-4f19-bf89-a635900e69ef&sortBy=createdAt&sortOrder=desc 200 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:14:29.708Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&clientId=13b1617c-8e48-4f92-971c-10b1cfcd8f95&sortBy=createdAt&sortOrder=desc 200 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:14:32.041Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&clientId=08bbe999-8cf0-4f19-bf89-a635900e69ef&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:14:34.474Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:14:50.882Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:14:50.929Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:14:50.935Z"}
+{"level":"info","message":"GET /api/v1/candidates?limit=20 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:15:57.778Z"}
+{"level":"info","message":"GET /api/v1/candidates?limit=20 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:15:57.779Z"}
+{"level":"info","message":"GET /api/v1/candidates?search=a&limit=20 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:16:01.100Z"}
+{"level":"info","message":"GET /api/v1/candidates?search=axc&limit=20 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:16:01.560Z"}
+{"level":"info","message":"GET /api/v1/candidates?search=ax&limit=20 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:16:02.343Z"}
+{"level":"info","message":"GET /api/v1/candidates?search=a&limit=20 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:16:02.686Z"}
+{"level":"info","message":"GET /api/v1/candidates?limit=20 500 0ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:16:03.015Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:42.686Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:42.691Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:42.994Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:42.995Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:43.001Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:43.002Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:44.675Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:44.677Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:44.685Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:44.686Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:50.206Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:50.207Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:50.213Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:16:50.215Z"}
+{"level":"info","message":"POST /api/v1/candidates 201 14ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:18:01.995Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:18:02.001Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:18:11.313Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:18:11.658Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:18:11.663Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/d39f1ee15944c04b0680c8fca10f321ea76c44a38200792d1ad855eb675d3229 304 43ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:19:24.515Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 52ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:19:24.524Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:19:25.975Z"}
+{"level":"error","message":"Unhandled error: PrismaClientKnownRequestError: \nInvalid `prisma.candidateInvitation.count()` invocation in\nC:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.repository.js:99:32\n\n  96     },\n  97   },\n  98 }),\n→ 99 prisma.candidateInvitation.count(\nInconsistent column data: Error creating UUID, invalid character: expected an optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], found `k` at 1\n    at ei.handleRequestError (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:7268)\n    at ei.handleAndLogRequestError (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6593)\n    at ei.request (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6300)\n    at async a (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:134:9551)\n    at async Promise.all (index 1)\n    at async Object.list (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.repository.js:87:26)\n    at async Object.list (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.services.js:175:18)\n    at async C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.controller.js:67:28\n    at async C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\utils\\asyncHandler.js:7:13","timestamp":"2026-07-29T13:28:57.464Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&candidateId=k&sortBy=createdAt&sortOrder=desc 500 57ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:28:57.465Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:28:57.619Z"}
+{"level":"error","message":"Unhandled error: PrismaClientKnownRequestError: \nInvalid `prisma.candidateInvitation.count()` invocation in\nC:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.repository.js:99:32\n\n  96     },\n  97   },\n  98 }),\n→ 99 prisma.candidateInvitation.count(\nInconsistent column data: Error creating UUID, invalid character: expected an optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], found `,` at 1\n    at ei.handleRequestError (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:7268)\n    at ei.handleAndLogRequestError (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6593)\n    at ei.request (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6300)\n    at async a (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:134:9551)\n    at async Promise.all (index 1)\n    at async Object.list (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.repository.js:87:26)\n    at async Object.list (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.services.js:175:18)\n    at async C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.controller.js:67:28\n    at async C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\utils\\asyncHandler.js:7:13","timestamp":"2026-07-29T13:28:58.427Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&candidateId=%2C&sortBy=createdAt&sortOrder=desc 500 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:28:58.428Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:29:04.948Z"}
+{"level":"error","message":"Unhandled error: PrismaClientKnownRequestError: \nInvalid `prisma.candidateInvitation.count()` invocation in\nC:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.repository.js:99:32\n\n  96     },\n  97   },\n  98 }),\n→ 99 prisma.candidateInvitation.count(\nInconsistent column data: Error creating UUID, invalid length: expected length 32 for simple format, found 1\n    at ei.handleRequestError (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:7268)\n    at ei.handleAndLogRequestError (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6593)\n    at ei.request (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6300)\n    at async a (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:134:9551)\n    at async Promise.all (index 1)\n    at async Object.list (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.repository.js:87:26)\n    at async Object.list (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.services.js:175:18)\n    at async C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.controller.js:67:28\n    at async C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\utils\\asyncHandler.js:7:13","timestamp":"2026-07-29T13:29:05.502Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&candidateId=f&sortBy=createdAt&sortOrder=desc 500 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:29:05.503Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:29:06.139Z"}
+{"level":"error","message":"Unhandled error: PrismaClientKnownRequestError: \nInvalid `prisma.candidateInvitation.count()` invocation in\nC:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.repository.js:99:32\n\n  96     },\n  97   },\n  98 }),\n→ 99 prisma.candidateInvitation.count(\nInconsistent column data: Error creating UUID, invalid character: expected an optional prefix of `urn:uuid:` followed by [0-9a-fA-F-], found `s` at 1\n    at ei.handleRequestError (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:7268)\n    at ei.handleAndLogRequestError (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6593)\n    at ei.request (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6300)\n    at async a (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:134:9551)\n    at async Promise.all (index 1)\n    at async Object.list (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.repository.js:87:26)\n    at async Object.list (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.services.js:175:18)\n    at async C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.controller.js:67:28\n    at async C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\utils\\asyncHandler.js:7:13","timestamp":"2026-07-29T13:29:07.149Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&candidateId=s&sortBy=createdAt&sortOrder=desc 500 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:29:07.150Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:29:08.079Z"}
+{"level":"error","message":"Unhandled error: PrismaClientKnownRequestError: \nInvalid `prisma.candidateInvitation.count()` invocation in\nC:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.repository.js:99:32\n\n  96     },\n  97   },\n  98 }),\n→ 99 prisma.candidateInvitation.count(\nInconsistent column data: Error creating UUID, invalid length: expected length 32 for simple format, found 1\n    at ei.handleRequestError (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:7268)\n    at ei.handleAndLogRequestError (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6593)\n    at ei.request (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:125:6300)\n    at async a (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\generated\\prisma\\runtime\\library.js:134:9551)\n    at async Promise.all (index 1)\n    at async Object.list (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.repository.js:87:26)\n    at async Object.list (C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.services.js:175:18)\n    at async C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\modules\\candidate-invitation\\candidate-invitation.controller.js:67:28\n    at async C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\src\\utils\\asyncHandler.js:7:13","timestamp":"2026-07-29T13:29:08.455Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&candidateId=a&sortBy=createdAt&sortOrder=desc 500 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:29:08.456Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:29:18.363Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&status=STARTED&sortBy=createdAt&sortOrder=desc 200 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:29:22.187Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:29:26.609Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&status=COMPLETED&sortBy=createdAt&sortOrder=desc 200 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:29:30.188Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&status=SENT&sortBy=createdAt&sortOrder=desc 200 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:29:34.775Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T13:29:37.417Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 34ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:35:28.409Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 2ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T13:35:42.619Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 112ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T14:49:10.317Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 94ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:10:56.799Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 98ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:10:59.619Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:10:59.630Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 37ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:11:03.665Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 29ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:11:03.668Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 31ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:11:03.686Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 16ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:11:03.687Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:11:03.688Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:11:03.697Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:12:57.530Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:12:57.532Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:12:57.544Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:12:57.546Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 19ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:13:01.679Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 13ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:13:01.682Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 25ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:13:01.712Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&status=ACTIVE&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-29T15:13:01.713Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitation/token/557b030eec9975a0ae111411d5d7e720eebdc87a198f76a491746d321e75d7d2 500 68ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T16:51:22.851Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T17:50:07.097Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T17:50:07.103Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T17:50:09.682Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T17:50:21.259Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T17:50:21.264Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T17:50:23.403Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-07-29T17:50:38.457Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-07-29T17:50:38.461Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-07-29T17:50:40.538Z"}
+{"level":"info","message":"GET /api/v1/candidate-invitations/token/29df6c1ffbe5692199d0f6526c03a82949bb4b8115c3cfbf196fc1445ebc3f6d 500 12ms ip=127.0.0.1 user=anon","timestamp":"2026-07-29T18:27:38.860Z"}

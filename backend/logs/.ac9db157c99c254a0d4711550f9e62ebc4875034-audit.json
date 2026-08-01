@@ -1,0 +1,40 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\.ac9db157c99c254a0d4711550f9e62ebc4875034-audit.json",
+    "files": [
+        {
+            "date": 1785139584865,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-07-27.log",
+            "hash": "6fdebfc0ba8667d01830f8af0077fb2ce66cca9b73e4a7bb575e2fbd83860531"
+        },
+        {
+            "date": 1785209686970,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-07-28.log",
+            "hash": "2aa52a1af1e9925f370156d30f47898699e1c7b5ec1654f8dad3d59eb7f51463"
+        },
+        {
+            "date": 1785264753313,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-07-29.log",
+            "hash": "31749c34c6d501009c32fe6bb868ba8be4acdf190ca08d5bb45fa7b480de54eb"
+        },
+        {
+            "date": 1785350538803,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-07-30.log",
+            "hash": "3a731e120e4f5cf9d9ec80249d91008cb92ae9db834f1b24a9082cdbb91bdd7a"
+        },
+        {
+            "date": 1785452846021,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-07-31.log",
+            "hash": "f711593c9d8e65d9914f04fa569eb63a8e34ff0a4bdd4ae490a85798d04a722f"
+        },
+        {
+            "date": 1785524265190,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-01.log",
+            "hash": "d41dffaa4bb896f70afac1fd494bf398c16b4ae9315b5429655f91573352d0b0"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -1,0 +1,160 @@
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 94ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:57:45.186Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:57:45.209Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 19ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:57:45.414Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 19ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:57:45.436Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 169ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:57:45.572Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:57:45.581Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 15ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:58:01.031Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:58:01.042Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:58:04.110Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:58:04.112Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 12ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:58:04.127Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:58:04.129Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:58:04.139Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:58:04.148Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 50ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-07-31T18:58:06.311Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T02:54:09.667Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T02:54:09.670Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T02:54:12.273Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T02:54:40.540Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T02:54:40.542Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T02:54:43.092Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T02:55:15.740Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T02:55:15.743Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T02:55:18.672Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T02:56:11.951Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T02:56:11.954Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T02:56:13.874Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T02:57:07.655Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T02:57:07.657Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T02:57:09.934Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:01:42.095Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:01:42.097Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:01:45.802Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:02:15.452Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:02:15.454Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:02:18.239Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:02:51.808Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:02:51.811Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:02:54.047Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:32:13.844Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:32:13.846Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:32:16.749Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:32:20.076Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:32:20.078Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:32:23.453Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:32:26.355Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:32:26.357Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:32:29.022Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:32:33.673Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:32:33.676Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:32:35.681Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:32:50.081Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:32:50.084Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:32:52.228Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:33:07.244Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:33:07.246Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:33:09.549Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:33:24.188Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:33:24.191Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:33:26.806Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:34:30.343Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:34:30.346Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:34:32.738Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:34:50.463Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:34:50.465Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:34:53.291Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:35:07.090Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:35:07.092Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:35:09.955Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:35:22.155Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:35:22.157Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:35:25.361Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:35:42.089Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:35:42.091Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:35:44.396Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:35:54.621Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:35:54.624Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:35:57.498Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:36:39.154Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:36:39.157Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:36:41.938Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:36:58.870Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:36:58.872Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:37:01.386Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:37:16.814Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:37:16.817Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:37:19.798Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:37:32.885Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:37:32.887Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:37:36.238Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:37:57.157Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:37:57.159Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:37:59.515Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:38:12.622Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:38:12.624Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:38:14.682Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:38:41.921Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:38:41.924Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:38:44.570Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:38:54.387Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:38:54.390Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:38:57.657Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:39:10.632Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:39:10.635Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:39:13.660Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:40:05.265Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:40:05.267Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:40:08.161Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T03:47:05.725Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T03:47:05.727Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T03:47:08.345Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:48:47.281Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:48:47.283Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:48:49.597Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:49:02.812Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:49:02.815Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:49:05.410Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:49:17.029Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:49:17.031Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:49:18.834Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:49:32.874Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:49:32.876Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:49:35.497Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:49:47.649Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:49:47.651Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:49:49.763Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:50:02.137Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:50:02.139Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:50:04.093Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:50:17.185Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:50:17.187Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:50:20.042Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:50:36.636Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:50:36.639Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:50:40.581Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:50:55.438Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:50:55.441Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:50:57.919Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:51:11.831Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:51:11.833Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:51:15.295Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:51:39.949Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:51:39.951Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:51:42.156Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:51:53.223Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:51:53.225Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:51:55.736Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:52:10.195Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:52:10.198Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:52:12.443Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:52:52.952Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:52:52.954Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:52:55.194Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:55:40.599Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:55:40.603Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:55:43.394Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-01T04:55:57.729Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-01T04:55:57.733Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-01T04:56:00.802Z"}
+{"level":"info","message":"Received SIGINT. Shutting down gracefully...","timestamp":"2026-08-01T04:57:06.643Z"}
