@@ -214,6 +214,8 @@ export default function AssessmentsPage() {
         likertCount: Number(values.likertCount) || 0,
         sjqCount: Number(values.sjqCount) || 0,
         forcedChoiceCount: Number(values.forcedChoiceCount) || 0,
+        analyticalCount: Number(values.analyticalCount) || 0,
+        logicalReasoningCount: Number(values.logicalReasoningCount) || 0,
         durationMinutes: Number(values.durationMinutes),
       };
 
@@ -295,7 +297,7 @@ export default function AssessmentsPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-7">
       {/* Header */}
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <p
             className="text-[11px] uppercase tracking-[0.14em] text-[#3FDCC0] mb-1.5"
@@ -307,16 +309,22 @@ export default function AssessmentsPage() {
             Assessments
           </h1>
           <p className="text-[13.5px] text-[#8891B8] mt-1">
-            {isSuperAdmin ? 'Manage assessments across every company' : 'Manage your company\u2019s assessments'}
+            {isSuperAdmin ? 'Manage assessments across every company' : 'Manage your company’s assessments'}
           </p>
         </div>
-        <button
-          onClick={openCreate}
-          className="flex items-center gap-1.5 rounded-lg bg-[#3FDCC0] text-[#0B0F26] text-[13px] font-semibold px-4 py-2.5 hover:bg-[#3FDCC0]/90 transition-colors shrink-0"
-        >
-          <Plus size={14} strokeWidth={2.5} />
-          Add assessment
-        </button>
+        <div className="flex items-center gap-3 flex-wrap">
+          <div className="rounded-2xl bg-[#161C3A] px-4 py-3 text-[13px] text-[#F2F4FA] border border-white/[0.08]">
+            <span className="block text-[11px] text-[#8891B8]">Total assessments</span>
+            <span className="text-[20px] font-semibold">{meta.total}</span>
+          </div>
+          <button
+            onClick={openCreate}
+            className="flex items-center gap-1.5 rounded-lg bg-[#3FDCC0] text-[#0B0F26] text-[13px] font-semibold px-4 py-2.5 hover:bg-[#3FDCC0]/90 transition-colors shrink-0"
+          >
+            <Plus size={14} strokeWidth={2.5} />
+            Add assessment
+          </button>
+        </div>
       </div>
 
       {/* Banner */}
@@ -399,12 +407,13 @@ export default function AssessmentsPage() {
 
       {/* Table */}
       <div className="rounded-2xl border border-white/[0.08] bg-[#161C3A] overflow-hidden">
-        <table className="w-full text-left">
-          <thead>
-            <tr
-              className="text-[11px] uppercase tracking-wide text-[#565F8C] border-b border-white/[0.08]"
-              style={{ fontFamily: 'var(--font-mono)' }}
-            >
+        <div className="overflow-x-auto">
+          <table className="min-w-[720px] w-full text-left">
+            <thead>
+              <tr
+                className="text-[11px] uppercase tracking-wide text-[#565F8C] border-b border-white/[0.08]"
+                style={{ fontFamily: 'var(--font-mono)' }}
+              >
               <th className="px-5 py-3 font-medium">Assessment</th>
               <th className="px-5 py-3 font-medium">Client</th>
               {isSuperAdmin && <th className="px-5 py-3 font-medium">Company</th>}
@@ -444,7 +453,12 @@ export default function AssessmentsPage() {
               !loadError &&
               assessments.map((a) => {
                 const client = clientMap.get(a.clientId);
-                const total = a.likertCount + a.sjqCount + a.forcedChoiceCount;
+                const total =
+                    a.likertCount +
+                    a.sjqCount +
+                    a.forcedChoiceCount +
+                    a.analyticalCount +
+                    a.logicalReasoningCount;
                 return (
                   <tr key={a.id} className="border-t border-white/[0.06] hover:bg-white/[0.03]">
                     <td className="px-5 py-3">
@@ -474,9 +488,9 @@ export default function AssessmentsPage() {
                     </td>
                     <td className="px-5 py-3">
                       <div
-                        className="flex items-center gap-2.5 text-[11.5px] text-[#8891B8]"
+                        className="flex flex-wrap items-center gap-2.5 text-[11.5px] text-[#8891B8]"
                         style={{ fontFamily: 'var(--font-mono)' }}
-                        title={`${a.likertCount} Likert · ${a.sjqCount} SJQ · ${a.forcedChoiceCount} Forced choice`}
+                        title={`${a.likertCount} Likert · ${a.sjqCount} SJQ · ${a.forcedChoiceCount} Forced choice · ${a.analyticalCount} Analytical · ${a.logicalReasoningCount} Logical reasoning`}
                       >
                         <span className="flex items-center gap-1">
                           <ListChecks size={11} /> {a.likertCount}
@@ -486,6 +500,12 @@ export default function AssessmentsPage() {
                         </span>
                         <span className="flex items-center gap-1">
                           <Shuffle size={11} /> {a.forcedChoiceCount}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <ClipboardList size={11} /> {a.analyticalCount}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Building2 size={11} /> {a.logicalReasoningCount}
                         </span>
                         <span className="text-[#565F8C]">({total})</span>
                       </div>
@@ -538,6 +558,7 @@ export default function AssessmentsPage() {
               })}
           </tbody>
         </table>
+      </div>
 
         {/* Pagination */}
         <div className="flex items-center justify-between px-5 py-3.5 border-t border-white/[0.08]">

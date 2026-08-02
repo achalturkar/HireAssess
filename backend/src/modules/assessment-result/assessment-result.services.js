@@ -27,6 +27,14 @@ const toDto = (row) => ({
         email: row.attempt.candidate.email,
       }
     : undefined,
+  assessment: row.attempt?.assessment
+    ? {
+        id: row.attempt.assessment.id,
+        name: row.attempt.assessment.name,
+        level: row.attempt.assessment.level,
+        durationMinutes: row.attempt.assessment.durationMinutes,
+      }
+    : undefined,
 });
 
 /**
@@ -54,30 +62,29 @@ const scoreBand = (value) => {
   return 'Low';
 };
 
+const scoreStage = (value) => {
+  if (value >= 90) return 'Outstanding';
+  if (value >= 80) return 'Strong Fit';
+  if (value >= 70) return 'Good Fit';
+  if (value >= 60) return 'Potential Fit';
+  return 'Needs Development';
+};
+
 const computeTraitScores = async (answers) => {
   const scoredAnswers = answers.filter((a) => a.score !== null && a.score !== undefined);
   if (!scoredAnswers.length) return {};
 
-  const questionIds = scoredAnswers.map((a) => a.questionId);
-
-  const weights = await prisma.questionTrait.findMany({
-    where: { questionId: { in: questionIds } },
-  });
-
-  const weightsByQuestion = weights.reduce((acc, w) => {
-    (acc[w.questionId] ||= []).push(w);
-    return acc;
-  }, {});
-
   const totals = {}; // trait -> { weightedSum, weightSum }
 
   for (const answer of scoredAnswers) {
-    const traitWeights = weightsByQuestion[answer.questionId] || [];
-    for (const { trait, weight } of traitWeights) {
-      totals[trait] ||= { weightedSum: 0, weightSum: 0 };
-      totals[trait].weightedSum += (answer.score / RAW_SCALE_MAX) * 100 * weight;
-      totals[trait].weightSum += weight;
-    }
+    const question = loader.getQuestionById(answer.questionId);
+    const trait = question?.category || answer.category || 'General';
+    const weight = typeof question?.weight === 'number' ? question.weight : 1;
+    const normalized = (Number(answer.score) / RAW_SCALE_MAX) * 100;
+
+    totals[trait] ||= { weightedSum: 0, weightSum: 0 };
+    totals[trait].weightedSum += normalized * weight;
+    totals[trait].weightSum += weight;
   }
 
   const traitScores = {};
@@ -90,18 +97,25 @@ const computeTraitScores = async (answers) => {
   return traitScores;
 };
 
-const computeOverallScore = (traitScores) => {
+const computeOverallScore = (traitScores, answers) => {
   const values = Object.values(traitScores);
-  if (!values.length) return 0;
+  if (!values.length) {
+    const scoredAnswers = answers.filter((a) => a.score !== null && a.score !== undefined);
+    if (!scoredAnswers.length) return 0;
+    const average = scoredAnswers.reduce((sum, answer) => sum + Number(answer.score || 0), 0) / scoredAnswers.length;
+    return Math.round((average / RAW_SCALE_MAX) * 100);
+  }
+
   return Math.round(values.reduce((sum, v) => sum + v, 0) / values.length);
 };
 
 const buildReport = ({ overallScore, traitScores }) => ({
-  overall: { score: overallScore, band: scoreBand(overallScore) },
+  overall: { score: overallScore, band: scoreBand(overallScore), stage: scoreStage(overallScore) },
   traits: Object.entries(traitScores).map(([trait, score]) => ({
     trait,
     score,
     band: scoreBand(score),
+    stage: scoreStage(score),
   })),
   // TODO: replace with real narrative copy, e.g. per-band interpretation
   // text pulled from a template table, or an LLM-generated summary.
@@ -114,10 +128,30 @@ const buildReport = ({ overallScore, traitScores }) => ({
  * same attempt (e.g. if scoring keys change and you want to reprocess).
  */
 const generateForAttempt = async ({ attemptId }) => {
-  const answers = await candidateAnswerRepo.listByAttempt(attemptId);
+  // Load all saved answers for this attempt (only answered questions)
+  const savedAnswers = await candidateAnswerRepo.listByAttempt(attemptId);
 
-  const traitScores = await computeTraitScores(answers);
-  const overallScore = computeOverallScore(traitScores);
+  // Load the attempt so we can iterate all selected questions
+  const attempt = await attemptRepo.findById(attemptId);
+
+  // Build a full answer list that includes unanswered questions as score=0
+  // This ensures trait and overall calculations treat missing answers as zero
+  const savedByQuestion = Object.fromEntries((savedAnswers || []).map((a) => [a.questionId, a]));
+  const fullAnswers = [];
+  for (const type of Object.keys(attempt.selectedQuestions || {})) {
+    for (const qid of attempt.selectedQuestions[type]) {
+      const existing = savedByQuestion[qid];
+      if (existing) {
+        fullAnswers.push(existing);
+      } else {
+        // mirror the CandidateAnswer shape minimally for aggregation
+        fullAnswers.push({ questionId: qid, score: 0, answer: null, category: null });
+      }
+    }
+  }
+
+  const traitScores = await computeTraitScores(fullAnswers);
+  const overallScore = computeOverallScore(traitScores, fullAnswers);
   const report = buildReport({ overallScore, traitScores });
 
   const saved = await repo.upsert({
@@ -139,7 +173,7 @@ const generateForAttemptSafe = async ({ attemptId }) => {
   try {
     await generateForAttempt({ attemptId });
   } catch (err) {
-    logger.error(`Could not generate result for attempt ${attemptId}: ${err.message}`);
+    logger.error(`Could not generate result for attempt ${attemptId}: ${err.stack || err.message}`);
   }
 };
 
@@ -224,23 +258,13 @@ const getCandidateResult = async ({
     const questions = [];
 
     for (const type of Object.keys(attempt.selectedQuestions)) {
-
         for (const id of attempt.selectedQuestions[type]) {
-
-            const q =
-                loader.getQuestionById(id);
-
+            const q = loader.getQuestionById(id);
             questions.push({
-
-                question: q,
-
-                answer:
-                    answerMap[id] || null
-
+                question: q ? { ...q, type } : null,
+                answer: answerMap[id] || null,
             });
-
         }
-
     }
 
     return {
@@ -250,6 +274,12 @@ const getCandidateResult = async ({
 
         assessment:
             result.attempt.assessment,
+
+        startedAt:
+            attempt.startedAt,
+
+        submittedAt:
+            attempt.submittedAt,
 
         overallScore:
             result.overallScore,

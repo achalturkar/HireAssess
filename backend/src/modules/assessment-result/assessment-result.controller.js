@@ -83,10 +83,31 @@ asyncHandler(async (req,res)=>{
 
 });
 
+const getCandidateResultPdf = asyncHandler(async (req, res) => {
+  const bundle = await service.getCandidateResult({
+    attemptId: req.params.attemptId,
+    companyId: req.user.companyId,
+  });
+
+  const { generateResultPdf } = require('./assessment-result.pdf');
+  const doc = generateResultPdf({ bundle });
+
+  const candidateName = bundle.candidate ? `${bundle.candidate.firstName ?? 'Candidate'} ${bundle.candidate.lastName ?? ''}`.trim() : 'Candidate';
+  const safeName = candidateName.replace(/[^a-zA-Z0-9\s_-]/g, '').replace(/\s+/g, '_');
+  const filename = `${safeName}_Assessment report.pdf`;
+
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+
+  doc.pipe(res);
+  doc.end();
+});
+
 module.exports = {
   getResult,
   getResultByAttempt,
   getCandidateResult,
+  getCandidateResultPdf,
 
   listResults,
 };

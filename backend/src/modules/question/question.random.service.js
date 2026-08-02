@@ -33,6 +33,8 @@ const generateQuestionSet = ({
   likertCount,
   sjqCount,
   forcedChoiceCount,
+  analyticalCount,
+  logicalReasoningCount,
 }) => {
 
   const likert = pickRandom(
@@ -50,11 +52,23 @@ const generateQuestionSet = ({
     forcedChoiceCount
   ).map(mapper.mapForcedChoice);
 
-return {
-    LIKERT: likert.map(q => q.id),
-    SITUATIONAL_JUDGEMENT: sjq.map(q => q.id),
-    FORCED_CHOICE: forced.map(q => q.id),
-};
+  const analytical = pickRandom(
+    loader.getQuestions(level, 'ANALYTICAL'),
+    analyticalCount
+  ).map(mapper.mapAnalytical);
+
+  const logicalReasoning = pickRandom(
+    loader.getQuestions(level, 'LOGICAL_REASONING'),
+    logicalReasoningCount
+  ).map(mapper.mapLogicalReasoning);
+
+  return {
+    LIKERT: likert.map((q) => q.id),
+    SITUATIONAL_JUDGEMENT: sjq.map((q) => q.id),
+    FORCED_CHOICE: forced.map((q) => q.id),
+    ANALYTICAL: analytical.map((q) => q.id),
+    LOGICAL_REASONING: logicalReasoning.map((q) => q.id),
+  };
 };
 
 module.exports = {

@@ -1,6 +1,6 @@
 import type { Role, RoleFormValues, PaginationMeta } from '@/src/types/role';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
+const API_BASE = process.env.NEXT_PUBLIC_API|| '/api/v1';
 
 export class ApiError extends Error {
   status: number;

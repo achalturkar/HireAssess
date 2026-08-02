@@ -41,6 +41,17 @@ const findById = (id, companyId) =>
 const findByCandidateAndAssessment = (candidateId, assessmentId) =>
   prisma.examAttempt.findFirst({
     where: { candidateId, assessmentId },
+    include: {
+      candidate: true,
+      assessment: {
+        select: {
+          id: true,
+          name: true,
+          durationMinutes: true,
+          level: true,
+        },
+      },
+    },
   });
 
 /**

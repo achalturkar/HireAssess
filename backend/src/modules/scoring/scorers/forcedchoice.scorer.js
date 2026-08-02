@@ -35,10 +35,16 @@ const POINTS_FOR = {
 };
 const MAX_POINTS_PER_ITEM = POINTS_FOR.most;
 
+function getForcedChoiceIds(answer) {
+  return {
+    mostId: answer?.mostLikeId ?? answer?.most ?? null,
+    leastId: answer?.leastLikeId ?? answer?.least ?? null,
+  };
+}
+
 function score(question, answer) {
   const items = Array.isArray(question.items) ? question.items : [];
-  const mostId = answer?.mostLikeId ?? null;
-  const leastId = answer?.leastLikeId ?? null;
+  const { mostId, leastId } = getForcedChoiceIds(answer);
 
   if (items.length === 0 || !mostId || !leastId) {
     return { raw: null, contributions: [] };

@@ -20,14 +20,17 @@ import { useAuth } from '@/src/auth/AuthProvider';
 const menus = [
   { name: 'Dashboard', href: '/company/dashboard', icon: LayoutDashboard },
     { name: 'Client', href: '/company/clients', icon: Users },
-  { name: 'Users', href: '/company/users', icon: Users },
-  { name: 'Roles', href: '/company/roles', icon: ShieldCheck },
+    { name: 'Assessments', href: '/company/assessments', icon: ClipboardList },
+
   { name: 'Candidates', href: '/company/candidates', icon: Contact },
+    { name: 'Results', href: '/company/results', icon: BarChart3 },
+
   { name: 'Question Bank', href: '/company/question-bank', icon: BookOpen },
-  { name: 'Assessments', href: '/company/assessments', icon: ClipboardList },
   { name: 'Schedules', href: '/company/schedules', icon: CalendarClock },
   { name: 'Reports', href: '/company/reports', icon: BarChart3 },
   { name: 'Settings', href: '/company/settings', icon: Settings },
+  { name: 'Users', href: '/company/users', icon: Users },
+  { name: 'Roles', href: '/company/roles', icon: ShieldCheck },
 ];
 
 interface CompanySidebarProps {
@@ -115,7 +118,7 @@ export default function CompanySidebar({ collapsed, onToggleCollapse, mobileOpen
     <>
       {/* Desktop */}
       <aside
-        className={`hidden md:block shrink-0 border-r border-white/[0.08] transition-[width] duration-200 ${
+        className={`hidden md:block sticky top-0 h-screen shrink-0 border-r border-white/[0.08] transition-[width] duration-200 ${
           collapsed ? 'w-[76px]' : 'w-64'
         }`}
       >

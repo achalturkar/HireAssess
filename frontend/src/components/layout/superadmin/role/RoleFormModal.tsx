@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { X, Loader2, ShieldCheck, Building2, KeyRound } from 'lucide-react';
+import { useAuth } from '@/src/auth/AuthProvider';
 import { listPermissions } from '@/src/lib/api/permissions';
 import type { Permission } from '@/src/types/permission';
 import type { Role, RoleFormValues, CompanyRef } from '@/src/types/role';
@@ -47,6 +48,7 @@ export default function RoleFormModal({
   );
 
   const [allPermissions, setAllPermissions] = useState<Permission[]>([]);
+  const { accessToken } = useAuth();
   const [permsLoading, setPermsLoading] = useState(true);
   const [permsError, setPermsError] = useState<string | null>(null);
 
@@ -60,7 +62,10 @@ export default function RoleFormModal({
       setPermsLoading(true);
       setPermsError(null);
       try {
-        const items = await listPermissions();
+        if (!accessToken) {
+          throw new Error('Authorization token is missing.');
+        }
+        const items = await listPermissions(accessToken);
         if (!cancelled) setAllPermissions(items);
       } catch {
         if (!cancelled) setPermsError('Could not load permissions.');
@@ -71,7 +76,7 @@ export default function RoleFormModal({
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [accessToken]);
 
   const grouped = useMemo(() => {
     const map = new Map<string, Permission[]>();

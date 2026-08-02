@@ -18,6 +18,10 @@ const randomQuestions = asyncHandler(async (req, res) => {
 
     forcedChoiceCount: Number(req.query.forcedChoice || 0),
 
+    analyticalCount: Number(req.query.analytical || 0),
+
+    logicalReasoningCount: Number(req.query.logicalReasoning || 0),
+
   });
 
   return success(res, {

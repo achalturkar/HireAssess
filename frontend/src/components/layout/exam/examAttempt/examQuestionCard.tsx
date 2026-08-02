@@ -30,9 +30,16 @@ interface ForcedStatement {
 //   LIKERT                -> { answer: number }        (1-5)
 //   SITUATIONAL_JUDGEMENT  -> { selectedOption: string } (question-bank option id)
 //   FORCED_CHOICE          -> { most: string, least: string } (both required, must differ)
+// Some persisted answers may still use legacy aliases such as
+// `selectedOptionId`, `mostLikeId`, and `leastLikeId`.
 type LikertAnswer = { answer: number };
-type SjqAnswer = { selectedOption: string };
-type ForcedChoiceAnswer = { most?: string; least?: string };
+type SjqAnswer = { selectedOption?: string; selectedOptionId?: string };
+type ForcedChoiceAnswer = {
+  most?: string;
+  least?: string;
+  mostLikeId?: string;
+  leastLikeId?: string;
+};
 
 // The three question-bank shapes differ per type (see the sample API
 // response): LIKERT has `question`, SITUATIONAL_JUDGEMENT has `scenario` +
@@ -48,7 +55,7 @@ type RawQuestion = QuestionBankItem & {
 };
 
 interface ExamQuestionCardProps {
-  groupKey: 'LIKERT' | 'SITUATIONAL_JUDGEMENT' | 'FORCED_CHOICE' | string;
+  groupKey: 'LIKERT' | 'SITUATIONAL_JUDGEMENT' | 'FORCED_CHOICE' | 'ANALYTICAL' | 'LOGICAL_REASONING' | string;
   question: QuestionBankItem;
   index: number;
   answer: unknown;
@@ -77,10 +84,17 @@ export default function ExamQuestionCard({ groupKey, question, index, answer, on
           onAnswer={onAnswer}
         />
       )}
+      {(groupKey === 'ANALYTICAL' || groupKey === 'LOGICAL_REASONING') && (
+        <SjqBlock
+          question={q}
+          selectedOptionId={(answer as SjqAnswer | undefined)?.selectedOption}
+          onAnswer={onAnswer}
+        />
+      )}
       {groupKey === 'FORCED_CHOICE' && (
         <ForcedChoiceBlock question={q} value={answer as ForcedChoiceAnswer | undefined} onAnswer={onAnswer} />
       )}
-      {!['LIKERT', 'SITUATIONAL_JUDGEMENT', 'FORCED_CHOICE'].includes(groupKey) && (
+      {!['LIKERT', 'SITUATIONAL_JUDGEMENT', 'FORCED_CHOICE', 'ANALYTICAL', 'LOGICAL_REASONING'].includes(groupKey) && (
         <p className="text-[13px] text-[#8891B8]">{q.question ?? q.scenario ?? q.questionText ?? '—'}</p>
       )}
     </div>

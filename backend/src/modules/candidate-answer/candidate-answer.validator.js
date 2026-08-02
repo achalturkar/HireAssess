@@ -26,7 +26,7 @@ const upsertValidator = {
     // Not a UUID — question ids look like "lk12", "sj29", "fc08".
     questionId: Joi.string().max(50).required(),
     questionType: Joi.string().max(50).required(),
-    category: Joi.string().valid(...CATEGORIES).required(),
+    category: Joi.string().max(100).optional(),
     // Flexible payload: { "answer": 5 } or { "selected": "q3" }, etc.
     answer: Joi.object().min(1).required(),
   }),
@@ -49,7 +49,7 @@ const listValidator = {
     page: Joi.number().integer().min(1),
     limit: Joi.number().integer().min(1).max(500),
     attemptId: Joi.string().uuid(),
-    category: Joi.string().valid(...CATEGORIES),
+    category: Joi.string().max(100),
     questionType: Joi.string().max(50),
     sortBy: Joi.string().valid('createdAt', 'updatedAt', 'score'),
     sortOrder: Joi.string().valid('asc', 'desc'),

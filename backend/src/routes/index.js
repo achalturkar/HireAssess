@@ -38,6 +38,6 @@ router.use('/candidates', candidateRoutes);
 router.use('/candidate-invitation', candidateInvitationRoutes);
 router.use('/exam-attempts', examAttemptRoutes);
 router.use('/candidate-answers', candidateAnswerRoutes);
-router.use('/assessment-result', assessmentResultRoutes);
+router.use(['/assessment-result', '/assessment-results'], assessmentResultRoutes);
 
 module.exports = router;

@@ -333,7 +333,7 @@ export default function CandidatesPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-7">
       {/* Header */}
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <p
             className="text-[11px] uppercase tracking-[0.14em] text-[#3FDCC0] mb-1.5"
@@ -347,20 +347,26 @@ export default function CandidatesPage() {
           <p className="text-[13.5px] text-[#8891B8] mt-1">Track invites and assessment progress</p>
         </div>
 
-        <Link
-          href="/company/candidates/invitations"
-          className="flex items-center gap-1.5 rounded-lg bg-[#3FDCC0] text-[#0B0F26] text-[13px] font-semibold px-4 py-2.5 hover:bg-[#3FDCC0]/90 transition-colors shrink-0"
-        >
-          <Plus size={14} strokeWidth={2.5} />
-          Invite candidate
-        </Link>
-        <button
-          onClick={openCreate}
-          className="flex items-center gap-1.5 rounded-lg bg-[#3FDCC0] text-[#0B0F26] text-[13px] font-semibold px-4 py-2.5 hover:bg-[#3FDCC0]/90 transition-colors shrink-0"
-        >
-          <Plus size={14} strokeWidth={2.5} />
-          Create Candidate
-        </button>
+        <div className="flex items-center gap-3 flex-wrap">
+          <div className="rounded-2xl bg-[#161C3A] px-4 py-3 text-[13px] text-[#F2F4FA] border border-white/[0.08]">
+            <span className="block text-[11px] text-[#8891B8]">Total candidates</span>
+            <span className="text-[20px] font-semibold">{meta.total}</span>
+          </div>
+          <Link
+            href="/company/candidates/invitations"
+            className="flex items-center gap-1.5 rounded-lg bg-[#3FDCC0] text-[#0B0F26] text-[13px] font-semibold px-4 py-2.5 hover:bg-[#3FDCC0]/90 transition-colors shrink-0"
+          >
+            <Plus size={14} strokeWidth={2.5} />
+            Invite candidate
+          </Link>
+          <button
+            onClick={openCreate}
+            className="flex items-center gap-1.5 rounded-lg bg-[#3FDCC0] text-[#0B0F26] text-[13px] font-semibold px-4 py-2.5 hover:bg-[#3FDCC0]/90 transition-colors shrink-0"
+          >
+            <Plus size={14} strokeWidth={2.5} />
+            Create Candidate
+          </button>
+        </div>
       </div>
 
       {/* Banner */}
@@ -447,12 +453,13 @@ export default function CandidatesPage() {
 
       {/* Table */}
       <div className="rounded-2xl border border-white/[0.08] bg-[#161C3A] overflow-hidden">
-        <table className="w-full text-left">
-          <thead>
-            <tr
-              className="text-[11px] uppercase tracking-wide text-[#565F8C] border-b border-white/[0.08]"
-              style={{ fontFamily: 'var(--font-mono)' }}
-            >
+        <div className="overflow-x-auto">
+          <table className="min-w-[720px] w-full text-left">
+            <thead>
+              <tr
+                className="text-[11px] uppercase tracking-wide text-[#565F8C] border-b border-white/[0.08]"
+                style={{ fontFamily: 'var(--font-mono)' }}
+              >
               <th className="px-5 py-3 font-medium">Candidate</th>
               <th className="px-5 py-3 font-medium">Assessment</th>
               <th className="px-5 py-3 font-medium">Client</th>
@@ -577,6 +584,7 @@ export default function CandidatesPage() {
               })}
           </tbody>
         </table>
+      </div>
 
         {/* Pagination */}
         <div className="flex items-center justify-between px-5 py-3.5 border-t border-white/[0.08]">

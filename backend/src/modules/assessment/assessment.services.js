@@ -21,6 +21,8 @@ const toDto = (assessment) => ({
   likertCount: assessment.likertCount,
   sjqCount: assessment.sjqCount,
   forcedChoiceCount: assessment.forcedChoiceCount,
+  analyticalCount: assessment.analyticalCount,
+  logicalReasoningCount: assessment.logicalReasoningCount,
   durationMinutes: assessment.durationMinutes,
   status: assessment.status,
   createdById: assessment.createdById,
@@ -36,13 +38,19 @@ const assertHasQuestions = ({
   likertCount,
   sjqCount,
   forcedChoiceCount,
+  analyticalCount,
+  logicalReasoningCount,
 }) => {
   const total =
-    (likertCount || 0) + (sjqCount || 0) + (forcedChoiceCount || 0);
+    (likertCount || 0) +
+    (sjqCount || 0) +
+    (forcedChoiceCount || 0) +
+    (analyticalCount || 0) +
+    (logicalReasoningCount || 0);
 
   if (total <= 0) {
     throw new BadRequestError(
-      'Assessment must include at least one question (likert, sjq, or forced choice).'
+      'Assessment must include at least one question (likert, sjq, forced choice, analytical, or logical reasoning).'
     );
   }
 };
@@ -59,6 +67,8 @@ const create = async ({ payload, currentUser }) => {
     likertCount,
     sjqCount,
     forcedChoiceCount,
+    analyticalCount,
+    logicalReasoningCount,
     durationMinutes,
   } = payload;
 
@@ -107,7 +117,13 @@ const create = async ({ payload, currentUser }) => {
     throw new NotFoundError('Client not found');
   }
 
-  assertHasQuestions({ likertCount, sjqCount, forcedChoiceCount });
+  assertHasQuestions({
+    likertCount,
+    sjqCount,
+    forcedChoiceCount,
+    analyticalCount,
+    logicalReasoningCount,
+  });
 
   // Duplicate Name inside Client
   const existingName = await repo.findByName(companyId, clientId, name);
@@ -126,6 +142,8 @@ const create = async ({ payload, currentUser }) => {
     likertCount: likertCount || 0,
     sjqCount: sjqCount || 0,
     forcedChoiceCount: forcedChoiceCount || 0,
+    analyticalCount: analyticalCount || 0,
+    logicalReasoningCount: logicalReasoningCount || 0,
     durationMinutes,
     status: 'ACTIVE',
     createdById: currentUser?.id || null,
@@ -235,6 +253,14 @@ const update = async ({ id, companyId, payload, currentUser }) => {
       payload.forcedChoiceCount !== undefined
         ? payload.forcedChoiceCount
         : existing.forcedChoiceCount,
+    analyticalCount:
+      payload.analyticalCount !== undefined
+        ? payload.analyticalCount
+        : existing.analyticalCount,
+    logicalReasoningCount:
+      payload.logicalReasoningCount !== undefined
+        ? payload.logicalReasoningCount
+        : existing.logicalReasoningCount,
   });
 
   const data = {};
@@ -246,6 +272,8 @@ const update = async ({ id, companyId, payload, currentUser }) => {
     'likertCount',
     'sjqCount',
     'forcedChoiceCount',
+    'analyticalCount',
+    'logicalReasoningCount',
     'durationMinutes',
     'status',
   ].forEach((field) => {

@@ -2,9 +2,39 @@
 
 import { Users, Contact, ClipboardList, CheckCircle2, type LucideIcon } from 'lucide-react';
 import { useAuth } from '@/src/auth/AuthProvider';
+import { useEffect, useState } from 'react';
+import { getCompanyStats } from '@/src/lib/api/companies';
 
 export default function CompanyDashboardPage() {
-  const { user } = useAuth();
+  const { user, accessToken } = useAuth();
+  const [stats, setStats] = useState<{
+    users?: number;
+    clients?: number;
+    candidates?: number;
+    assessments?: number;
+    totalAttempts?: number;
+    completedAttempts?: number;
+    results?: number;
+  } | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      try {
+        // Prefer user.company.id and auth token from the auth provider
+        if (!user?.company?.id || !accessToken) return;
+        const s = await getCompanyStats(user.company.id, accessToken);
+        if (mounted) setStats(s);
+      } catch (err) {
+        // ignore, dashboard will show fallback values
+        // console.error(err);
+      }
+    };
+    load();
+    return () => {
+      mounted = false;
+    };
+  }, [user?.company?.id, accessToken]);
 
   const today = new Date().toLocaleDateString(undefined, {
     weekday: 'long',
@@ -28,10 +58,10 @@ export default function CompanyDashboardPage() {
 
       {/* Stat cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card title="Total Users" value="25" icon={Users} color="teal" />
-        <Card title="Candidates" value="150" icon={Contact} color="amber" />
-        <Card title="Assessments" value="12" icon={ClipboardList} color="teal" />
-        <Card title="Completed Tests" value="98" icon={CheckCircle2} color="amber" />
+        <Card title="Total Users" value={String(stats?.users ?? '—')} icon={Users} color="teal" />
+        <Card title="Clients" value={String(stats?.clients ?? '—')} icon={Contact} color="amber" />
+        <Card title="Assessments" value={String(stats?.assessments ?? '—')} icon={ClipboardList} color="teal" />
+        <Card title="Completed Tests" value={String(stats?.completedAttempts ?? '—')} icon={CheckCircle2} color="amber" />
       </div>
 
       {/* Logged-in user */}

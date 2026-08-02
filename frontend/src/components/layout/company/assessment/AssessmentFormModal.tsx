@@ -79,6 +79,8 @@ export default function AssessmentFormModal({
     likertCount: String(assessment?.likertCount ?? 0),
     sjqCount: String(assessment?.sjqCount ?? 0),
     forcedChoiceCount: String(assessment?.forcedChoiceCount ?? 0),
+    analyticalCount: String(assessment?.analyticalCount ?? 0),
+    logicalReasoningCount: String(assessment?.logicalReasoningCount ?? 0),
     durationMinutes: assessment ? String(assessment.durationMinutes) : '',
   });
 
@@ -118,7 +120,11 @@ export default function AssessmentFormModal({
   }, [allClients, mode, isSuperAdmin, values.companyId]);
 
   const totalQuestions =
-    (Number(values.likertCount) || 0) + (Number(values.sjqCount) || 0) + (Number(values.forcedChoiceCount) || 0);
+    (Number(values.likertCount) || 0) +
+    (Number(values.sjqCount) || 0) +
+    (Number(values.forcedChoiceCount) || 0) +
+    (Number(values.analyticalCount) || 0) +
+    (Number(values.logicalReasoningCount) || 0);
 
   const set = (field: keyof AssessmentFormValues) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -149,7 +155,9 @@ export default function AssessmentFormModal({
       return;
     }
     if (totalQuestions <= 0) {
-      setValidationError('Add at least one question (Likert, SJQ, or Forced Choice).');
+      setValidationError(
+        'Add at least one question (Likert, SJQ, Forced Choice, Analytical, or Logical Reasoning).'
+      );
       return;
     }
 
@@ -292,6 +300,24 @@ export default function AssessmentFormModal({
                     min={0}
                     value={values.forcedChoiceCount}
                     onChange={set('forcedChoiceCount')}
+                    className={inputClass}
+                  />
+                </Field>
+                <Field label="Analytical" icon={ClipboardList}>
+                  <input
+                    type="number"
+                    min={0}
+                    value={values.analyticalCount}
+                    onChange={set('analyticalCount')}
+                    className={inputClass}
+                  />
+                </Field>
+                <Field label="Logical reasoning" icon={Building2}>
+                  <input
+                    type="number"
+                    min={0}
+                    value={values.logicalReasoningCount}
+                    onChange={set('logicalReasoningCount')}
                     className={inputClass}
                   />
                 </Field>

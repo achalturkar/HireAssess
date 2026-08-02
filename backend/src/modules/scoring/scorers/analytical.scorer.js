@@ -35,8 +35,12 @@
 
 const UMBRELLA_CATEGORY = 'Analytical Reasoning';
 
+function getSelectedOptionId(answer) {
+  return answer?.selectedOptionId ?? answer?.selectedOption ?? null;
+}
+
 function score(question, answer) {
-  const selectedId = answer?.selectedOptionId ?? null;
+  const selectedId = getSelectedOptionId(answer);
   if (!selectedId) return { raw: null, contributions: [] };
 
   const options = Array.isArray(question.options) ? question.options : [];

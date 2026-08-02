@@ -22,6 +22,7 @@ export interface User {
   companyId: string | null;
   company: CompanyRef | null;
   role: RoleRef | null;
+  permissions: string[];
   mustChangePassword: boolean;
   lastLoginAt: string | null;
   createdAt: string;

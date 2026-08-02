@@ -6,6 +6,8 @@ const QUESTION_TYPES = [
   'LIKERT',
   'FORCED_CHOICE',
   'SITUATIONAL_JUDGEMENT',
+  'ANALYTICAL',
+  'LOGICAL_REASONING',
 ];
 
 const DIFFICULTIES = ['EASY', 'MEDIUM', 'HARD'];
@@ -46,7 +48,7 @@ const createValidator = {
     questionText: Joi.string().required(),
 
     options: Joi.when('type', {
-      is: Joi.valid('FORCED_CHOICE', 'SITUATIONAL_JUDGEMENT'),
+      is: Joi.valid('FORCED_CHOICE', 'SITUATIONAL_JUDGEMENT', 'ANALYTICAL', 'LOGICAL_REASONING'),
       then: Joi.array()
         .items(optionSchema)
         .min(2)

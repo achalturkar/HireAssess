@@ -6,7 +6,7 @@ import type {
 } from "@/src/types/assessment";
 
 const API_BASE =
-  process.env.NEXT_PUBLIC_API ||
+  process.env.NEXT_PUBLIC_API || 
   "http://localhost:5000/api/v1";
 
 class ApiError extends Error {
@@ -150,6 +150,8 @@ export interface AssessmentPayload {
   likertCount?: number;
   sjqCount?: number;
   forcedChoiceCount?: number;
+  analyticalCount?: number;
+  logicalReasoningCount?: number;
   durationMinutes: number;
 }
 

@@ -13,6 +13,8 @@ export interface Assessment {
   likertCount: number;
   sjqCount: number;
   forcedChoiceCount: number;
+  analyticalCount: number;
+  logicalReasoningCount: number;
   durationMinutes: number;
   status: AssessmentStatus;
   createdById: string | null;
@@ -29,6 +31,8 @@ export interface CreateAssessmentPayload {
   likertCount?: number;
   sjqCount?: number;
   forcedChoiceCount?: number;
+  analyticalCount?: number;
+  logicalReasoningCount?: number;
   durationMinutes: number;
 }
 
@@ -39,6 +43,8 @@ export interface UpdateAssessmentPayload {
   likertCount?: number;
   sjqCount?: number;
   forcedChoiceCount?: number;
+  analyticalCount?: number;
+  logicalReasoningCount?: number;
   durationMinutes?: number;
   status?: AssessmentStatus;
 }
@@ -65,6 +71,8 @@ export interface AssessmentFormValues {
   likertCount: string;
   sjqCount: string;
   forcedChoiceCount: string;
+  analyticalCount: string;
+  logicalReasoningCount: string;
   durationMinutes: string;
 }
 

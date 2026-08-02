@@ -26,7 +26,7 @@ const BANDS = [
   { min: 90, label: 'Outstanding' },
   { min: 80, label: 'Strong Fit' },
   { min: 70, label: 'Good Fit' },
-  { min: 60, label: 'Potential Fit' },
+  { min: 50, label: 'Potential Fit' },
   { min: 0, label: 'Needs Development' },
 ];
 

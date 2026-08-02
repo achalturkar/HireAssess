@@ -9,7 +9,7 @@ import type {
 } from '@/src/types/user';
 
 // Adjust if your app proxies API calls differently (e.g. through Next.js rewrites).
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? '/api/v1';
+const API_BASE = process.env.NEXT_PUBLIC_API ?? '/api/v1';
 
 class ApiError extends Error {
   status: number;

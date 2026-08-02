@@ -117,10 +117,15 @@ const buildCandidateInvitationEmail = ({ candidateName, companyName, inviteUrl, 
       })
     : null;
 
+  const logoUrl = `${config.frontendUrl.replace(/\/$/, '')}/hireassess-logo.svg`;
+
   return {
     subject: `${companyName} invited you to complete an assessment`,
     html: `
-      <div style="font-family: Arial, sans-serif; max-width: 480px; margin: 0 auto; color: #1a1a2e;">
+      <div style="font-family: Arial, sans-serif; max-width: 520px; margin: 0 auto; color: #1a1a2e;">
+        <div style="text-align: center; margin-bottom: 12px;">
+          <img src="${logoUrl}" alt="HireAssess" style="height:40px; width:auto; display:inline-block;" />
+        </div>
         <h2 style="margin-bottom: 4px;">Hi ${candidateName},</h2>
         <p>${companyName} has invited you to complete an assessment as part of your application.</p>
         <p>
@@ -142,8 +147,26 @@ const buildCandidateInvitationEmail = ({ candidateName, companyName, inviteUrl, 
   };
 };
 
+/**
+ * Candidate thank-you email sent after successful submission
+ */
+const buildCandidateThankYouEmail = ({ candidateName, companyName, assessmentName }) => ({
+  subject: `Thank you for completing the ${assessmentName} assessment`,
+  html: `
+    <div style="font-family: Arial, sans-serif; max-width: 520px; margin: 0 auto; color: #1a1a2e;">
+      <div style="text-align: center; margin-bottom: 12px;">
+        <img src="${config.frontendUrl.replace(/\/$/, '')}/hireassess-logo.svg" alt="HireAssess" style="height:40px; width:auto; display:inline-block;" />
+      </div>
+      <h2 style="margin-bottom: 4px;">Hi ${candidateName},</h2>
+      <p>Thanks for completing the <strong>${assessmentName}</strong> assessment for <strong>${companyName}</strong>. We received your responses and will notify you about the next steps.</p>
+      <p style="color: #777; font-size: 12px; margin-top: 18px;">If you have any questions, reply to this email or contact the hiring team at ${companyName}.</p>
+    </div>
+  `,
+});
+
 module.exports = {
   sendMail,
   buildCompanyAdminWelcomeEmail,
   buildCandidateInvitationEmail,
+  buildCandidateThankYouEmail,
 };

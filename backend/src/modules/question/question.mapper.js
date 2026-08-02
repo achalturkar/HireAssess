@@ -16,6 +16,22 @@ const mapSjq = (question) => ({
   options: question.options,
 });
 
+const mapAnalytical = (question) => ({
+  id: question.id,
+  type: 'ANALYTICAL',
+  competency: question.category,
+  text: question.scenario,
+  options: question.options,
+});
+
+const mapLogicalReasoning = (question) => ({
+  id: question.id,
+  type: 'LOGICAL_REASONING',
+  competency: question.category,
+  text: question.scenario,
+  options: question.options,
+});
+
 const mapForcedChoice = (question) => ({
   id: question.id,
   type: 'FORCED_CHOICE',
@@ -26,4 +42,6 @@ module.exports = {
   mapLikert,
   mapSjq,
   mapForcedChoice,
+  mapAnalytical,
+  mapLogicalReasoning,
 };

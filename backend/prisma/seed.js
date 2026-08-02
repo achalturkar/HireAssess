@@ -98,10 +98,11 @@ await prisma.rolePermission.createMany({
 // ==========================================================
 
 const COMPANY_ADMIN_MODULES = [
+  "company",
   "client",
   "candidate",
-    "candidate_invitation",
-    "candidate_answers",
+  "candidate_invitation",
+  "candidate_answers",
   "assessment",
   "question",
   "exam-attempt",
@@ -112,8 +113,14 @@ const COMPANY_ADMIN_MODULES = [
   "audit",
 ];
 
-const companyPermissions = allPermissions.filter((permission) =>
-  COMPANY_ADMIN_MODULES.includes(permission.module)
+const COMPANY_ADMIN_EXCLUDED_PERMISSIONS = [
+  'company.create',
+];
+
+const companyPermissions = allPermissions.filter(
+  (permission) =>
+    COMPANY_ADMIN_MODULES.includes(permission.module) &&
+    !COMPANY_ADMIN_EXCLUDED_PERMISSIONS.includes(permission.key)
 );
 
 await prisma.rolePermission.createMany({

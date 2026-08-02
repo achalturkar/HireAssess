@@ -52,6 +52,7 @@ export interface ResultsListQuery {
   page?: number;
   limit?: number;
   candidateId?: string;
+  candidateName?: string;
   assessmentId?: string;
   minScore?: number;
   maxScore?: number;

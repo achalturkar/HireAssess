@@ -78,7 +78,7 @@ export async function refreshAccessToken(): Promise<string> {
     throw new Error("No Session");
   }
 
-  const response = await api("/auth/refresh-token", {
+  const response = await api<{ data: { data: { accessToken: string } } }>("/auth/refresh-token", {
     method: "POST",
     body: JSON.stringify({
       refreshToken: session.refreshToken,

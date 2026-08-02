@@ -5,6 +5,8 @@ export interface AttemptCandidateSummary {
   firstName: string;
   lastName: string;
   email: string;
+  clientId?: string;
+  clientName?: string;
 }
 
 export interface ExamAttempt {
@@ -54,7 +56,13 @@ export interface ResumeExamResponse {
   // Backend bug: repository.findById selects `title` on Assessment, which
   // doesn't exist on the model (only `name` does) — this will be undefined
   // until that's fixed server-side.
-  assessment: { id: string; name?: string; title?: string; durationMinutes: number };
+  assessment: {
+    id: string;
+    name?: string;
+    title?: string;
+    durationMinutes: number;
+    description?: string;
+  };
   attempt: {
     id: string;
     status: AttemptStatus;

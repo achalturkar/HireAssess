@@ -10,6 +10,8 @@ import {
   ListChecks,
   MessagesSquare,
   Shuffle,
+  ClipboardList,
+  Building2,
 } from 'lucide-react';
 import CountdownTimer from '@/src/components/layout/exam/examAttempt/countDowntimer';
 import ExamQuestionCard from '@/src/components/layout/exam/examAttempt/examQuestionCard';
@@ -30,9 +32,11 @@ const GROUP_META: Record<string, { label: string; icon: React.ComponentType<{ si
   LIKERT: { label: 'Self-assessment', icon: ListChecks },
   SITUATIONAL_JUDGEMENT: { label: 'Situational judgement', icon: MessagesSquare },
   FORCED_CHOICE: { label: 'Forced choice', icon: Shuffle },
+  ANALYTICAL: { label: 'Analytical reasoning', icon: ClipboardList },
+  LOGICAL_REASONING: { label: 'Logical reasoning', icon: Building2 },
 };
 
-const GROUP_ORDER = ['LIKERT', 'SITUATIONAL_JUDGEMENT', 'FORCED_CHOICE'] as const;
+const GROUP_ORDER = ['LIKERT', 'SITUATIONAL_JUDGEMENT', 'FORCED_CHOICE', 'ANALYTICAL', 'LOGICAL_REASONING'] as const;
 
 type Phase = 'loading' | 'ready' | 'submitting' | 'submitted' | 'expired' | 'error';
 

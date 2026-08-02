@@ -24,7 +24,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   const loadSession = useCallback(async (token: string) => {
-    const me = await apiFetch<AuthUser>('/auth/me', { accessToken: token });
+    const me = await apiFetch<AuthUser>('/auth/me', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     setUser(me);
     setAccessToken(token);
   }, []);

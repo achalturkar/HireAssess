@@ -31,6 +31,7 @@ model Company {
   assessments  Assessment[]
   candidates   Candidate[]
   examAttempts ExamAttempt[]
+  reports      Report[]
 
   @@index([status])
   @@index([isDeleted])
@@ -215,6 +216,7 @@ model Candidate {
 
   invitations CandidateInvitation[]
   examAttempts ExamAttempt[]
+  reports      Report[]
 
   // A candidate should only appear once per assessment
   @@unique([assessmentId, email])
@@ -253,9 +255,11 @@ model Assessment {
 
   level AssessmentLevel
 
-  likertCount       Int @default(0) @map("likert_count")
-  sjqCount          Int @default(0) @map("sjq_count")
-  forcedChoiceCount Int @default(0) @map("forced_choice_count")
+  likertCount           Int @default(0) @map("likert_count")
+  sjqCount              Int @default(0) @map("sjq_count")
+  forcedChoiceCount     Int @default(0) @map("forced_choice_count")
+  analyticalCount       Int @default(0) @map("analytical_count")
+  logicalReasoningCount Int @default(0) @map("logical_reasoning_count")
 
   durationMinutes Int @map("duration_minutes")
 
@@ -275,6 +279,7 @@ model Assessment {
 
   candidates Candidate[]
   examAttempts ExamAttempt[]
+  reports      Report[]
 
   @@index([companyId, status])
   @@index([companyId, clientId])
@@ -309,6 +314,7 @@ model ExamAttempt {
   assessment Assessment @relation(fields: [assessmentId], references: [id])
 
   answers CandidateAnswer[]
+  report  Report?
 
   result AssessmentResult?
 

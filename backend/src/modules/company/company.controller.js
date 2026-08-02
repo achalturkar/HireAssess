@@ -63,6 +63,11 @@ const activateCompany = asyncHandler(async (req, res) => {
   return success(res, { message: 'Company activated', data });
 });
 
+const getCompanyStats = asyncHandler(async (req, res) => {
+  const data = await service.getStats({ id: req.params.id });
+  return success(res, { message: 'Company stats', data });
+});
+
 module.exports = {
   createCompany,
   getCompany,
@@ -71,4 +76,5 @@ module.exports = {
   deleteCompany,
   suspendCompany,
   activateCompany,
+  getCompanyStats,
 };

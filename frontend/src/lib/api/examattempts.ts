@@ -6,7 +6,7 @@ import type {
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
+  process.env.NEXT_PUBLIC_API ||
   'http://localhost:5000/api/v1';
 
 export class ApiError extends Error {

@@ -1,7 +1,9 @@
 [
   {
     "id": "log01",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A project requires four tasks: Setup (S), Design (D), Testing (T), and Deployment (X). D must occur before T. S must occur before D. X cannot occur until T is completed. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "S -> D -> T -> X", "score": 4 },
@@ -12,7 +14,9 @@
   },
   {
     "id": "log02",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three managers (Alice, Bob, Carol) need to conduct three interviews: Entry (E), Technical (T), and Final (F). Alice cannot do E. Carol must do F. Bob must interview after Alice. What is the correct assignment order?",
     "options": [
       {
@@ -39,7 +43,9 @@
   },
   {
     "id": "log03",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A team must schedule three shifts: Morning (M), Afternoon (A), and Night (N). If Manager 1 works M, Manager 2 must work A. If Manager 3 works A, Manager 1 cannot work M. Manager 3 is assigned to A. Who works M and A?",
     "options": [
       { "id": "a", "text": "Manager 2 works M, Manager 3 works A", "score": 4 },
@@ -50,7 +56,9 @@
   },
   {
     "id": "log04",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An approval pipeline requires Sign-off A, Sign-off B, and Sign-off C. Sign-off B can only happen on Tuesdays or Thursdays. Sign-off A must be given exactly one day before B. Sign-off C must happen immediately after B. If B is done on Tuesday, what is the valid sequence?",
     "options": [
       {
@@ -77,7 +85,9 @@
   },
   {
     "id": "log05",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four meeting rooms (R1, R2, R3, R4) are available. Team Alpha cannot use R1 or R2. Team Beta must use a room with a higher number than Team Alpha. Team Gamma uses R1. Which room is Team Alpha assigned to?",
     "options": [
       { "id": "a", "text": "Team Alpha in R3, Team Beta in R4", "score": 4 },
@@ -88,7 +98,9 @@
   },
   {
     "id": "log06",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "System Maintenance involves Backup (B), Patching (P), Restart (R), and Verification (V). If B occurs, P must immediately follow. R cannot occur before P. V must occur last. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "B -> P -> R -> V", "score": 4 },
@@ -99,7 +111,9 @@
   },
   {
     "id": "log07",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three deliverables (D1, D2, D3) must be reviewed by either Lead A or Lead B. Lead A cannot review D1. If Lead A reviews D2, Lead B must review D3. Lead A reviews D2. Who reviews each deliverable?",
     "options": [
       {
@@ -126,7 +140,9 @@
   },
   {
     "id": "log08",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Tasks P, Q, R, and S are scheduled from 9 AM to 1 PM, 1 hour each. P must be scheduled before Q. R must be scheduled immediately after Q. S must be scheduled at 9 AM. What is the correct schedule?",
     "options": [
       {
@@ -153,7 +169,9 @@
   },
   {
     "id": "log09",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An inventory order requires Supplier Approval (SA), Quality Check (QC), and Warehouse Ingestion (WI). If QC fails, SA must be repeated. If QC passes, WI occurs immediately. SA is approved and QC passes on the first attempt. What is the execution path?",
     "options": [
       { "id": "a", "text": "SA -> QC -> WI", "score": 4 },
@@ -164,7 +182,9 @@
   },
   {
     "id": "log10",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four employees (E1, E2, E3, E4) submit reports. E1 submits before E2. E3 submits after E2. E4 submits before E1. Which order of submission satisfies all rules?",
     "options": [
       { "id": "a", "text": "E4 -> E1 -> E2 -> E3", "score": 4 },
@@ -175,7 +195,9 @@
   },
   {
     "id": "log11",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A deployment requires environments Dev, Staging, and Prod. Deployment to Prod requires sign-off from Security AND QA. Staging requires sign-off from QA only. QA signs off on both, but Security refuses sign-off for Prod. Which environments can receive the deployment?",
     "options": [
       { "id": "a", "text": "Dev and Staging only", "score": 4 },
@@ -186,7 +208,9 @@
   },
   {
     "id": "log12",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Shift assignments must comply with three rules: No employee works 2 consecutive night shifts; Employee X cannot work weekends; Employee Y only works weekends. If Employee X works Friday night, who works Saturday night?",
     "options": [
       { "id": "a", "text": "Employee Y", "score": 4 },
@@ -197,7 +221,9 @@
   },
   {
     "id": "log13",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three software patches (P1, P2, P3) must be applied. P2 depends on P1 being applied first. P3 cannot be applied if P2 is applied. If P1 is applied, which patch can be applied next?",
     "options": [
       { "id": "a", "text": "P2 only", "score": 4 },
@@ -208,7 +234,9 @@
   },
   {
     "id": "log14",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A vendor selection panel consists of 3 members: A, B, and C. A vote passes if at least 2 members approve. If Member A approves, Member B votes the opposite of A. Member C always votes 'Approve'. Member A votes 'Approve'. What is the outcome?",
     "options": [
       {
@@ -235,7 +263,9 @@
   },
   {
     "id": "log15",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four client presentations (C1, C2, C3, C4) are scheduled Monday through Thursday, one per day. C1 must be on Monday or Tuesday. C3 must be on Thursday. C2 must be presented before C4. What is the schedule for Monday to Thursday?",
     "options": [
       {
@@ -262,7 +292,9 @@
   },
   {
     "id": "log16",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A workflow has three branches: Path 1, Path 2, Path 3. Path 1 requires Rule A. Path 2 requires Rule B. Path 3 requires Rule A AND Rule B. If a transaction meets Rule A but NOT Rule B, which paths can it take?",
     "options": [
       { "id": "a", "text": "Path 1 only", "score": 4 },
@@ -273,7 +305,9 @@
   },
   {
     "id": "log17",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Equipment maintenance must be assigned to Technicians T1, T2, or T3. T1 cannot work on Machines M1 or M2. T2 must work on M2. T3 can work on any machine. How are M1, M2, and M3 assigned if each technician handles one machine?",
     "options": [
       { "id": "a", "text": "M1 to T3, M2 to T2, M3 to T1", "score": 4 },
@@ -284,7 +318,9 @@
   },
   {
     "id": "log18",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "To publish an article, step 1 is Draft, step 2 is Review, step 3 is Edit, and step 4 is Publish. Review must happen after Draft. Edit must happen after Review. Publish can only happen if Edit is complete. If Edit is skipped, what is the furthest step the article can reach?",
     "options": [
       { "id": "a", "text": "Review", "score": 4 },
@@ -295,7 +331,9 @@
   },
   {
     "id": "log19",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A project team must select 3 tools from {T1, T2, T3, T4, T5}. If T1 is selected, T2 must NOT be selected. If T3 is selected, T4 MUST be selected. T1 and T3 are both selected. What is the complete set of 3 tools?",
     "options": [
       { "id": "a", "text": "{T1, T3, T4}", "score": 4 },
@@ -306,7 +344,9 @@
   },
   {
     "id": "log20",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three tasks (X, Y, Z) take 1 hour each. Task X must finish before Task Y starts. Task Z can run concurrently with Task X or Task Y, but cannot run alone. If Task X starts at 10:00 AM, what is a valid execution window for Task Z?",
     "options": [
       {
@@ -333,7 +373,9 @@
   },
   {
     "id": "log21",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A compliance audit requires four steps: Document Gathering (G), Verification (V), Risk Assessment (R), and Final Filing (F). V must occur after G. R must occur after V. F cannot occur until R is complete. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "G -> V -> R -> F", "score": 4 },
@@ -344,7 +386,9 @@
   },
   {
     "id": "log22",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three managers (David, Elena, Frank) must present at three sessions: Keynote (K), Panel (P), and Q&A (Q). David cannot present K. Frank must present Q. Elena must present before David. What is the correct session assignment?",
     "options": [
       {
@@ -371,7 +415,9 @@
   },
   {
     "id": "log23",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A helpdesk team operates on three shifts: Early (E), Mid (M), and Late (L). If Tech A works E, Tech B must work M. If Tech C works M, Tech A cannot work E. Tech C is assigned to M. Who works E and M?",
     "options": [
       { "id": "a", "text": "Tech B works E, Tech C works M", "score": 4 },
@@ -382,7 +428,9 @@
   },
   {
     "id": "log24",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A release pipeline requires Security Clearance, Load Testing, and Production Launch. Load Testing can only occur on Wednesdays or Fridays. Security Clearance must be granted exactly one day before Load Testing. Production Launch occurs immediately after Load Testing. If Load Testing is done on Friday, what is the valid timeline?",
     "options": [
       {
@@ -409,7 +457,9 @@
   },
   {
     "id": "log25",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four server racks (Rack 1, Rack 2, Rack 3, Rack 4) are available. System Red cannot use Rack 1 or Rack 2. System Blue must use a rack number higher than System Red. System Green uses Rack 1. Which rack is System Red assigned to?",
     "options": [
       {
@@ -436,7 +486,9 @@
   },
   {
     "id": "log26",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Data Migration involves Archiving (A), Sanitization (S), Transfer (T), and Validation (V). If A occurs, S must immediately follow. T cannot occur before S. V must occur last. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "A -> S -> T -> V", "score": 4 },
@@ -447,7 +499,9 @@
   },
   {
     "id": "log27",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three modules (M1, M2, M3) must be assigned to Lead X or Lead Y. Lead X cannot oversee M1. If Lead X oversees M2, Lead Y must oversee M3. Lead X oversees M2. Who oversees each module?",
     "options": [
       {
@@ -474,7 +528,9 @@
   },
   {
     "id": "log28",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four quarterly reviews (Q1, Q2, Q3, Q4) are held across four consecutive time slots: 1 PM, 2 PM, 3 PM, and 4 PM. Q1 must happen before Q2. Q3 must happen immediately after Q2. Q4 must be at 1 PM. What is the correct schedule?",
     "options": [
       {
@@ -501,7 +557,9 @@
   },
   {
     "id": "log29",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An order fulfillment workflow consists of Payment Verification (PV), Item Allocation (IA), and Shipping Dispatch (SD). If IA fails, PV must be re-run. If IA succeeds, SD occurs immediately. PV passes and IA succeeds on the first attempt. What is the execution path?",
     "options": [
       { "id": "a", "text": "PV -> IA -> SD", "score": 4 },
@@ -512,7 +570,9 @@
   },
   {
     "id": "log30",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four vendors (V1, V2, V3, V4) submit proposals. V1 submits before V2. V3 submits after V2. V4 submits before V1. Which order of submission satisfies all rules?",
     "options": [
       { "id": "a", "text": "V4 -> V1 -> V2 -> V3", "score": 4 },
@@ -523,7 +583,9 @@
   },
   {
     "id": "log31",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A feature release requires approval for Tier 1, Tier 2, and Tier 3 access. Tier 3 requires approval from Legal AND Compliance. Tier 2 requires approval from Compliance only. Compliance approves both, but Legal rejects Tier 3. Which access tiers can be granted?",
     "options": [
       { "id": "a", "text": "Tier 1 and Tier 2 only", "score": 4 },
@@ -534,7 +596,9 @@
   },
   {
     "id": "log32",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "On-call scheduling rules state: No engineer works 2 consecutive night shifts; Engineer A cannot work on holidays; Engineer B works only on holidays. If Engineer A works the night shift before a holiday, who works the holiday night shift?",
     "options": [
       { "id": "a", "text": "Engineer B", "score": 4 },
@@ -545,7 +609,9 @@
   },
   {
     "id": "log33",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three database updates (U1, U2, U3) are queued. U2 requires U1 to be completed first. U3 cannot be run if U2 has been completed. If U1 is executed, which update can safely run next?",
     "options": [
       { "id": "a", "text": "U2 only", "score": 4 },
@@ -556,7 +622,9 @@
   },
   {
     "id": "log34",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A policy change requires approval from a committee of 3: Member X, Member Y, and Member Z. A simple majority (2 out of 3) passes the policy. If Member X votes 'Yes', Member Y votes opposite to X. Member Z always votes 'Yes'. Member X votes 'Yes'. What is the result?",
     "options": [
       { "id": "a", "text": "Passed (Votes: X-Yes, Y-No, Z-Yes)", "score": 4 },
@@ -567,7 +635,9 @@
   },
   {
     "id": "log35",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four product launches (L1, L2, L3, L4) take place Monday through Thursday, one per day. L1 must occur on Monday or Tuesday. L3 must occur on Thursday. L2 must occur before L4. What is the valid weekly launch plan?",
     "options": [
       {
@@ -594,7 +664,9 @@
   },
   {
     "id": "log36",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An API routing table has three endpoints: Route A, Route B, Route C. Route A requires Token X. Route B requires Token Y. Route C requires Token X AND Token Y. If an incoming request provides Token X but NOT Token Y, which route can it take?",
     "options": [
       { "id": "a", "text": "Route A only", "score": 4 },
@@ -605,7 +677,9 @@
   },
   {
     "id": "log37",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Facility repairs must be assigned to Contractors C1, C2, or C3 for Zone 1, Zone 2, and Zone 3. C1 cannot work in Zone 1 or Zone 2. C2 must work in Zone 2. C3 can work in any zone. How are Zones 1, 2, and 3 assigned if each contractor takes one zone?",
     "options": [
       {
@@ -632,7 +706,9 @@
   },
   {
     "id": "log38",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "To onboard a client, Step 1 is Intake, Step 2 is Verification, Step 3 is Account Setup, and Step 4 is Activation. Verification must follow Intake. Account Setup must follow Verification. Activation requires Account Setup to be complete. If Account Setup is skipped, what is the furthest step achieved?",
     "options": [
       { "id": "a", "text": "Verification", "score": 4 },
@@ -643,7 +719,9 @@
   },
   {
     "id": "log39",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A software suite offers 5 add-ons {A1, A2, A3, A4, A5}, and a team must select exactly 3. If A1 is selected, A2 cannot be selected. If A3 is selected, A4 MUST be selected. A1 and A3 are both selected. What is the selection?",
     "options": [
       { "id": "a", "text": "{A1, A3, A4}", "score": 4 },
@@ -654,7 +732,9 @@
   },
   {
     "id": "log40",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three batch jobs (J1, J2, J3) take 1 hour each. Job J1 must complete before Job J2 begins. Job J3 can run concurrently with Job J1 or Job J2, but cannot run alone. If Job J1 starts at 2:00 PM, what is a valid execution window for Job J3?",
     "options": [
       {
@@ -681,7 +761,9 @@
   },
   {
     "id": "log41",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A security protocol requires four stages: Authentication (A), Authorization (Z), Encryption (E), and Logging (L). Z must follow A. E must follow Z. L cannot occur until E is finished. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "A -> Z -> E -> L", "score": 4 },
@@ -692,7 +774,9 @@
   },
   {
     "id": "log42",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three supervisors (Grace, Henry, Isabel) must conduct three site visits: Plant 1 (P1), Plant 2 (P2), and Plant 3 (P3). Grace cannot visit P1. Isabel must visit P3. Henry must visit a plant after Grace finishes hers. What is the correct site assignment?",
     "options": [
       {
@@ -719,7 +803,9 @@
   },
   {
     "id": "log43",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A manufacturing line operates three rotations: Early (E), Swing (S), and Graveyard (G). If Lead 1 works E, Lead 2 must work S. If Lead 3 works S, Lead 1 cannot work E. Lead 3 is assigned to S. Who works E and S?",
     "options": [
       { "id": "a", "text": "Lead 2 works E, Lead 3 works S", "score": 4 },
@@ -730,7 +816,9 @@
   },
   {
     "id": "log44",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A deployment window includes Database Migration, API Routing, and Switchover. API Routing can only occur on Mondays or Thursdays. Database Migration must take place exactly one day prior to API Routing. Switchover happens immediately after API Routing. If API Routing is scheduled for Monday, what is the valid timeline?",
     "options": [
       {
@@ -757,7 +845,9 @@
   },
   {
     "id": "log45",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four parking bays (Bay 10, Bay 20, Bay 30, Bay 40) are allocated. Fleet A cannot use Bay 10 or Bay 20. Fleet B must use a bay with a higher number than Fleet A. Fleet C is assigned to Bay 10. Which bay is Fleet A assigned to?",
     "options": [
       { "id": "a", "text": "Fleet A in Bay 30, Fleet B in Bay 40", "score": 4 },
@@ -768,7 +858,9 @@
   },
   {
     "id": "log46",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A document review involves Parsing (P), Redaction (R), Indexing (I), and Archiving (A). If P occurs, R must immediately follow. I cannot occur before R. A must occur last. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "P -> R -> I -> A", "score": 4 },
@@ -779,7 +871,9 @@
   },
   {
     "id": "log47",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three audits (A1, A2, A3) must be handled by Auditor M or Auditor N. Auditor M cannot audit A1. If Auditor M audits A2, Auditor N must audit A3. Auditor M audits A2. Who audits each item?",
     "options": [
       {
@@ -806,7 +900,9 @@
   },
   {
     "id": "log48",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four training modules (M1, M2, M3, M4) are scheduled for 8 AM, 9 AM, 10 AM, and 11 AM. M1 must be before M2. M3 must occur immediately after M2. M4 must be scheduled at 8 AM. What is the correct schedule?",
     "options": [
       {
@@ -833,7 +929,9 @@
   },
   {
     "id": "log49",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A customer onboarding pipeline uses Identity Verification (IV), Fraud Screening (FS), and Account Creation (AC). If FS fails, IV must be performed again. If FS passes, AC occurs immediately. IV is verified and FS passes on the first run. What is the path?",
     "options": [
       { "id": "a", "text": "IV -> FS -> AC", "score": 4 },
@@ -844,7 +942,9 @@
   },
   {
     "id": "log50",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four regional offices (R1, R2, R3, R4) submit budget requests. R1 submits before R2. R3 submits after R2. R4 submits before R1. Which submission order satisfies all rules?",
     "options": [
       { "id": "a", "text": "R4 -> R1 -> R2 -> R3", "score": 4 },
@@ -855,7 +955,9 @@
   },
   {
     "id": "log51",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A software environment needs authorization for Level 1, Level 2, and Level 3 features. Level 3 requires authorization from InfoSec AND Operations. Level 2 requires authorization from Operations only. Operations authorizes both, but InfoSec rejects Level 3. Which levels are authorized?",
     "options": [
       { "id": "a", "text": "Level 1 and Level 2 only", "score": 4 },
@@ -866,7 +968,9 @@
   },
   {
     "id": "log52",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Dispatch rules state: No driver works 2 consecutive night routes; Driver Alpha cannot work Sunday routes; Driver Beta works only on Sunday routes. If Driver Alpha works Saturday night, who works the Sunday night route?",
     "options": [
       { "id": "a", "text": "Driver Beta", "score": 4 },
@@ -877,7 +981,9 @@
   },
   {
     "id": "log53",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three automated scripts (S1, S2, S3) are scheduled. S2 requires S1 to finish first. S3 cannot run if S2 has finished. If S1 is executed, which script can safely run next?",
     "options": [
       { "id": "a", "text": "S2 only", "score": 4 },
@@ -888,7 +994,9 @@
   },
   {
     "id": "log54",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A steering committee has 3 members: Director A, Director B, and Director C. A proposal passes with at least 2 positive votes. If Director A votes 'Yes', Director B votes opposite to A. Director C always votes 'Yes'. Director A votes 'Yes'. What is the outcome?",
     "options": [
       { "id": "a", "text": "Passed (Votes: A-Yes, B-No, C-Yes)", "score": 4 },
@@ -899,7 +1007,9 @@
   },
   {
     "id": "log55",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four vendor demos (V1, V2, V3, V4) take place Monday through Thursday, one per day. V1 must be on Monday or Tuesday. V3 must be on Thursday. V2 must occur before V4. What is the valid weekly demo schedule?",
     "options": [
       {
@@ -926,7 +1036,9 @@
   },
   {
     "id": "log56",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A logic gate processes data through Output 1, Output 2, or Output 3. Output 1 requires Condition Alpha. Output 2 requires Condition Beta. Output 3 requires Condition Alpha AND Condition Beta. If a data packet satisfies Condition Alpha but NOT Condition Beta, which outputs can it use?",
     "options": [
       { "id": "a", "text": "Output 1 only", "score": 4 },
@@ -937,7 +1049,9 @@
   },
   {
     "id": "log57",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Warehouse duties for Aisle 1, Aisle 2, and Aisle 3 must be assigned to Staff S1, S2, or S3. S1 cannot work in Aisle 1 or Aisle 2. S2 must work in Aisle 2. S3 can work in any aisle. How are Aisles 1, 2, and 3 assigned if each staff member gets one aisle?",
     "options": [
       {
@@ -964,7 +1078,9 @@
   },
   {
     "id": "log58",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "In a publishing workflow, Step 1 is Proofreading, Step 2 is Formatting, Step 3 is Layout Approval, and Step 4 is Printing. Formatting must follow Proofreading. Layout Approval must follow Formatting. Printing requires Layout Approval to be complete. If Layout Approval is skipped, what is the furthest step achieved?",
     "options": [
       { "id": "a", "text": "Formatting", "score": 4 },
@@ -975,7 +1091,9 @@
   },
   {
     "id": "log59",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A hardware package includes 3 accessories selected from {Acc1, Acc2, Acc3, Acc4, Acc5}. If Acc1 is selected, Acc2 cannot be selected. If Acc3 is selected, Acc4 MUST be selected. Acc1 and Acc3 are both selected. What is the full accessory package?",
     "options": [
       { "id": "a", "text": "{Acc1, Acc3, Acc4}", "score": 4 },
@@ -986,7 +1104,9 @@
   },
   {
     "id": "log60",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three server backups (B1, B2, B3) run for 1 hour each. Backup B1 must complete before Backup B2 begins. Backup B3 can run concurrently with Backup B1 or Backup B2, but cannot run alone. If Backup B1 starts at 3:00 PM, what is a valid execution window for Backup B3?",
     "options": [
       {
@@ -1013,7 +1133,9 @@
   },
   {
     "id": "log61",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A project requires four phases: Initiation (I), Planning (P), Execution (E), and Closing (C). P must occur after I. E must occur after P. C cannot occur until E is finished. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "I -> P -> E -> C", "score": 4 },
@@ -1024,7 +1146,9 @@
   },
   {
     "id": "log62",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three leaders (Kelly, Liam, Mia) oversee three workshops: Safety (S), Quality (Q), and Operations (O). Kelly cannot do S. Mia must do O. Liam must present after Kelly. What is the correct assignment?",
     "options": [
       {
@@ -1047,7 +1171,9 @@
   },
   {
     "id": "log63",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A shift rotation uses three shifts: Early (E), Mid (M), and Late (L). If Lead Alpha works E, Lead Beta must work M. If Lead Gamma works M, Lead Alpha cannot work E. Lead Gamma is assigned to M. Who works E and M?",
     "options": [
       {
@@ -1070,7 +1196,9 @@
   },
   {
     "id": "log64",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An audit schedule requires Planning, Field Check, and Final Report. Field Check can only happen on Tuesdays or Thursdays. Planning must happen exactly one day before Field Check. Final Report occurs immediately after Field Check. If Field Check is on Thursday, what is the valid schedule?",
     "options": [
       {
@@ -1097,7 +1225,9 @@
   },
   {
     "id": "log65",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four server clusters (C1, C2, C3, C4) are available. System X cannot use C1 or C2. System Y must use a cluster with a higher number than System X. System Z uses C1. Which cluster is System X assigned to?",
     "options": [
       { "id": "a", "text": "System X in C3, System Y in C4", "score": 4 },
@@ -1108,7 +1238,9 @@
   },
   {
     "id": "log66",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Data processing involves Ingestion (I), Cleaning (C), Analysis (A), and Reporting (R). If I occurs, C must immediately follow. A cannot occur before C. R must occur last. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "I -> C -> A -> R", "score": 4 },
@@ -1119,7 +1251,9 @@
   },
   {
     "id": "log67",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three projects (P1, P2, P3) must be managed by Lead A or Lead B. Lead A cannot take P1. If Lead A takes P2, Lead B must take P3. Lead A takes P2. Who manages each project?",
     "options": [
       {
@@ -1146,7 +1280,9 @@
   },
   {
     "id": "log68",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four shifts (S1, S2, S3, S4) are scheduled at 6 AM, 7 AM, 8 AM, and 9 AM. S1 must be before S2. S3 must occur immediately after S2. S4 must be at 6 AM. What is the correct schedule?",
     "options": [
       {
@@ -1173,7 +1309,9 @@
   },
   {
     "id": "log69",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An HR onboarding flow requires Identity Verification (IV), Background Check (BC), and Work Authorization (WA). If BC fails, IV must be performed again. If BC passes, WA occurs immediately. IV passes and BC passes on the first attempt. What is the execution path?",
     "options": [
       { "id": "a", "text": "IV -> BC -> WA", "score": 4 },
@@ -1184,7 +1322,9 @@
   },
   {
     "id": "log70",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four candidates (C1, C2, C3, C4) are interviewed. C1 interviews before C2. C3 interviews after C2. C4 interviews before C1. Which interview order satisfies all rules?",
     "options": [
       { "id": "a", "text": "C4 -> C1 -> C2 -> C3", "score": 4 },
@@ -1195,7 +1335,9 @@
   },
   {
     "id": "log71",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "System access rules require approval for Level 1, Level 2, and Level 3 features. Level 3 requires approval from Security AND Director. Level 2 requires Director approval only. Director approves both, but Security rejects Level 3. Which access levels can be granted?",
     "options": [
       { "id": "a", "text": "Level 1 and Level 2 only", "score": 4 },
@@ -1206,7 +1348,9 @@
   },
   {
     "id": "log72",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Fleet dispatch rules state: No driver works 2 consecutive night shifts; Driver 1 cannot work Sunday routes; Driver 2 works only on Sunday routes. If Driver 1 works Saturday night, who works Sunday night?",
     "options": [
       { "id": "a", "text": "Driver 2", "score": 4 },
@@ -1217,7 +1361,9 @@
   },
   {
     "id": "log73",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three system maintenance updates (U1, U2, U3) are queued. U2 requires U1 to finish first. U3 cannot run if U2 has finished. If U1 is executed, which update can run next?",
     "options": [
       { "id": "a", "text": "U2 only", "score": 4 },
@@ -1228,7 +1374,9 @@
   },
   {
     "id": "log74",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A board vote requires a simple majority (2 out of 3) among Members A, B, and C. If Member A votes 'Yes', Member B votes opposite to A. Member C always votes 'Yes'. Member A votes 'Yes'. What is the result?",
     "options": [
       { "id": "a", "text": "Passed (Votes: A-Yes, B-No, C-Yes)", "score": 4 },
@@ -1239,7 +1387,9 @@
   },
   {
     "id": "log75",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four product demos (D1, D2, D3, D4) occur Monday through Thursday, one per day. D1 must be on Monday or Tuesday. D3 must be on Thursday. D2 must occur before D4. What is the valid weekly demo schedule?",
     "options": [
       {
@@ -1266,7 +1416,9 @@
   },
   {
     "id": "log76",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A processing pipeline routes data through Gate 1, Gate 2, or Gate 3. Gate 1 requires Rule X. Gate 2 requires Rule Y. Gate 3 requires Rule X AND Rule Y. If a data packet satisfies Rule X but NOT Rule Y, which gates can it use?",
     "options": [
       { "id": "a", "text": "Gate 1 only", "score": 4 },
@@ -1277,7 +1429,9 @@
   },
   {
     "id": "log77",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Machine maintenance for M1, M2, and M3 must be assigned to Technicians T1, T2, or T3. T1 cannot work on M1 or M2. T2 must work on M2. T3 can work on any machine. How are M1, M2, and M3 assigned if each technician handles one machine?",
     "options": [
       { "id": "a", "text": "M1 to T3, M2 to T2, M3 to T1", "score": 4 },
@@ -1288,7 +1442,9 @@
   },
   {
     "id": "log78",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "In procurement, Step 1 is Request, Step 2 is Vendor Check, Step 3 is Purchase Order, and Step 4 is Payment. Vendor Check follows Request. Purchase Order follows Vendor Check. Payment requires Purchase Order to be complete. If Purchase Order is skipped, what is the furthest step achieved?",
     "options": [
       { "id": "a", "text": "Vendor Check", "score": 4 },
@@ -1299,7 +1455,9 @@
   },
   {
     "id": "log79",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A software package includes 3 tools selected from {S1, S2, S3, S4, S5}. If S1 is selected, S2 cannot be selected. If S3 is selected, S4 MUST be selected. S1 and S3 are both selected. What is the full tool set?",
     "options": [
       { "id": "a", "text": "{S1, S3, S4}", "score": 4 },
@@ -1310,7 +1468,9 @@
   },
   {
     "id": "log80",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three batch jobs (Job A, Job B, Job C) take 1 hour each. Job A must finish before Job B begins. Job C can run concurrently with Job A or Job B, but cannot run alone. If Job A starts at 8:00 AM, what is a valid execution window for Job C?",
     "options": [
       {
@@ -1337,7 +1497,9 @@
   },
   {
     "id": "log81",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A code deployment requires four phases: Build (B), Unit Test (U), Integration Test (I), and Release (R). U must occur after B. I must occur after U. R cannot occur until I is completed. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "B -> U -> I -> R", "score": 4 },
@@ -1348,7 +1510,9 @@
   },
   {
     "id": "log82",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three managers (Patricia, Quentin, Rachel) must present at three seminars: Finance (F), Marketing (M), and Operations (O). Patricia cannot present F. Rachel must present O. Quentin must present after Patricia. What is the correct presentation schedule?",
     "options": [
       {
@@ -1375,7 +1539,9 @@
   },
   {
     "id": "log83",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A security desk runs three shifts: Morning (M), Evening (E), and Night (N). If Officer 1 works M, Officer 2 must work E. If Officer 3 works E, Officer 1 cannot work M. Officer 3 is assigned to E. Who works M and E?",
     "options": [
       { "id": "a", "text": "Officer 2 works M, Officer 3 works E", "score": 4 },
@@ -1386,7 +1552,9 @@
   },
   {
     "id": "log84",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A hardware maintenance plan requires System Diagnostics, Module Replacement, and Function Testing. Module Replacement can only happen on Tuesdays or Fridays. System Diagnostics must take place exactly one day prior to Module Replacement. Function Testing occurs immediately after Module Replacement. If Module Replacement is scheduled for Tuesday, what is the valid timeline?",
     "options": [
       {
@@ -1413,7 +1581,9 @@
   },
   {
     "id": "log85",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four storage units (Unit 1, Unit 2, Unit 3, Unit 4) are available. Team X cannot use Unit 1 or Unit 2. Team Y must use a unit with a higher number than Team X. Team Z uses Unit 1. Which unit is Team X assigned to?",
     "options": [
       { "id": "a", "text": "Team X in Unit 3, Team Y in Unit 4", "score": 4 },
@@ -1424,7 +1594,9 @@
   },
   {
     "id": "log86",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Data archiving involves Sorting (S), Compression (C), Transfer (T), and Deletion (D). If S occurs, C must immediately follow. T cannot occur before C. D must occur last. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "S -> C -> T -> D", "score": 4 },
@@ -1435,7 +1607,9 @@
   },
   {
     "id": "log87",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three tasks (T1, T2, T3) must be reviewed by Specialist A or Specialist B. Specialist A cannot review T1. If Specialist A reviews T2, Specialist B must review T3. Specialist A reviews T2. Who reviews each task?",
     "options": [
       {
@@ -1462,7 +1636,9 @@
   },
   {
     "id": "log88",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four team briefings (B1, B2, B3, B4) are held at 10 AM, 11 AM, 12 PM, and 1 PM. B1 must be before B2. B3 must occur immediately after B2. B4 must be held at 10 AM. What is the correct schedule?",
     "options": [
       {
@@ -1489,7 +1665,9 @@
   },
   {
     "id": "log89",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An invoice processing workflow includes Entry (E), Manager Approval (M), and Disbursement (D). If M fails, E must be repeated. If M passes, D occurs immediately. E is completed and M passes on the first attempt. What is the execution path?",
     "options": [
       { "id": "a", "text": "E -> M -> D", "score": 4 },
@@ -1500,7 +1678,9 @@
   },
   {
     "id": "log90",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four suppliers (S1, S2, S3, S4) deliver materials. S1 delivers before S2. S3 delivers after S2. S4 delivers before S1. Which delivery order satisfies all rules?",
     "options": [
       { "id": "a", "text": "S4 -> S1 -> S2 -> S3", "score": 4 },
@@ -1511,7 +1691,9 @@
   },
   {
     "id": "log91",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An API gateway grants permissions for Stage 1, Stage 2, and Stage 3 data. Stage 3 requires authorization from Data Privacy AND IT Operations. Stage 2 requires authorization from IT Operations only. IT Operations approves both, but Data Privacy rejects Stage 3. Which stages can be accessed?",
     "options": [
       { "id": "a", "text": "Stage 1 and Stage 2 only", "score": 4 },
@@ -1522,7 +1704,9 @@
   },
   {
     "id": "log92",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Facility coverage rules state: No supervisor works 2 consecutive night shifts; Supervisor X cannot work on national holidays; Supervisor Y works only on national holidays. If Supervisor X works the night shift before a national holiday, who works the national holiday night shift?",
     "options": [
       { "id": "a", "text": "Supervisor Y", "score": 4 },
@@ -1533,7 +1717,9 @@
   },
   {
     "id": "log93",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three automated workflows (W1, W2, W3) are scheduled. W2 requires W1 to complete first. W3 cannot run if W2 has completed. If W1 is executed, which workflow can run next?",
     "options": [
       { "id": "a", "text": "W2 only", "score": 4 },
@@ -1544,7 +1730,9 @@
   },
   {
     "id": "log94",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A project board of 3 members (P, Q, R) votes on budget increases. A simple majority (2 out of 3) passes the vote. If Member P votes 'Yes', Member Q votes opposite to P. Member R always votes 'Yes'. Member P votes 'Yes'. What is the outcome?",
     "options": [
       { "id": "a", "text": "Passed (Votes: P-Yes, Q-No, R-Yes)", "score": 4 },
@@ -1555,7 +1743,9 @@
   },
   {
     "id": "log95",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four client workshops (W1, W2, W3, W4) are scheduled Monday through Thursday, one per day. W1 must be held on Monday or Tuesday. W3 must be held on Thursday. W2 must occur before W4. What is the correct schedule?",
     "options": [
       {
@@ -1582,7 +1772,9 @@
   },
   {
     "id": "log96",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A rule engine directs tasks to Queue 1, Queue 2, or Queue 3. Queue 1 requires Flag A. Queue 2 requires Flag B. Queue 3 requires Flag A AND Flag B. If a task has Flag A but NOT Flag B, which queue can it enter?",
     "options": [
       { "id": "a", "text": "Queue 1 only", "score": 4 },
@@ -1593,7 +1785,9 @@
   },
   {
     "id": "log97",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Quality checks for Lines L1, L2, and L3 must be assigned to Inspectors I1, I2, or I3. I1 cannot inspect L1 or L2. I2 must inspect L2. I3 can inspect any line. How are L1, L2, and L3 assigned if each inspector gets one line?",
     "options": [
       { "id": "a", "text": "L1 to I3, L2 to I2, L3 to I1", "score": 4 },
@@ -1604,7 +1798,9 @@
   },
   {
     "id": "log98",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "In a software release cycle, Step 1 is Feature Freeze, Step 2 is Testing, Step 3 is Regression Sign-off, and Step 4 is Production Deploy. Testing follows Feature Freeze. Regression Sign-off follows Testing. Production Deploy requires Regression Sign-off. If Regression Sign-off is skipped, what is the furthest step achieved?",
     "options": [
       { "id": "a", "text": "Testing", "score": 4 },
@@ -1615,7 +1811,9 @@
   },
   {
     "id": "log99",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A project bundle must select 3 modules from {M1, M2, M3, M4, M5}. If M1 is selected, M2 cannot be selected. If M3 is selected, M4 MUST be selected. M1 and M3 are both selected. What is the full module selection?",
     "options": [
       { "id": "a", "text": "{M1, M3, M4}", "score": 4 },
@@ -1626,7 +1824,9 @@
   },
   {
     "id": "log100",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three data sync jobs (Sync A, Sync B, Sync C) run for 1 hour each. Sync A must complete before Sync B begins. Sync C can run concurrently with Sync A or Sync B, but cannot run alone. If Sync A starts at 4:00 PM, what is a valid execution window for Sync C?",
     "options": [
       {
@@ -1653,7 +1853,9 @@
   },
   {
     "id": "log101",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A project deployment requires four phases: Audit (A), Staging (S), Testing (T), and Launch (L). S must occur after A. T must occur after S. L cannot occur until T is completed. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "A -> S -> T -> L", "score": 4 },
@@ -1664,7 +1866,9 @@
   },
   {
     "id": "log102",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three department heads (Sam, Tina, Uma) must present at three meetings: Strategy (S), Operations (O), and Marketing (M). Sam cannot present S. Uma must present M. Tina must present after Sam. What is the correct assignment?",
     "options": [
       { "id": "a", "text": "Sam does O, Tina does S, Uma does M", "score": 4 },
@@ -1675,7 +1879,9 @@
   },
   {
     "id": "log103",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A facility team manages three shift blocks: Early (E), Day (D), and Night (N). If Lead X works E, Lead Y must work D. If Lead Z works D, Lead X cannot work E. Lead Z is assigned to D. Who works E and D?",
     "options": [
       { "id": "a", "text": "Lead Y works E, Lead Z works D", "score": 4 },
@@ -1686,7 +1892,9 @@
   },
   {
     "id": "log104",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A release schedule requires Code Review, Security Scan, and Deployment. Security Scan can only happen on Mondays or Thursdays. Code Review must happen exactly one day before Security Scan. Deployment occurs immediately after Security Scan. If Security Scan is on Thursday, what is the valid schedule?",
     "options": [
       {
@@ -1713,7 +1921,9 @@
   },
   {
     "id": "log105",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four server bays (Bay 1, Bay 2, Bay 3, Bay 4) are available. System A cannot use Bay 1 or Bay 2. System B must use a bay with a higher number than System A. System C uses Bay 1. Which bay is System A assigned to?",
     "options": [
       { "id": "a", "text": "System A in Bay 3, System B in Bay 4", "score": 4 },
@@ -1724,7 +1934,9 @@
   },
   {
     "id": "log106",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Data pipeline execution involves Extraction (E), Transformation (T), Loading (L), and Validation (V). If E occurs, T must immediately follow. L cannot occur before T. V must occur last. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "E -> T -> L -> V", "score": 4 },
@@ -1735,7 +1947,9 @@
   },
   {
     "id": "log107",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three tasks (X1, X2, X3) must be assigned to Supervisor A or Supervisor B. Supervisor A cannot handle X1. If Supervisor A handles X2, Supervisor B must handle X3. Supervisor A handles X2. Who handles each task?",
     "options": [
       {
@@ -1762,7 +1976,9 @@
   },
   {
     "id": "log108",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four status reports (R1, R2, R3, R4) are scheduled at 9 AM, 10 AM, 11 AM, and 12 PM. R1 must be before R2. R3 must occur immediately after R2. R4 must be at 9 AM. What is the correct schedule?",
     "options": [
       {
@@ -1789,7 +2005,9 @@
   },
   {
     "id": "log109",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An asset transfer protocol includes Intake (I), Compliance Check (C), and Vault Transfer (V). If C fails, I must be repeated. If C passes, V occurs immediately. I is completed and C passes on the first try. What is the execution path?",
     "options": [
       { "id": "a", "text": "I -> C -> V", "score": 4 },
@@ -1800,7 +2018,9 @@
   },
   {
     "id": "log110",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four regional managers (M1, M2, M3, M4) present their annual plans. M1 presents before M2. M3 presents after M2. M4 presents before M1. Which presentation order satisfies all rules?",
     "options": [
       { "id": "a", "text": "M4 -> M1 -> M2 -> M3", "score": 4 },
@@ -1811,7 +2031,9 @@
   },
   {
     "id": "log111",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An access control matrix evaluates requests for Module 1, Module 2, and Module 3. Module 3 requires approval from Security AND Architecture. Module 2 requires Architecture approval only. Architecture approves both, but Security rejects Module 3. Which modules can be accessed?",
     "options": [
       { "id": "a", "text": "Module 1 and Module 2 only", "score": 4 },
@@ -1822,7 +2044,9 @@
   },
   {
     "id": "log112",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Call center shift rules state: No agent works 2 consecutive night shifts; Agent Red cannot work Sunday shifts; Agent Blue works only on Sunday shifts. If Agent Red works Saturday night, who works the Sunday night shift?",
     "options": [
       { "id": "a", "text": "Agent Blue", "score": 4 },
@@ -1833,7 +2057,9 @@
   },
   {
     "id": "log113",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three microservices (S1, S2, S3) startup in order. S2 requires S1 to start first. S3 cannot start if S2 has already started. If S1 is started, which service can safely start next?",
     "options": [
       { "id": "a", "text": "S2 only", "score": 4 },
@@ -1844,7 +2070,9 @@
   },
   {
     "id": "log114",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A steering committee with 3 voters (V1, V2, V3) decides on project funding by simple majority (2 out of 3). If V1 votes 'Yes', V2 votes opposite to V1. V3 always votes 'Yes'. V1 votes 'Yes'. What is the vote outcome?",
     "options": [
       {
@@ -1871,7 +2099,9 @@
   },
   {
     "id": "log115",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four vendor reviews (VR1, VR2, VR3, VR4) take place Monday through Thursday, one per day. VR1 must be on Monday or Tuesday. VR3 must be on Thursday. VR2 must occur before VR4. What is the valid review schedule?",
     "options": [
       {
@@ -1898,7 +2128,9 @@
   },
   {
     "id": "log116",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A policy engine assigns user tiers: Tier Alpha, Tier Beta, Tier Gamma. Tier Alpha requires Rule 1. Tier Beta requires Rule 2. Tier Gamma requires Rule 1 AND Rule 2. If a user meets Rule 1 but NOT Rule 2, which tier do they receive?",
     "options": [
       { "id": "a", "text": "Tier Alpha only", "score": 4 },
@@ -1909,7 +2141,9 @@
   },
   {
     "id": "log117",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Facility maintenance for Site 1, Site 2, and Site 3 must be assigned to Crew A, Crew B, or Crew C. Crew A cannot work at Site 1 or Site 2. Crew B must work at Site 2. Crew C can work at any site. How are Sites 1, 2, and 3 assigned if each crew handles one site?",
     "options": [
       {
@@ -1936,7 +2170,9 @@
   },
   {
     "id": "log118",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "In an inventory workflow, Step 1 is Receive, Step 2 is Inspect, Step 3 is Catalog, and Step 4 is Stock. Inspect follows Receive. Catalog follows Inspect. Stock requires Catalog to be complete. If Catalog is skipped, what is the furthest step achieved?",
     "options": [
       { "id": "a", "text": "Inspect", "score": 4 },
@@ -1947,7 +2183,9 @@
   },
   {
     "id": "log119",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A security package offers 5 plugins {P1, P2, P3, P4, P5}, and an admin must select 3. If P1 is selected, P2 cannot be selected. If P3 is selected, P4 MUST be selected. P1 and P3 are both selected. What is the plugin set?",
     "options": [
       { "id": "a", "text": "{P1, P3, P4}", "score": 4 },
@@ -1958,7 +2196,9 @@
   },
   {
     "id": "log120",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three system maintenance jobs (Job 1, Job 2, Job 3) take 1 hour each. Job 1 must finish before Job 2 begins. Job 3 can run concurrently with Job 1 or Job 2, but cannot run alone. If Job 1 starts at 5:00 PM, what is a valid execution window for Job 3?",
     "options": [
       {
@@ -1985,7 +2225,9 @@
   },
   {
     "id": "log121",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A software release requires four steps: Code Freeze (C), Unit Testing (U), Security Audit (S), and Production Push (P). U must follow C. S must follow U. P cannot occur until S is completed. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "C -> U -> S -> P", "score": 4 },
@@ -1996,7 +2238,9 @@
   },
   {
     "id": "log122",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three managers (Victor, Wendy, Xavier) must lead three team retrospectives: Engineering (E), Product (P), and Design (D). Victor cannot lead E. Xavier must lead D. Wendy must present after Victor. What is the correct assignment?",
     "options": [
       {
@@ -2023,7 +2267,9 @@
   },
   {
     "id": "log123",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A support team manages three coverage windows: Morning (M), Afternoon (A), and Night (N). If Analyst 1 works M, Analyst 2 must work A. If Analyst 3 works A, Analyst 1 cannot work M. Analyst 3 is assigned to A. Who works M and A?",
     "options": [
       { "id": "a", "text": "Analyst 2 works M, Analyst 3 works A", "score": 4 },
@@ -2034,7 +2280,9 @@
   },
   {
     "id": "log124",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A server update sequence requires Pre-patch Verification, Kernel Update, and Reboot. Kernel Update can only occur on Tuesdays or Fridays. Pre-patch Verification must take place exactly one day prior to Kernel Update. Reboot occurs immediately after Kernel Update. If Kernel Update is scheduled for Tuesday, what is the valid schedule?",
     "options": [
       {
@@ -2061,7 +2309,9 @@
   },
   {
     "id": "log125",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four staging servers (Server 10, Server 20, Server 30, Server 40) are available. Application Alpha cannot use Server 10 or Server 20. Application Beta must use a server with a higher number than Application Alpha. Application Gamma uses Server 10. Which server is Application Alpha assigned to?",
     "options": [
       {
@@ -2088,7 +2338,9 @@
   },
   {
     "id": "log126",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A data compliance pipeline requires Anonymization (A), Tokenization (T), Storage (S), and Auditing (U). If A occurs, T must immediately follow. S cannot occur before T. U must occur last. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "A -> T -> S -> U", "score": 4 },
@@ -2099,7 +2351,9 @@
   },
   {
     "id": "log127",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three audits (Audit 1, Audit 2, Audit 3) must be assigned to Lead P or Lead Q. Lead P cannot handle Audit 1. If Lead P handles Audit 2, Lead Q must handle Audit 3. Lead P handles Audit 2. Who handles each audit?",
     "options": [
       {
@@ -2126,7 +2380,9 @@
   },
   {
     "id": "log128",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four project syncs (P1, P2, P3, P4) are scheduled at 1 PM, 2 PM, 3 PM, and 4 PM. P1 must be before P2. P3 must occur immediately after P2. P4 must be scheduled at 1 PM. What is the correct schedule?",
     "options": [
       {
@@ -2153,7 +2409,9 @@
   },
   {
     "id": "log129",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A payment gateway pipeline involves Authorization (A), Risk Assessment (R), and Settlement (S). If R fails, A must be repeated. If R passes, S occurs immediately. A is verified and R passes on the first attempt. What is the execution path?",
     "options": [
       { "id": "a", "text": "A -> R -> S", "score": 4 },
@@ -2164,7 +2422,9 @@
   },
   {
     "id": "log130",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four product revisions (R1, R2, R3, R4) are reviewed. R1 is reviewed before R2. R3 is reviewed after R2. R4 is reviewed before R1. Which review order satisfies all rules?",
     "options": [
       { "id": "a", "text": "R4 -> R1 -> R2 -> R3", "score": 4 },
@@ -2175,7 +2435,9 @@
   },
   {
     "id": "log131",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A network access matrix grants permissions for Zone 1, Zone 2, and Zone 3. Zone 3 requires sign-off from InfoSec AND Infrastructure. Zone 2 requires sign-off from Infrastructure only. Infrastructure signs off on both, but InfoSec rejects Zone 3. Which zones can be accessed?",
     "options": [
       { "id": "a", "text": "Zone 1 and Zone 2 only", "score": 4 },
@@ -2186,7 +2448,9 @@
   },
   {
     "id": "log132",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Warehouse shift rules state: No supervisor works 2 consecutive night shifts; Supervisor Red cannot work on public holidays; Supervisor Green works only on public holidays. If Supervisor Red works the night shift before a public holiday, who works the public holiday night shift?",
     "options": [
       { "id": "a", "text": "Supervisor Green", "score": 4 },
@@ -2201,7 +2465,9 @@
   },
   {
     "id": "log133",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three automated routines (R1, R2, R3) are executed in sequence. R2 requires R1 to complete first. R3 cannot run if R2 has completed. If R1 is executed, which routine can safely run next?",
     "options": [
       { "id": "a", "text": "R2 only", "score": 4 },
@@ -2212,7 +2478,9 @@
   },
   {
     "id": "log134",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A budget approval panel consists of 3 members: Director X, Director Y, and Director Z. A vote passes with a simple majority (2 out of 3). If Director X votes 'Yes', Director Y votes opposite to X. Director Z always votes 'Yes'. Director X votes 'Yes'. What is the outcome?",
     "options": [
       { "id": "a", "text": "Passed (Votes: X-Yes, Y-No, Z-Yes)", "score": 4 },
@@ -2223,7 +2491,9 @@
   },
   {
     "id": "log135",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four vendor interviews (V1, V2, V3, V4) take place Monday through Thursday, one per day. V1 must occur on Monday or Tuesday. V3 must occur on Thursday. V2 must occur before V4. What is the valid weekly schedule?",
     "options": [
       {
@@ -2250,7 +2520,9 @@
   },
   {
     "id": "log136",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A workflow router dispatches tasks to Channel A, Channel B, or Channel C. Channel A requires Condition X. Channel B requires Condition Y. Channel C requires Condition X AND Condition Y. If a task satisfies Condition X but NOT Condition Y, which channel can it use?",
     "options": [
       { "id": "a", "text": "Channel A only", "score": 4 },
@@ -2261,7 +2533,9 @@
   },
   {
     "id": "log137",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Facility maintenance for Building 1, Building 2, and Building 3 must be assigned to Crew Alpha, Crew Beta, or Crew Gamma. Crew Alpha cannot work in Building 1 or Building 2. Crew Beta must work in Building 2. Crew Gamma can work in any building. How are Buildings 1, 2, and 3 assigned if each crew handles one building?",
     "options": [
       {
@@ -2288,7 +2562,9 @@
   },
   {
     "id": "log138",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "In a logistics pipeline, Step 1 is Receiving, Step 2 is Inspection, Step 3 is Sorting, and Step 4 is Shipping. Inspection follows Receiving. Sorting follows Inspection. Shipping requires Sorting to be complete. If Sorting is skipped, what is the furthest step achieved?",
     "options": [
       { "id": "a", "text": "Inspection", "score": 4 },
@@ -2299,7 +2575,9 @@
   },
   {
     "id": "log139",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A enterprise software tier offers 5 modules {Mod1, Mod2, Mod3, Mod4, Mod5}, and a client must select 3. If Mod1 is selected, Mod2 cannot be selected. If Mod3 is selected, Mod4 MUST be selected. Mod1 and Mod3 are both selected. What is the full module bundle?",
     "options": [
       { "id": "a", "text": "{Mod1, Mod3, Mod4}", "score": 4 },
@@ -2310,7 +2588,9 @@
   },
   {
     "id": "log140",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three automated tests (Test A, Test B, Test C) take 1 hour each. Test A must complete before Test B begins. Test C can run concurrently with Test A or Test B, but cannot run alone. If Test A starts at 6:00 PM, what is a valid execution window for Test C?",
     "options": [
       {
@@ -2337,7 +2617,9 @@
   },
   {
     "id": "log141",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An IT incident escalation requires four steps: Logging (L), Triage (T), Remediation (R), and Resolution Sign-off (S). T must occur after L. R must occur after T. S cannot occur until R is finished. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "L -> T -> R -> S", "score": 4 },
@@ -2348,7 +2630,9 @@
   },
   {
     "id": "log142",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three supervisors (Amy, Ben, Clara) must lead three shift huddles: Safety (S), Production (P), and Quality (Q). Amy cannot lead S. Clara must lead Q. Ben must present after Amy. What is the correct assignment?",
     "options": [
       {
@@ -2375,7 +2659,9 @@
   },
   {
     "id": "log143",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A logistics center manages three shift slots: Shift 1, Shift 2, and Shift 3. If Supervisor A works Shift 1, Supervisor B must work Shift 2. If Supervisor C works Shift 2, Supervisor A cannot work Shift 1. Supervisor C is assigned to Shift 2. Who works Shift 1 and Shift 2?",
     "options": [
       {
@@ -2402,7 +2688,9 @@
   },
   {
     "id": "log144",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A hardware maintenance cycle involves Inspection, Part Replacement, and Testing. Part Replacement can only occur on Tuesdays or Thursdays. Inspection must occur exactly one day before Part Replacement. Testing occurs immediately after Part Replacement. If Part Replacement takes place on Thursday, what is the valid schedule?",
     "options": [
       {
@@ -2429,7 +2717,9 @@
   },
   {
     "id": "log145",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four production lines (Line 1, Line 2, Line 3, Line 4) are available. Team K cannot use Line 1 or Line 2. Team L must use a line with a higher number than Team K. Team M uses Line 1. Which line is Team K assigned to?",
     "options": [
       { "id": "a", "text": "Team K on Line 3, Team L on Line 4", "score": 4 },
@@ -2440,7 +2730,9 @@
   },
   {
     "id": "log146",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A media workflow involves Capture (C), Editing (E), Rendering (R), and Publishing (P). If C occurs, E must immediately follow. R cannot occur before E. P must occur last. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "C -> E -> R -> P", "score": 4 },
@@ -2451,7 +2743,9 @@
   },
   {
     "id": "log147",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three customer accounts (Acc1, Acc2, Acc3) must be audited by Manager R or Manager S. Manager R cannot audit Acc1. If Manager R audits Acc2, Manager S must audit Acc3. Manager R audits Acc2. Who audits each account?",
     "options": [
       {
@@ -2478,7 +2772,9 @@
   },
   {
     "id": "log148",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four status updates (U1, U2, U3, U4) are scheduled for 7 AM, 8 AM, 9 AM, and 10 AM. U1 must be before U2. U3 must occur immediately after U2. U4 must be scheduled at 7 AM. What is the correct schedule?",
     "options": [
       {
@@ -2505,7 +2801,9 @@
   },
   {
     "id": "log149",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An order pipeline includes Intake (I), Credit Verification (CV), and Order Confirmation (OC). If CV fails, I must be repeated. If CV passes, OC occurs immediately. I is completed and CV passes on the first attempt. What is the execution path?",
     "options": [
       { "id": "a", "text": "I -> CV -> OC", "score": 4 },
@@ -2516,7 +2814,9 @@
   },
   {
     "id": "log150",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four software releases (Rel1, Rel2, Rel3, Rel4) are deployed in sequence. Rel1 deploys before Rel2. Rel3 deploys after Rel2. Rel4 deploys before Rel1. Which deployment order satisfies all rules?",
     "options": [
       { "id": "a", "text": "Rel4 -> Rel1 -> Rel2 -> Rel3", "score": 4 },
@@ -2527,7 +2827,9 @@
   },
   {
     "id": "log151",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A permissions manager grants access to Phase 1, Phase 2, and Phase 3 tools. Phase 3 requires approval from Compliance AND Legal. Phase 2 requires Legal approval only. Legal approves both, but Compliance rejects Phase 3. Which phases are granted access?",
     "options": [
       { "id": "a", "text": "Phase 1 and Phase 2 only", "score": 4 },
@@ -2538,7 +2840,9 @@
   },
   {
     "id": "log152",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Facility rotation rules state: No supervisor works 2 consecutive night shifts; Supervisor East cannot work on company holidays; Supervisor West works only on company holidays. If Supervisor East works the night shift before a company holiday, who works the company holiday night shift?",
     "options": [
       { "id": "a", "text": "Supervisor West", "score": 4 },
@@ -2553,7 +2857,9 @@
   },
   {
     "id": "log153",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three build steps (Step A, Step B, Step C) run in sequence. Step B requires Step A to finish first. Step C cannot run if Step B has finished. If Step A is executed, which step can safely run next?",
     "options": [
       { "id": "a", "text": "Step B only", "score": 4 },
@@ -2568,7 +2874,9 @@
   },
   {
     "id": "log154",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A managerial panel with 3 members (M1, M2, M3) votes on policy updates. A majority (2 out of 3) passes the update. If M1 votes 'Yes', M2 votes opposite to M1. M3 always votes 'Yes'. M1 votes 'Yes'. What is the vote outcome?",
     "options": [
       {
@@ -2595,7 +2903,9 @@
   },
   {
     "id": "log155",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four training sessions (T1, T2, T3, T4) are held Monday through Thursday, one per day. T1 must occur on Monday or Tuesday. T3 must occur on Thursday. T2 must occur before T4. What is the correct weekly schedule?",
     "options": [
       {
@@ -2622,7 +2932,9 @@
   },
   {
     "id": "log156",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A load balancer routes requests to Pool 1, Pool 2, or Pool 3. Pool 1 requires Token A. Pool 2 requires Token B. Pool 3 requires Token A AND Token B. If a request provides Token A but NOT Token B, which pool can it enter?",
     "options": [
       { "id": "a", "text": "Pool 1 only", "score": 4 },
@@ -2633,7 +2945,9 @@
   },
   {
     "id": "log157",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Office maintenance for Room 101, Room 102, and Room 103 must be assigned to Technician A, B, or C. Technician A cannot work in Room 101 or Room 102. Technician B must work in Room 102. Technician C can work in any room. How are Rooms 101, 102, and 103 assigned if each technician handles one room?",
     "options": [
       {
@@ -2660,7 +2974,9 @@
   },
   {
     "id": "log158",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "In a software QA process, Step 1 is Test Case Creation, Step 2 is Execution, Step 3 is Bug Verification, and Step 4 is Final Sign-off. Execution follows Test Case Creation. Bug Verification follows Execution. Final Sign-off requires Bug Verification to be complete. If Bug Verification is skipped, what is the furthest step achieved?",
     "options": [
       { "id": "a", "text": "Execution", "score": 4 },
@@ -2671,7 +2987,9 @@
   },
   {
     "id": "log159",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A service package offers 5 extensions {E1, E2, E3, E4, E5}, and a client must select 3. If E1 is selected, E2 cannot be selected. If E3 is selected, E4 MUST be selected. E1 and E3 are both selected. What is the complete extension set?",
     "options": [
       { "id": "a", "text": "{E1, E3, E4}", "score": 4 },
@@ -2682,7 +3000,9 @@
   },
   {
     "id": "log160",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three automated backups (Backup X, Backup Y, Backup Z) take 1 hour each. Backup X must finish before Backup Y begins. Backup Z can run concurrently with Backup X or Backup Y, but cannot run alone. If Backup X starts at 7:00 PM, what is a valid execution window for Backup Z?",
     "options": [
       {
@@ -2709,7 +3029,9 @@
   },
   {
     "id": "log161",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A hardware manufacturing line requires four phases: Calibration (C), Assembly (A), Quality Inspection (Q), and Packaging (P). A must occur after C. Q must occur after A. P cannot occur until Q is completed. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "C -> A -> Q -> P", "score": 4 },
@@ -2720,7 +3042,9 @@
   },
   {
     "id": "log162",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three site managers (Dan, Beth, Evan) must inspect three facilities: Warehouse (W), Factory (F), and Office (O). Dan cannot inspect W. Evan must inspect O. Beth must conduct her inspection after Dan. What is the correct site assignment?",
     "options": [
       {
@@ -2747,7 +3071,9 @@
   },
   {
     "id": "log163",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A dispatch center operates three shifts: First (F), Second (S), and Third (T). If Supervisor Alpha works F, Supervisor Beta must work S. If Supervisor Gamma works S, Supervisor Alpha cannot work F. Supervisor Gamma is assigned to S. Who works F and S?",
     "options": [
       {
@@ -2774,7 +3100,9 @@
   },
   {
     "id": "log164",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A network upgrade window involves Schema Migration, Server Patching, and Traffic Cutover. Server Patching can only occur on Wednesdays or Fridays. Schema Migration must occur exactly one day prior to Server Patching. Traffic Cutover occurs immediately after Server Patching. If Server Patching is scheduled for Wednesday, what is the valid timeline?",
     "options": [
       {
@@ -2801,7 +3129,9 @@
   },
   {
     "id": "log165",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four office suites (Suite 100, Suite 200, Suite 300, Suite 400) are available. Team X cannot use Suite 100 or Suite 200. Team Y must use a suite with a higher number than Team X. Team Z uses Suite 100. Which suite is Team X assigned to?",
     "options": [
       {
@@ -2828,7 +3158,9 @@
   },
   {
     "id": "log166",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A document processing workflow requires Extraction (E), Normalization (N), Indexing (I), and Archiving (A). If E occurs, N must immediately follow. I cannot occur before N. A must occur last. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "E -> N -> I -> A", "score": 4 },
@@ -2839,7 +3171,9 @@
   },
   {
     "id": "log167",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three vendor proposals (Prop 1, Prop 2, Prop 3) must be evaluated by Evaluator A or Evaluator B. Evaluator A cannot evaluate Prop 1. If Evaluator A evaluates Prop 2, Evaluator B must evaluate Prop 3. Evaluator A evaluates Prop 2. Who evaluates each proposal?",
     "options": [
       {
@@ -2866,7 +3200,9 @@
   },
   {
     "id": "log168",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four product demos (Demo 1, Demo 2, Demo 3, Demo 4) are scheduled at 2 PM, 3 PM, 4 PM, and 5 PM. Demo 1 must be before Demo 2. Demo 3 must occur immediately after Demo 2. Demo 4 must be scheduled at 2 PM. What is the correct schedule?",
     "options": [
       {
@@ -2893,7 +3229,9 @@
   },
   {
     "id": "log169",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An automated claims pipeline involves Initial Submission (IS), Fraud Verification (FV), and Claim Payout (CP). If FV fails, IS must be repeated. If FV passes, CP occurs immediately. IS is completed and FV passes on the first attempt. What is the execution path?",
     "options": [
       { "id": "a", "text": "IS -> FV -> CP", "score": 4 },
@@ -2904,7 +3242,9 @@
   },
   {
     "id": "log170",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four project deliverables (D1, D2, D3, D4) are submitted sequentially. D1 is submitted before D2. D3 is submitted after D2. D4 is submitted before D1. Which submission order satisfies all rules?",
     "options": [
       { "id": "a", "text": "D4 -> D1 -> D2 -> D3", "score": 4 },
@@ -2915,7 +3255,9 @@
   },
   {
     "id": "log171",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A deployment authorization matrix grants clearance for Environment 1, Environment 2, and Environment 3. Environment 3 requires clearance from InfoSec AND Infrastructure. Environment 2 requires clearance from Infrastructure only. Infrastructure grants both, but InfoSec rejects Environment 3. Which environments receive clearance?",
     "options": [
       { "id": "a", "text": "Environment 1 and Environment 2 only", "score": 4 },
@@ -2930,7 +3272,9 @@
   },
   {
     "id": "log172",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Plant operation shift rules state: No operator works 2 consecutive night shifts; Operator North cannot work on statutory holidays; Operator South works only on statutory holidays. If Operator North works the night shift before a statutory holiday, who works the statutory holiday night shift?",
     "options": [
       { "id": "a", "text": "Operator South", "score": 4 },
@@ -2945,7 +3289,9 @@
   },
   {
     "id": "log173",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three automated jobs (J1, J2, J3) are queued. J2 requires J1 to finish first. J3 cannot run if J2 has finished. If J1 is executed, which job can safely run next?",
     "options": [
       { "id": "a", "text": "J2 only", "score": 4 },
@@ -2956,7 +3302,9 @@
   },
   {
     "id": "log174",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A revision panel of 3 members (R1, R2, R3) votes on policy updates. A majority (2 out of 3) passes the vote. If Member R1 votes 'Yes', Member R2 votes opposite to R1. Member R3 always votes 'Yes'. Member R1 votes 'Yes'. What is the outcome?",
     "options": [
       {
@@ -2983,7 +3331,9 @@
   },
   {
     "id": "log175",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four client presentations (P1, P2, P3, P4) are scheduled Monday through Thursday, one per day. P1 must be on Monday or Tuesday. P3 must be on Thursday. P2 must occur before P4. What is the valid weekly presentation plan?",
     "options": [
       {
@@ -3010,7 +3360,9 @@
   },
   {
     "id": "log176",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An API engine forwards requests to Server Alpha, Server Beta, or Server Gamma. Server Alpha requires Header X. Server Beta requires Header Y. Server Gamma requires Header X AND Header Y. If a request includes Header X but NOT Header Y, which server can process it?",
     "options": [
       { "id": "a", "text": "Server Alpha only", "score": 4 },
@@ -3021,7 +3373,9 @@
   },
   {
     "id": "log177",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Fleet repairs for Truck 1, Truck 2, and Truck 3 must be assigned to Mechanic A, Mechanic B, or Mechanic C. Mechanic A cannot work on Truck 1 or Truck 2. Mechanic B must work on Truck 2. Mechanic C can work on any truck. How are Trucks 1, 2, and 3 assigned if each mechanic works on one truck?",
     "options": [
       {
@@ -3048,7 +3402,9 @@
   },
   {
     "id": "log178",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "In a software deployment framework, Step 1 is Pre-check, Step 2 is Database Migration, Step 3 is Application Deploy, and Step 4 is Health Check. Database Migration follows Pre-check. Application Deploy follows Database Migration. Health Check requires Application Deploy to be complete. If Application Deploy is skipped, what is the furthest step achieved?",
     "options": [
       { "id": "a", "text": "Database Migration", "score": 4 },
@@ -3059,7 +3415,9 @@
   },
   {
     "id": "log179",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An enterprise feature pack offers 5 components {C1, C2, C3, C4, C5}, and a subscriber must pick 3. If C1 is selected, C2 cannot be selected. If C3 is selected, C4 MUST be selected. C1 and C3 are both selected. What is the full component set?",
     "options": [
       { "id": "a", "text": "{C1, C3, C4}", "score": 4 },
@@ -3070,7 +3428,9 @@
   },
   {
     "id": "log180",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three batch scripts (Script A, Script B, Script C) take 1 hour each. Script A must finish before Script B begins. Script C can run concurrently with Script A or Script B, but cannot run alone. If Script A starts at 8:00 PM, what is a valid execution window for Script C?",
     "options": [
       {
@@ -3097,7 +3457,9 @@
   },
   {
     "id": "log181",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A security clearance process requires four steps: Background Check (B), Fingerprinting (F), Interview (I), and Card Issuance (C). F must occur after B. I must occur after F. C cannot occur until I is completed. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "B -> F -> I -> C", "score": 4 },
@@ -3108,7 +3470,9 @@
   },
   {
     "id": "log182",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three team leads (Leo, Maya, Nina) must present at three all-hands sessions: Product (P), Strategy (S), and Engineering (E). Leo cannot present P. Nina must present E. Maya must present after Leo. What is the correct presentation order?",
     "options": [
       {
@@ -3135,7 +3499,9 @@
   },
   {
     "id": "log183",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A warehouse manages three shift blocks: Shift Alpha, Shift Beta, and Shift Gamma. If Manager X works Shift Alpha, Manager Y must work Shift Beta. If Manager Z works Shift Beta, Manager X cannot work Shift Alpha. Manager Z is assigned to Shift Beta. Who works Shift Alpha and Shift Beta?",
     "options": [
       {
@@ -3162,7 +3528,9 @@
   },
   {
     "id": "log184",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A server maintenance plan requires Security Audit, Patch Deployment, and Server Reboot. Patch Deployment can only occur on Tuesdays or Thursdays. Security Audit must happen exactly one day before Patch Deployment. Server Reboot occurs immediately after Patch Deployment. If Patch Deployment takes place on Thursday, what is the valid schedule?",
     "options": [
       {
@@ -3189,7 +3557,9 @@
   },
   {
     "id": "log185",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four meeting rooms (Room 1, Room 2, Room 3, Room 4) are available. Team X cannot use Room 1 or Room 2. Team Y must use a room with a higher number than Team X. Team Z uses Room 1. Which room is Team X assigned to?",
     "options": [
       { "id": "a", "text": "Team X in Room 3, Team Y in Room 4", "score": 4 },
@@ -3200,7 +3570,9 @@
   },
   {
     "id": "log186",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An e-commerce order process involves Payment Authorization (P), Inventory Allocation (I), Packaging (K), and Dispatch (D). If P occurs, I must immediately follow. K cannot occur before I. D must occur last. Which sequence is valid?",
     "options": [
       { "id": "a", "text": "P -> I -> K -> D", "score": 4 },
@@ -3211,7 +3583,9 @@
   },
   {
     "id": "log187",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three client projects (Proj 1, Proj 2, Proj 3) must be assigned to Lead X or Lead Y. Lead X cannot manage Proj 1. If Lead X manages Proj 2, Lead Y must manage Proj 3. Lead X manages Proj 2. Who manages each project?",
     "options": [
       {
@@ -3238,7 +3612,9 @@
   },
   {
     "id": "log188",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four project reviews (Rev 1, Rev 2, Rev 3, Rev 4) are scheduled for 9 AM, 10 AM, 11 AM, and 12 PM. Rev 1 must take place before Rev 2. Rev 3 must occur immediately after Rev 2. Rev 4 must be scheduled at 9 AM. What is the correct schedule?",
     "options": [
       {
@@ -3265,7 +3641,9 @@
   },
   {
     "id": "log189",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A data ingestion workflow includes Source Extraction (SE), Validation Gate (VG), and Target Loading (TL). If VG fails, SE must be repeated. If VG passes, TL occurs immediately. SE is completed and VG passes on the first attempt. What is the execution path?",
     "options": [
       { "id": "a", "text": "SE -> VG -> TL", "score": 4 },
@@ -3276,7 +3654,9 @@
   },
   {
     "id": "log190",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four team proposals (P1, P2, P3, P4) are reviewed sequentially. P1 is reviewed before P2. P3 is reviewed after P2. P4 is reviewed before P1. Which review order satisfies all rules?",
     "options": [
       { "id": "a", "text": "P4 -> P1 -> P2 -> P3", "score": 4 },
@@ -3287,7 +3667,9 @@
   },
   {
     "id": "log191",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "An API access controller evaluates requests for Level A, Level B, and Level C features. Level C requires approval from InfoSec AND Operations. Level B requires Operations approval only. Operations approves both, but InfoSec rejects Level C. Which levels can be granted access?",
     "options": [
       { "id": "a", "text": "Level A and Level B only", "score": 4 },
@@ -3298,7 +3680,9 @@
   },
   {
     "id": "log192",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "On-call rotation rules state: No engineer works 2 consecutive night shifts; Engineer Alpha cannot work on official holidays; Engineer Beta works only on official holidays. If Engineer Alpha works the night shift before an official holiday, who works the holiday night shift?",
     "options": [
       { "id": "a", "text": "Engineer Beta", "score": 4 },
@@ -3313,7 +3697,9 @@
   },
   {
     "id": "log193",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three automated builds (B1, B2, B3) are queued. B2 requires B1 to complete first. B3 cannot run if B2 has completed. If B1 is executed, which build can safely run next?",
     "options": [
       { "id": "a", "text": "B2 only", "score": 4 },
@@ -3324,7 +3710,9 @@
   },
   {
     "id": "log194",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A policy review board of 3 members (M1, M2, M3) votes on operational updates by simple majority (2 out of 3). If M1 votes 'Yes', M2 votes opposite to M1. M3 always votes 'Yes'. M1 votes 'Yes'. What is the vote outcome?",
     "options": [
       {
@@ -3351,7 +3739,9 @@
   },
   {
     "id": "log195",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Four vendor briefings (B1, B2, B3, B4) take place Monday through Thursday, one per day. B1 must occur on Monday or Tuesday. B3 must occur on Thursday. B2 must occur before B4. What is the valid weekly briefing schedule?",
     "options": [
       {
@@ -3378,7 +3768,9 @@
   },
   {
     "id": "log196",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A workflow router dispatches tasks to Node 1, Node 2, or Node 3. Node 1 requires Rule Alpha. Node 2 requires Rule Beta. Node 3 requires Rule Alpha AND Rule Beta. If a task meets Rule Alpha but NOT Rule Beta, which node can it enter?",
     "options": [
       { "id": "a", "text": "Node 1 only", "score": 4 },
@@ -3389,7 +3781,9 @@
   },
   {
     "id": "log197",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Server maintenance for Server 1, Server 2, and Server 3 must be assigned to Admin A, Admin B, or Admin C. Admin A cannot work on Server 1 or Server 2. Admin B must work on Server 2. Admin C can work on any server. How are Servers 1, 2, and 3 assigned if each admin handles one server?",
     "options": [
       {
@@ -3416,7 +3810,9 @@
   },
   {
     "id": "log198",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "In a software release pipeline, Step 1 is Code Freeze, Step 2 is Integration Testing, Step 3 is Compliance Audit, and Step 4 is Deployment. Integration Testing follows Code Freeze. Compliance Audit follows Integration Testing. Deployment requires Compliance Audit to be complete. If Compliance Audit is skipped, what is the furthest step achieved?",
     "options": [
       { "id": "a", "text": "Integration Testing", "score": 4 },
@@ -3427,7 +3823,9 @@
   },
   {
     "id": "log199",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "A software platform offers 5 plugins {Plug1, Plug2, Plug3, Plug4, Plug5}, and a user must choose 3. If Plug1 is selected, Plug2 cannot be selected. If Plug3 is selected, Plug4 MUST be selected. Plug1 and Plug3 are both selected. What is the full plugin bundle?",
     "options": [
       { "id": "a", "text": "{Plug1, Plug3, Plug4}", "score": 4 },
@@ -3438,7 +3836,9 @@
   },
   {
     "id": "log200",
-    "category": "Process Logic & Scheduling",
+    "category": "Logical Reasoning",
+    "subcategory": "Rule-Based Reasoning",
+    "trait": "Process Logic",
     "scenario": "Three batch processing tasks (Task Alpha, Task Beta, Task Gamma) take 1 hour each. Task Alpha must complete before Task Beta begins. Task Gamma can run concurrently with Task Alpha or Task Beta, but cannot run alone. If Task Alpha starts at 9:00 AM, what is a valid execution window for Task Gamma?",
     "options": [
       {

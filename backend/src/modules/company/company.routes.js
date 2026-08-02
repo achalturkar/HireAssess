@@ -108,6 +108,22 @@ router
 
 /**
  * @openapi
+ * /companies/{id}/stats:
+ *   get:
+ *     tags: [Companies]
+ *     summary: Get company-level dashboard statistics (counts)
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema: { type: string, format: uuid }
+ *     responses:
+ *       200: { description: Company stats }
+ */
+router.get('/:id/stats', authorize('company.view'), validate(v.idParamValidator), controller.getCompanyStats);
+
+/**
+ * @openapi
  * /companies/{id}/suspend:
  *   post:
  *     tags: [Companies]

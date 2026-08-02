@@ -227,4 +227,29 @@ const activate = async ({ id }) => {
   return toDto(updated);
 };
 
+const getStats = async ({ id }) => {
+  const company = await repo.findById(id);
+  if (!company) throw new NotFoundError('Company not found');
+
+  const [users, clients, candidates, assessments, totalAttempts, completedAttempts, results] = await Promise.all([
+    prisma.user.count({ where: { companyId: id, isDeleted: false } }),
+    prisma.client.count({ where: { companyId: id, isDeleted: false } }),
+    prisma.candidate.count({ where: { companyId: id, isDeleted: false } }),
+    prisma.assessment.count({ where: { companyId: id, isDeleted: false } }),
+    prisma.examAttempt.count({ where: { companyId: id } }),
+    prisma.examAttempt.count({ where: { companyId: id, status: 'SUBMITTED' } }),
+    prisma.assessmentResult.count({ where: { attempt: { companyId: id } } }),
+  ]);
+
+  return {
+    users,
+    clients,
+    candidates,
+    assessments,
+    totalAttempts,
+    completedAttempts,
+    results,
+  };
+};
+
 module.exports = { create, getById, list, update, remove, suspend, activate };

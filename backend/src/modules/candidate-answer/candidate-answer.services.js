@@ -2,7 +2,6 @@
 
 const examAttemptService = require('../exam-attempt/exam-attempt.services');
 const repo = require('./candidate-answer.repository');
-const questionRepo = require('../question/question.repository');
 const questionLoader = require('../question/question.loader');
 
 const {
@@ -28,12 +27,58 @@ const toDto = (row) => ({
 /**
  * Temporary scoring
  */
-const scoreAnswer = async ({ category, answer }) => {
+const getSelectedOptionId = (answer) =>
+  answer?.selectedOptionId ?? answer?.selectedOption ?? null;
+
+const scoreAnswer = async ({ questionId, questionType, answer }) => {
+  const normalizedQuestionType = String(questionType).toUpperCase();
+  const question = questionLoader.getQuestionById(questionId);
+  if (!question) {
+    return null;
+  }
+
+  if (normalizedQuestionType === 'LIKERT') {
+    const value = answer?.answer;
+    if (typeof value === 'number' && value >= 1 && value <= 5) {
+      return value;
+    }
+    return null;
+  }
+
   if (
-    category === 'LIKERT' &&
-    typeof answer?.answer === 'number'
+    normalizedQuestionType === 'SITUATIONAL_JUDGEMENT' ||
+    normalizedQuestionType === 'ANALYTICAL' ||
+    normalizedQuestionType === 'LOGICAL_REASONING'
   ) {
-    return answer.answer;
+    const selectedOptionId = getSelectedOptionId(answer);
+    if (!selectedOptionId) {
+      return null;
+    }
+
+    const options = Array.isArray(question.options) ? question.options : [];
+    const selected = options.find((opt) => opt.id === selectedOptionId);
+    if (!selected) {
+      return null;
+    }
+
+    return typeof selected.score === 'number' ? selected.score : null;
+  }
+
+  if (normalizedQuestionType === 'FORCED_CHOICE') {
+    const most = answer?.most ?? answer?.mostLikeId;
+    const least = answer?.least ?? answer?.leastLikeId;
+    if (!most || !least || most === least) {
+      return null;
+    }
+
+    const items = Array.isArray(question.items) ? question.items : [];
+    const mostItem = items.find((item) => item.id === most);
+    const leastItem = items.find((item) => item.id === least);
+    if (!mostItem || !leastItem) {
+      return null;
+    }
+
+    return 2;
   }
 
   return null;
@@ -63,62 +108,78 @@ const upsertByToken = async ({ token, payload }) => {
   const {
     questionId,
     questionType,
-    category,
+    category: payloadCategory,
     answer,
   } = payload;
+  const normalizedQuestionType = String(questionType).toUpperCase();
   const question = questionLoader.getQuestionById(questionId);
 
   if (!question) {
     throw new BadRequestError("Question not found.");
   }
 
-  if (questionType === "LIKERT") {
+  let category = question.category || question.competency || payloadCategory;
+  if (!category && normalizedQuestionType === 'FORCED_CHOICE') {
+    const items = Array.isArray(question.items) ? question.items : [];
+    const mostId = answer?.most ?? answer?.mostLikeId ?? null;
+    const matched = items.find((item) => item.id === mostId);
+    category = matched?.category || 'Forced Choice';
+  }
 
+  if (normalizedQuestionType === 'LIKERT') {
     if (
-      typeof answer.answer !== "number" ||
+      typeof answer.answer !== 'number' ||
       answer.answer < 1 ||
       answer.answer > 5
     ) {
       throw new BadRequestError(
-        "Likert answer must be between 1 and 5."
+        'Likert answer must be between 1 and 5.'
       );
     }
-
   }
 
-  if (questionType === "SITUATIONAL_JUDGEMENT") {
+  if (
+    normalizedQuestionType === 'SITUATIONAL_JUDGEMENT' ||
+    normalizedQuestionType === 'ANALYTICAL' ||
+    normalizedQuestionType === 'LOGICAL_REASONING'
+  ) {
+    const optionIds = Array.isArray(question.options)
+      ? question.options.map((opt) => opt.id)
+      : [];
 
-    const allowed = ["A", "B", "C", "D"];
-
-    if (!allowed.includes(answer.selectedOption)) {
+    const selectedOptionId = getSelectedOptionId(answer);
+    if (!selectedOptionId) {
       throw new BadRequestError(
-        "Invalid SJQ option."
+        `${normalizedQuestionType} answer must include selectedOption.`
       );
     }
 
+    if (!optionIds.includes(selectedOptionId)) {
+      throw new BadRequestError(
+        `Invalid ${normalizedQuestionType} option.`
+      );
+    }
   }
 
-  if (questionType === "FORCED_CHOICE") {
+  if (normalizedQuestionType === 'FORCED_CHOICE') {
+    const most = answer?.most ?? answer?.mostLikeId;
+    const least = answer?.least ?? answer?.leastLikeId;
 
-    if (
-      !answer.most ||
-      !answer.least
-    ) {
+    if (!most || !least) {
       throw new BadRequestError(
-        "Most and Least are required."
+        'Most and Least are required.'
       );
     }
 
-    if (answer.most === answer.least) {
+    if (most === least) {
       throw new BadRequestError(
-        "Most and Least cannot be the same."
+        'Most and Least cannot be the same.'
       );
     }
-
   }
 
   const pool =
-    attempt.selectedQuestions?.[category] || [];
+    attempt.selectedQuestions?.[normalizedQuestionType] || [];
 
   if (!pool.includes(questionId)) {
     throw new BadRequestError(
@@ -127,7 +188,8 @@ const upsertByToken = async ({ token, payload }) => {
   }
 
   const score = await scoreAnswer({
-    category,
+    questionId,
+    questionType,
     answer,
   });
 

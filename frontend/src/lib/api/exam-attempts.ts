@@ -8,7 +8,7 @@ import type {
 import type { PaginationMeta } from "@/src/types/user";
 
 const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  process.env.NEXT_PUBLIC_API ||
   "http://localhost:5000/api/v1";
 
 export class ApiError extends Error {
@@ -192,7 +192,7 @@ export async function resumeExamByToken(token: string): Promise<ResumeExamRespon
 // src/lib/api/exam-attempts.ts — only the changed function shown
 export async function saveAnswerByToken(
   token: string,
-  payload: { questionId: string; questionType: string; category: string; answer: unknown }
+  payload: { questionId: string; questionType: string; category?: string; answer: unknown }
 ): Promise<AttemptAnswer> {
   // Matches candidate-answer.route.js: PUT /candidate-answers/token/:token
   const res = await tokenRequest<Envelope<AttemptAnswer>>(`/candidate-answers/token/${token}`, {

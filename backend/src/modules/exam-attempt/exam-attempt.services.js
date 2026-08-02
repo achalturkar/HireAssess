@@ -6,6 +6,8 @@ const invitationRepo = require('../candidate-invitation/candidate-invitation.rep
 const answerRepo = require('../candidate-answer/candidate-answer.repository');
 const invitationService = require('../candidate-invitation/candidate-invitation.services');
 const assessmentResultService = require('../assessment-result/assessment-result.services');
+const companyRepo = require('../company/company.repository');
+const { sendMail, buildCandidateThankYouEmail } = require('../../utils/mailer');
 
 const repo = require('./exam-attempt.repository');
 const randomQuestionService = require('../question/question.random.service');
@@ -243,6 +245,8 @@ const startByToken = async ({ token }) => {
                 likertCount: true,
                 sjqCount: true,
                 forcedChoiceCount: true,
+                analyticalCount: true,
+                logicalReasoningCount: true,
             },
         });
 
@@ -271,6 +275,12 @@ const startByToken = async ({ token }) => {
 
             forcedChoiceCount:
                 assessment.forcedChoiceCount,
+
+            analyticalCount:
+                assessment.analyticalCount,
+
+            logicalReasoningCount:
+                assessment.logicalReasoningCount,
 
         });
 
@@ -379,9 +389,22 @@ const getByToken = async ({ token }) => {
             action: "complete",
         });
 
-        await assessmentResultService.generateForAttemptSafe({
-            attemptId: attempt.id,
-        });
+                await assessmentResultService.generateForAttemptSafe({
+                        attemptId: attempt.id,
+                });
+
+                // Send a thank-you email to the candidate (best-effort)
+                try {
+                    const company = await companyRepo.findById(attempt.companyId);
+                    const mail = buildCandidateThankYouEmail({
+                        candidateName: `${attempt.candidate.firstName} ${attempt.candidate.lastName}`.trim(),
+                        companyName: company?.name || 'the hiring team',
+                        assessmentName: attempt.assessment?.name || 'assessment',
+                    });
+                    await sendMail({ to: attempt.candidate.email, ...mail });
+                } catch (err) {
+                    logger.warn(`Failed to send thank-you email: ${err.message}`);
+                }
 
     }
 
@@ -453,6 +476,30 @@ const submitByToken = async ({ token }) => {
             attemptId: attempt.id,
         });
 
+        try {
+            const company = await companyRepo.findById(attempt.companyId);
+            const mail = buildCandidateThankYouEmail({
+                candidateName: `${attempt.candidate.firstName} ${attempt.candidate.lastName}`.trim(),
+                companyName: company?.name || 'the hiring team',
+                assessmentName: attempt.assessment?.name || 'assessment',
+            });
+            await sendMail({ to: attempt.candidate.email, ...mail });
+        } catch (err) {
+            logger.warn(`Failed to send thank-you email: ${err.message}`);
+        }
+
+        try {
+            const company = await companyRepo.findById(attempt.companyId);
+            const mail = buildCandidateThankYouEmail({
+                candidateName: `${attempt.candidate.firstName} ${attempt.candidate.lastName}`.trim(),
+                companyName: company?.name || 'the hiring team',
+                assessmentName: attempt.assessment?.name || 'assessment',
+            });
+            await sendMail({ to: attempt.candidate.email, ...mail });
+        } catch (err) {
+            logger.warn(`Failed to send thank-you email: ${err.message}`);
+        }
+
         return toDto(attempt);
 
     }
@@ -474,11 +521,23 @@ const submitByToken = async ({ token }) => {
         action: "complete",
     });
 
-    await assessmentResultService.generateForAttemptSafe({
-        attemptId: attempt.id,
-    });
+        await assessmentResultService.generateForAttemptSafe({
+            attemptId: attempt.id,
+        });
 
-    return toDto(attempt);
+        try {
+            const company = await companyRepo.findById(attempt.companyId);
+            const mail = buildCandidateThankYouEmail({
+                candidateName: `${attempt.candidate.firstName} ${attempt.candidate.lastName}`.trim(),
+                companyName: company?.name || 'the hiring team',
+                assessmentName: attempt.assessment?.name || 'assessment',
+            });
+            await sendMail({ to: attempt.candidate.email, ...mail });
+        } catch (err) {
+            logger.warn(`Failed to send thank-you email: ${err.message}`);
+        }
+
+        return toDto(attempt);
 
 };
 

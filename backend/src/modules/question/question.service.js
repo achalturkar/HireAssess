@@ -43,7 +43,12 @@ const validateQuestionShape = ({ type, options, scoring }) => {
     return;
   }
 
-  if (type === 'FORCED_CHOICE' || type === 'SITUATIONAL_JUDGEMENT') {
+  if (
+    type === 'FORCED_CHOICE' ||
+    type === 'SITUATIONAL_JUDGEMENT' ||
+    type === 'ANALYTICAL' ||
+    type === 'LOGICAL_REASONING'
+  ) {
     if (!Array.isArray(options) || options.length < 2) {
       throw new BadRequestError(
         `${type} questions require at least 2 options.`

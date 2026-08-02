@@ -5,7 +5,7 @@ import type {
   ResultsListResponse,
 } from "./typess";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api";
+const API_BASE = process.env.NEXT_PUBLIC_API ?? "/api";
 
 /**
  * Your controller wraps responses via success(res, { message, data, meta }).

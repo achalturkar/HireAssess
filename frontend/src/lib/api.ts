@@ -1,36 +1,21 @@
-// const API_BASE =
-//   process.env.NEXT_PUBLIC_API_BASE_URL ||
-//   "http://localhost:5000/api/v1";
-
-// export async function api(
-//   url: string,
-//   options: RequestInit = {}
-// ) {
-//   const response = await fetch(`${API_BASE}${url}`, {
-//     ...options,
-//     headers: {
-//       "Content-Type": "application/json",
-//       ...(options.headers || {}),
-//     },
-//   });
-
-//   const json = await response.json().catch(() => ({}));
-
-//   if (!response.ok) {
-//     throw json;
-//   }
-
-//   return json;
-// }
-const API_BASE =
+﻿const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "http://localhost:5000/api/v1";
+  process.env.NEXT_PUBLIC_API ||
+  "/api/v1";
 
-export async function api(
+export class ApiError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.status = status;
+  }
+}
+
+export async function apiFetch<T>(
   url: string,
   options: RequestInit = {}
-) {
-
+): Promise<T> {
   const response = await fetch(`${API_BASE}${url}`, {
     ...options,
     headers: {
@@ -39,16 +24,14 @@ export async function api(
     },
   });
 
-  console.log("REQUEST:", url);
-  console.log("STATUS:", response.status);
-
-  const json = await response.json();
-
-  console.log("RESPONSE:", json);
+  const json = await response.json().catch(() => null);
 
   if (!response.ok) {
-    throw json;
+    const message = json?.message ?? `Request failed (${response.status})`;
+    throw new ApiError(message, response.status);
   }
 
-  return json;
+  return json as T;
 }
+
+export const api = apiFetch;

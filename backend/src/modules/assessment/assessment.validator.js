@@ -27,6 +27,10 @@ const createValidator = {
 
     forcedChoiceCount: Joi.number().integer().min(0).default(0),
 
+    analyticalCount: Joi.number().integer().min(0).default(0),
+
+    logicalReasoningCount: Joi.number().integer().min(0).default(0),
+
     durationMinutes: Joi.number().integer().min(1).required(),
   }),
 };
@@ -51,6 +55,10 @@ const updateValidator = {
     sjqCount: Joi.number().integer().min(0),
 
     forcedChoiceCount: Joi.number().integer().min(0),
+
+    analyticalCount: Joi.number().integer().min(0),
+
+    logicalReasoningCount: Joi.number().integer().min(0),
 
     durationMinutes: Joi.number().integer().min(1),
 

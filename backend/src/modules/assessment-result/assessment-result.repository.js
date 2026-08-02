@@ -52,6 +52,19 @@ const findByAttemptId = (attemptId, companyId) =>
           candidate: {
             select: { id: true, firstName: true, lastName: true, email: true },
           },
+          assessment: {
+            select: {
+              id: true,
+              name: true,
+              level: true,
+              durationMinutes: true,
+              client: {
+                select: {
+                  name: true,
+                },
+              },
+            },
+          },
         },
       },
     },

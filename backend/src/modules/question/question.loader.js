@@ -11,6 +11,8 @@ const FILES = {
   LIKERT: 'likert.json',
   SITUATIONAL_JUDGEMENT: 'sjq.json',
   FORCED_CHOICE: 'forced_choice_quads.json',
+  ANALYTICAL: 'analytical.json',
+  LOGICAL_REASONING: 'logical.json',
 };
 
 const loadQuestions = () => {
@@ -56,14 +58,20 @@ const getQuestionById = (id) => {
         ...getQuestions("ENTRY", "LIKERT"),
         ...getQuestions("ENTRY", "FORCED_CHOICE"),
         ...getQuestions("ENTRY", "SITUATIONAL_JUDGEMENT"),
+        ...getQuestions("ENTRY", "ANALYTICAL"),
+        ...getQuestions("ENTRY", "LOGICAL_REASONING"),
 
         ...getQuestions("MID", "LIKERT"),
         ...getQuestions("MID", "FORCED_CHOICE"),
         ...getQuestions("MID", "SITUATIONAL_JUDGEMENT"),
+        ...getQuestions("MID", "ANALYTICAL"),
+        ...getQuestions("MID", "LOGICAL_REASONING"),
 
         ...getQuestions("TOP", "LIKERT"),
         ...getQuestions("TOP", "FORCED_CHOICE"),
         ...getQuestions("TOP", "SITUATIONAL_JUDGEMENT"),
+        ...getQuestions("TOP", "ANALYTICAL"),
+        ...getQuestions("TOP", "LOGICAL_REASONING"),
     ];
 
     return allQuestions.find(q => q.id === id);

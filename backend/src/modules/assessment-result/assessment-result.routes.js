@@ -88,4 +88,10 @@ router.get(
     controller.getCandidateResult
 );
 
+router.get(
+    "/candidate/:attemptId/pdf",
+    authorize("assessment_result.view"),
+    controller.getCandidateResultPdf
+);
+
 module.exports = router;
