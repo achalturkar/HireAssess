@@ -74,7 +74,10 @@ const emptyForm: CreateCompanyForm = {
   adminPassword: '',
 };
 
-const API_BASE = process.env.NEXT_PUBLIC_API || 'http://localhost:5000/api/v1';
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  process.env.NEXT_PUBLIC_API ||
+  '/api/v1';
 
 // The API wraps everything as { success, message: "Success", data: { message, data, meta? } }
 // so every response body needs one extra level of unwrapping before you get to the real payload.
