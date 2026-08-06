@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark';
+
 interface ThemeContextValue {
   theme: Theme;
   toggleTheme: () => void;
@@ -10,27 +11,52 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
+export function ThemeProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // Default is dark
+  const [theme, setTheme] = useState<Theme>('dark');
 
+  // Load saved theme
   useEffect(() => {
-    const stored = window.localStorage.getItem('hireassess-theme') as Theme | null;
-    const preferred = stored ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    setTheme(preferred);
+    const stored = localStorage.getItem('hireassess-theme') as Theme | null;
+
+    if (stored === 'light' || stored === 'dark') {
+      setTheme(stored);
+    } else {
+      // First visit → Dark Mode
+      setTheme('dark');
+    }
   }, []);
 
+  // Apply theme
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    window.localStorage.setItem('hireassess-theme', theme);
+    document.documentElement.classList.toggle(
+      'dark',
+      theme === 'dark'
+    );
+
+    localStorage.setItem('hireassess-theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => setTheme((t) => (t === 'light' ? 'dark' : 'light'));
+  const toggleTheme = () =>
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
 
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }
 
 export function useTheme() {
-  const ctx = useContext(ThemeContext);
-  if (!ctx) throw new Error('useTheme must be used within ThemeProvider');
-  return ctx;
+  const context = useContext(ThemeContext);
+
+  if (!context) {
+    throw new Error('useTheme must be used within ThemeProvider');
+  }
+
+  return context;
 }
