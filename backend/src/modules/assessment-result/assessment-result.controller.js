@@ -50,6 +50,8 @@ const listResults = asyncHandler(async (req, res) => {
       assessmentId: req.query.assessmentId,
       minScore: req.query.minScore !== undefined ? Number(req.query.minScore) : undefined,
       maxScore: req.query.maxScore !== undefined ? Number(req.query.maxScore) : undefined,
+      sortBy: req.query.sortBy,
+      sortOrder: req.query.sortOrder,
     },
   });
 

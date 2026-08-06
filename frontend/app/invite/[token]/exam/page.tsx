@@ -194,6 +194,8 @@ export default function ExamPage() {
   };
 
   const [confirmingSubmit, setConfirmingSubmit] = useState(false);
+  const [screenSwitchCount, setScreenSwitchCount] = useState(0);
+  const [screenSwitchWarning, setScreenSwitchWarning] = useState<string | null>(null);
 
   const handleSubmit = async () => {
     setPhase('submitting');
@@ -205,6 +207,93 @@ export default function ExamPage() {
       setPhase('ready');
     }
   };
+
+  const expireForSwitches = useCallback(async () => {
+    setScreenSwitchWarning('Too many screen switches have ended your assessment.');
+    try {
+      await submitAttemptByToken(token);
+    } catch {
+      // ignore — state is already expired client-side.
+    }
+    setPhase('expired');
+  }, [token]);
+
+  useEffect(() => {
+    if (phase !== 'ready') return;
+
+    const prevUserSelect = document.body.style.userSelect;
+    document.body.style.userSelect = 'none';
+
+    const reportScreenSwitch = () => {
+      setScreenSwitchCount((prev) => {
+        const next = prev + 1;
+        if (next >2) {
+          expireForSwitches();
+        } else {
+          setScreenSwitchWarning(
+            `Warning: screen switch detected. ${4 - next} more ${4 - next === 1 ? 'switch' : 'switches'} before the assessment ends.`
+          );
+        }
+        return next;
+      });
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        reportScreenSwitch();
+      }
+    };
+
+    const handleWindowBlur = () => {
+      if (document.visibilityState !== 'hidden') {
+        reportScreenSwitch();
+      }
+    };
+
+    const preventCopyAction = (event: Event) => {
+      event.preventDefault();
+      setScreenSwitchWarning('Copying exam content is disabled during this assessment.');
+    };
+
+    const preventContextMenu = (event: MouseEvent) => {
+      event.preventDefault();
+      setScreenSwitchWarning('Right-click is disabled during this assessment.');
+    };
+
+    const preventKeyShortcuts = (event: KeyboardEvent) => {
+      const key = event.key.toUpperCase();
+      const ctrlOrMeta = event.ctrlKey || event.metaKey;
+
+      if (
+        key === 'F12' ||
+        (ctrlOrMeta && event.shiftKey && ['I', 'C', 'J'].includes(key)) ||
+        (ctrlOrMeta && key === 'U')
+      ) {
+        event.preventDefault();
+        event.stopPropagation();
+        setScreenSwitchWarning('Developer tools are disabled during this assessment.');
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('blur', handleWindowBlur);
+    document.addEventListener('copy', preventCopyAction);
+    document.addEventListener('cut', preventCopyAction);
+    document.addEventListener('contextmenu', preventContextMenu);
+    document.addEventListener('selectstart', preventCopyAction);
+    document.addEventListener('keydown', preventKeyShortcuts);
+
+    return () => {
+      document.body.style.userSelect = prevUserSelect;
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('blur', handleWindowBlur);
+      document.removeEventListener('copy', preventCopyAction);
+      document.removeEventListener('cut', preventCopyAction);
+      document.removeEventListener('contextmenu', preventContextMenu);
+      document.removeEventListener('selectstart', preventCopyAction);
+      document.removeEventListener('keydown', preventKeyShortcuts);
+    };
+  }, [phase, expireForSwitches]);
 
   const handleExpireFromTimer = useCallback(() => {
     // Client-side timer hit zero — submit automatically. The backend's own
@@ -332,6 +421,12 @@ export default function ExamPage() {
         {errorMessage && (
           <div className="rounded-lg bg-[#FF6B6B]/10 border border-[#FF6B6B]/25 text-[#FF6B6B] text-[13px] px-3.5 py-2.5">
             {errorMessage}
+          </div>
+        )}
+
+        {screenSwitchWarning && (
+          <div className="rounded-lg bg-[#FFB02E]/10 border border-[#FFB02E]/25 text-[#FFB02E] text-[13px] px-3.5 py-2.5">
+            {screenSwitchWarning}
           </div>
         )}
 

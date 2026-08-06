@@ -15,6 +15,22 @@ const login = asyncHandler(async (req, res) => {
   });
 });
 
+const forgotPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  await authService.forgotPassword({ email, req });
+  return success(res, {
+    message: 'If an account with that email exists, a password reset link has been sent.',
+  });
+});
+
+const resetPassword = asyncHandler(async (req, res) => {
+  const { token, newPassword } = req.body;
+  await authService.resetPassword({ token, newPassword });
+  return success(res, {
+    message: 'Password changed successfully. Please log in with your new password.',
+  });
+});
+
 const refresh = asyncHandler(async (req, res) => {
   const { refreshToken } = req.body;
   const result = await authService.refresh({ refreshToken, req });
@@ -46,4 +62,4 @@ const changePassword = asyncHandler(async (req, res) => {
   return created(res, { message: 'Password changed successfully. Please log in again.' });
 });
 
-module.exports = { login, refresh, logout, me, changePassword };
+module.exports = { login, forgotPassword, resetPassword, refresh, logout, me, changePassword };

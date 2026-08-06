@@ -1,6 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
 import { useAuth } from '@/src/auth/AuthProvider';
 
@@ -78,17 +80,36 @@ const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
   process.env.NEXT_PUBLIC_API ||
   '/api/v1';
+const MAX_LOGO_SIZE_BYTES = 500 * 1024;
+const ALLOWED_LOGO_TYPES = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/svg+xml'];
+
+function getLogoValidationError(file: File) {
+  const extension = file.name.split('.').pop()?.toLowerCase();
+  const hasAllowedExtension = ['jpg', 'jpeg', 'png', 'webp', 'svg'].includes(extension || '');
+  const hasAllowedMime = ALLOWED_LOGO_TYPES.includes(file.type);
+  if (!hasAllowedExtension || !hasAllowedMime) {
+    return 'Only JPG, PNG, WEBP, or SVG images are allowed.';
+  }
+  if (file.size > MAX_LOGO_SIZE_BYTES) {
+    return 'Logo image must be 500 KB or smaller.';
+  }
+  return null;
+}
 
 // The API wraps everything as { success, message: "Success", data: { message, data, meta? } }
 // so every response body needs one extra level of unwrapping before you get to the real payload.
 async function apiFetch(path: string, token: string | null, init?: RequestInit) {
+  const headers = new Headers(init?.headers || {});
+  if (!(init?.body instanceof FormData)) {
+    headers.set('Content-Type', 'application/json');
+  } else {
+    headers.delete('Content-Type');
+  }
+  if (token) headers.set('Authorization', `Bearer ${token}`);
+
   const res = await fetch(`${API_BASE}${path}`, {
     ...init,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(init?.headers || {}),
-    },
+    headers,
   });
   const payload = await res.json().catch(() => null);
   if (!res.ok || !payload || payload.success === false) {
@@ -144,6 +165,10 @@ export default function CompaniesPage() {
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [formBanner, setFormBanner] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
+  const [logoError, setLogoError] = useState<string | null>(null);
+  const previewUrlRef = useRef<string | null>(null);
 
   const [credentialsModal, setCredentialsModal] = useState<{
     companyName: string;
@@ -152,11 +177,20 @@ export default function CompaniesPage() {
   } | null>(null);
   const [copied, setCopied] = useState(false);
 
+  const router = useRouter();
   const [actionMenuId, setActionMenuId] = useState<string | null>(null);
   const [pendingActionId, setPendingActionId] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<Company | null>(null);
 
   const fetchIdRef = useRef(0);
+
+  useEffect(() => {
+    return () => {
+      if (previewUrlRef.current) {
+        URL.revokeObjectURL(previewUrlRef.current);
+      }
+    };
+  }, []);
 
   const loadCompanies = useCallback(async () => {
     const fetchId = ++fetchIdRef.current;
@@ -200,7 +234,43 @@ export default function CompaniesPage() {
     setForm(emptyForm);
     setFieldErrors({});
     setFormBanner(null);
+    setLogoFile(null);
+    setLogoPreview(null);
+    setLogoError(null);
+    if (previewUrlRef.current) {
+      URL.revokeObjectURL(previewUrlRef.current);
+      previewUrlRef.current = null;
+    }
     setModalOpen(true);
+  }
+
+  function handleLogoSelection(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0] ?? null;
+    if (previewUrlRef.current) {
+      URL.revokeObjectURL(previewUrlRef.current);
+      previewUrlRef.current = null;
+    }
+
+    if (!file) {
+      setLogoFile(null);
+      setLogoPreview(null);
+      setLogoError(null);
+      return;
+    }
+
+    const validationError = getLogoValidationError(file);
+    if (validationError) {
+      setLogoFile(null);
+      setLogoPreview(null);
+      setLogoError(validationError);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(file);
+    previewUrlRef.current = objectUrl;
+    setLogoFile(file);
+    setLogoPreview(objectUrl);
+    setLogoError(null);
   }
 
   function updateField<K extends keyof CreateCompanyForm>(key: K, value: string) {
@@ -232,21 +302,21 @@ export default function CompaniesPage() {
 
     setSubmitting(true);
     try {
-      const payload: Record<string, string> = {
-        name: form.name.trim(),
-        adminFirstName: form.adminFirstName.trim(),
-        adminLastName: form.adminLastName.trim(),
-        adminEmail: form.adminEmail.trim(),
-      };
-      if (form.slug.trim()) payload.slug = form.slug.trim();
-      if (form.contactEmail.trim()) payload.contactEmail = form.contactEmail.trim();
-      if (form.contactPhone.trim()) payload.contactPhone = form.contactPhone.trim();
-      if (form.address.trim()) payload.address = form.address.trim();
-      if (form.adminPassword.trim()) payload.adminPassword = form.adminPassword.trim();
+      const payload = new FormData();
+      payload.append('name', form.name.trim());
+      payload.append('adminFirstName', form.adminFirstName.trim());
+      payload.append('adminLastName', form.adminLastName.trim());
+      payload.append('adminEmail', form.adminEmail.trim());
+      if (form.slug.trim()) payload.append('slug', form.slug.trim());
+      if (form.contactEmail.trim()) payload.append('contactEmail', form.contactEmail.trim());
+      if (form.contactPhone.trim()) payload.append('contactPhone', form.contactPhone.trim());
+      if (form.address.trim()) payload.append('address', form.address.trim());
+      if (form.adminPassword.trim()) payload.append('adminPassword', form.adminPassword.trim());
+      if (logoFile) payload.append('logo', logoFile);
 
       const result = await apiFetch('/companies', accessToken, {
         method: 'POST',
-        body: JSON.stringify(payload),
+        body: payload,
       });
       const created = result?.data;
 
@@ -311,7 +381,7 @@ export default function CompaniesPage() {
 
   return (
     <div
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} min-h-screen bg-[#0E1226] text-[#F2F4FA]`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} min-h-screen  text-[#F2F4FA]`}
       style={{ fontFamily: 'var(--font-body)' }}
     >
       <div className="max-w-6xl mx-auto px-6 py-10">
@@ -409,13 +479,17 @@ export default function CompaniesPage() {
                 className="grid grid-cols-[2fr_1.6fr_1fr_1fr_44px] gap-3 px-5 py-4 items-center border-b border-white/[0.06] last:border-b-0 hover:bg-white/[0.02] transition-colors"
               >
                 <div className="min-w-0">
-                  <div className="text-[14.5px] font-medium truncate">{c.name}</div>
-                  <div
-                    className="text-[12px] text-[#565F8C] truncate"
-                    style={{ fontFamily: 'var(--font-mono)' }}
-                  >
-                    /{c.slug}
-                  </div>
+                  <Link href={`/super-admin/companies/${c.id}`} className="block">
+                    <div className="text-[14.5px] font-medium truncate text-[#F2F4FA] hover:text-[#3FDCC0]">
+                      {c.name}
+                    </div>
+                    <div
+                      className="text-[12px] text-[#565F8C] truncate"
+                      style={{ fontFamily: 'var(--font-mono)' }}
+                    >
+                      /{c.slug}
+                    </div>
+                  </Link>
                 </div>
                 <div className="min-w-0 text-[13.5px] text-[#8891B8] truncate">
                   {c.contactEmail || '—'}
@@ -458,6 +532,15 @@ export default function CompaniesPage() {
                     <>
                       <div className="fixed inset-0 z-10" onClick={() => setActionMenuId(null)} />
                       <div className="absolute right-0 top-9 z-20 w-44 rounded-[10px] border border-white/[0.1] bg-[#1B2145] shadow-xl py-1.5">
+                        <button
+                          onClick={() => {
+                            setActionMenuId(null);
+                            router.push(`/super-admin/companies/${c.id}`);
+                          }}
+                          className="w-full text-left px-3.5 py-2 text-[13.5px] text-[#3FDCC0] hover:bg-white/[0.06] transition"
+                        >
+                          View details
+                        </button>
                         <button
                           onClick={() => handleToggleStatus(c)}
                           className="w-full text-left px-3.5 py-2 text-[13.5px] text-[#F2F4FA] hover:bg-white/[0.06] transition"
@@ -575,6 +658,47 @@ export default function CompaniesPage() {
                     error={fieldErrors.address}
                     span2
                   />
+                </div>
+              </div>
+
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.08em] text-[#565F8C] mb-3">
+                  Company logo
+                </p>
+                <div className="rounded-[10px] border border-dashed border-white/[0.12] bg-[#1B2145] p-4">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <p className="text-[14px] font-medium text-[#F2F4FA]">Upload a logo</p>
+                      <p className="text-[12px] text-[#8891B8] mt-1">
+                        JPG, PNG, WEBP, or SVG up to 500 KB.
+                      </p>
+                    </div>
+                    <label className="inline-flex cursor-pointer items-center justify-center rounded-[10px] border border-[#3FDCC0]/30 bg-[#3FDCC0]/[0.12] px-3.5 py-2 text-[13px] font-semibold text-[#3FDCC0] transition hover:bg-[#3FDCC0]/[0.2]">
+                      <input
+                        type="file"
+                        accept="image/png,image/jpeg,image/jpg,image/webp,image/svg+xml"
+                        className="hidden"
+                        onChange={handleLogoSelection}
+                      />
+                      {logoFile ? 'Change logo' : 'Choose logo'}
+                    </label>
+                  </div>
+                  {logoError && (
+                    <p className="mt-3 text-[12px] text-[#FF6B6B]">{logoError}</p>
+                  )}
+                  {logoPreview ? (
+                    <div className="mt-4 flex items-center gap-3 rounded-[10px] border border-white/[0.08] bg-[#141A38] p-3">
+                      <img src={logoPreview} alt="Company logo preview" className="h-14 w-14 rounded-[8px] object-cover" />
+                      <div className="min-w-0">
+                        <p className="text-[13px] font-medium text-[#F2F4FA]">{logoFile?.name}</p>
+                        <p className="text-[12px] text-[#565F8C]">{Math.round((logoFile?.size || 0) / 1024)} KB</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="mt-4 rounded-[10px] border border-white/[0.06] bg-[#141A38] p-3 text-[12px] text-[#565F8C]">
+                      No logo selected yet.
+                    </div>
+                  )}
                 </div>
               </div>
 

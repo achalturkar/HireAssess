@@ -1,7 +1,19 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async rewrites() {
+    const target = process.env.NEXT_PUBLIC_API_PROXY_TARGET || 'http://localhost:5000';
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${target}/api/:path*`,
+      },
+      {
+        source: '/uploads/:path*',
+        destination: `${target}/uploads/:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

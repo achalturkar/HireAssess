@@ -14,6 +14,7 @@ const createClient = asyncHandler(async (req, res) => {
   const data = await service.create({
     payload: req.body,
     currentUser: req.user,
+    req,
   });
 
   await writeAudit({
@@ -83,6 +84,7 @@ const updateClient = asyncHandler(async (req, res) => {
     companyId: req.user.companyId,
     payload: req.body,
     currentUser: req.user,
+    req,
   });
 
   await writeAudit({

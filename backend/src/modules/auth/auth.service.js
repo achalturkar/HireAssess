@@ -5,7 +5,9 @@ const { redis } = require('../../common/redis');
 const {
   signAccessToken,
   signRefreshToken,
+  signResetToken,
   verifyRefreshToken,
+  verifyResetToken,
   hashToken,
   generateJti,
   parseDurationToMs,
@@ -19,6 +21,7 @@ const {
 } = require('../../utils/errors');
 const authRepo = require('./auth.repository');
 const { invalidateUserAuthCache } = require('../../middleware/auth.middleware');
+const { sendMail, buildPasswordResetEmail } = require('../../utils/mailer');
 
 const buildUserPayload = (user) => ({
   sub: user.id,
@@ -78,7 +81,7 @@ const issueTokenPair = async ({ user, req }) => {
 
 const login = async ({ email, password, req }) => {
   const user = await authRepo.findUserByEmail(email);
-  if (!user || user.isDeleted) throw new UnauthorizedError('Invalid credentials');
+  if (!user || user.isDeleted) throw new UnauthorizedError('Invalid email or password');
   if (user.status !== 'ACTIVE') throw new ForbiddenError('Account is not active');
   if (user.company && !user.role.isSuperAdmin) {
     if (user.company.isDeleted || user.company.status !== 'ACTIVE') {
@@ -87,12 +90,57 @@ const login = async ({ email, password, req }) => {
   }
 
   const ok = await comparePassword(password, user.passwordHash);
-  if (!ok) throw new UnauthorizedError('Invalid credentials');
+  if (!ok) throw new UnauthorizedError('Invalid email or password');
 
   await authRepo.updateLastLogin(user.id);
   const tokens = await issueTokenPair({ user, req });
 
   return { user: toUserDto(user), ...tokens };
+};
+
+const forgotPassword = async ({ email, req }) => {
+  const user = await authRepo.findUserByEmail(email);
+  if (!user || user.isDeleted || user.status !== 'ACTIVE') {
+    return;
+  }
+
+  const token = signResetToken({ sub: user.id, email: user.email });
+  const resetUrl = `${config.frontendUrl.replace(/\/$/, '')}/reset-password?token=${encodeURIComponent(token)}`;
+  const emailData = buildPasswordResetEmail({
+    name: `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.email,
+    resetUrl,
+    expiresIn: config.jwt.resetExpiresIn,
+  });
+
+  await sendMail({
+    to: user.email,
+    subject: emailData.subject,
+    html: emailData.html,
+    text: emailData.text,
+  });
+};
+
+const resetPassword = async ({ token, newPassword }) => {
+  let decoded;
+  try {
+    decoded = verifyResetToken(token);
+  } catch (err) {
+    throw new UnauthorizedError('Invalid or expired reset token');
+  }
+
+  const userId = decoded.sub;
+  const user = await authRepo.findUserById(userId);
+  if (!user || user.isDeleted) {
+    throw new NotFoundError('User not found');
+  }
+  if (user.status !== 'ACTIVE') {
+    throw new ForbiddenError('Account is not active');
+  }
+
+  const passwordHash = await hashPassword(newPassword);
+  await authRepo.updateUserPassword(user.id, passwordHash);
+  await authRepo.revokeAllUserRefreshTokens(user.id);
+  await invalidateUserAuthCache(user.id);
 };
 
 /**
@@ -180,4 +228,4 @@ const changePassword = async ({ userId, currentPassword, newPassword }) => {
   await invalidateUserAuthCache(userId);
 };
 
-module.exports = { login, refresh, logout, me, changePassword };
+module.exports = { login, forgotPassword, resetPassword, refresh, logout, me, changePassword };

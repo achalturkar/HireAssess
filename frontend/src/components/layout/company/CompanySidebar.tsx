@@ -14,17 +14,17 @@ import {
   Settings,
   ChevronLeft,
   X,
+  UserCircle,
 } from 'lucide-react';
 import { useAuth } from '@/src/auth/AuthProvider';
 
 const menus = [
   { name: 'Dashboard', href: '/company/dashboard', icon: LayoutDashboard },
-    { name: 'Client', href: '/company/clients', icon: Users },
-    { name: 'Assessments', href: '/company/assessments', icon: ClipboardList },
-
+  { name: 'Client', href: '/company/clients', icon: Users },
+  { name: 'Assessments', href: '/company/assessments', icon: ClipboardList },
   { name: 'Candidates', href: '/company/candidates', icon: Contact },
-    { name: 'Results', href: '/company/results', icon: BarChart3 },
-
+  { name: 'Results', href: '/company/results', icon: BarChart3 },
+  { name: 'Company Profile', href: '/company/profile', icon: UserCircle },
   { name: 'Question Bank', href: '/company/question-bank', icon: BookOpen },
   { name: 'Schedules', href: '/company/schedules', icon: CalendarClock },
   { name: 'Reports', href: '/company/reports', icon: BarChart3 },
@@ -45,9 +45,9 @@ export default function CompanySidebar({ collapsed, onToggleCollapse, mobileOpen
   const { user } = useAuth();
 
   const content = (
-    <div className="flex h-full flex-col bg-[#0E1226]">
+    <div className="flex h-full flex-col bg-[var(--surface)] text-[var(--foreground)]">
       {/* Logo row */}
-      <div className={`flex items-center gap-2.5 px-5 h-16 shrink-0 border-b border-white/[0.08] ${collapsed ? 'justify-center px-0' : ''}`}>
+      <div className={`flex items-center gap-2.5 px-5 h-16 shrink-0 border-b border-[var(--border)] ${collapsed ? 'justify-center px-0' : ''}`}>
         <svg width="26" height="26" viewBox="0 0 30 30" fill="none" className="shrink-0">
           <rect x="3" y="12" width="7" height="15" rx="2" fill="#3FDCC0" />
           <rect x="12.5" y="4" width="7" height="23" rx="2" fill="#F2AE55" />
@@ -58,7 +58,7 @@ export default function CompanySidebar({ collapsed, onToggleCollapse, mobileOpen
             HireAssess
           </span>
         )}
-        <button onClick={onCloseMobile} className="ml-auto md:hidden text-[#8891B8] hover:text-white" aria-label="Close menu">
+        <button onClick={onCloseMobile} className="ml-auto md:hidden text-[var(--muted)] hover:text-[var(--foreground)]" aria-label="Close menu">
           <X size={20} />
         </button>
       </div>
@@ -66,7 +66,7 @@ export default function CompanySidebar({ collapsed, onToggleCollapse, mobileOpen
       {/* Menu */}
       <nav className="flex-1 overflow-y-auto px-3 py-5 space-y-1">
         {!collapsed && (
-          <p className="px-3 mb-2 text-[10.5px] font-medium uppercase tracking-[0.12em] text-[#565F8C]" style={{ fontFamily: 'var(--font-mono)' }}>
+          <p className="px-3 mb-2 text-[10.5px] font-medium uppercase tracking-[0.12em] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
             Workspace
           </p>
         )}
@@ -82,30 +82,30 @@ export default function CompanySidebar({ collapsed, onToggleCollapse, mobileOpen
               className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13.5px] transition-colors ${
                 collapsed ? 'justify-center' : ''
               } ${
-                active ? 'bg-[#3FDCC0]/[0.12] text-[#3FDCC0]' : 'text-[#AAB2D4] hover:bg-white/[0.05] hover:text-white'
+                active ? 'bg-[var(--primary)]/[0.12] text-[var(--primary)]' : 'text-[var(--muted)] hover:bg-[var(--surface-muted)] hover:text-[var(--foreground)]'
               }`}
             >
-              <Icon size={18} className={active ? 'text-[#3FDCC0]' : 'text-[#6C76A6] group-hover:text-white'} />
+              <Icon size={18} className={active ? 'text-[var(--primary)]' : 'text-[var(--muted)] group-hover:text-[var(--foreground)]'} />
               {!collapsed && <span className="truncate">{menu.name}</span>}
-              {active && !collapsed && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#3FDCC0]" />}
+              {active && !collapsed && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[var(--primary)]" />}
             </Link>
           );
         })}
       </nav>
 
       {/* Company badge + collapse toggle */}
-      <div className="shrink-0 border-t border-white/[0.08] p-3">
+      <div className="shrink-0 border-t border-[var(--border)] p-3">
         {!collapsed && user?.company?.name && (
           <div className="px-2 py-2 mb-1">
-            <p className="text-[10.5px] uppercase tracking-[0.1em] text-[#565F8C]" style={{ fontFamily: 'var(--font-mono)' }}>
+            <p className="text-[10.5px] uppercase tracking-[0.1em] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
               Company
             </p>
-            <p className="text-[13px] text-[#F2F4FA] truncate mt-0.5">{user.company.name}</p>
+            <p className="text-[13px] text-[var(--foreground)] truncate mt-0.5">{user.company.name}</p>
           </div>
         )}
         <button
           onClick={onToggleCollapse}
-          className="hidden md:flex items-center gap-2 w-full px-2 py-2 rounded-lg text-[12px] text-[#8891B8] hover:bg-white/[0.05] hover:text-white transition-colors"
+          className="hidden md:flex items-center gap-2 w-full px-2 py-2 rounded-lg text-[12px] text-[var(--muted)] hover:bg-[var(--surface-muted)] hover:text-[var(--foreground)] transition-colors"
         >
           <ChevronLeft size={16} className={`transition-transform ${collapsed ? 'rotate-180' : ''}`} />
           {!collapsed && 'Collapse'}
@@ -118,7 +118,7 @@ export default function CompanySidebar({ collapsed, onToggleCollapse, mobileOpen
     <>
       {/* Desktop */}
       <aside
-        className={`hidden md:block sticky top-0 h-screen shrink-0 border-r border-white/[0.08] transition-[width] duration-200 ${
+        className={`hidden md:block sticky top-0 h-screen shrink-0 border-r border-[var(--border)] transition-[width] duration-200 ${
           collapsed ? 'w-[76px]' : 'w-64'
         }`}
       >

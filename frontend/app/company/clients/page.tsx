@@ -155,35 +155,38 @@ export default function ClientsPage() {
     setFormError(null);
   };
 
-  const handleSubmit = async (values: ClientFormValues) => {
+  const handleSubmit = async (values: ClientFormValues, logoFile: File | null) => {
     setSubmitting(true);
     setFormError(null);
     try {
-      const payload = {
-        clientCode: values.clientCode.trim(),
-        name: values.name.trim(),
-        logoUrl: values.logoUrl.trim() || undefined,
-        website: values.website.trim() || undefined,
-        industry: values.industry.trim() || undefined,
-        contactName: values.contactName.trim() || undefined,
-        contactEmail: values.contactEmail.trim() || undefined,
-        contactPhone: values.contactPhone.trim() || undefined,
-        gstNumber: values.gstNumber.trim() || undefined,
-        panNumber: values.panNumber.trim() || undefined,
-        addressLine1: values.addressLine1.trim() || undefined,
-        addressLine2: values.addressLine2.trim() || undefined,
-        city: values.city.trim() || undefined,
-        state: values.state.trim() || undefined,
-        country: values.country.trim() || undefined,
-        postalCode: values.postalCode.trim() || undefined,
-      };
+      const payload = new FormData();
+      payload.append('clientCode', values.clientCode.trim());
+      payload.append('name', values.name.trim());
+      if (values.logoUrl.trim()) payload.append('logoUrl', values.logoUrl.trim());
+      if (values.website.trim()) payload.append('website', values.website.trim());
+      if (values.industry.trim()) payload.append('industry', values.industry.trim());
+      if (values.contactName.trim()) payload.append('contactName', values.contactName.trim());
+      if (values.contactEmail.trim()) payload.append('contactEmail', values.contactEmail.trim());
+      if (values.contactPhone.trim()) payload.append('contactPhone', values.contactPhone.trim());
+      if (values.gstNumber.trim()) payload.append('gstNumber', values.gstNumber.trim());
+      if (values.panNumber.trim()) payload.append('panNumber', values.panNumber.trim());
+      if (values.addressLine1.trim()) payload.append('addressLine1', values.addressLine1.trim());
+      if (values.addressLine2.trim()) payload.append('addressLine2', values.addressLine2.trim());
+      if (values.city.trim()) payload.append('city', values.city.trim());
+      if (values.state.trim()) payload.append('state', values.state.trim());
+      if (values.country.trim()) payload.append('country', values.country.trim());
+      if (values.postalCode.trim()) payload.append('postalCode', values.postalCode.trim());
+      if (logoFile) payload.append('logo', logoFile);
 
       if (modalMode === 'create') {
         const created = await createClient(
-          {
-            ...payload,
-            companyId: isSuperAdmin ? values.companyId : currentUser?.companyId ?? undefined,
-          },
+          modalMode === 'create'
+            ? (() => {
+                if (isSuperAdmin) payload.append('companyId', values.companyId);
+                else payload.append('companyId', currentUser?.companyId ?? '');
+                return payload;
+              })()
+            : payload,
           accessToken
         );
         setBanner({ text: `Client "${created.name}" was created.`, tone: 'success' });

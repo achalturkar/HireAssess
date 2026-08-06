@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { X } from 'lucide-react';
+import { Camera, X } from 'lucide-react';
 import type { Client, ClientFormValues, CompanyRef } from '@/src/types/client';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
   submitting: boolean;
   error: string | null;
   onClose: () => void;
-  onSubmit: (values: ClientFormValues) => void;
+  onSubmit: (values: ClientFormValues, logoFile: File | null) => void;
 }
 
 const inputClass =
@@ -22,6 +22,22 @@ const labelClass = 'block text-[11.5px] font-medium text-[#AAB2D4] mb-1.5';
 
 const sectionTitleClass =
   'text-[11px] uppercase tracking-[0.12em] text-[#565F8C] mb-3 mt-1';
+
+const MAX_LOGO_SIZE_BYTES = 1024 * 1024;
+const ALLOWED_LOGO_TYPES = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/svg+xml'];
+
+function getLogoValidationError(file: File) {
+  const extension = file.name.split('.').pop()?.toLowerCase();
+  const hasAllowedExtension = ['jpg', 'jpeg', 'png', 'webp', 'svg'].includes(extension || '');
+  const hasAllowedMime = ALLOWED_LOGO_TYPES.includes(file.type);
+  if (!hasAllowedExtension || !hasAllowedMime) {
+    return 'Only JPG, PNG, WEBP, or SVG images are allowed.';
+  }
+  if (file.size > MAX_LOGO_SIZE_BYTES) {
+    return 'Logo image must be 1 MB or smaller.';
+  }
+  return null;
+}
 
 function empty(v: string | null | undefined) {
   return v ?? '';
@@ -57,6 +73,10 @@ export default function ClientFormModal({
     postalCode: empty(client?.postalCode),
   });
 
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string | null>(empty(client?.logoUrl));
+  const [logoError, setLogoError] = useState<string | null>(null);
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -64,12 +84,39 @@ export default function ClientFormModal({
     };
   }, []);
 
+  useEffect(() => {
+    setLogoFile(null);
+    setLogoPreview(empty(client?.logoUrl));
+    setLogoError(null);
+  }, [client?.id]);
+
   const set = (key: keyof ClientFormValues) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setValues((v) => ({ ...v, [key]: e.target.value }));
 
+  const handleLogoSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] ?? null;
+    if (!file) {
+      setLogoFile(null);
+      setLogoError(null);
+      return;
+    }
+
+    const validationError = getLogoValidationError(file);
+    if (validationError) {
+      setLogoFile(null);
+      setLogoError(validationError);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(file);
+    setLogoFile(file);
+    setLogoPreview(objectUrl);
+    setLogoError(null);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(values);
+    onSubmit(values, logoFile);
   };
 
   const isValid =
@@ -187,14 +234,29 @@ export default function ClientFormModal({
               </div>
 
               <div>
-                <label className={labelClass}>Logo URL</label>
-                <input
-                  className={inputClass}
-                  value={values.logoUrl}
-                  onChange={set('logoUrl')}
-                  placeholder="https://acme.com/logo.png"
-                  disabled={submitting}
-                />
+                <label className={labelClass}>Logo</label>
+                <div className="rounded-lg border border-dashed border-white/[0.12] bg-[#0F1330] p-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[12px] text-[#AAB2D4]">PNG, JPG, WEBP, or SVG up to 1 MB.</span>
+                    <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-[#3FDCC0]/25 bg-[#3FDCC0]/10 px-3 py-2 text-[12px] font-medium text-[#3FDCC0] hover:bg-[#3FDCC0]/20 transition-colors">
+                      <Camera size={13} />
+                      Choose file
+                      <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp,image/svg+xml" className="hidden" onChange={handleLogoSelection} />
+                    </label>
+                  </div>
+                  {logoError && <p className="mt-2 text-[12px] text-[#FF6B6B]">{logoError}</p>}
+                  {logoPreview ? (
+                    <div className="mt-3 flex items-center gap-3 rounded-lg border border-white/[0.08] bg-[#161C3A] p-2.5">
+                      <img src={logoPreview} alt="Client logo preview" className="h-12 w-12 rounded-lg object-cover" />
+                      <div>
+                        <p className="text-[13px] text-[#F2F4FA]">{logoFile ? logoFile.name : 'Current logo'}</p>
+                        <p className="text-[12px] text-[#565F8C]">{logoFile ? `${Math.round(logoFile.size / 1024)} KB` : 'Existing logo will be kept if no new file is chosen.'}</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="mt-3 rounded-lg border border-white/[0.08] bg-[#161C3A] p-2.5 text-[12px] text-[#565F8C]">No logo selected yet.</div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

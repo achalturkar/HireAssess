@@ -11,6 +11,7 @@ const clientRoutes = require('../modules/client/client.routes');
 const healthRoutes = require('../modules/health/health.routes');
 const assessmentRoutes = require('../modules/assessment/assessment.routes');
 const questionRandomRoutes = require('../modules/question/question.random.routes');
+const contactRoutes = require('../modules/contact/contact.routes');
 
 const candidateRoutes = require('../modules/candidate/candidate.routes');
 const candidateInvitationRoutes = require('../modules/candidate-invitation/candidate-invitation.routes');
@@ -33,6 +34,7 @@ router.use('/assessment', assessmentRoutes);
 
 // NEW
 router.use('/question-bank', questionRandomRoutes);
+router.use('/contact', contactRoutes);
 
 router.use('/candidates', candidateRoutes);
 router.use('/candidate-invitation', candidateInvitationRoutes);

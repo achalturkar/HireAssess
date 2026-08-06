@@ -63,6 +63,7 @@ const create = async ({ payload, currentUser, req }) => {
     adminEmail,
     adminPassword,
   } = payload;
+  const resolvedLogoUrl = req?.file ? `/uploads/companies/${req.file.filename}` : logoUrl?.trim() || null;
 
   if (!name) throw new BadRequestError('Company name is required');
   if (!adminEmail) throw new BadRequestError('Admin email is required');
@@ -98,7 +99,7 @@ const create = async ({ payload, currentUser, req }) => {
         slug,
         contactEmail: contactEmail || adminEmail,
         contactPhone: contactPhone || null,
-        logoUrl: logoUrl || null,
+        logoUrl: resolvedLogoUrl,
         primaryColor: primaryColor || null,
         address: address || null,
         settings: settings || {},
@@ -191,13 +192,19 @@ const list = async ({ query }) => {
   return { items: result.items.map(toDto), total: result.total };
 };
 
-const update = async ({ id, payload }) => {
+const update = async ({ id, payload, req }) => {
   const existing = await repo.findById(id);
   if (!existing) throw new NotFoundError('Company not found');
   const data = {};
-  ['name', 'contactEmail', 'contactPhone', 'logoUrl', 'primaryColor', 'address', 'settings'].forEach((k) => {
+  ['name', 'contactEmail', 'contactPhone', 'primaryColor', 'address', 'settings'].forEach((k) => {
     if (payload[k] !== undefined) data[k] = payload[k];
   });
+  if (payload.logoUrl !== undefined) {
+    data.logoUrl = payload.logoUrl;
+  }
+  if (req?.file) {
+    data.logoUrl = `/uploads/companies/${req.file.filename}`;
+  }
   if (payload.slug && payload.slug !== existing.slug) {
     data.slug = await ensureUniqueSlug(payload.slug);
   }
@@ -252,4 +259,63 @@ const getStats = async ({ id }) => {
   };
 };
 
-module.exports = { create, getById, list, update, remove, suspend, activate };
+const getDetails = async ({ id }) => {
+  const company = await repo.findById(id);
+  if (!company) throw new NotFoundError('Company not found');
+
+  const [admin, stats, auditLogs] = await Promise.all([
+    prisma.user.findFirst({
+      where: { companyId: id, isDeleted: false, role: { isCompanyAdmin: true } },
+      include: { role: true },
+    }),
+    getStats({ id }),
+    prisma.auditLog.findMany({
+      where: { companyId: id },
+      orderBy: { createdAt: 'desc' },
+      take: 20,
+      include: {
+        user: {
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+          },
+        },
+      },
+    }),
+  ]);
+
+  return {
+    company: toDto(company),
+    admin: admin
+      ? {
+          id: admin.id,
+          firstName: admin.firstName,
+          lastName: admin.lastName,
+          email: admin.email,
+          status: admin.status,
+          roleName: admin.role?.name || null,
+        }
+      : null,
+    stats,
+    auditLogs: auditLogs.map((log) => ({
+      id: log.id,
+      action: log.action,
+      entity: log.entity,
+      entityId: log.entityId,
+      metadata: log.metadata,
+      createdAt: log.createdAt,
+      user: log.user
+        ? {
+            id: log.user.id,
+            firstName: log.user.firstName,
+            lastName: log.user.lastName,
+            email: log.user.email,
+          }
+        : null,
+    })),
+  };
+};
+
+module.exports = { create, getById, list, update, remove, suspend, activate, getStats, getDetails };

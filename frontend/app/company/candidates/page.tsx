@@ -100,7 +100,8 @@ function initials(firstName: string, lastName: string) {
 }
 
 export default function CandidatesPage() {
-  const { accessToken } = useAuth();
+  const { accessToken, user } = useAuth();
+  const isSuperAdmin = user?.role?.isSuperAdmin ?? false;
 
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [meta, setMeta] = useState<PaginationMeta>({ page: 1, limit: PAGE_SIZE, total: 0, totalPages: 1 });
@@ -570,13 +571,15 @@ export default function CandidatesPage() {
                         >
                           <Pencil size={13} />
                         </button>
-                        <button
-                          onClick={() => setDeleteTarget(c)}
-                          className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/10 transition-colors"
-                          aria-label={`Delete ${c.firstName}`}
-                        >
-                          <Trash2 size={13} />
-                        </button>
+                        {isSuperAdmin && (
+                          <button
+                            onClick={() => setDeleteTarget(c)}
+                            className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/10 transition-colors"
+                            aria-label={`Delete ${c.firstName}`}
+                          >
+                            <Trash2 size={13} />
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>

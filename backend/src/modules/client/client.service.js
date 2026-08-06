@@ -41,7 +41,7 @@ const toDto = (client) => ({
 /**
  * Create Client
  */
-const create = async ({ payload, currentUser }) => {
+const create = async ({ payload, currentUser, req }) => {
   const {
     companyId,
     clientCode,
@@ -73,6 +73,8 @@ const create = async ({ payload, currentUser }) => {
   if (!name) {
     throw new BadRequestError('Client name is required');
   }
+
+  const resolvedLogoUrl = req?.file ? `/uploads/clients/${req.file.filename}` : (logoUrl || '').trim() || null;
 
   // Company validation
   const company = await prisma.company.findFirst({
@@ -125,7 +127,7 @@ const create = async ({ payload, currentUser }) => {
     companyId,
     clientCode,
     name,
-    logoUrl,
+    logoUrl: resolvedLogoUrl,
     website,
     industry,
     contactName,
@@ -191,6 +193,7 @@ const update = async ({
   companyId,
   payload,
   currentUser,
+  req,
 }) => {
   const existing = await repo.findById(id, companyId);
 
@@ -259,6 +262,10 @@ const update = async ({
   }
 
   const data = {};
+
+  if (req?.file) {
+    data.logoUrl = `/uploads/clients/${req.file.filename}`;
+  }
 
   [
     'clientCode',

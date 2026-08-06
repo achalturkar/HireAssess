@@ -44,6 +44,20 @@ export async function login(
   return session;
 }
 
+export async function forgotPassword(email: string): Promise<void> {
+  await api('/auth/forgot-password', {
+    method: 'POST',
+    body: JSON.stringify({ email }),
+  });
+}
+
+export async function resetPassword(token: string, newPassword: string, confirmPassword: string): Promise<void> {
+  await api('/auth/reset-password', {
+    method: 'POST',
+    body: JSON.stringify({ token, newPassword, confirmPassword }),
+  });
+}
+
 /**
  * Current Logged User
  */

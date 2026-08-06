@@ -150,6 +150,7 @@ export async function listInvitations(
     page: params.page,
     limit: params.limit,
     candidateId: params.candidateId,
+    candidateName: params.candidateName,
     status: params.status,
     sortBy: params.sortBy,
     sortOrder: params.sortOrder,

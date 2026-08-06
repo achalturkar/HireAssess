@@ -212,7 +212,7 @@ const list = async ({ companyId, query }) => {
     skip: query.skip,
     limit: query.limit,
     sortBy: ['overallScore', 'createdAt'].includes(query.sortBy) ? query.sortBy : 'createdAt',
-    sortOrder: query.sortOrder,
+    sortOrder: ['asc', 'desc'].includes(query.sortOrder) ? query.sortOrder : 'desc',
   });
 
   return {
@@ -271,6 +271,9 @@ const getCandidateResult = async ({
 
         candidate:
             result.attempt.candidate,
+
+        company:
+            result.attempt.company,
 
         assessment:
             result.attempt.assessment,

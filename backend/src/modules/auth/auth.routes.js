@@ -41,6 +41,50 @@ router.post('/login', authLimiter, validate(v.loginValidator), controller.login)
 
 /**
  * @openapi
+ * /auth/forgot-password:
+ *   post:
+ *     tags: [Auth]
+ *     summary: Request a password reset link
+ *     security: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [email]
+ *             properties:
+ *               email: { type: string, format: email, example: user@example.com }
+ *     responses:
+ *       200: { description: Password reset requested }
+ */
+router.post('/forgot-password', authLimiter, validate(v.forgotPasswordValidator), controller.forgotPassword);
+
+/**
+ * @openapi
+ * /auth/reset-password:
+ *   post:
+ *     tags: [Auth]
+ *     summary: Reset password using a reset token
+ *     security: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [token, newPassword, confirmPassword]
+ *             properties:
+ *               token: { type: string }
+ *               newPassword: { type: string, description: "min 8 chars, 1 upper, 1 lower, 1 digit, 1 special" }
+ *               confirmPassword: { type: string }
+ *     responses:
+ *       200: { description: Password reset successful }
+ */
+router.post('/reset-password', authLimiter, validate(v.resetPasswordValidator), controller.resetPassword);
+
+/**
+ * @openapi
  * /auth/refresh:
  *   post:
  *     tags: [Auth]

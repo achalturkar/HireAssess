@@ -34,8 +34,8 @@ const parsePagination = ({ page = 1, limit = 10 }) => {
   page = parseInt(page, 10);
   limit = parseInt(limit, 10);
 
-  if (page < 1) page = 1;
-  if (limit < 1) limit = 10;
+  if (Number.isNaN(page) || page < 1) page = 1;
+  if (Number.isNaN(limit) || limit < 1) limit = 10;
 
   return {
     page,

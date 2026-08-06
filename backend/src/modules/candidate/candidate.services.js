@@ -155,7 +155,7 @@ const list = async ({ companyId, query }) => {
     ].includes(query.sortBy)
       ? query.sortBy
       : 'createdAt',
-    sortOrder: query.sortOrder,
+    sortOrder: ['asc', 'desc'].includes(query.sortOrder) ? query.sortOrder : 'desc',
     includeDeleted: query.includeDeleted === 'true',
   });
 
@@ -222,6 +222,18 @@ const remove = async ({ id, companyId }) => {
   if (!existing) {
     throw new NotFoundError('Candidate not found');
   }
+
+  await prisma.candidateInvitation.updateMany({
+    where: {
+      candidateId: id,
+      status: {
+        in: ['SENT', 'STARTED'],
+      },
+    },
+    data: {
+      status: 'EXPIRED',
+    },
+  });
 
   await repo.softDelete(id);
 };

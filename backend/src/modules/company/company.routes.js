@@ -1,14 +1,63 @@
 'use strict';
 
+const path = require('path');
+const fs = require('fs/promises');
 const express = require('express');
+const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
 const controller = require('./company.controller');
 const { authenticate } = require('../../middleware/auth.middleware');
 const { authorize } = require('../../middleware/authorize.middleware');
 const { validate } = require('../../middleware/validate.middleware');
+const { BadRequestError } = require('../../utils/errors');
+const config = require('../../config');
 const v = require('./company.validator');
 
 const router = express.Router();
 router.use(authenticate);
+
+const ALLOWED_LOGO_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.svg'];
+const ALLOWED_LOGO_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'];
+const uploadDir = path.resolve(process.cwd(), config.upload.dir, 'companies');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    fs.mkdir(uploadDir, { recursive: true })
+      .then(() => cb(null, uploadDir))
+      .catch((err) => cb(err));
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase();
+    const safeExt = ALLOWED_LOGO_EXTENSIONS.includes(ext) ? ext : '.png';
+    cb(null, `${Date.now()}-${uuidv4()}${safeExt}`);
+  },
+});
+
+const upload = multer({
+  storage,
+  limits: { fileSize: 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase();
+    const isValid = ALLOWED_LOGO_MIME_TYPES.includes(file.mimetype) && ALLOWED_LOGO_EXTENSIONS.includes(ext);
+    if (!isValid) {
+      return cb(new BadRequestError('Only JPG, PNG, WEBP, or SVG logo images are allowed.'));
+    }
+    cb(null, true);
+  },
+});
+
+const uploadCompanyLogo = (req, res, next) => {
+  upload.single('logo')(req, res, (err) => {
+    if (err instanceof multer.MulterError) {
+      if (err.code === 'LIMIT_FILE_SIZE') {
+        return next(new BadRequestError('Logo image must be 1 MB or smaller.'));
+      }
+      return next(new BadRequestError(err.message));
+    }
+    if (err) return next(err);
+    return next();
+  });
+};
 
 /**
  * @openapi
@@ -70,7 +119,7 @@ router.use(authenticate);
 router
   .route('/')
   .get(authorize('company.view'), validate(v.listValidator), controller.listCompanies)
-  .post(authorize('company.create'), validate(v.createValidator), controller.createCompany);
+  .post(uploadCompanyLogo, authorize('company.create'), validate(v.createValidator), controller.createCompany);
 
 /**
  * @openapi
@@ -103,7 +152,7 @@ router
 router
   .route('/:id')
   .get(authorize('company.view'), validate(v.idParamValidator), controller.getCompany)
-  .put(authorize('company.update'), validate(v.updateValidator), controller.updateCompany)
+  .put(uploadCompanyLogo, authorize('company.update'), validate(v.updateValidator), controller.updateCompany)
   .delete(authorize('company.delete'), validate(v.idParamValidator), controller.deleteCompany);
 
 /**
@@ -121,6 +170,22 @@ router
  *       200: { description: Company stats }
  */
 router.get('/:id/stats', authorize('company.view'), validate(v.idParamValidator), controller.getCompanyStats);
+
+/**
+ * @openapi
+ * /companies/{id}/details:
+ *   get:
+ *     tags: [Companies]
+ *     summary: Get company detail information including admin, stats, and audit logs
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema: { type: string, format: uuid }
+ *     responses:
+ *       200: { description: Company details }
+ */
+router.get('/:id/details', authorize('company.view'), validate(v.idParamValidator), controller.getCompanyDetails);
 
 /**
  * @openapi

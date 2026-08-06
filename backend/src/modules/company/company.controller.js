@@ -40,7 +40,7 @@ const listCompanies = asyncHandler(async (req, res) => {
 });
 
 const updateCompany = asyncHandler(async (req, res) => {
-  const data = await service.update({ id: req.params.id, payload: req.body });
+  const data = await service.update({ id: req.params.id, payload: req.body, req });
   await writeAudit({ req, action: 'company.update', entity: 'Company', entityId: req.params.id });
   return success(res, { message: 'Company updated', data });
 });
@@ -68,6 +68,11 @@ const getCompanyStats = asyncHandler(async (req, res) => {
   return success(res, { message: 'Company stats', data });
 });
 
+const getCompanyDetails = asyncHandler(async (req, res) => {
+  const data = await service.getDetails({ id: req.params.id });
+  return success(res, { message: 'Company details', data });
+});
+
 module.exports = {
   createCompany,
   getCompany,
@@ -77,4 +82,5 @@ module.exports = {
   suspendCompany,
   activateCompany,
   getCompanyStats,
+  getCompanyDetails,
 };

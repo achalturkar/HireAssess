@@ -234,6 +234,7 @@ export async function searchCandidates(
   accessToken?: string | null
 ): Promise<CandidateOption[]> {
   const query = buildQuery({
+    page: 1,
     search: params.search,
     limit: params.limit ?? 20,
     clientId: params.clientId,

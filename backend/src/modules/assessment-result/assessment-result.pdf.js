@@ -173,18 +173,18 @@ const getTraitMeaning = (traitName) => {
 /*  Low-level drawing helpers                                          */
 /* ================================================================== */
 
-const drawFallbackLogoMark = (doc, x, y, size) => {
+const drawBrandMark = (doc, x, y, size) => {
   doc.save();
   doc.roundedRect(x, y, size, size, size * 0.28).fill('#12162B');
-  const barW = size * 0.16;
+  const barW = size * 0.14;
   const gap = size * 0.08;
   const baseY = y + size * 0.78;
   const bars = [
-    { h: size * 0.28, color: '#22C55E' },
-    { h: size * 0.47, color: '#14B8A6' },
-    { h: size * 0.6, color: '#3B82F6' },
+    { h: size * 0.24, color: '#3FDCC0' },
+    { h: size * 0.42, color: '#F2AE55' },
+    { h: size * 0.56, color: '#3FDCC0' },
   ];
-  let bx = x + size * 0.2;
+  let bx = x + size * 0.18;
   bars.forEach((bar) => {
     doc.roundedRect(bx, baseY - bar.h, barW, bar.h, barW * 0.3).fill(bar.color);
     bx += barW + gap;
@@ -192,11 +192,13 @@ const drawFallbackLogoMark = (doc, x, y, size) => {
   doc.restore();
 };
 
+const drawFallbackLogoMark = (doc, x, y, size) => drawBrandMark(doc, x, y, size);
+
 const LOGO_CANDIDATES = ['hireassess-logo.svg', 'hireassess-logo.png'];
 
 const loadLogo = () => {
   for (const filename of LOGO_CANDIDATES) {
-    const candidate = path.resolve(__dirname, '../../../../frontend/public', filename);
+    const candidate = path.resolve(__dirname, '../../../frontend/public', filename);
     if (fs.existsSync(candidate)) {
       if (filename.endsWith('.svg')) {
         try {
@@ -207,6 +209,58 @@ const loadLogo = () => {
       }
       return { type: 'png', filePath: candidate };
     }
+  }
+  return null;
+};
+
+/**
+ * Resolves a logo URL (as stored against a company/client record) to a
+ * local file path under the uploads directory.
+ *
+ * Made deliberately permissive because logo URLs can arrive in several
+ * shapes depending on how the record was created:
+ *   - "uploads/logos/acme.png"        (bare relative path)
+ *   - "/uploads/logos/acme.png"       (leading slash)
+ *   - "https://host/uploads/..."      (full URL, e.g. saved with origin)
+ *   - "/api/uploads/logos/acme.png"   (served behind a route prefix)
+ * This never fetches anything over the network, it only ever reads from
+ * local disk.
+ */
+const resolveUploadsPath = (url) => {
+  if (!url || typeof url !== 'string') return null;
+  let trimmed = url.trim();
+  if (!trimmed) return null;
+
+  if (/^https?:\/\//i.test(trimmed)) {
+    try {
+      trimmed = new URL(trimmed).pathname;
+    } catch {
+      return null;
+    }
+  }
+
+  const relative = trimmed.replace(/^\/+/, '');
+  const uploadsIndex = relative.indexOf('uploads/');
+  if (uploadsIndex === -1) return null;
+  const normalizedRelative = relative.slice(uploadsIndex);
+
+  const candidate = path.resolve(__dirname, '../../../', normalizedRelative);
+  return fs.existsSync(candidate) ? candidate : null;
+};
+
+const loadLocalLogo = (logoUrl) => {
+  const filePath = resolveUploadsPath(logoUrl);
+  if (!filePath) return null;
+  const ext = path.extname(filePath).toLowerCase();
+  if (ext === '.svg') {
+    try {
+      return { type: 'svg', content: fs.readFileSync(filePath, 'utf8') };
+    } catch {
+      return null;
+    }
+  }
+  if (ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.webp') {
+    return { type: 'png', filePath };
   }
   return null;
 };
@@ -231,37 +285,71 @@ const drawDot = (doc, x, y, r, color) => {
   doc.restore();
 };
 
-const drawScoreScaleBar = (doc, x, y, width, score) => {
-  const segments = [
-    { label: 'Need development', color: COLORS.danger },
-    { label: 'Moderate', color: COLORS.warning },
-    { label: 'Strength', color: COLORS.success },
-  ];
-  const barHeight = 14;
-  const segmentWidth = width / segments.length;
+/**
+ * Draws a logo (SVG or PNG/JPG) inside a square box, letting `fit`
+ * preserve the source image's own aspect ratio rather than stretching it.
+ * Returns true if something was drawn.
+ */
+const drawLogoBox = (doc, SVGtoPDF, logo, x, y, size) => {
+  if (!logo) return false;
+  try {
+    if (logo.type === 'svg' && SVGtoPDF) {
+      SVGtoPDF(doc, logo.content, x, y, { width: size, height: size, assumePt: true, preserveAspectRatio: 'xMidYMid meet' });
+      return true;
+    }
+    if (logo.type === 'png') {
+      doc.image(logo.filePath, x, y, { fit: [size, size], align: 'center', valign: 'center' });
+      return true;
+    }
+  } catch {
+    return false;
+  }
+  return false;
+};
 
-  segments.forEach((segment, index) => {
-    const sx = x + index * segmentWidth;
+/**
+ * The three colour bands mirror the labelled score ranges exactly
+ * (0-49 / 50-74 / 75-100), rather than being drawn as equal thirds of the
+ * bar. This matters because the marker's x-position is always placed at
+ * `score/100` of the bar's width — if the bands were equal thirds while
+ * the labels described unequal ranges, the marker could visually land in
+ * the wrong coloured band relative to the score it represents (e.g. a
+ * score of 40 landing inside the "Moderate" band). Keeping the band widths
+ * proportional to their actual numeric range keeps the marker always
+ * inside the band matching the candidate's real score.
+ */
+const SCORE_BANDS = [
+  { label: 'Needs development', shortLabel: '0-49', color: COLORS.danger, from: 0, to: 49 },
+  { label: 'Moderate', shortLabel: '50-74', color: COLORS.warning, from: 50, to: 74 },
+  { label: 'Strength', shortLabel: '75-100', color: COLORS.success, from: 75, to: 100 },
+];
+
+const drawScoreScaleBar = (doc, x, y, width, score) => {
+  const barHeight = 14;
+
+  SCORE_BANDS.forEach((band) => {
+    const bandX = x + (width * band.from) / 100;
+    const bandWidth = (width * (band.to - band.from + 1)) / 100;
     doc.save();
-    doc.roundedRect(sx, y, segmentWidth, barHeight, 6).fill(segment.color);
+    doc.roundedRect(bandX, y, bandWidth, barHeight, 6).fill(band.color);
     doc.restore();
   });
 
   doc.roundedRect(x, y, width, barHeight, 6).lineWidth(0.8).strokeColor(COLORS.border).stroke();
 
-  const markerX = x + Math.min(Math.max(score, 0), 100) * width / 100;
+  const clampedScore = Math.min(Math.max(score, 0), 100);
+  const markerX = x + (clampedScore * width) / 100;
   doc.save();
   doc.fillColor(COLORS.brandDark).circle(markerX, y + barHeight / 2, 4.5).fill();
   doc.restore();
 
   const labelY = y + barHeight + 6;
-  doc.font('Helvetica-Bold').fontSize(8).fillColor(COLORS.danger).text('0-49', x, labelY, { lineBreak: false });
-  doc.font('Helvetica-Bold').fontSize(8).fillColor(COLORS.warning).text('50-74', x + width / 3 - 10, labelY, { lineBreak: false });
-  doc.font('Helvetica-Bold').fontSize(8).fillColor(COLORS.success).text('75-100', x + (width * 2) / 3 - 14, labelY, { lineBreak: false });
-
-  doc.font('Helvetica').fontSize(8).fillColor(COLORS.gray).text('Need development', x, labelY + 10, { width: segmentWidth, lineBreak: false });
-  doc.text('Moderate', x + width / 3, labelY + 10, { width: segmentWidth, lineBreak: false });
-  doc.text('Strength', x + (width * 2) / 3, labelY + 10, { width: segmentWidth, lineBreak: false });
+  SCORE_BANDS.forEach((band) => {
+    const bandX = x + (width * band.from) / 100;
+    const bandWidth = (width * (band.to - band.from + 1)) / 100;
+    doc.font('Helvetica-Bold').fontSize(8).fillColor(band.color).text(band.shortLabel, bandX, labelY, { width: bandWidth, lineBreak: false });
+    doc.font('Helvetica').fontSize(8).fillColor(COLORS.gray).text(band.label, bandX, labelY + 10, { width: bandWidth, lineBreak: false });
+  });
 
   return y + barHeight + 24;
 };
@@ -396,16 +484,17 @@ const drawTraitPillRow = (doc, x, y, width, trait, score, color, description) =>
 const buildPerformanceSummary = (bundle) => {
   if (bundle.report?.overall?.summary) return bundle.report.overall.summary;
   if (bundle.overallScore >= 80) {
-    return 'The candidate demonstrates a strong overall profile with reliable performance across the assessed areas. Maintain current strengths while tracking smaller development opportunities.';
+    return 'The candidate demonstrates a strong overall profile, with consistently reliable performance across every area assessed. Recommend proceeding with confidence, and use the trait breakdown on the following pages to identify any light-touch coaching that would further sharpen an already capable profile.';
   }
   if (bundle.overallScore >= 60) {
-    return 'The candidate shows solid capability with a few focused areas for growth. Improve targeted competencies to increase confidence for the role.';
+    return 'The candidate shows solid, workable capability with a small number of focused growth areas. With a short, targeted training intervention on the specific traits flagged below, this profile should meet the expected competency level for the role.';
   }
-  return 'The candidate requires further development in multiple assessment areas. Use the trait scores and suggested actions to guide a structured improvement plan.';
+  return 'The candidate will need structured development across several assessed areas before reaching the expected competency level for this role. The trait-level scores and suggested actions on the following pages are intended to guide that training plan.';
 };
 
 const PAGE_MARGINS = { top: 50, bottom: 60, left: 50, right: 50 };
 const PAGE_WIDTH = 595.28; // A4 in points
+const COMPANY_NAME = 'Brainhunt Ventures Pvt Ltd.';
 
 const generateResultPdf = ({ bundle }) => {
   let SVGtoPDF = null;
@@ -421,11 +510,10 @@ const generateResultPdf = ({ bundle }) => {
 
   const candidate = bundle.candidate;
   const candidateName = candidate ? `${candidate.firstName} ${candidate.lastName}` : 'Unknown Candidate';
-  const candidateInitials = candidate
-    ? `${candidate.firstName?.[0] ?? ''}${candidate.lastName?.[0] ?? ''}`.toUpperCase()
-    : '?';
+  
   const assessmentName = bundle.assessment?.name ?? 'Unknown Assessment';
   const level = bundle.assessment?.level ?? 'N/A';
+  const companyName = bundle.company?.name ?? 'Unknown Company';
   const clientName = bundle.assessment?.client?.name ?? 'Unknown Client';
   const duration = bundle.assessment?.durationMinutes ? `${bundle.assessment.durationMinutes} min` : 'N/A';
   const submittedAt = bundle.submittedAt ? new Date(bundle.submittedAt).toLocaleString() : 'N/A';
@@ -436,6 +524,9 @@ const generateResultPdf = ({ bundle }) => {
   const summaryText = buildPerformanceSummary(bundle);
   const questionList = Array.isArray(bundle.questions) ? bundle.questions : [];
   const overallScore = typeof bundle.overallScore === 'number' ? bundle.overallScore : 0;
+
+  const companyLogo = loadLocalLogo(bundle.company?.logoUrl);
+  const clientLogo = loadLocalLogo(bundle.assessment?.client?.logoUrl);
 
   const counts = { Analytical: 0, Logical: 0, Behavioural: 0, Other: 0 };
   questionList.forEach((qa) => {
@@ -466,48 +557,61 @@ const generateResultPdf = ({ bundle }) => {
   const gradeColor = scoreColor(overallScore);
   const gradeDescription =
     grade === 'High'
-      ? 'Excellent performance with strong aptitude across key competencies.'
+      ? 'Excellent performance, with strong aptitude demonstrated across every key competency measured.'
       : grade === 'Moderate'
-      ? 'Solid performance with opportunities for focused improvement.'
-      : 'Additional development is recommended to reach the expected competency level.';
+      ? 'Solid, workable performance overall, with a small number of well-defined opportunities for improvement.'
+      : 'Further, structured development is recommended before this candidate reaches the expected competency level.';
 
   /* ---------------------------- header / footer ---------------------------- */
 
   const HEADER_TOP = 26;
   const LOGO_SIZE = 30;
+  const COMPANY_LOGO_SIZE = 64;
+  const FOOTER_LOGO_SIZE = 40;
 
   const drawHeader = () => {
     const left = doc.page.margins.left;
-    const logo = loadLogo();
-    let drew = false;
-    if (logo?.type === 'svg' && SVGtoPDF) {
+    const right = doc.page.width - doc.page.margins.right;
+    const platformLogo = loadLogo();
+    let drewPlatformLogo = false;
+
+    if (platformLogo?.type === 'svg' && SVGtoPDF) {
       try {
-        SVGtoPDF(doc, logo.content, left, HEADER_TOP, { width: LOGO_SIZE, height: LOGO_SIZE, assumePt: true });
-        drew = true;
+        SVGtoPDF(doc, platformLogo.content, left, HEADER_TOP, { width: LOGO_SIZE, height: LOGO_SIZE, assumePt: true });
+        drewPlatformLogo = true;
       } catch {
-        drew = false;
+        drewPlatformLogo = false;
       }
-    } else if (logo?.type === 'png') {
+    } else if (platformLogo?.type === 'png') {
       try {
-        doc.image(logo.filePath, left, HEADER_TOP, { width: LOGO_SIZE, height: LOGO_SIZE });
-        drew = true;
+        doc.image(platformLogo.filePath, left, HEADER_TOP, { fit: [LOGO_SIZE, LOGO_SIZE], align: 'center', valign: 'center' });
+        drewPlatformLogo = true;
       } catch {
-        drew = false;
+        drewPlatformLogo = false;
       }
     }
-    if (!drew) drawFallbackLogoMark(doc, left, HEADER_TOP, LOGO_SIZE);
+    if (!drewPlatformLogo) {
+      drawFallbackLogoMark(doc, left, HEADER_TOP, LOGO_SIZE);
+    }
+    // Draw the assessment partner's (company's) logo on the right when
+    // available. Do NOT fall back to the platform logo on the right —
+    // leave it blank when missing, so the two brand marks are never
+    // confused with one another.
+    if (companyLogo) {
+      drawLogoBox(doc, SVGtoPDF, companyLogo, right - COMPANY_LOGO_SIZE, HEADER_TOP, COMPANY_LOGO_SIZE);
+    }
 
     const textX = left + LOGO_SIZE + 10;
     doc.font('Helvetica-Bold').fontSize(15).fillColor(COLORS.brandDark).text('Hire', textX, HEADER_TOP + 1, { continued: true, lineBreak: false });
     doc.fillColor(COLORS.accent).text('Assess', { continued: false, lineBreak: false });
-    doc.font('Helvetica').fontSize(8).fillColor(COLORS.gray).text('Candidate Assessment Report', textX, HEADER_TOP + 18, { lineBreak: false });
+    doc.font('Helvetica').fontSize(8).fillColor(COLORS.gray).text('Psychometric Assessment & Training Insights Report', textX, HEADER_TOP + 18, { lineBreak: false });
 
     const dividerY = HEADER_TOP + LOGO_SIZE + 12;
     doc
       .strokeColor(COLORS.border)
       .lineWidth(0.75)
       .moveTo(left, dividerY)
-      .lineTo(doc.page.width - doc.page.margins.right, dividerY)
+      .lineTo(right, dividerY)
       .stroke();
 
     doc.x = left;
@@ -524,19 +628,50 @@ const generateResultPdf = ({ bundle }) => {
     doc.x = LEFT;
   };
 
+  /**
+   * Footer layout (top to bottom):
+   *   1. Client logo — right-aligned, sitting just above the divider line
+   *      (i.e. clearly "above the footer" rather than crowding the text row).
+   *   2. Divider line.
+   *   3. A single text row split into three columns: candidate/client info
+   *      on the left, the company copyright notice centered, and the
+   *      report date on the right.
+   */
   const drawFooter = () => {
-    const footerY = doc.page.height - doc.page.margins.bottom - 26;
+    const left = doc.page.margins.left;
+    const right = doc.page.width - doc.page.margins.right;
+
+    const textRowY = doc.page.height - doc.page.margins.bottom - 20;
+    const dividerY = textRowY - 10;
+    const logoY = dividerY - FOOTER_LOGO_SIZE - 6;
+
+    if (clientLogo) {
+      drawLogoBox(doc, SVGtoPDF, clientLogo, right - FOOTER_LOGO_SIZE, logoY, FOOTER_LOGO_SIZE);
+    }
+
     doc
       .strokeColor(COLORS.border)
       .lineWidth(0.5)
-      .moveTo(doc.page.margins.left, footerY)
-      .lineTo(doc.page.width - doc.page.margins.right, footerY)
+      .moveTo(left, dividerY)
+      .lineTo(right, dividerY)
       .stroke();
+
+    const colWidth = contentWidth / 3;
     doc
+      .font('Helvetica')
       .fontSize(FONT.tiny)
       .fillColor(COLORS.lightGray)
-      .text(`Candidate: ${candidateName}  ·  Client: ${clientName}`, doc.page.margins.left, footerY + 7, { width: contentWidth / 2 });
-    doc.text(`Report date: ${reportDate}`, doc.page.margins.left + contentWidth / 2, footerY + 7, { width: contentWidth / 2, align: 'right' });
+      .text(`Candidate: ${candidateName}  ·  Client: ${clientName}`, left, textRowY, { width: colWidth, lineBreak: false });
+    doc
+      .font('Helvetica')
+      .fontSize(FONT.tiny)
+      .fillColor(COLORS.lightGray)
+      .text(`© ${COMPANY_NAME} All rights reserved.`, left + colWidth, textRowY, { width: colWidth, align: 'center', lineBreak: false });
+    doc
+      .font('Helvetica')
+      .fontSize(FONT.tiny)
+      .fillColor(COLORS.lightGray)
+      .text(`Report date: ${reportDate}`, left + colWidth * 2, textRowY, { width: colWidth, align: 'right', lineBreak: false });
   };
 
   const addPage = (title, subtitle, contentFn) => {
@@ -560,105 +695,148 @@ const generateResultPdf = ({ bundle }) => {
 
   /* ---------------------------------- pages ---------------------------------- */
 
-  addPage('Candidate & assessment summary', 'Candidate, client and exam metadata with timing details.', () => {
-    const avatarX = doc.page.width - doc.page.margins.right - 46;
-    const avatarY = doc.y;
-    doc.save();
-    doc.circle(avatarX + 23, avatarY + 23, 23).fill(COLORS.brandDark);
-    doc.restore();
-    doc.font('Helvetica-Bold').fontSize(16).fillColor('#ffffff').text(candidateInitials, avatarX, avatarY + 14, { width: 46, align: 'center', lineBreak: false });
+  addPage(
+    'Candidate & Assessment Summary',
+    'Candidate identity, assessment partner, and client engagement details for this attempt.',
+    () => {
+      // ---- Candidate identity row ----
+      // Render candidate name and metadata without an avatar/initials badge
+      doc.font('Helvetica-Bold').fontSize(19).fillColor(COLORS.neutral).text(candidateName, LEFT, doc.y, { width: contentWidth });
+      doc.font('Helvetica').fontSize(10.5).fillColor(COLORS.gray).text(`Assessed for ${assessmentName} · Level ${level}`, LEFT, doc.y, { width: contentWidth });
+      doc.moveDown(1.1);
+      doc.x = LEFT;
 
-    doc.font('Helvetica-Bold').fontSize(19).fillColor(COLORS.neutral).text(candidateName, LEFT, avatarY, { width: contentWidth - 60 });
-    doc.font('Helvetica').fontSize(10.5).fillColor(COLORS.gray).text(`Assessed for ${assessmentName} · Level ${level}`, LEFT, doc.y, { width: contentWidth - 60 });
-    doc.moveDown(1.4);
-    doc.x = LEFT;
+      // ---- Engagement card: assessment partner + client, each with a logo ----
+      // This is a B2B2B workflow — an assessment partner (the "Company")
+      // runs HireAssess on behalf of its own client, who is hiring or
+      // developing the candidate — so both identities are shown with equal
+      // visual weight, each anchored by its own logo when one is on file.
+      const cardY = doc.y;
+      const cardH = 64;
+      const gap = 12;
+      const halfW = (contentWidth - gap) / 2;
+      const thumb = 34;
 
-    const fieldRows = [
-      [{ label: 'Client', value: clientName }, { label: 'Duration', value: duration }],
-      [{ label: 'Submitted at', value: submittedAt }, { label: 'Time taken to solve', value: examTime }],
-    ];
-    const colWidth = contentWidth / 2;
-    let y = doc.y;
-    fieldRows.forEach((pair) => {
-      pair.forEach((f, ci) => {
-        const x = doc.page.margins.left + ci * colWidth;
-        doc.font('Helvetica').fontSize(FONT.tiny).fillColor(COLORS.lightGray).text(f.label.toUpperCase(), x, y, { characterSpacing: 0.3, lineBreak: false });
-        doc.font('Helvetica-Bold').fontSize(12).fillColor(COLORS.neutral).text(f.value, x, y + 11, { width: colWidth - 20 });
+      doc.save();
+      doc.roundedRect(LEFT, cardY, halfW, cardH, 8).lineWidth(0.75).strokeColor(COLORS.border).fillAndStroke(COLORS.background, COLORS.border);
+      doc.restore();
+      doc.save();
+      doc.roundedRect(LEFT + halfW + gap, cardY, halfW, cardH, 8).lineWidth(0.75).strokeColor(COLORS.border).fillAndStroke(COLORS.background, COLORS.border);
+      doc.restore();
+
+      const drawEntityCell = (x, label, name, logo) => {
+        const padX = 14;
+        const logoBoxY = cardY + (cardH - thumb) / 2;
+        let textX = x + padX;
+        const drew = logo ? drawLogoBox(doc, SVGtoPDF, logo, x + padX, logoBoxY, thumb) : false;
+        if (drew) textX = x + padX + thumb + 10;
+        const textW = halfW - (textX - x) - padX;
+        doc.font('Helvetica').fontSize(FONT.tiny).fillColor(COLORS.lightGray).text(label.toUpperCase(), textX, cardY + 13, { characterSpacing: 0.4, width: textW, lineBreak: false });
+        doc.font('Helvetica-Bold').fontSize(11.5).fillColor(COLORS.neutral).text(name, textX, cardY + 27, { width: textW, lineBreak: false });
+      };
+
+      drawEntityCell(LEFT, 'Assessment Partner', companyName, companyLogo);
+      drawEntityCell(LEFT + halfW + gap, 'Client Organisation', clientName, clientLogo);
+
+      doc.y = cardY + cardH + 18;
+      doc.x = LEFT;
+
+      // ---- Metadata grid ----
+      const fieldRows = [
+        [{ label: 'Assessment', value: assessmentName }, { label: 'Level', value: String(level) }],
+        [{ label: 'Duration', value: duration }, { label: 'Submitted at', value: submittedAt }],
+        [{ label: 'Time taken to solve', value: examTime }, { label: 'Report generated', value: reportDate }],
+      ];
+      const colWidth = contentWidth / 2;
+      let y = doc.y;
+      fieldRows.forEach((pair) => {
+        pair.forEach((f, ci) => {
+          if (!f.label) return;
+          const x = doc.page.margins.left + ci * colWidth;
+          doc.font('Helvetica').fontSize(FONT.tiny).fillColor(COLORS.lightGray).text(f.label.toUpperCase(), x, y, { characterSpacing: 0.3, lineBreak: false });
+          doc.font('Helvetica-Bold').fontSize(12).fillColor(COLORS.neutral).text(f.value, x, y + 11, { width: colWidth - 20 });
+        });
+        y += 36;
       });
-      y += 36;
-    });
-    doc.y = y + 4;
+      doc.y = y + 4;
 
-    doc.moveDown(0.6);
-    doc.save();
-    doc.roundedRect(LEFT, doc.y, contentWidth, 44, 8).fillOpacity(0.08).fill(gradeColor);
-    doc.restore();
-    doc.font('Helvetica-Bold').fontSize(11).fillColor(gradeColor).text(`Overall grade: ${grade}`, LEFT + 14, doc.y + 8);
-    doc.font('Helvetica').fontSize(9).fillColor(COLORS.gray).text(`Score ${overallScore}/100`, LEFT + 14, doc.y + 2, { width: contentWidth - 28 });
-    doc.y += 26;
-    doc.x = LEFT;
+      // ---- Overall grade banner ----
+      doc.moveDown(0.4);
+      doc.save();
+      doc.roundedRect(LEFT, doc.y, contentWidth, 44, 8).fillOpacity(0.08).fill(gradeColor);
+      doc.restore();
+      doc.font('Helvetica-Bold').fontSize(11).fillColor(gradeColor).text(`Overall grade: ${grade}`, LEFT + 14, doc.y + 8);
+      doc.font('Helvetica').fontSize(9).fillColor(COLORS.gray).text(`Score ${overallScore}/100`, LEFT + 14, doc.y + 2, { width: contentWidth - 28 });
+      doc.y += 26;
+      doc.x = LEFT;
 
-    doc.moveDown(1.4);
-    doc.font('Helvetica-Bold').fontSize(11).fillColor(COLORS.neutral).text('Assessment overview', LEFT, doc.y);
-    doc.moveDown(0.3);
-    doc
-      .font('Helvetica')
-      .fillColor(COLORS.gray)
-      .fontSize(FONT.body)
-      .text(
-        'This assessment is designed to evaluate candidate strengths across reasoning, decision-making, logical structuring, and behavioural judgement. The following pages present a clear breakdown of performance, trait-level scoring against the ideal profile where available, and guidance for a structured interview.',
+      // ---- Overview copy ----
+      doc.moveDown(1.2);
+      doc.font('Helvetica-Bold').fontSize(11).fillColor(COLORS.neutral).text('About this report', LEFT, doc.y);
+      doc.moveDown(0.3);
+      doc
+        .font('Helvetica')
+        .fillColor(COLORS.gray)
+        .fontSize(FONT.body)
+        .text(
+          `This report was generated on the HireAssess platform on behalf of ${companyName}, an assessment and training partner working with ${clientName}. It evaluates the candidate's reasoning, decision-making, logical structuring, and behavioural judgement, and is intended to support both hiring decisions and the design of targeted post-assessment training.`,
+          LEFT,
+          doc.y,
+          { width: contentWidth, lineGap: 5 }
+        );
+    }
+  );
+
+  addPage(
+    'Assessment Question Breakdown',
+    'Analytical, logical, and behavioural item counts, with visual charting.',
+    () => {
+      const centerX = LEFT + 90;
+      const centerY = doc.y + 80;
+      drawPieChart(doc, centerX, centerY, 62, pieSegments);
+      let legendY = centerY - 30;
+      pieSegments.forEach((segment) => {
+        drawDot(doc, centerX + 120, legendY, 4, segment.color);
+        const pct = ((segment.value / countTotal) * 100).toFixed(0);
+        doc.fillColor(COLORS.neutral).fontSize(9.5).font('Helvetica-Bold').text(`${segment.label}`, centerX + 132, legendY - 4, { continued: true, lineBreak: false });
+        doc.font('Helvetica').fillColor(COLORS.gray).text(`  ${segment.value} questions · ${pct}%`, { lineBreak: false });
+        legendY += 20;
+      });
+      // The legend above draws at absolute x coordinates — the cursor must be
+      // explicitly returned to the left margin before flowing text resumes,
+      // otherwise the paragraph below inherits the legend's x position and
+      // wraps into an unreadable single-word column off the right edge of
+      // the page.
+      doc.x = LEFT;
+      doc.y = centerY + 76;
+
+      doc.font('Helvetica').fontSize(FONT.body).fillColor(COLORS.gray).text(
+        `This assessment comprises ${countTotal} questions spanning analytical, logical, and behavioural constructs. Each category is designed to measure a distinct dimension of the candidate's working style and problem-solving approach:`,
         LEFT,
         doc.y,
         { width: contentWidth, lineGap: 5 }
       );
-  });
+      doc.moveDown(0.5);
+      pieSegments.forEach((segment) => {
+        if (segment.value <= 0) return;
+        const pct = ((segment.value / countTotal) * 100).toFixed(0);
+        const rowY = doc.y;
+        doc.font('Helvetica-Bold').fontSize(9.5).fillColor(COLORS.neutral).text(segment.label, LEFT, rowY, { lineBreak: false });
+        const labelWidth = doc.widthOfString(segment.label);
+        doc.font('Helvetica').fontSize(9.5).fillColor(COLORS.gray).text(
+          ` (${segment.value} questions, ${pct}%) — used to evaluate ${segment.label.toLowerCase()} ability.`,
+          LEFT + labelWidth,
+          rowY,
+          { width: contentWidth - labelWidth, lineGap: 3 }
+        );
+        doc.x = LEFT;
+        doc.y = Math.max(doc.y, rowY + 13);
+        doc.moveDown(0.25);
+      });
+    }
+  );
 
-  addPage('Assessment question breakdown', 'Analytical, logical, and behavioural item counts with visual charting.', () => {
-    const centerX = LEFT + 90;
-    const centerY = doc.y + 80;
-    drawPieChart(doc, centerX, centerY, 62, pieSegments);
-    let legendY = centerY - 30;
-    pieSegments.forEach((segment) => {
-      drawDot(doc, centerX + 120, legendY, 4, segment.color);
-      const pct = ((segment.value / countTotal) * 100).toFixed(0);
-      doc.fillColor(COLORS.neutral).fontSize(9.5).font('Helvetica-Bold').text(`${segment.label}`, centerX + 132, legendY - 4, { continued: true, lineBreak: false });
-      doc.font('Helvetica').fillColor(COLORS.gray).text(`  ${segment.value} questions · ${pct}%`, { lineBreak: false });
-      legendY += 20;
-    });
-    // The legend above draws at absolute x coordinates — the cursor must be
-    // explicitly returned to the left margin before flowing text resumes,
-    // otherwise the paragraph below inherits the legend's x position and
-    // wraps into an unreadable single-word column off the right edge of
-    // the page.
-    doc.x = LEFT;
-    doc.y = centerY + 76;
-
-    doc.font('Helvetica').fontSize(FONT.body).fillColor(COLORS.gray).text(
-      `This assessment contains ${countTotal} questions across analytical, logical, and behavioural constructs. Each category is measured to evaluate a distinct part of the candidate's working style:`,
-      LEFT,
-      doc.y,
-      { width: contentWidth, lineGap: 5 }
-    );
-    doc.moveDown(0.5);
-    pieSegments.forEach((segment) => {
-      if (segment.value <= 0) return;
-      const pct = ((segment.value / countTotal) * 100).toFixed(0);
-      const rowY = doc.y;
-      doc.font('Helvetica-Bold').fontSize(9.5).fillColor(COLORS.neutral).text(segment.label, LEFT, rowY, { lineBreak: false });
-      const labelWidth = doc.widthOfString(segment.label);
-      doc.font('Helvetica').fontSize(9.5).fillColor(COLORS.gray).text(
-        ` (${segment.value} questions, ${pct}%) — measured to evaluate ${segment.label.toLowerCase()} ability.`,
-        LEFT + labelWidth,
-        rowY,
-        { width: contentWidth - labelWidth, lineGap: 3 }
-      );
-      doc.x = LEFT;
-      doc.y = Math.max(doc.y, rowY + 13);
-      doc.moveDown(0.25);
-    });
-  });
-
-  addPage('Overall result and grade', 'Score summary, performance grade, and result narrative.', () => {
+  addPage('Overall Result & Grade', 'Score summary, performance grade, and result narrative.', () => {
     const scoreCX = doc.page.margins.left + 65;
     const scoreCY = doc.y + 65;
     doc.save();
@@ -685,164 +863,180 @@ const generateResultPdf = ({ bundle }) => {
     doc.fontSize(11).fillColor(COLORS.neutral).font('Helvetica-Bold').text('Performance notes', LEFT, doc.y);
     doc.moveDown(0.3);
     doc.font('Helvetica').fillColor(COLORS.gray).fontSize(FONT.body).text(`•  ${gradeDescription}`, LEFT, doc.y, { width: contentWidth, lineGap: 5 });
-    doc.font('Helvetica').fillColor(COLORS.gray).fontSize(FONT.body).text('•  See the trait score page for a granular, colour-coded view of strengths and development areas.', LEFT, doc.y, { width: contentWidth, lineGap: 5 });
+    doc.font('Helvetica').fillColor(COLORS.gray).fontSize(FONT.body).text('•  Refer to the trait score pages for a granular, colour-coded view of strengths and development areas, and to the training guidance page for a suggested improvement plan.', LEFT, doc.y, { width: contentWidth, lineGap: 5 });
   });
 
-  addPage('Trait scores on 100-point scale', 'Each trait plotted against the ideal profile, where available, with a short interpretation.', () => {
-    if (traitEntries.length === 0) {
-      doc.font('Helvetica').fontSize(FONT.body).fillColor(COLORS.gray).text('No trait-level scores were recorded for this attempt.');
-      return;
-    }
-    traitEntries.forEach((entry) => {
-      ensureSpace(76, { title: 'Trait scores on 100-point scale (continued)', subtitle: 'Each trait plotted against the ideal profile, where available.' });
-      const meaning = getTraitMeaning(entry.trait);
-      const note = entry.score >= 60 ? meaning.high : meaning.low;
-      const nextY = drawScoreBar(doc, LEFT, doc.y, contentWidth, entry.trait, {
-        score: entry.score,
-        idealMin: entry.idealMin,
-        idealMax: entry.idealMax,
-        note,
+  addPage(
+    'Trait Scores (100-Point Scale)',
+    'Each trait plotted against the ideal profile, where available, with a short interpretation.',
+    () => {
+      if (traitEntries.length === 0) {
+        doc.font('Helvetica').fontSize(FONT.body).fillColor(COLORS.gray).text('No trait-level scores were recorded for this attempt.');
+        return;
+      }
+      traitEntries.forEach((entry) => {
+        ensureSpace(76, { title: 'Trait Scores (100-Point Scale) — Continued', subtitle: 'Each trait plotted against the ideal profile, where available.' });
+        const meaning = getTraitMeaning(entry.trait);
+        const note = entry.score >= 60 ? meaning.high : meaning.low;
+        const nextY = drawScoreBar(doc, LEFT, doc.y, contentWidth, entry.trait, {
+          score: entry.score,
+          idealMin: entry.idealMin,
+          idealMax: entry.idealMax,
+          note,
+        });
+        doc.y = nextY;
+        doc.x = LEFT;
       });
-      doc.y = nextY;
+      doc.moveDown(0.6);
       doc.x = LEFT;
-    });
-    doc.moveDown(0.6);
-    doc.x = LEFT;
-    doc.font('Helvetica-Bold').fontSize(10.5).fillColor(COLORS.neutral).text('How to read these scores', LEFT, doc.y);
-    doc.moveDown(0.2);
-    doc
-      .font('Helvetica')
-      .fontSize(FONT.small)
-      .fillColor(COLORS.gray)
-      .text(
-        'Traits are shown on a 0–100 axis. Where an ideal range for the role is available it is shaded green — the closer the marker sits inside that band, the stronger the fit. Otherwise, scores of 75+ are treated as a strength, 50–74 as moderate, and below 50 as a development area.',
-        LEFT,
-        doc.y,
-        { width: contentWidth, lineGap: 4 }
-      );
-  });
-
-  addPage('Strengths and development areas', 'Colour-coded breakdown with suggested actions for the weakest traits.', () => {
-    doc.font('Helvetica-Bold').fontSize(12).fillColor(COLORS.success).text('Top strengths', LEFT, doc.y);
-    doc.moveDown(0.4);
-    if (strengths.length === 0) {
-      doc.font('Helvetica').fontSize(FONT.small).fillColor(COLORS.gray).text('No traits reached the strength threshold (75+) on this attempt.', LEFT, doc.y, { width: contentWidth });
-    } else {
-      strengths.forEach((entry) => {
-        ensureSpace(30, { title: 'Strengths and development areas (continued)', subtitle: 'Colour-coded breakdown with suggested actions.' });
-        doc.y = drawTraitPillRow(doc, LEFT, doc.y, contentWidth, entry.trait, entry.score, COLORS.success);
-      });
+      doc.font('Helvetica-Bold').fontSize(10.5).fillColor(COLORS.neutral).text('How to read these scores', LEFT, doc.y);
+      doc.moveDown(0.2);
+      doc
+        .font('Helvetica')
+        .fontSize(FONT.small)
+        .fillColor(COLORS.gray)
+        .text(
+          'Traits are shown on a 0–100 axis. Where an ideal range for the role is available, it is shaded green — the closer the marker sits within that band, the stronger the fit. Where no ideal range applies, a score of 75 or above is treated as a strength, 50–74 as moderate, and below 50 as a development area.',
+          LEFT,
+          doc.y,
+          { width: contentWidth, lineGap: 4 }
+        );
     }
-    doc.x = LEFT;
+  );
 
-    doc.moveDown(0.8);
-    doc.font('Helvetica-Bold').fontSize(12).fillColor(COLORS.danger).text('Primary improvement areas', LEFT, doc.y, { width: contentWidth });
-    doc.moveDown(0.4);
-    weaknesses.forEach((entry) => {
-      const meaning = getTraitMeaning(entry.trait);
-      ensureSpace(48, { title: 'Strengths and development areas (continued)', subtitle: 'Colour-coded breakdown with suggested actions.' });
-      doc.y = drawTraitPillRow(doc, LEFT, doc.y, contentWidth, entry.trait, entry.score, COLORS.danger, meaning.low);
-    });
-    doc.x = LEFT;
-
-    doc.moveDown(0.8);
-    doc.font('Helvetica-Bold').fontSize(10.5).fillColor(COLORS.neutral).text('Suggested actions', LEFT, doc.y, { width: contentWidth });
-    doc.moveDown(0.2);
-    weaknesses.forEach((entry) => {
-      ensureSpace(20, { title: 'Strengths and development areas (continued)', subtitle: 'Colour-coded breakdown with suggested actions.' });
-      doc.font('Helvetica').fontSize(FONT.small).fillColor(COLORS.gray).text(`•  Develop ${entry.trait} through targeted coaching, practice scenarios, and feedback loops.`, LEFT, doc.y, { width: contentWidth, lineGap: 4 });
-    });
-  });
-
-  addPage('Interview questions', 'Suggested prompts to explore each development area in more depth.', () => {
-    doc
-      .font('Helvetica')
-      .fontSize(FONT.body)
-      .fillColor(COLORS.gray)
-      .text('It is recommended that the areas below are explored further in a post-test interview.', LEFT, doc.y, { width: contentWidth, lineGap: 4 });
-    doc.moveDown(0.6);
-
-    if (weaknesses.length === 0) {
-      doc.font('Helvetica').fontSize(FONT.small).fillColor(COLORS.gray).text('No development areas were identified for this attempt.', LEFT, doc.y, { width: contentWidth });
-    }
-
-    weaknesses.forEach((entry) => {
-      const meaning = getTraitMeaning(entry.trait);
-      ensureSpace(110, { title: 'Interview questions (continued)', subtitle: 'Suggested prompts to explore each development area in more depth.' });
-
-      doc.save();
-      doc.roundedRect(LEFT, doc.y, contentWidth, 2, 1).fill(COLORS.danger);
-      doc.restore();
-      doc.y += 8;
-
-      // Trait name + score on one row, both drawn at explicit coordinates
-      // rather than chained with {continued:true} — continued text with no
-      // width inherits whatever the cursor's x happens to be, which is what
-      // caused the cut-off "Tell me about a time..." lines.
-      const rowY = doc.y;
-      doc.font('Helvetica-Bold').fontSize(11.5).fillColor(COLORS.neutral).text(entry.trait, LEFT, rowY, { lineBreak: false });
-      const traitWidth = doc.widthOfString(entry.trait);
-      doc.font('Helvetica').fontSize(9).fillColor(COLORS.gray).text(`   (score ${Math.round(entry.score)}/100)`, LEFT + traitWidth, rowY + 1.5, { lineBreak: false });
+  addPage(
+    'Strengths & Development Areas',
+    'Colour-coded breakdown, with suggested actions for the weakest traits.',
+    () => {
+      doc.font('Helvetica-Bold').fontSize(12).fillColor(COLORS.success).text('Top strengths', LEFT, doc.y);
+      doc.moveDown(0.4);
+      if (strengths.length === 0) {
+        doc.font('Helvetica').fontSize(FONT.small).fillColor(COLORS.gray).text('No traits reached the strength threshold (75+) on this attempt.', LEFT, doc.y, { width: contentWidth });
+      } else {
+        strengths.forEach((entry) => {
+          ensureSpace(30, { title: 'Strengths & Development Areas — Continued', subtitle: 'Colour-coded breakdown, with suggested actions.' });
+          doc.y = drawTraitPillRow(doc, LEFT, doc.y, contentWidth, entry.trait, entry.score, COLORS.success);
+        });
+      }
       doc.x = LEFT;
-      doc.y = rowY + 16;
 
-      doc.font('Helvetica').fontSize(FONT.small).fillColor(COLORS.gray).text(meaning.low, LEFT, doc.y, { width: contentWidth, lineGap: 3 });
-      doc.moveDown(0.3);
-      doc.font('Helvetica-Bold').fontSize(FONT.small).fillColor(COLORS.neutral).text('Ask:', LEFT, doc.y);
-      [
-        `Tell me about a time your ${entry.trait.toLowerCase()} was tested at work. What happened, and what would you do differently?`,
-        `How do you currently compensate for or manage ${entry.trait.toLowerCase()} in a fast-paced role?`,
-      ].forEach((q) => {
-        doc.font('Helvetica').fontSize(FONT.small).fillColor(COLORS.gray).text(`•  ${q}`, LEFT, doc.y, { width: contentWidth, lineGap: 3 });
-      });
-      doc.moveDown(0.3);
-      doc.font('Helvetica').fontSize(FONT.tiny).fillColor(COLORS.lightGray).text('Notes: _______________________________________________', LEFT, doc.y, { width: contentWidth });
-      doc.moveDown(0.7);
-      doc.x = LEFT;
-    });
-  });
-
-  addPage('Development guidance', 'Actionable guidance for the candidate based on assessment insights.', () => {
-    const guidance = [
-      'Use this report to create a personal development plan for the candidate, prioritizing the weakest traits first.',
-      'Revisit the trait score chart after training cycles to verify progress and adjust coaching focus.',
-      'Pair strengths with real-world responsibilities to keep those skills active while weaker areas are improved.',
-    ];
-    guidance.forEach((item) => {
-      doc.fontSize(FONT.body).fillColor(COLORS.gray).font('Helvetica').text(`•  ${item}`, LEFT, doc.y, { width: contentWidth, lineGap: 6 });
-      doc.moveDown(0.35);
-    });
-    doc.moveDown(0.5);
-    if (weaknesses.length) {
-      doc.fontSize(11).fillColor(COLORS.neutral).font('Helvetica-Bold').text('Suggested improvement cycle', LEFT, doc.y);
-      doc.moveDown(0.3);
+      doc.moveDown(0.8);
+      doc.font('Helvetica-Bold').fontSize(12).fillColor(COLORS.danger).text('Primary development areas', LEFT, doc.y, { width: contentWidth });
+      doc.moveDown(0.4);
       weaknesses.forEach((entry) => {
-        ensureSpace(20, { title: 'Development guidance (continued)', subtitle: 'Actionable guidance for the candidate based on assessment insights.' });
-        doc.font('Helvetica').fillColor(COLORS.gray).fontSize(FONT.body).text(`•  Target ${entry.trait} with practice cases, mentorship, and review sessions.`, LEFT, doc.y, { width: contentWidth, lineGap: 6 });
+        const meaning = getTraitMeaning(entry.trait);
+        ensureSpace(48, { title: 'Strengths & Development Areas — Continued', subtitle: 'Colour-coded breakdown, with suggested actions.' });
+        doc.y = drawTraitPillRow(doc, LEFT, doc.y, contentWidth, entry.trait, entry.score, COLORS.danger, meaning.low);
+      });
+      doc.x = LEFT;
+
+      doc.moveDown(0.8);
+      doc.font('Helvetica-Bold').fontSize(10.5).fillColor(COLORS.neutral).text('Suggested training actions', LEFT, doc.y, { width: contentWidth });
+      doc.moveDown(0.2);
+      weaknesses.forEach((entry) => {
+        ensureSpace(20, { title: 'Strengths & Development Areas — Continued', subtitle: 'Colour-coded breakdown, with suggested actions.' });
+        doc.font('Helvetica').fontSize(FONT.small).fillColor(COLORS.gray).text(`•  Develop ${entry.trait} through targeted coaching, practice scenarios, and structured feedback loops.`, LEFT, doc.y, { width: contentWidth, lineGap: 4 });
       });
     }
-  });
+  );
 
-  addPage('Thank you', 'Report completion and description.', () => {
+  addPage(
+    'Interview & Training Focus Areas',
+    'Suggested prompts to explore each development area in a post-assessment interview or coaching session.',
+    () => {
+      doc
+        .font('Helvetica')
+        .fontSize(FONT.body)
+        .fillColor(COLORS.gray)
+        .text('We recommend exploring the areas below further, whether in a post-assessment interview or as the starting point for a one-on-one coaching conversation.', LEFT, doc.y, { width: contentWidth, lineGap: 4 });
+      doc.moveDown(0.6);
+
+      if (weaknesses.length === 0) {
+        doc.font('Helvetica').fontSize(FONT.small).fillColor(COLORS.gray).text('No development areas were identified for this attempt.', LEFT, doc.y, { width: contentWidth });
+      }
+
+      weaknesses.forEach((entry) => {
+        const meaning = getTraitMeaning(entry.trait);
+        ensureSpace(110, { title: 'Interview & Training Focus Areas — Continued', subtitle: 'Suggested prompts to explore each development area in more depth.' });
+
+        doc.save();
+        doc.roundedRect(LEFT, doc.y, contentWidth, 2, 1).fill(COLORS.danger);
+        doc.restore();
+        doc.y += 8;
+
+        // Trait name + score on one row, both drawn at explicit coordinates
+        // rather than chained with {continued:true} — continued text with no
+        // width inherits whatever the cursor's x happens to be, which is what
+        // caused the cut-off "Tell me about a time..." lines.
+        const rowY = doc.y;
+        doc.font('Helvetica-Bold').fontSize(11.5).fillColor(COLORS.neutral).text(entry.trait, LEFT, rowY, { lineBreak: false });
+        const traitWidth = doc.widthOfString(entry.trait);
+        doc.font('Helvetica').fontSize(9).fillColor(COLORS.gray).text(`   (score ${Math.round(entry.score)}/100)`, LEFT + traitWidth, rowY + 1.5, { lineBreak: false });
+        doc.x = LEFT;
+        doc.y = rowY + 16;
+
+        doc.font('Helvetica').fontSize(FONT.small).fillColor(COLORS.gray).text(meaning.low, LEFT, doc.y, { width: contentWidth, lineGap: 3 });
+        doc.moveDown(0.3);
+        doc.font('Helvetica-Bold').fontSize(FONT.small).fillColor(COLORS.neutral).text('Ask:', LEFT, doc.y);
+        [
+          `Tell me about a time your ${entry.trait.toLowerCase()} was tested at work. What happened, and what would you do differently?`,
+          `How do you currently compensate for or manage ${entry.trait.toLowerCase()} in a fast-paced role?`,
+        ].forEach((q) => {
+          doc.font('Helvetica').fontSize(FONT.small).fillColor(COLORS.gray).text(`•  ${q}`, LEFT, doc.y, { width: contentWidth, lineGap: 3 });
+        });
+        doc.moveDown(0.3);
+        doc.font('Helvetica').fontSize(FONT.tiny).fillColor(COLORS.lightGray).text('Notes: _______________________________________________', LEFT, doc.y, { width: contentWidth });
+        doc.moveDown(0.7);
+        doc.x = LEFT;
+      });
+    }
+  );
+
+  addPage(
+    'Development & Training Guidance',
+    'A structured plan to help the candidate close the identified skill gaps.',
+    () => {
+      const guidance = [
+        'Use this report as the basis for a personal development plan, prioritising the weakest traits first.',
+        'Revisit the trait score chart after each training cycle to verify progress and recalibrate coaching focus.',
+        'Pair existing strengths with real-world responsibilities, so those skills stay active while weaker areas are developed.',
+      ];
+      guidance.forEach((item) => {
+        doc.fontSize(FONT.body).fillColor(COLORS.gray).font('Helvetica').text(`•  ${item}`, LEFT, doc.y, { width: contentWidth, lineGap: 6 });
+        doc.moveDown(0.35);
+      });
+      doc.moveDown(0.5);
+      if (weaknesses.length) {
+        doc.fontSize(11).fillColor(COLORS.neutral).font('Helvetica-Bold').text('Suggested training cycle', LEFT, doc.y);
+        doc.moveDown(0.3);
+        weaknesses.forEach((entry) => {
+          ensureSpace(20, { title: 'Development & Training Guidance — Continued', subtitle: 'A structured plan to help the candidate close the identified skill gaps.' });
+          doc.font('Helvetica').fillColor(COLORS.gray).fontSize(FONT.body).text(`•  Target ${entry.trait} with practice cases, mentorship, and periodic review sessions.`, LEFT, doc.y, { width: contentWidth, lineGap: 6 });
+        });
+      }
+    }
+  );
+
+  addPage('Thank You', 'Report completion and next steps.', () => {
     doc
       .fontSize(FONT.body)
       .font('Helvetica')
       .fillColor(COLORS.gray)
-      .text('Thank you for reviewing this assessment report. It is intended to support transparent, data-driven hiring decisions while guiding candidate development.', LEFT, doc.y, { width: contentWidth, lineGap: 6 });
+      .text('Thank you for reviewing this assessment report. It is intended to support transparent, data-driven hiring decisions, and to help design targeted training that closes any identified skill gaps.', LEFT, doc.y, { width: contentWidth, lineGap: 6 });
     doc.moveDown(0.8);
-    doc.fontSize(11).font('Helvetica-Bold').fillColor(COLORS.neutral).text('Report description', LEFT, doc.y);
+    doc.fontSize(11).font('Helvetica-Bold').fillColor(COLORS.neutral).text('About HireAssess', LEFT, doc.y);
     doc.moveDown(0.3);
     doc
       .fontSize(FONT.body)
       .fillColor(COLORS.gray)
       .font('Helvetica')
-      .text('This report is optimised for print or PDF distribution, with a colour-coded breakdown of performance, trait-level scores, improvement guidance, and brand-aligned header and footer details.', LEFT, doc.y, { width: contentWidth, lineGap: 6 });
+      .text(`HireAssess is a psychometric assessment platform built by ${COMPANY_NAME}. It is used by assessment providers and training consultancies to evaluate candidates on behalf of their clients, and to translate the results into focused, actionable training plans. This report is optimised for print or PDF distribution, with a colour-coded breakdown of performance, trait-level scores, training guidance, and brand-aligned header and footer details.`, LEFT, doc.y, { width: contentWidth, lineGap: 6 });
     doc.moveDown(0.8);
     doc
       .fontSize(FONT.body)
       .fillColor(COLORS.gray)
       .font('Helvetica')
-      .text('To request a tailored version of this report or a deeper competency analysis, please contact your HireAssess administrator.', LEFT, doc.y, { width: contentWidth, lineGap: 6 });
+      .text(`To request a tailored version of this report, or a deeper competency analysis for ${clientName}, please contact your HireAssess administrator at ${companyName}.`, LEFT, doc.y, { width: contentWidth, lineGap: 6 });
   });
 
   return doc;

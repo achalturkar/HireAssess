@@ -5,7 +5,7 @@ const express = require('express');
 const controller = require('./candidate.controller');
 
 const { authenticate } = require('../../middleware/auth.middleware');
-const { authorize } = require('../../middleware/authorize.middleware');
+const { authorize, requireRole } = require('../../middleware/authorize.middleware');
 const { validate } = require('../../middleware/validate.middleware');
 
 const v = require('./candidate.validator');
@@ -112,7 +112,7 @@ router
     controller.updateCandidate
   )
   .delete(
-    authorize('candidate.delete'),
+    requireRole({ superAdmin: true }),
     validate(v.idParamValidator),
     controller.deleteCandidate
   );

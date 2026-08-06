@@ -13,7 +13,7 @@ export default function CompanyDashboardShell({ children }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex bg-[#0E1226] text-[#F2F4FA]">
+    <div className="min-h-screen flex bg-[var(--background)] text-[var(--foreground)]">
       <CompanySidebar
         collapsed={collapsed}
         onToggleCollapse={() => setCollapsed((v) => !v)}

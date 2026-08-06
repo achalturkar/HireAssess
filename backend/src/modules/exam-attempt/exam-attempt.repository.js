@@ -27,6 +27,20 @@ const findById = (id, companyId) =>
           name: true,
           durationMinutes: true,
           level: true,
+          client: {
+            select: {
+              id: true,
+              name: true,
+              logoUrl: true,
+            },
+          },
+        },
+      },
+      company: {
+        select: {
+          id: true,
+          name: true,
+          logoUrl: true,
         },
       },
     },

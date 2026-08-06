@@ -23,13 +23,13 @@ export default function DashboardShell({
 
     return (
 
-      <div className="flex h-screen items-center justify-center bg-slate-950">
+      <div className="flex h-screen items-center justify-center bg-[var(--background)] text-[var(--foreground)]">
 
         <div className="text-center">
 
-          <div className="h-12 w-12 rounded-full border-4 border-cyan-500 border-t-transparent animate-spin mx-auto"/>
+          <div className="h-12 w-12 rounded-full border-4 border-[var(--primary)] border-t-transparent animate-spin mx-auto"/>
 
-          <p className="mt-4 text-slate-300">
+          <p className="mt-4 text-[var(--muted)]">
 
             Loading Dashboard...
 
@@ -45,7 +45,7 @@ export default function DashboardShell({
 
   return (
 
-    <div className="flex h-screen bg-[#0B1020] text-white overflow-hidden">
+    <div className="flex h-screen bg-[var(--background)] text-[var(--foreground)] overflow-hidden">
 
       <Sidebar
 
@@ -77,7 +77,7 @@ export default function DashboardShell({
 
         <main
 
-          className="flex-1 overflow-y-auto p-6 bg-[#111827]"
+          className="flex-1 overflow-y-auto p-6 "
 
         >
 

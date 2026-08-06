@@ -44,13 +44,18 @@ async function request<T>(
 
   const url = `${API_BASE}${path}`;
 
+  const headers: Record<string, string> = {
+    Authorization: `Bearer ${accessToken}`,
+    ...(init?.headers ? Object.fromEntries(new Headers(init.headers).entries()) : {}),
+  };
+
+  if (!(init?.body instanceof FormData)) {
+    headers["Content-Type"] = "application/json";
+  }
+
   const res = await fetch(url, {
     credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
-      ...(init?.headers ?? {}),
-    },
+    headers,
     ...init,
   });
 
@@ -126,12 +131,12 @@ export async function getClient(
 /* -------------------------------------------------------------------------- */
 
 export async function createClient(
-  payload: CreateClientPayload,
+  payload: CreateClientPayload | FormData,
   accessToken: string | null
 ): Promise<Client> {
   const res = await request<Envelope<Client>>("/clients", accessToken, {
     method: "POST",
-    body: JSON.stringify(payload),
+    body: payload instanceof FormData ? payload : JSON.stringify(payload),
   });
 
   return res.data.data;
@@ -143,12 +148,12 @@ export async function createClient(
 
 export async function updateClient(
   id: string,
-  payload: UpdateClientPayload,
+  payload: UpdateClientPayload | FormData,
   accessToken: string | null
 ): Promise<Client> {
   const res = await request<Envelope<Client>>(`/clients/${id}`, accessToken, {
     method: "PUT",
-    body: JSON.stringify(payload),
+    body: payload instanceof FormData ? payload : JSON.stringify(payload),
   });
 
   return res.data.data;

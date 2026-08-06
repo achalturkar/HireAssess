@@ -4,7 +4,7 @@
 require('tsx/cjs');
 const { PrismaClient } = require('../src/generated/prisma');
 const bcrypt = require('bcrypt');
-require('dotenv').config();
+require('dotenv').config({ override: true });
 
 const { PERMISSIONS, SYSTEM_ROLES } = require('../src/common/constants/permissions');
 
@@ -113,13 +113,18 @@ const COMPANY_ADMIN_MODULES = [
   "audit",
 ];
 
+const COMPANY_ADMIN_REQUIRED_PERMISSIONS = [
+  'company.view',
+  'company.update',
+];
+
 const COMPANY_ADMIN_EXCLUDED_PERMISSIONS = [
   'company.create',
 ];
 
 const companyPermissions = allPermissions.filter(
   (permission) =>
-    COMPANY_ADMIN_MODULES.includes(permission.module) &&
+    (COMPANY_ADMIN_MODULES.includes(permission.module) || COMPANY_ADMIN_REQUIRED_PERMISSIONS.includes(permission.key)) &&
     !COMPANY_ADMIN_EXCLUDED_PERMISSIONS.includes(permission.key)
 );
 

@@ -15,13 +15,14 @@ const generalLimiter = rateLimit({
 });
 
 const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 min
-  max: 20,
+  windowMs: 5 * 60 * 1000, // 5 min
+  max: 30,
   standardHeaders: true,
   legacyHeaders: false,
+  skipSuccessfulRequests: true,
   message: {
     success: false,
-    message: 'Too many authentication attempts. Please try again later.',
+    message: 'Too many authentication requests. Please wait 5 minutes and try again.',
   },
 });
 

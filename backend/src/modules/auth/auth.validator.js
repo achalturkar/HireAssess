@@ -20,6 +20,19 @@ const refreshValidator = [
   body('refreshToken').isString().isLength({ min: 20 }).withMessage('Refresh token is required'),
 ];
 
+const forgotPasswordValidator = [
+  body('email').isEmail().withMessage('Valid email required').normalizeEmail(),
+];
+
+const resetPasswordValidator = [
+  body('token').isString().isLength({ min: 1 }).withMessage('Reset token is required'),
+  strongPassword('newPassword'),
+  body('confirmPassword')
+    .isString()
+    .custom((value, { req }) => value === req.body.newPassword)
+    .withMessage('Passwords must match'),
+];
+
 const logoutValidator = [
   body('refreshToken').optional().isString(),
 ];
@@ -32,6 +45,8 @@ const changePasswordValidator = [
 module.exports = {
   loginValidator,
   refreshValidator,
+  forgotPasswordValidator,
+  resetPasswordValidator,
   logoutValidator,
   changePasswordValidator,
   strongPassword,

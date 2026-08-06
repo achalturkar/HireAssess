@@ -63,6 +63,8 @@ const listCandidates = asyncHandler(async (req, res) => {
       clientId: req.query.clientId,
       status: req.query.status,
       includeDeleted: req.query.includeDeleted,
+      sortBy: req.query.sortBy,
+      sortOrder: req.query.sortOrder,
     },
   });
 

@@ -38,6 +38,7 @@ export interface ListInvitationsParams {
   page?: number;
   limit?: number;
   candidateId?: string;
+  candidateName?: string;
   status?: InvitationStatus | '';
   sortBy?: 'status' | 'expiresAt' | 'createdAt' | 'updatedAt';
   sortOrder?: 'asc' | 'desc';

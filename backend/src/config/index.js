@@ -28,8 +28,10 @@ const config = {
   jwt: {
     accessSecret: requireEnv('JWT_ACCESS_SECRET'),
     refreshSecret: requireEnv('JWT_REFRESH_SECRET'),
+    resetSecret: process.env.JWT_RESET_SECRET || process.env.JWT_ACCESS_SECRET || requireEnv('JWT_ACCESS_SECRET'),
     accessExpiresIn: process.env.JWT_ACCESS_EXPIRES_IN || '15m',
     refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
+    resetExpiresIn: process.env.JWT_RESET_EXPIRES_IN || '1h',
   },
 
   bcrypt: {
@@ -60,6 +62,10 @@ const config = {
   superAdmin: {
     email: process.env.SUPER_ADMIN_EMAIL || 'superadmin@portal.com',
     password: process.env.SUPER_ADMIN_PASSWORD || 'Admin@123',
+  },
+
+  contact: {
+    toEmail: process.env.CONTACT_TO_EMAIL || process.env.SMTP_FROM_EMAIL || 'support@hireassess.com',
   },
 
   logging: {

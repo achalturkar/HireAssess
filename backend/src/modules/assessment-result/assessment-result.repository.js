@@ -32,6 +32,28 @@ const findById = (id, companyId) =>
           candidate: {
             select: { id: true, firstName: true, lastName: true, email: true },
           },
+          assessment: {
+            select: {
+              id: true,
+              name: true,
+              level: true,
+              durationMinutes: true,
+              client: {
+                select: {
+                  id: true,
+                  name: true,
+                  logoUrl: true,
+                },
+              },
+            },
+          },
+          company: {
+            select: {
+              id: true,
+              name: true,
+              logoUrl: true,
+            },
+          },
         },
       },
     },
@@ -60,9 +82,18 @@ const findByAttemptId = (attemptId, companyId) =>
               durationMinutes: true,
               client: {
                 select: {
+                  id: true,
                   name: true,
+                  logoUrl: true,
                 },
               },
+            },
+          },
+          company: {
+            select: {
+              id: true,
+              name: true,
+              logoUrl: true,
             },
           },
         },

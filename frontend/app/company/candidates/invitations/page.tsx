@@ -54,7 +54,7 @@ export default function CandidateInvitationsPage() {
 
   const [page, setPage] = useState(1);
   const [status, setStatus] = useState<InvitationStatus | ''>('');
-  const [candidateIdFilter, setCandidateIdFilter] = useState('');
+  const [candidateFilter, setCandidateFilter] = useState('');
 
   const [createOpen, setCreateOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -76,7 +76,7 @@ export default function CandidateInvitationsPage() {
           page,
           limit: PAGE_SIZE,
           status,
-          candidateId: candidateIdFilter.trim() || undefined,
+          candidateName: candidateFilter.trim() || undefined,
           sortBy: 'createdAt',
           sortOrder: 'desc',
         },
@@ -89,7 +89,7 @@ export default function CandidateInvitationsPage() {
     } finally {
       setLoading(false);
     }
-  }, [page, status, candidateIdFilter, accessToken]);
+  }, [page, status, candidateFilter, accessToken]);
 
   useEffect(() => {
     fetchInvitations();
@@ -223,12 +223,12 @@ export default function CandidateInvitationsPage() {
             <Search size={15} />
           </span>
           <input
-            value={candidateIdFilter}
+            value={candidateFilter}
             onChange={(e) => {
-              setCandidateIdFilter(e.target.value);
+              setCandidateFilter(e.target.value);
               setPage(1);
             }}
-            placeholder="Filter by candidate ID…"
+            placeholder="Search by candidate name or email…"
             className="w-full rounded-lg bg-[#161C3A] border border-white/[0.08] pl-9 pr-3 py-2.5 text-[13.5px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors"
           />
         </div>
