@@ -16,34 +16,6 @@ import {
 } from 'lucide-react';
 import PublicNav from '@/src/components/ui/publicnav';
 import BrandMark from '@/src/components/ui/BrandMark';
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Contact Us",
-
-  description:
-    "Get in touch with HireAssess for product demos, support, enterprise solutions, and partnership opportunities.",
-
-  keywords: [
-    "HireAssess Contact",
-    "Assessment Platform Support",
-    "Recruitment Software Contact",
-    "Customer Support",
-  ],
-
-  alternates: {
-    canonical: "/contact",
-  },
-
-  openGraph: {
-    title: "Contact HireAssess",
-    description:
-      "Contact HireAssess for demos, support, and enterprise solutions.",
-    url: "https://hireassess.brainhuntventures.com/contact",
-  },
-};
-
-
 
 const PHONE_NUMBERS = [
   { label: 'Sales', number: '+91 96890 03720', href: 'tel:+919689003720', icon: MessageSquareText },
