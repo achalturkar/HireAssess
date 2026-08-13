@@ -1,0 +1,13 @@
+{"level":"info","message":"GET /api/v1/auth/me 500 45ms ip=127.0.0.1 user=anon","timestamp":"2026-08-08T09:35:45.551Z"}
+{"level":"info","message":"POST /api/v1/auth/logout 200 315ms ip=127.0.0.1 user=anon","timestamp":"2026-08-08T09:35:45.912Z"}
+{"level":"info","message":"GET /api/v1/roles?page=1&limit=20&sortBy=createdAt&sortOrder=desc 500 3ms ip=127.0.0.1 user=anon","timestamp":"2026-08-08T09:38:05.124Z"}
+{"level":"info","message":"GET /api/v1/permissions 500 6ms ip=127.0.0.1 user=anon","timestamp":"2026-08-08T09:38:05.131Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 183ms ip=127.0.0.1 user=anon","timestamp":"2026-08-08T09:48:39.671Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-08T09:48:39.989Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330/stats 304 99ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-08T09:48:40.116Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330/stats 304 17ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-08T09:48:40.134Z"}
+{"level":"info","message":"GET /api/v1/roles?page=1&limit=20&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-08-08T09:48:44.249Z"}
+{"level":"info","message":"GET /api/v1/roles?page=1&limit=20&sortBy=createdAt&sortOrder=desc 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-08-08T09:48:44.252Z"}
+{"level":"info","message":"GET /api/v1/permissions 500 3ms ip=127.0.0.1 user=anon","timestamp":"2026-08-08T09:48:44.253Z"}
+{"level":"info","message":"GET /api/v1/permissions 500 1ms ip=127.0.0.1 user=anon","timestamp":"2026-08-08T09:48:44.255Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-08T09:51:56.419Z"}
