@@ -14,10 +14,12 @@ import {
   Power,
   PowerOff,
   Globe,
+  Eye,
 } from 'lucide-react';
 import { useAuth } from '@/src/auth/AuthProvider';
 import ClientFormModal from '@/src/components/layout/company/client/ClientFormModal';
 import ClientConfirmDialog from '@/src/components/layout/company/client/ClientConfirmDialog';
+import ClientViewModal from '@/src/components/layout/company/client/ClientViewModal';
 import {
   listClients,
   createClient,
@@ -40,6 +42,15 @@ function initials(name: string) {
     .map((w) => w[0])
     .join('')
     .toUpperCase();
+}
+
+// The backend's logoUrl validator only accepts an absolute external URL
+// (or our own internal /uploads/... path, which we deliberately never
+// re-send — see handleSubmit). Anything the user typed that isn't a real
+// http(s) URL would otherwise 400 the whole update, so we filter it out
+// client-side too instead of relying on the server alone to catch it.
+function isAbsoluteUrl(value: string) {
+  return /^https?:\/\//i.test(value.trim());
 }
 
 function StatusBadge({ status }: { status: ClientStatus }) {
@@ -74,6 +85,8 @@ export default function ClientsPage() {
   const [activeClient, setActiveClient] = useState<Client | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
+
+  const [viewTarget, setViewTarget] = useState<Client | null>(null);
 
   const [deleteTarget, setDeleteTarget] = useState<Client | null>(null);
   const [deleting, setDeleting] = useState(false);
@@ -113,8 +126,6 @@ export default function ClientsPage() {
     } finally {
       setLoading(false);
     }
-    // accessToken is included so a fresh session (or logout/login) re-fetches
-    // with the right credentials instead of reusing a stale closure.
   }, [page, search, status, accessToken]);
 
   useEffect(() => {
@@ -148,6 +159,10 @@ export default function ClientsPage() {
     setModalMode('edit');
   };
 
+  const openView = (client: Client) => {
+    setViewTarget(client);
+  };
+
   const closeModal = () => {
     if (submitting) return;
     setModalMode(null);
@@ -162,7 +177,14 @@ export default function ClientsPage() {
       const payload = new FormData();
       payload.append('clientCode', values.clientCode.trim());
       payload.append('name', values.name.trim());
-      if (values.logoUrl.trim()) payload.append('logoUrl', values.logoUrl.trim());
+
+      // Only forward logoUrl when it's a real external URL the user typed
+      // AND no file was picked — the backend always prefers req.file over
+      // logoUrl when both are present.
+      if (!logoFile && values.logoUrl.trim() && isAbsoluteUrl(values.logoUrl)) {
+        payload.append('logoUrl', values.logoUrl.trim());
+      }
+
       if (values.website.trim()) payload.append('website', values.website.trim());
       if (values.industry.trim()) payload.append('industry', values.industry.trim());
       if (values.contactName.trim()) payload.append('contactName', values.contactName.trim());
@@ -179,16 +201,10 @@ export default function ClientsPage() {
       if (logoFile) payload.append('logo', logoFile);
 
       if (modalMode === 'create') {
-        const created = await createClient(
-          modalMode === 'create'
-            ? (() => {
-                if (isSuperAdmin) payload.append('companyId', values.companyId);
-                else payload.append('companyId', currentUser?.companyId ?? '');
-                return payload;
-              })()
-            : payload,
-          accessToken
-        );
+        if (isSuperAdmin) payload.append('companyId', values.companyId);
+        else payload.append('companyId', currentUser?.companyId ?? '');
+
+        const created = await createClient(payload, accessToken);
         setBanner({ text: `Client "${created.name}" was created.`, tone: 'success' });
       } else if (activeClient) {
         const updated = await updateClient(activeClient.id, payload, accessToken);
@@ -376,7 +392,11 @@ export default function ClientsPage() {
             {!loading &&
               !loadError &&
               clients.map((c, i) => (
-                <tr key={c.id} className="border-t border-white/[0.06] hover:bg-white/[0.03]">
+                <tr
+                  key={c.id}
+                  onClick={() => openView(c)}
+                  className="border-t border-white/[0.06] hover:bg-white/[0.03] cursor-pointer"
+                >
                   <td className="px-5 py-3">
                     <div className="flex items-center gap-3">
                       {c.logoUrl ? (
@@ -438,8 +458,15 @@ export default function ClientsPage() {
                       year: 'numeric',
                     })}
                   </td>
-                  <td className="px-5 py-3">
+                  <td className="px-5 py-3" onClick={(e) => e.stopPropagation()}>
                     <div className="flex items-center justify-end gap-1.5">
+                      <button
+                        onClick={() => openView(c)}
+                        className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#AAB2D4] hover:bg-white/[0.06] transition-colors"
+                        aria-label={`View ${c.name}`}
+                      >
+                        <Eye size={13} />
+                      </button>
                       {c.website && (
                         <a
                           href={c.website}
@@ -514,6 +541,19 @@ export default function ClientsPage() {
           </div>
         </div>
       </div>
+
+      {viewTarget && (
+        <ClientViewModal
+          client={viewTarget}
+          isSuperAdmin={isSuperAdmin}
+          onClose={() => setViewTarget(null)}
+          onEdit={() => {
+            const client = viewTarget;
+            setViewTarget(null);
+            openEdit(client);
+          }}
+        />
+      )}
 
       {modalMode && (
         <ClientFormModal

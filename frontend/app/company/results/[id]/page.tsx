@@ -668,7 +668,7 @@ export default function ResultDetailPage() {
                         console.error(err);
                       }
                     }}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#3FDCC0] px-4 py-2 text-[12.5px] font-semibold text-[#08111E] transition-colors hover:bg-[#30e2b7]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#3FDCC0] px-4 py-2 text-[12.5px] font-semibold text-[#08111E] transition-colors hover:bg-[#30e2b7] hover:cursor-pointer"
                   >
                     <Download size={16} /> Download report
                   </button>

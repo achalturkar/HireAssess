@@ -13,8 +13,8 @@ const COLORS = {
   accent: '#0E7C6B', // wordmark "Assess" + strengths / in-range
   heading: '#0b3b66',
   neutral: '#111827',
-  gray: '#6b7280',
-  lightGray: '#9CA3AF',
+  gray: '#4b5563',
+  lightGray: '#6b7280',
   success: '#10b981', // strengths / in ideal range
   warning: '#f59e0b', // moderate / above ideal range
   danger: '#ef4444', // development areas
@@ -172,46 +172,6 @@ const getTraitMeaning = (traitName) => {
 /* ================================================================== */
 /*  Low-level drawing helpers                                          */
 /* ================================================================== */
-
-const drawBrandMark = (doc, x, y, size) => {
-  doc.save();
-  doc.roundedRect(x, y, size, size, size * 0.28).fill('#12162B');
-  const barW = size * 0.14;
-  const gap = size * 0.08;
-  const baseY = y + size * 0.78;
-  const bars = [
-    { h: size * 0.24, color: '#3FDCC0' },
-    { h: size * 0.42, color: '#F2AE55' },
-    { h: size * 0.56, color: '#3FDCC0' },
-  ];
-  let bx = x + size * 0.18;
-  bars.forEach((bar) => {
-    doc.roundedRect(bx, baseY - bar.h, barW, bar.h, barW * 0.3).fill(bar.color);
-    bx += barW + gap;
-  });
-  doc.restore();
-};
-
-const drawFallbackLogoMark = (doc, x, y, size) => drawBrandMark(doc, x, y, size);
-
-const LOGO_CANDIDATES = ['hireassess-logo.svg', 'hireassess-logo.png'];
-
-const loadLogo = () => {
-  for (const filename of LOGO_CANDIDATES) {
-    const candidate = path.resolve(__dirname, '../../../frontend/public', filename);
-    if (fs.existsSync(candidate)) {
-      if (filename.endsWith('.svg')) {
-        try {
-          return { type: 'svg', content: fs.readFileSync(candidate, 'utf8') };
-        } catch {
-          continue;
-        }
-      }
-      return { type: 'png', filePath: candidate };
-    }
-  }
-  return null;
-};
 
 /**
  * Resolves a logo URL (as stored against a company/client record) to a
@@ -504,7 +464,7 @@ const generateResultPdf = ({ bundle }) => {
     SVGtoPDF = null;
   }
 
-  const doc = new PDFDocument({ size: 'A4', margins: PAGE_MARGINS, autoFirstPage: false });
+  const doc = new PDFDocument({ size: 'A4', margins: PAGE_MARGINS, autoFirstPage: false, bufferPages: true });
   const contentWidth = PAGE_WIDTH - PAGE_MARGINS.left - PAGE_MARGINS.right;
   const LEFT = PAGE_MARGINS.left;
 
@@ -564,58 +524,43 @@ const generateResultPdf = ({ bundle }) => {
 
   /* ---------------------------- header / footer ---------------------------- */
 
-  const HEADER_TOP = 26;
-  const LOGO_SIZE = 30;
-  const COMPANY_LOGO_SIZE = 64;
+  const HEADER_TOP = 30;
+  const COMPANY_LOGO_SIZE = 46;
   const FOOTER_LOGO_SIZE = 40;
+  // Height of the row that holds the wordmark text on the left and the
+  // company logo on the right, so both can be vertically centred against
+  // each other regardless of which one is taller.
+  const HEADER_ROW_HEIGHT = Math.max(COMPANY_LOGO_SIZE, 34);
 
-  const drawHeader = () => {
+  const drawHeader = (pageNumber) => {
     const left = doc.page.margins.left;
     const right = doc.page.width - doc.page.margins.right;
-    const platformLogo = loadLogo();
-    let drewPlatformLogo = false;
 
-    if (platformLogo?.type === 'svg' && SVGtoPDF) {
-      try {
-        SVGtoPDF(doc, platformLogo.content, left, HEADER_TOP, { width: LOGO_SIZE, height: LOGO_SIZE, assumePt: true });
-        drewPlatformLogo = true;
-      } catch {
-        drewPlatformLogo = false;
-      }
-    } else if (platformLogo?.type === 'png') {
-      try {
-        doc.image(platformLogo.filePath, left, HEADER_TOP, { fit: [LOGO_SIZE, LOGO_SIZE], align: 'center', valign: 'center' });
-        drewPlatformLogo = true;
-      } catch {
-        drewPlatformLogo = false;
-      }
-    }
-    if (!drewPlatformLogo) {
-      drawFallbackLogoMark(doc, left, HEADER_TOP, LOGO_SIZE);
-    }
-    // Draw the assessment partner's (company's) logo on the right when
-    // available. Do NOT fall back to the platform logo on the right —
-    // leave it blank when missing, so the two brand marks are never
-    // confused with one another.
-    if (companyLogo) {
-      drawLogoBox(doc, SVGtoPDF, companyLogo, right - COMPANY_LOGO_SIZE, HEADER_TOP, COMPANY_LOGO_SIZE);
-    }
-
-    const textX = left + LOGO_SIZE + 10;
-    doc.font('Helvetica-Bold').fontSize(15).fillColor(COLORS.brandDark).text('Hire', textX, HEADER_TOP + 1, { continued: true, lineBreak: false });
+    // Wordmark only — no icon/logo mark before the name — vertically
+    // centred in the header row.
+    const textBlockHeight = 15 + 4 + 9; // title line + gap + subtitle line
+    const textY = HEADER_TOP + (HEADER_ROW_HEIGHT - textBlockHeight) / 2;
+    doc.font('Helvetica-Bold').fontSize(14).fillColor(COLORS.brandDark).text('Hire', left, textY, { continued: true, lineBreak: false });
     doc.fillColor(COLORS.accent).text('Assess', { continued: false, lineBreak: false });
-    doc.font('Helvetica').fontSize(8).fillColor(COLORS.gray).text('Psychometric Assessment & Training Insights Report', textX, HEADER_TOP + 18, { lineBreak: false });
+    // doc.font('Helvetica').fontSize(8.5).fillColor(COLORS.gray).text('Psychometric Assessment & Training Insights Report', left, textY + 19, { lineBreak: false });
 
-    const dividerY = HEADER_TOP + LOGO_SIZE + 12;
-    doc
-      .strokeColor(COLORS.border)
-      .lineWidth(0.75)
-      .moveTo(left, dividerY)
-      .lineTo(right, dividerY)
-      .stroke();
+    // Assessment partner's (company's) logo, right-aligned on the same row
+    // as the wordmark. Left blank when missing rather than falling back to
+    // any other mark, so it's never confused with a different brand.
+    if (companyLogo) {
+      const logoY = HEADER_TOP + (HEADER_ROW_HEIGHT - COMPANY_LOGO_SIZE) / 2;
+      drawLogoBox(doc, SVGtoPDF, companyLogo, right - COMPANY_LOGO_SIZE, logoY, COMPANY_LOGO_SIZE);
+    }
+
+    // Small running page number, top-right corner — mirrors the plain
+    // "Candidate, date    N" page-number convention used by reference
+    // psychometric reports, without disturbing the wordmark/logo row.
+    // if (pageNumber != null) {
+    //   doc.font('Helvetica').fontSize(8).fillColor(COLORS.lightGray).text(String(pageNumber), left, HEADER_TOP, { width: right - left, align: 'right', lineBreak: false });
+    // }
 
     doc.x = left;
-    doc.y = dividerY + 16;
+    doc.y = HEADER_TOP + HEADER_ROW_HEIGHT + 28;
   };
 
   const pageHeader = (title, subtitle) => {
@@ -629,73 +574,74 @@ const generateResultPdf = ({ bundle }) => {
   };
 
   /**
-   * Footer layout (top to bottom):
-   *   1. Client logo — right-aligned, sitting just above the divider line
-   *      (i.e. clearly "above the footer" rather than crowding the text row).
-   *   2. Divider line.
-   *   3. A single text row split into three columns: candidate/client info
+   * Footer layout (top to bottom), no divider line:
+   *   1. Client logo — right-aligned, sitting just above the text row.
+   *   2. A single text row split into three columns: candidate/client info
    *      on the left, the company copyright notice centered, and the
    *      report date on the right.
    */
-  const drawFooter = () => {
+  const drawFooter = (pageNumber) => {
     const left = doc.page.margins.left;
     const right = doc.page.width - doc.page.margins.right;
 
-    const textRowY = doc.page.height - doc.page.margins.bottom - 20;
-    const dividerY = textRowY - 10;
-    const logoY = dividerY - FOOTER_LOGO_SIZE - 6;
+    const textRowY = doc.page.height - doc.page.margins.bottom - 22;
+    const logoY = textRowY - FOOTER_LOGO_SIZE - 12;
 
     if (clientLogo) {
       drawLogoBox(doc, SVGtoPDF, clientLogo, right - FOOTER_LOGO_SIZE, logoY, FOOTER_LOGO_SIZE);
     }
 
-    doc
-      .strokeColor(COLORS.border)
-      .lineWidth(0.5)
-      .moveTo(left, dividerY)
-      .lineTo(right, dividerY)
-      .stroke();
-
     const colWidth = contentWidth / 3;
     doc
       .font('Helvetica')
       .fontSize(FONT.tiny)
-      .fillColor(COLORS.lightGray)
+      .fillColor(COLORS.gray)
       .text(`Candidate: ${candidateName}  ·  Client: ${clientName}`, left, textRowY, { width: colWidth, lineBreak: false });
     doc
       .font('Helvetica')
       .fontSize(FONT.tiny)
-      .fillColor(COLORS.lightGray)
+      .fillColor(COLORS.gray)
       .text(`© ${COMPANY_NAME} All rights reserved.`, left + colWidth, textRowY, { width: colWidth, align: 'center', lineBreak: false });
+    const dateText = pageNumber != null ? `Report date: ${reportDate}  ·  Page ${pageNumber}` : `Report date: ${reportDate}`;
     doc
       .font('Helvetica')
       .fontSize(FONT.tiny)
-      .fillColor(COLORS.lightGray)
-      .text(`Report date: ${reportDate}`, left + colWidth * 2, textRowY, { width: colWidth, align: 'right', lineBreak: false });
+      .fillColor(COLORS.gray)
+      .text(dateText, left + colWidth * 2, textRowY, { width: colWidth, align: 'right', lineBreak: false });
   };
 
-  const addPage = (title, subtitle, contentFn) => {
+  // Running page counter + a record of top-level sections and the page
+  // each one starts on, so a Contents page can be filled in with real
+  // page numbers once the full page count is known.
+  let pageCounter = 0;
+  const tocEntries = [];
+
+  const addPage = (title, subtitle, contentFn, opts = {}) => {
     doc.addPage();
-    drawHeader();
+    pageCounter += 1;
+    if (opts.toc !== false) tocEntries.push({ title, page: pageCounter });
+    drawHeader(pageCounter);
     pageHeader(title, subtitle);
     contentFn();
-    drawFooter();
+    drawFooter(pageCounter);
+    return pageCounter;
   };
 
   /** Breaks to a fresh (headered) page if `needed` px won't fit before the footer. */
   const ensureSpace = (needed, continuation) => {
     const bottom = doc.page.height - doc.page.margins.bottom - 40;
     if (doc.y + needed > bottom) {
-      drawFooter();
+      drawFooter(pageCounter);
       doc.addPage();
-      drawHeader();
+      pageCounter += 1;
+      drawHeader(pageCounter);
       pageHeader(continuation.title, continuation.subtitle);
     }
   };
 
   /* ---------------------------------- pages ---------------------------------- */
 
-  addPage(
+  const coverPageNumber = addPage(
     'Candidate & Assessment Summary',
     'Candidate identity, assessment partner, and client engagement details for this attempt.',
     () => {
@@ -786,6 +732,15 @@ const generateResultPdf = ({ bundle }) => {
         );
     }
   );
+
+  // Reserve the Contents page right after the cover. Its real content is
+  // filled in at the very end of generation, once every later section's
+  // actual page number is known — bufferPages lets us switch back to this
+  // page and draw into it without disturbing anything already rendered.
+  doc.addPage();
+  pageCounter += 1;
+  const tocPageNumber = pageCounter;
+  const tocPageIndex = doc.bufferedPageRange().start + (tocPageNumber - 1);
 
   addPage(
     'Assessment Question Breakdown',
@@ -1017,27 +972,46 @@ const generateResultPdf = ({ bundle }) => {
     }
   );
 
-  addPage('Thank You', 'Report completion and next steps.', () => {
-    doc
-      .fontSize(FONT.body)
-      .font('Helvetica')
-      .fillColor(COLORS.gray)
-      .text('Thank you for reviewing this assessment report. It is intended to support transparent, data-driven hiring decisions, and to help design targeted training that closes any identified skill gaps.', LEFT, doc.y, { width: contentWidth, lineGap: 6 });
-    doc.moveDown(0.8);
-    doc.fontSize(11).font('Helvetica-Bold').fillColor(COLORS.neutral).text('About HireAssess', LEFT, doc.y);
-    doc.moveDown(0.3);
-    doc
-      .fontSize(FONT.body)
-      .fillColor(COLORS.gray)
-      .font('Helvetica')
-      .text(`HireAssess is a psychometric assessment platform built by ${COMPANY_NAME}. It is used by assessment providers and training consultancies to evaluate candidates on behalf of their clients, and to translate the results into focused, actionable training plans. This report is optimised for print or PDF distribution, with a colour-coded breakdown of performance, trait-level scores, training guidance, and brand-aligned header and footer details.`, LEFT, doc.y, { width: contentWidth, lineGap: 6 });
-    doc.moveDown(0.8);
-    doc
-      .fontSize(FONT.body)
-      .fillColor(COLORS.gray)
-      .font('Helvetica')
-      .text(`To request a tailored version of this report, or a deeper competency analysis for ${clientName}, please contact your HireAssess administrator at ${companyName}.`, LEFT, doc.y, { width: contentWidth, lineGap: 6 });
+  /* ---------------------------------- contents ---------------------------------- */
+
+  // Now that every section has a real page number, switch back to the
+  // reserved page and draw the Contents list — numbered entries with a
+  // dotted leader running to a right-aligned page number, matching the
+  // reference report's table-of-contents convention.
+  doc.switchToPage(tocPageIndex);
+  drawHeader(tocPageNumber);
+  pageHeader('Contents', 'Sections included in this report, with page references.');
+
+  const rowH = 22;
+  const tocStartY = doc.y;
+  tocEntries.forEach((entry, i) => {
+    const rowY = tocStartY + i * rowH;
+    const indexLabel = `${i + 1}.`;
+    doc.font('Helvetica-Bold').fontSize(10.5).fillColor(COLORS.neutral).text(indexLabel, LEFT, rowY, { width: 20, lineBreak: false });
+    doc.font('Helvetica').fontSize(10.5).fillColor(COLORS.neutral).text(entry.title, LEFT + 22, rowY, { width: contentWidth - 60, lineBreak: false });
+
+    const pageLabel = String(entry.page);
+    doc.font('Helvetica-Bold').fontSize(10.5).fillColor(COLORS.heading).text(pageLabel, LEFT + contentWidth - 30, rowY, { width: 30, align: 'right', lineBreak: false });
+
+    // Dotted leader between the title and the page number.
+    const titleWidth = doc.font('Helvetica').fontSize(10.5).widthOfString(entry.title);
+    const leaderStart = LEFT + 22 + titleWidth + 6;
+    const leaderEnd = LEFT + contentWidth - 36;
+    if (leaderEnd > leaderStart) {
+      doc.save();
+      doc.dash(1, { space: 2 }).moveTo(leaderStart, rowY + 8).lineTo(leaderEnd, rowY + 8).lineWidth(0.75).strokeColor(COLORS.border).stroke();
+      doc.undash();
+      doc.restore();
+    }
   });
+  doc.y = tocStartY + tocEntries.length * rowH + 10;
+  doc.x = LEFT;
+
+  doc.save();
+  doc.moveTo(LEFT, doc.y).lineTo(LEFT + contentWidth, doc.y).lineWidth(0.75).strokeColor(COLORS.border).stroke();
+  doc.restore();
+
+  drawFooter(tocPageNumber);
 
   return doc;
 };

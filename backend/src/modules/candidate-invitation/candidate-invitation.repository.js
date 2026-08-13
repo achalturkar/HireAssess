@@ -68,6 +68,9 @@ const setStatus = (id, status) =>
 
 /**
  * List Invitations
+ * orderBy takes an array with a tie-breaker on `id` so invitations
+ * created in the same millisecond (e.g. bulk invites) still return in a
+ * stable, deterministic order across pages.
  */
 const list = async ({
   companyId,
@@ -89,7 +92,7 @@ const list = async ({
       where,
       skip,
       take: limit,
-      orderBy: { [sortBy]: sortOrder },
+      orderBy: [{ [sortBy]: sortOrder }, { id: 'desc' }],
       include: {
         candidate: {
           select: { id: true, firstName: true, lastName: true, email: true },

@@ -1,6 +1,19 @@
 'use strict';
 
 const { body, param, query } = require('express-validator');
+const validatorLib = require('validator');
+
+// logoUrl comes back from two different places: a user manually pasting an
+// external image URL, OR our own service round-tripping the path it just
+// wrote to disk (e.g. "/uploads/clients/xxx.png") when a client is edited
+// without touching the logo. isURL() alone only accepts the first case —
+// rejecting the second meant every edit of an existing client 400'd before
+// reaching the controller, even if nothing about the logo changed.
+const isLogoUrlValid = (value) => {
+  if (typeof value !== 'string') return false;
+  if (value.startsWith('/')) return true; // our own storage path
+  return validatorLib.isURL(value);
+};
 
 /**
  * Create Client Validation
@@ -21,8 +34,9 @@ const createValidator = [
     .isLength({ min: 2, max: 255 }),
 
   body('logoUrl')
-    .optional()
-    .isURL(),
+    .optional({ checkFalsy: true })
+    .custom(isLogoUrlValid)
+    .withMessage('logoUrl must be a valid URL'),
 
   body('website')
     .optional()
@@ -93,8 +107,9 @@ const updateValidator = [
     .isLength({ min: 2, max: 255 }),
 
   body('logoUrl')
-    .optional()
-    .isURL(),
+    .optional({ checkFalsy: true })
+    .custom(isLogoUrlValid)
+    .withMessage('logoUrl must be a valid URL'),
 
   body('website')
     .optional()
@@ -169,10 +184,6 @@ const listValidator = [
     .optional()
     .isInt({ min: 1 }),
 
-  // Raised from 100 -> 500. The Assessments page and its create/edit modal
-  // both request `limit: 200` to populate the client dropdown in one shot,
-  // so a max of 100 rejected that request with a 400 before it ever reached
-  // the controller - which is why the dropdown showed up empty.
   query('limit')
     .optional()
     .isInt({ min: 1, max: 500 }),

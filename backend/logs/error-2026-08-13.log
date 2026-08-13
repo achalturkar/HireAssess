@@ -1,0 +1,2 @@
+{"level":"error","message":"Mailer: SMTP verification failed — Timeout","timestamp":"2026-08-13T03:55:21.343Z"}
+{"level":"error","message":"Mailer: SMTP verification failed — read ECONNRESET","timestamp":"2026-08-13T03:57:56.299Z"}

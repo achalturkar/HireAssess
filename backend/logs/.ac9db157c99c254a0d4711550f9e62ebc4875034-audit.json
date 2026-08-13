@@ -6,26 +6,6 @@
     "auditLog": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\.ac9db157c99c254a0d4711550f9e62ebc4875034-audit.json",
     "files": [
         {
-            "date": 1785139584865,
-            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-07-27.log",
-            "hash": "6fdebfc0ba8667d01830f8af0077fb2ce66cca9b73e4a7bb575e2fbd83860531"
-        },
-        {
-            "date": 1785209686970,
-            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-07-28.log",
-            "hash": "2aa52a1af1e9925f370156d30f47898699e1c7b5ec1654f8dad3d59eb7f51463"
-        },
-        {
-            "date": 1785264753313,
-            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-07-29.log",
-            "hash": "31749c34c6d501009c32fe6bb868ba8be4acdf190ca08d5bb45fa7b480de54eb"
-        },
-        {
-            "date": 1785350538803,
-            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-07-30.log",
-            "hash": "3a731e120e4f5cf9d9ec80249d91008cb92ae9db834f1b24a9082cdbb91bdd7a"
-        },
-        {
             "date": 1785452846021,
             "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-07-31.log",
             "hash": "f711593c9d8e65d9914f04fa569eb63a8e34ff0a4bdd4ae490a85798d04a722f"
@@ -59,6 +39,36 @@
             "date": 1785954650398,
             "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-06.log",
             "hash": "ae0fc0f7b57f5f5f0d1a7ca73f36647d180b6df9407ae9f8af5a4baae5f844b3"
+        },
+        {
+            "date": 1786041786113,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-07.log",
+            "hash": "64346afba53c2c3c1f3deb049dea0871e65e65bc4fc129de362dad1adf522cb5"
+        },
+        {
+            "date": 1786181745571,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-08.log",
+            "hash": "bc850f4a1408aa250696c1fac7f5bff40df1eba7dfa54584f6118065f6e9e3cb"
+        },
+        {
+            "date": 1786338909028,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-10.log",
+            "hash": "31e1f136d1a8ab96af6d495a4036569575d1f5212b6bba516be3551c5206d3cc"
+        },
+        {
+            "date": 1786422987823,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-11.log",
+            "hash": "7447989c89896353e9fab34ee5329fb597c1c7f75207c1ac06d66f11f9af44cc"
+        },
+        {
+            "date": 1786516976813,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-12.log",
+            "hash": "4f081e44066625ff3d4ad68e8fbd6914c150be23f4173871d7d2f5522c2c73e5"
+        },
+        {
+            "date": 1786591143180,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-13.log",
+            "hash": "71af33f1e5074b0a8d9b5d0f5b99437e6ca2f3a2531853e4026f458ec783e5dd"
         }
     ],
     "hashType": "sha256"

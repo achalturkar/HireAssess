@@ -7,6 +7,16 @@ import { Home, Mail, Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/src/components/layout/theme-toggle';
 import BrandMark from '@/src/components/ui/BrandMark';
 
+// These four were already theme-aware via var(--surface)/var(--border)/
+// var(--primary)/var(--foreground) — left untouched below. Everything
+// else in this file was hardcoded to dark-mode hex values (#AAB2D4,
+// #F2F4FA, white/[0.05]), which is why links/icons disappeared or went
+// low-contrast in light mode. Those get dark: pairs below instead.
+const linkIdle = 'text-slate-500 dark:text-[#AAB2D4]';
+const linkHover = 'hover:text-slate-900 dark:hover:text-[#F2F4FA] hover:bg-slate-100 dark:hover:bg-white/[0.05]';
+const linkActive = 'text-[#3FDCC0] bg-[#3FDCC0]/10'; // brand accent, already reads fine on light or dark
+const iconMuted = 'text-slate-500 dark:text-[#AAB2D4] hover:text-slate-900 dark:hover:text-[#F2F4FA] hover:bg-slate-100 dark:hover:bg-white/[0.05]';
+
 const LINKS = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/contact', label: 'Contact', icon: Mail },
@@ -39,10 +49,8 @@ export default function PublicNav() {
               <Link
                 key={href}
                 href={href}
-                className={`flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-[13px] font-medium transition-colors ${
-                  active
-                    ? 'text-[#3FDCC0] bg-[#3FDCC0]/10'
-                    : 'text-[#AAB2D4] hover:text-[#F2F4FA] hover:bg-white/[0.05]'
+                className={`flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-[13px] font-medium  ${
+                  active ? linkActive : `${linkIdle} ${linkHover}`
                 }`}
               >
                 <Icon size={14} />
@@ -73,7 +81,7 @@ export default function PublicNav() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-[#AAB2D4] hover:text-[#F2F4FA] hover:bg-white/[0.05] transition-colors"
+            className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors ${iconMuted}`}
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -91,9 +99,7 @@ export default function PublicNav() {
                 href={href}
                 onClick={() => setOpen(false)}
                 className={`flex items-center gap-2 rounded-lg px-3.5 py-2.5 text-[13px] font-medium transition-colors ${
-                  active
-                    ? 'text-[#3FDCC0] bg-[#3FDCC0]/10'
-                    : 'text-[#AAB2D4] hover:text-[#F2F4FA] hover:bg-white/[0.05]'
+                  active ? linkActive : `${linkIdle} ${linkHover}`
                 }`}
               >
                 <Icon size={14} />

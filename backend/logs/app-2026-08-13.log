@@ -1,0 +1,248 @@
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T03:19:17.194Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T03:19:17.197Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T03:19:19.151Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 110ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T03:19:39.237Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 20ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:39.839Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330/stats 304 99ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:39.978Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330/stats 304 18ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:39.997Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:45.749Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:45.756Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:46.055Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:46.057Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:46.067Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:46.071Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:47.146Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 13ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:47.155Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:47.157Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 13ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:19:47.171Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57 304 55ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:20:01.793Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57 304 24ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:20:01.819Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57/pdf 200 4907ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:20:10.297Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330 304 43ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:34:09.622Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330 304 3ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:34:09.626Z"}
+{"level":"info","message":"GET /uploads/companies/1786556529952-e3f38ca8-a730-4cbf-84d4-d99509ee561a.jpg 304 2ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T03:34:09.937Z"}
+{"level":"info","message":"PUT /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330 200 26ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:34:18.726Z"}
+{"level":"info","message":"GET /uploads/companies/1786592058708-9ec53f2b-6be9-4492-983d-4a2378e2c8aa.png 200 3ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T03:34:18.735Z"}
+{"level":"info","message":"PUT /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330 200 15ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:34:25.395Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 46ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:34:32.061Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:34:32.066Z"}
+{"level":"info","message":"GET /uploads/clients/1785951609953-171d2914-a9f9-4f9e-bac0-4b7c3d9f9970.svg 304 1ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T03:34:32.087Z"}
+{"level":"info","message":"GET /uploads/clients/1785958347367-a9d589c3-2c3d-41f1-b19a-70d8fe1c47ed.jpeg 304 2ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T03:34:32.088Z"}
+{"level":"info","message":"PUT /api/v1/clients/b3068332-6075-45fa-b960-25eca98b53d0 500 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:34:44.520Z"}
+{"level":"info","message":"PUT /api/v1/clients/b3068332-6075-45fa-b960-25eca98b53d0 500 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:35:04.314Z"}
+{"level":"info","message":"PUT /api/v1/clients/13b1617c-8e48-4f92-971c-10b1cfcd8f95 200 82ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:41:51.192Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 40ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:41:51.236Z"}
+{"level":"info","message":"GET /uploads/clients/1785951609953-171d2914-a9f9-4f9e-bac0-4b7c3d9f9970.svg 304 1ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T03:41:51.257Z"}
+{"level":"info","message":"GET /uploads/clients/1785958347367-a9d589c3-2c3d-41f1-b19a-70d8fe1c47ed.jpeg 304 2ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T03:41:51.258Z"}
+{"level":"info","message":"PUT /api/v1/clients/13b1617c-8e48-4f92-971c-10b1cfcd8f95 200 32ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:42:10.250Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:42:10.257Z"}
+{"level":"info","message":"GET /uploads/clients/1786592530221-2cd462b3-a622-46b3-9d99-5a89d77416c2.webp 200 3ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T03:42:10.277Z"}
+{"level":"info","message":"PUT /api/v1/clients/13b1617c-8e48-4f92-971c-10b1cfcd8f95 500 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:42:23.114Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T03:45:14.876Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T03:45:14.879Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 60ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:45:47.457Z"}
+{"level":"info","message":"PUT /api/v1/clients/13b1617c-8e48-4f92-971c-10b1cfcd8f95 200 43ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:49:51.986Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:49:51.996Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 22ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:49:56.018Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:49:56.057Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:49:56.066Z"}
+{"level":"info","message":"GET /uploads/clients/1785951609953-171d2914-a9f9-4f9e-bac0-4b7c3d9f9970.svg 304 4ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T03:49:56.096Z"}
+{"level":"info","message":"GET /uploads/clients/1786592530221-2cd462b3-a622-46b3-9d99-5a89d77416c2.webp 304 4ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T03:49:56.098Z"}
+{"level":"info","message":"GET /uploads/clients/1785958347367-a9d589c3-2c3d-41f1-b19a-70d8fe1c47ed.jpeg 304 5ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T03:49:56.099Z"}
+{"level":"info","message":"PUT /api/v1/clients/13b1617c-8e48-4f92-971c-10b1cfcd8f95 200 13ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:50:11.178Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:50:11.188Z"}
+{"level":"info","message":"GET /api/v1/users?page=1&limit=20&sortBy=createdAt&sortOrder=desc 200 44ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:50:26.041Z"}
+{"level":"info","message":"GET /api/v1/users?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:50:26.048Z"}
+{"level":"info","message":"GET /api/v1/users?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:50:33.212Z"}
+{"level":"info","message":"GET /api/v1/users?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 13ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:50:33.226Z"}
+{"level":"info","message":"GET /api/v1/permissions 200 13ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:50:40.615Z"}
+{"level":"info","message":"GET /api/v1/permissions 304 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:50:40.622Z"}
+{"level":"info","message":"GET /api/v1/roles?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 55ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:50:40.662Z"}
+{"level":"info","message":"GET /api/v1/roles?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:50:40.670Z"}
+{"level":"info","message":"GET /api/v1/users?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 44ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:51:05.934Z"}
+{"level":"info","message":"GET /api/v1/users?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:51:05.939Z"}
+{"level":"info","message":"GET /api/v1/roles?companyId=5aa7028d-46c0-4e35-a685-8a5cbaa3a330&limit=100 304 16ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:51:09.644Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 14ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:51:18.573Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:51:20.625Z"}
+{"level":"info","message":"GET /api/v1/users?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:51:20.654Z"}
+{"level":"info","message":"GET /api/v1/users?page=1&limit=20&sortBy=createdAt&sortOrder=desc 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:51:20.663Z"}
+{"level":"error","message":"Mailer: SMTP verification failed — Timeout","timestamp":"2026-08-13T03:55:21.343Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T03:57:36.602Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T03:57:36.604Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 67ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:57:40.556Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 14ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:57:40.571Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:57:40.803Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 4ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:57:40.809Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57 200 39ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:57:42.378Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57 304 27ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:57:42.408Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57/pdf 200 2520ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:57:47.508Z"}
+{"level":"error","message":"Mailer: SMTP verification failed — read ECONNRESET","timestamp":"2026-08-13T03:57:56.299Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T03:58:07.646Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T03:58:07.649Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T03:58:09.462Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57/pdf 200 470ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T03:58:17.462Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 49ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T04:02:47.215Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 5ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T04:02:47.222Z"}
+{"level":"info","message":"GET /uploads/clients/1785951609953-171d2914-a9f9-4f9e-bac0-4b7c3d9f9970.svg 304 3ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T04:02:47.244Z"}
+{"level":"info","message":"GET /uploads/clients/1786592530221-2cd462b3-a622-46b3-9d99-5a89d77416c2.webp 304 3ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T04:02:47.246Z"}
+{"level":"info","message":"GET /uploads/clients/1785958347367-a9d589c3-2c3d-41f1-b19a-70d8fe1c47ed.jpeg 304 4ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T04:02:47.247Z"}
+{"level":"info","message":"PUT /api/v1/clients/13b1617c-8e48-4f92-971c-10b1cfcd8f95 200 38ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T04:02:55.071Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 200 6ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T04:02:55.079Z"}
+{"level":"info","message":"GET /uploads/clients/1786593775040-1ebdd21a-0b88-4c0f-a527-cec9e59df907.png 200 4ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T04:02:55.099Z"}
+{"level":"info","message":"POST /api/v1/auth/logout 200 88ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T05:12:00.361Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 251ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T05:40:11.532Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 28ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:40:13.194Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330/stats 304 163ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:40:13.431Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330/stats 304 25ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:40:13.458Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 18ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:40:37.951Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:40:37.965Z"}
+{"level":"info","message":"GET /uploads/clients/1785951609953-171d2914-a9f9-4f9e-bac0-4b7c3d9f9970.svg 304 4ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T05:40:38.023Z"}
+{"level":"info","message":"GET /uploads/clients/1786593775040-1ebdd21a-0b88-4c0f-a527-cec9e59df907.png 304 4ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T05:40:38.024Z"}
+{"level":"info","message":"GET /uploads/clients/1785958347367-a9d589c3-2c3d-41f1-b19a-70d8fe1c47ed.jpeg 304 4ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T05:40:38.026Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330/stats 304 20ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:40:40.223Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330/stats 304 32ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:40:40.259Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 20ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:40:46.052Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 13ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:40:46.071Z"}
+{"level":"info","message":"GET /uploads/clients/1785951609953-171d2914-a9f9-4f9e-bac0-4b7c3d9f9970.svg 304 3ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T05:40:46.114Z"}
+{"level":"info","message":"GET /uploads/clients/1786593775040-1ebdd21a-0b88-4c0f-a527-cec9e59df907.png 304 4ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T05:40:46.116Z"}
+{"level":"info","message":"GET /uploads/clients/1785958347367-a9d589c3-2c3d-41f1-b19a-70d8fe1c47ed.jpeg 304 7ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T05:40:46.119Z"}
+{"level":"info","message":"GET /uploads/clients/1786593775040-1ebdd21a-0b88-4c0f-a527-cec9e59df907.png 304 1ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T05:40:55.163Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330 200 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:43:33.245Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330 304 7ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:43:33.254Z"}
+{"level":"info","message":"GET /uploads/companies/1786592058708-9ec53f2b-6be9-4492-983d-4a2378e2c8aa.png 304 1ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T05:43:33.571Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 37ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:44:00.826Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 26ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:44:05.152Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 47ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:44:05.185Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:44:05.188Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 19ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:44:05.208Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300 200 216ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:58:58.152Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300 304 48ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:58:58.203Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300/pdf 200 181ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T05:59:00.297Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300 304 120ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:26:14.626Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T06:26:37.398Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T06:26:37.403Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T06:26:39.399Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300/pdf 200 855ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:26:46.374Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T06:27:42.399Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T06:27:42.404Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T06:27:45.853Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300 304 131ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:28:56.567Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 133ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:29:56.857Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 20ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:29:56.883Z"}
+{"level":"info","message":"GET /uploads/clients/1785951609953-171d2914-a9f9-4f9e-bac0-4b7c3d9f9970.svg 304 6ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T06:29:56.930Z"}
+{"level":"info","message":"GET /uploads/clients/1786593775040-1ebdd21a-0b88-4c0f-a527-cec9e59df907.png 304 6ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T06:29:56.933Z"}
+{"level":"info","message":"GET /uploads/clients/1785958347367-a9d589c3-2c3d-41f1-b19a-70d8fe1c47ed.jpeg 304 7ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T06:29:56.935Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330/stats 304 180ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:03.657Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330/stats 304 30ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:03.689Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 21ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:38.794Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 24ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:38.823Z"}
+{"level":"info","message":"GET /uploads/clients/1785951609953-171d2914-a9f9-4f9e-bac0-4b7c3d9f9970.svg 304 3ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T06:30:38.861Z"}
+{"level":"info","message":"GET /uploads/clients/1786593775040-1ebdd21a-0b88-4c0f-a527-cec9e59df907.png 304 4ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T06:30:38.863Z"}
+{"level":"info","message":"GET /uploads/clients/1785958347367-a9d589c3-2c3d-41f1-b19a-70d8fe1c47ed.jpeg 304 5ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T06:30:38.865Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 16ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:40.666Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 200 18ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:40.686Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:40.699Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 10ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:40.711Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 16ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:43.067Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:43.088Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 40ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:43.097Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 16ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:43.119Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57 304 48ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:45.638Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57 304 25ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:30:45.665Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 34ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:31:05.290Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 12ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:31:40.068Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57 304 31ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:31:40.132Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57 304 22ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:31:40.157Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T06:39:11.430Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T06:39:11.434Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T06:39:13.270Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57/pdf 200 804ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:39:30.644Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 99ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:40.772Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:40.785Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 60ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:41.034Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 56ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:41.044Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 13ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:41.049Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:41.059Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 23ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:41.549Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 36ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:41.571Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 21ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:41.596Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 94ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:41.646Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300 304 87ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:49.024Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300 304 53ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:49.080Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300/pdf 200 139ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:49:52.460Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T06:52:51.501Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T06:52:51.505Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T06:52:53.372Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300/pdf 200 982ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:52:58.548Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T06:53:59.440Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T06:53:59.444Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T06:54:01.510Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300/pdf 200 787ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:54:04.206Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T06:56:16.723Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T06:56:16.727Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T06:56:18.607Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300/pdf 200 726ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T06:56:21.843Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 110ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:04:29.580Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330/stats 304 161ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:04:42.942Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330/stats 304 34ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:04:42.978Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T07:20:33.266Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T07:20:33.269Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T07:20:35.320Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 130ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:20:58.438Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 21ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:20:58.462Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 14ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:20:58.629Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 9ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:20:58.640Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300 304 64ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:21:01.774Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300 304 38ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:21:01.814Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300/pdf 200 817ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:21:04.487Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T07:23:01.884Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T07:23:01.888Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T07:23:04.012Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300/pdf 200 696ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:23:05.616Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T07:24:07.522Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T07:24:07.526Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T07:24:09.345Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300/pdf 200 819ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:24:12.784Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T07:24:38.088Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T07:24:38.092Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T07:24:40.264Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300/pdf 200 706ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:24:43.683Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T07:30:45.516Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T07:30:45.519Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T07:30:47.470Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300/pdf 200 747ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:30:51.399Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T07:31:06.609Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T07:31:06.612Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T07:31:08.792Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300/pdf 200 603ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:31:11.247Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 71ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:39:54.385Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300 304 51ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:39:54.465Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/cc5c53e5-2923-41f2-baef-3c0365475300 304 32ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:39:54.498Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 85ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:39:57.699Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 14ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:39:57.715Z"}
+{"level":"info","message":"GET /uploads/clients/1786593775040-1ebdd21a-0b88-4c0f-a527-cec9e59df907.png 304 4ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T07:39:57.759Z"}
+{"level":"info","message":"GET /uploads/clients/1785958347367-a9d589c3-2c3d-41f1-b19a-70d8fe1c47ed.jpeg 304 4ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T07:39:57.761Z"}
+{"level":"info","message":"GET /uploads/clients/1785951609953-171d2914-a9f9-4f9e-bac0-4b7c3d9f9970.svg 304 5ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T07:39:57.764Z"}
+{"level":"info","message":"GET /uploads/clients/1785951609953-171d2914-a9f9-4f9e-bac0-4b7c3d9f9970.svg 304 1ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T07:40:01.428Z"}
+{"level":"info","message":"GET /uploads/clients/1786593775040-1ebdd21a-0b88-4c0f-a527-cec9e59df907.png 304 1ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T07:40:19.572Z"}
+{"level":"info","message":"GET /uploads/clients/1786593775040-1ebdd21a-0b88-4c0f-a527-cec9e59df907.png 304 3ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T07:40:43.840Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 16ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:40:57.353Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 23ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:40:57.378Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 11ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:40:57.392Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 22ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:40:57.417Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 33ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:40:58.839Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 22ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:40:58.842Z"}
+{"level":"info","message":"GET /api/v1/clients?page=1&limit=200&sortBy=name&sortOrder=asc 304 20ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:40:58.873Z"}
+{"level":"info","message":"GET /api/v1/candidates?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 14ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:40:58.876Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 98ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:40:58.926Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 8ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:40:58.937Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 56ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:41:04.834Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 45ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:41:04.861Z"}
+{"level":"info","message":"GET /api/v1/assessment-result?page=1&limit=10&sortBy=createdAt&sortOrder=desc 304 21ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:41:04.891Z"}
+{"level":"info","message":"GET /api/v1/assessment?page=1&limit=200&sortBy=name&sortOrder=asc 304 92ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:41:04.929Z"}
+{"level":"info","message":"API listening on http://0.0.0.0:5000 (env=development)","timestamp":"2026-08-13T07:43:29.089Z"}
+{"level":"info","message":"Swagger UI:      http://0.0.0.0:5000/api/docs","timestamp":"2026-08-13T07:43:29.094Z"}
+{"level":"info","message":"Mailer: SMTP connection verified","timestamp":"2026-08-13T07:43:31.016Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57 304 78ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:43:39.713Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57 304 35ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:43:39.750Z"}
+{"level":"info","message":"GET /api/v1/assessment-result/candidate/911905ee-98f6-47e9-82fc-d142eb643f57/pdf 200 865ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T07:43:43.011Z"}

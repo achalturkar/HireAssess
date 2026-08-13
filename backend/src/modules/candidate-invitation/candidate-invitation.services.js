@@ -5,10 +5,10 @@ const crypto = require('crypto');
 // Adjust these paths to wherever your candidate module actually lives
 const candidateRepo = require('../candidate/candidate.repository');
 const candidateService = require('../candidate/candidate.services');
-const companyRepo = require('../company/company.repository'); // NEW — for the company name in the email
-const config = require('../../config'); // NEW — for frontendUrl
+const companyRepo = require('../company/company.repository');
+const config = require('../../config');
 const logger = require('../../common/logger');
-const { sendMail, buildCandidateInvitationEmail } = require('../../utils/mailer'); // NEW
+const { sendMail, buildCandidateInvitationEmail } = require('../../utils/mailer');
 const repo = require('./candidate-invitation.repository');
 
 const {
@@ -19,6 +19,12 @@ const {
 
 const DEFAULT_EXPIRY_HOURS = 72;
 const TERMINAL_STATUSES = ['COMPLETED', 'EXPIRED'];
+
+// Whitelists used to validate/default sort params coming from query strings.
+// Keeping both here (instead of inline) makes it obvious they must stay
+// in sync with each other.
+const SORTABLE_FIELDS = ['status', 'expiresAt', 'createdAt', 'updatedAt'];
+const SORT_ORDERS = ['asc', 'desc'];
 
 const toDto = (invitation) => ({
   id: invitation.id,
@@ -82,7 +88,7 @@ const syncCandidateStatus = async ({ candidate, action }) => {
 };
 
 /**
- * NEW — Sends (or re-sends) the invitation email. Best-effort: a failed
+ * Sends (or re-sends) the invitation email. Best-effort: a failed
  * send is logged but never fails the invitation create/resend itself —
  * the invitation still exists and can be resent or the link shared
  * manually from the admin UI.
@@ -136,9 +142,6 @@ const create = async ({ payload, companyId, currentUser }) => {
     expiresAt,
   });
 
-  // Fire-and-forget from the caller's perspective, but awaited here so
-  // any failure is captured in this request's logs rather than an
-  // unhandled rejection later. Never throws.
   await sendInvitationEmail({ candidate, companyId, token: invitation.token, expiresAt });
 
   return toDto({ ...invitation, candidate });
@@ -170,18 +173,21 @@ const getByToken = async ({ token }) => {
 
 /**
  * List Invitations
+ * Defaults to newest-first (createdAt desc) unless the caller explicitly
+ * asks for something else via a whitelisted sortBy/sortOrder.
  */
 const list = async ({ companyId, query }) => {
+  const sortBy = SORTABLE_FIELDS.includes(query.sortBy) ? query.sortBy : 'createdAt';
+  const sortOrder = SORT_ORDERS.includes(query.sortOrder) ? query.sortOrder : 'desc';
+
   const result = await repo.list({
     companyId,
     candidateId: query.candidateId,
     status: query.status,
     skip: query.skip,
     limit: query.limit,
-    sortBy: ['status', 'expiresAt', 'createdAt', 'updatedAt'].includes(query.sortBy)
-      ? query.sortBy
-      : 'createdAt',
-    sortOrder: query.sortOrder,
+    sortBy,
+    sortOrder,
   });
 
   return {

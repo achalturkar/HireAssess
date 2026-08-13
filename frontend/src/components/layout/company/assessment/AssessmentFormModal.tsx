@@ -36,8 +36,10 @@ const LEVELS: { value: AssessmentLevel; label: string; style: string }[] = [
   { value: 'TOP', label: 'Top', style: 'bg-[#FF6B6B]/15 text-[#FF6B6B] border-[#FF6B6B]/30' },
 ];
 
+// Inputs sit inside a --surface panel, so they use --surface-muted as a
+// "sunken" background — same convention as the other form panels.
 const inputClass =
-  'w-full rounded-lg bg-[#0B0F26] border border-white/[0.08] px-3 py-2.5 text-[13.5px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors';
+  'w-full rounded-lg bg-[var(--surface-muted)] border border-[var(--border)] px-3 py-2.5 text-[13.5px] text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors';
 
 function Field({
   label,
@@ -50,7 +52,7 @@ function Field({
 }) {
   return (
     <div className="space-y-1.5">
-      <label className="text-[12px] text-[#8891B8] flex items-center gap-1.5">
+      <label className="text-[12px] text-[var(--muted)] flex items-center gap-1.5">
         {Icon && <Icon size={12} />}
         {label}
       </label>
@@ -166,20 +168,20 @@ export default function AssessmentFormModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <div className="w-full max-w-xl max-h-[90vh] flex flex-col rounded-2xl border border-white/[0.08] bg-[#161C3A] overflow-hidden">
+      <div className="w-full max-w-xl max-h-[90vh] flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08] shrink-0">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] shrink-0">
           <div className="flex items-center gap-2.5">
             <span className="w-8 h-8 rounded-lg bg-[#3FDCC0]/15 text-[#3FDCC0] flex items-center justify-center">
               <ClipboardList size={16} />
             </span>
-            <h2 className="text-[15px] font-semibold text-[#F2F4FA]" style={{ fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-[15px] font-semibold text-[var(--foreground)]" style={{ fontFamily: 'var(--font-display)' }}>
               {mode === 'create' ? 'Create assessment' : 'Edit assessment'}
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#F2F4FA] hover:bg-white/[0.06] transition-colors"
+            className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--surface-muted)] transition-colors"
             aria-label="Close"
           >
             <X size={16} />
@@ -262,7 +264,7 @@ export default function AssessmentFormModal({
             </div>
 
             <div className="space-y-2">
-              <label className="text-[12px] text-[#8891B8] flex items-center justify-between">
+              <label className="text-[12px] text-[var(--muted)] flex items-center justify-between">
                 <span>Question composition</span>
                 <span
                   className={`text-[11px] px-2 py-0.5 rounded-full ${
@@ -326,12 +328,12 @@ export default function AssessmentFormModal({
           </div>
 
           {/* Footer */}
-          <div className="flex items-center justify-end gap-2.5 px-6 py-4 border-t border-white/[0.08] shrink-0">
+          <div className="flex items-center justify-end gap-2.5 px-6 py-4 border-t border-[var(--border)] shrink-0">
             <button
               type="button"
               onClick={onClose}
               disabled={submitting}
-              className="rounded-lg px-4 py-2.5 text-[13px] font-medium text-[#AAB2D4] hover:bg-white/[0.05] transition-colors disabled:opacity-50"
+              className="rounded-lg px-4 py-2.5 text-[13px] font-medium text-[var(--muted)] hover:bg-[var(--surface-muted)] hover:text-[var(--foreground)] transition-colors disabled:opacity-50"
             >
               Cancel
             </button>

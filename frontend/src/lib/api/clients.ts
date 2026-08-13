@@ -27,8 +27,43 @@ interface ApiResponse<T> {
 
 // Every endpoint on this API wraps its real payload two levels deep:
 // { success, message: "Success", data: { message: "...", data: T, meta? } }
-// This mirrors the shape used by /auth/login and /companies.
 type Envelope<T> = ApiResponse<{ message: string; data: T; meta?: PaginationMeta }>;
+
+/**
+ * Pulls a human-readable string out of whatever shape the backend sent.
+ * `message` can be: a plain string, an object with its own `.message`,
+ * or (from express-validator via the `validate` middleware) an object or
+ * top-level field carrying an `errors` array of { msg } / { message }
+ * entries. Previously this only handled the first two, so any real
+ * validation failure (bad logoUrl, bad email, etc) silently collapsed
+ * into "Request failed (400)" instead of telling you what was wrong.
+ */
+function extractErrorMessage(body: any, status: number): string {
+  const raw = body?.message;
+
+  if (typeof raw === "string" && raw.trim()) return raw;
+
+  if (raw && typeof raw === "object") {
+    if (typeof raw.message === "string" && raw.message.trim()) return raw.message;
+    if (Array.isArray(raw.errors) && raw.errors.length > 0) {
+      const first = raw.errors[0];
+      if (typeof first === "string") return first;
+      if (first?.msg) return String(first.msg);
+      if (first?.message) return String(first.message);
+    }
+  }
+
+  // Some validate-middleware setups put `errors` at the top level instead
+  // of nested under `message` — check there too before giving up.
+  if (Array.isArray(body?.errors) && body.errors.length > 0) {
+    const first = body.errors[0];
+    if (typeof first === "string") return first;
+    if (first?.msg) return String(first.msg);
+    if (first?.message) return String(first.message);
+  }
+
+  return `Request failed (${status})`;
+}
 
 async function request<T>(
   path: string,
@@ -36,9 +71,6 @@ async function request<T>(
   init?: RequestInit
 ): Promise<T> {
   if (!accessToken) {
-    // Calling an authenticated endpoint without a token would otherwise send
-    // "Authorization: Bearer undefined" and fail with a confusing 401/403.
-    // Fail fast with a clear message instead.
     throw new ApiError("You must be signed in to do this.", 401);
   }
 
@@ -62,12 +94,7 @@ async function request<T>(
   const body = await res.json().catch(() => null);
 
   if (!res.ok || body?.success === false) {
-    const msgObj = body?.message;
-    const message =
-      (typeof msgObj === "object" && msgObj?.message) ||
-      (typeof msgObj === "string" ? msgObj : null) ||
-      `Request failed (${res.status})`;
-    throw new ApiError(message, res.status);
+    throw new ApiError(extractErrorMessage(body, res.status), res.status);
   }
 
   return body as T;

@@ -95,6 +95,7 @@ function LoginContent() {
       let target = '/dashboard';
       if (session.user.role.isSuperAdmin) target = '/super-admin/dashboard';
       else if (session.user.role.isCompanyAdmin) target = '/company/dashboard';
+      else target = '/company/dashboard';
 
       // Hard navigation on purpose: router.replace()+refresh() left the
       // target route reading stale auth state for a beat, causing a
@@ -119,7 +120,10 @@ function LoginContent() {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-[#0B0F26] overflow-hidden">
+    <div
+      className="h-screen flex flex-col overflow-hidden"
+      style={{ background: 'var(--background)' }}
+    >
       {/* Ambient background glow */}
       <div
         className="pointer-events-none fixed inset-0"
@@ -141,13 +145,17 @@ function LoginContent() {
         }
       `}</style>
 
-      <div className="relative shrink-0 [&_a]:text-[#F2F4FA] [&_svg]:text-[#F2F4FA]">
+      {/* PublicNav themes itself via CSS vars — no override needed here */}
+      <div className="relative shrink-0">
         <PublicNav />
       </div>
 
       <div className="relative flex-1 min-h-0 grid lg:grid-cols-2 overflow-hidden">
         {/* Left: compact info / branding panel */}
-        <div className="hidden lg:flex flex-col justify-center px-10 xl:px-14 py-6 border-r border-white/[0.06] relative overflow-hidden min-h-0">
+        <div
+          className="hidden lg:flex flex-col justify-center px-10 xl:px-14 py-6 border-r relative overflow-hidden min-h-0"
+          style={{ borderColor: 'var(--border)' }}
+        >
           <div
             className="pointer-events-none absolute -top-20 -left-20 h-64 w-64 rounded-full opacity-20 blur-3xl"
             style={{ background: '#3FDCC0' }}
@@ -158,21 +166,24 @@ function LoginContent() {
           />
 
           <div className="relative max-w-md">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[10.5px] text-[#8891B8] mb-3.5">
+            <div
+              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[10.5px] mb-3.5"
+              style={{ borderColor: 'var(--border)', background: 'var(--surface-muted)', color: 'var(--muted)' }}
+            >
               <Sparkles size={12} className="text-[#3FDCC0]" />
               Assessment platform
             </div>
 
             <h2
-              className="text-[24px] xl:text-[28px] font-semibold tracking-tight leading-[1.15] text-[#F2F4FA]"
-              style={{ fontFamily: 'var(--font-display)' }}
+              className="text-[24px] xl:text-[28px] font-semibold tracking-tight leading-[1.15]"
+              style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
             >
               Hiring decisions,{' '}
               <span className="bg-gradient-to-r from-[#3FDCC0] to-[#F2AE55] bg-clip-text text-transparent">
                 backed by data.
               </span>
             </h2>
-            <p className="text-[13px] text-[#8891B8] mt-2.5 leading-relaxed">
+            <p className="text-[13px] mt-2.5 leading-relaxed" style={{ color: 'var(--muted)' }}>
               Build assessments, invite candidates, and review trait-level reports the moment
               a candidate submits.
             </p>
@@ -180,22 +191,34 @@ function LoginContent() {
             {/* Feature highlights — compact 2x2 grid */}
             <div className="grid grid-cols-2 gap-2.5 mt-5">
               {SIDE_HIGHLIGHTS.map(({ icon: Icon, title, color }) => (
-                <div key={title} className="flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] px-2.5 py-2">
+                <div
+                  key={title}
+                  className="flex items-center gap-2 rounded-lg border px-2.5 py-2"
+                  style={{ borderColor: 'var(--border)', background: 'var(--surface-muted)' }}
+                >
                   <span
                     className="shrink-0 w-7 h-7 rounded-md flex items-center justify-center"
                     style={{ background: `${color}22`, color }}
                   >
                     <Icon size={13} />
                   </span>
-                  <p className="text-[11.5px] font-medium text-[#F2F4FA] leading-tight">{title}</p>
+                  <p className="text-[11.5px] font-medium leading-tight" style={{ color: 'var(--foreground)' }}>
+                    {title}
+                  </p>
                 </div>
               ))}
             </div>
 
             {/* Mini live scorecard */}
-            <div className="mt-5 rounded-xl border border-white/[0.08] bg-[#161C3A] p-4">
+            <div
+              className="mt-5 rounded-xl border p-4"
+              style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}
+            >
               <div className="flex items-center justify-between mb-3">
-                <p className="text-[9.5px] uppercase tracking-[0.14em] text-[#565F8C]" style={{ fontFamily: 'var(--font-mono)' }}>
+                <p
+                  className="text-[9.5px] uppercase tracking-[0.14em]"
+                  style={{ fontFamily: 'var(--font-mono)', color: 'var(--muted)' }}
+                >
                   Sample report
                 </p>
                 <span className="flex items-center gap-1 rounded-full bg-[#3FDCC0]/12 text-[#3FDCC0] text-[10px] font-semibold px-2 py-0.5">
@@ -209,10 +232,13 @@ function LoginContent() {
                   return (
                     <div key={trait.label}>
                       <div className="flex items-center justify-between text-[11px] mb-1">
-                        <span className="text-[#AAB2D4]">{trait.label}</span>
+                        <span style={{ color: 'var(--muted)' }}>{trait.label}</span>
                         <span style={{ color: c.text, fontFamily: 'var(--font-mono)' }}>{trait.score}</span>
                       </div>
-                      <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
+                      <div
+                        className="h-1.5 rounded-full overflow-hidden"
+                        style={{ background: 'var(--surface-muted)' }}
+                      >
                         <div
                           className="h-full rounded-full"
                           style={{
@@ -235,7 +261,7 @@ function LoginContent() {
                 <Building2 size={15} />
               </span>
               <div className="min-w-0">
-                <p className="text-[11.5px] font-semibold text-[#F2F4FA] leading-tight">
+                <p className="text-[11.5px] font-semibold leading-tight" style={{ color: 'var(--foreground)' }}>
                   Want to register your company?
                 </p>
                 <Link
@@ -258,28 +284,33 @@ function LoginContent() {
                 <BrandMark size={18} />
               </span>
               <h1
-                className="text-[18px] font-semibold text-[#F2F4FA] tracking-tight group-hover:text-[#3FDCC0] transition-colors"
-                style={{ fontFamily: 'var(--font-display)' }}
+                className="text-[18px] font-semibold tracking-tight group-hover:text-[#3FDCC0] transition-colors"
+                style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
               >
                 Welcome back
               </h1>
-              <p className="text-[12px] text-[#8891B8] mt-1">Sign in to your HireAssess account</p>
+              <p className="text-[12px] mt-1" style={{ color: 'var(--muted)' }}>
+                Sign in to your HireAssess account
+              </p>
             </Link>
 
             {/* Desktop heading (no logo, since navbar already shows it) */}
             <div className="hidden lg:block mb-4 text-center">
               <h1
-                className="text-[21px] font-semibold text-[#F2F4FA] tracking-tight"
-                style={{ fontFamily: 'var(--font-display)' }}
+                className="text-[21px] font-semibold tracking-tight"
+                style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
               >
                 Welcome back
               </h1>
-              <p className="text-[12.5px] text-[#8891B8] mt-1">Sign in to your HireAssess account</p>
+              <p className="text-[12.5px] mt-1" style={{ color: 'var(--muted)' }}>
+                Sign in to your HireAssess account
+              </p>
             </div>
 
             <form
               onSubmit={handleSubmit}
-              className="rounded-2xl border border-white/[0.08] bg-[#161C3A] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] px-5 py-5 space-y-3"
+              className="rounded-2xl border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] px-5 py-5 space-y-3"
+              style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}
             >
               {error && (
                 <div className="flex items-start gap-2 rounded-lg bg-[#FF6B6B]/10 border border-[#FF6B6B]/25 text-[#FF6B6B] text-[12.5px] px-3 py-2">
@@ -289,9 +320,14 @@ function LoginContent() {
               )}
 
               <div className="space-y-1">
-                <label className="text-[11.5px] text-[#8891B8]">Email</label>
+                <label className="text-[11.5px]" style={{ color: 'var(--muted)' }}>
+                  Email
+                </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#565F8C]">
+                  <span
+                    className="absolute left-3 top-1/2 -translate-y-1/2"
+                    style={{ color: 'var(--muted)' }}
+                  >
                     <Mail size={14} />
                   </span>
                   <input
@@ -301,20 +337,26 @@ function LoginContent() {
                     required
                     autoComplete="email"
                     placeholder="you@company.com"
-                    className="w-full rounded-lg bg-[#0B0F26] border border-white/[0.08] pl-8 pr-3 py-2 text-[13px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors"
+                    className="w-full rounded-lg pl-8 pr-3 py-2 text-[13px] outline-none border focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors"
+                    style={{ background: 'var(--surface-muted)', borderColor: 'var(--border)', color: 'var(--foreground)' }}
                   />
                 </div>
               </div>
 
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
-                  <label className="text-[11.5px] text-[#8891B8]">Password</label>
+                  <label className="text-[11.5px]" style={{ color: 'var(--muted)' }}>
+                    Password
+                  </label>
                   <Link href="/forgot-password" className="text-[11.5px] text-[#3FDCC0] hover:underline">
                     Forgot password?
                   </Link>
                 </div>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#565F8C]">
+                  <span
+                    className="absolute left-3 top-1/2 -translate-y-1/2"
+                    style={{ color: 'var(--muted)' }}
+                  >
                     <Lock size={14} />
                   </span>
                   <input
@@ -324,12 +366,14 @@ function LoginContent() {
                     required
                     autoComplete="current-password"
                     placeholder="••••••••"
-                    className="w-full rounded-lg bg-[#0B0F26] border border-white/[0.08] pl-8 pr-8 py-2 text-[13px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors"
+                    className="w-full rounded-lg pl-8 pr-8 py-2 text-[13px] outline-none border focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors"
+                    style={{ background: 'var(--surface-muted)', borderColor: 'var(--border)', color: 'var(--foreground)' }}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword((s) => !s)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#565F8C] hover:text-[#AAB2D4] transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 transition-colors"
+                    style={{ color: 'var(--muted)' }}
                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                     tabIndex={-1}
                   >
@@ -338,12 +382,16 @@ function LoginContent() {
                 </div>
               </div>
 
-              <label className="flex items-center gap-2 text-[12px] text-[#8891B8] cursor-pointer select-none">
+              <label
+                className="flex items-center gap-2 text-[12px] cursor-pointer select-none"
+                style={{ color: 'var(--muted)' }}
+              >
                 <input
                   type="checkbox"
                   checked={remember}
                   onChange={(e) => setRemember(e.target.checked)}
-                  className="w-3.5 h-3.5 rounded border border-white/[0.16] bg-[#0B0F26] accent-[#3FDCC0] cursor-pointer"
+                  className="w-3.5 h-3.5 rounded border accent-[#3FDCC0] cursor-pointer"
+                  style={{ borderColor: 'var(--border)', background: 'var(--surface-muted)' }}
                 />
                 Keep me signed in
               </label>
@@ -367,7 +415,7 @@ function LoginContent() {
               </button>
             </form>
 
-            <p className="text-center text-[12px] text-[#565F8C] mt-3.5">
+            <p className="text-center text-[12px] mt-3.5" style={{ color: 'var(--muted)' }}>
               Need help?{' '}
               <Link href="/contact" className="text-[#3FDCC0] hover:underline">
                 Contact us
@@ -380,7 +428,7 @@ function LoginContent() {
                 <Building2 size={13} />
               </span>
               <div className="min-w-0">
-                <p className="text-[11.5px] font-semibold text-[#F2F4FA] leading-tight">
+                <p className="text-[11.5px] font-semibold leading-tight" style={{ color: 'var(--foreground)' }}>
                   Want to register your company?
                 </p>
                 <Link
