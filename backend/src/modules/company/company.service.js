@@ -22,6 +22,8 @@ const toDto = (company) => ({
   contactEmail: company.contactEmail,
   contactPhone: company.contactPhone,
   logoUrl: company.logoUrl,
+  signatureUrl: company.signatureUrl,
+  stampUrl: company.stampUrl,
   primaryColor: company.primaryColor,
   address: company.address,
   settings: company.settings,
@@ -43,6 +45,15 @@ const ensureUniqueSlug = async (base) => {
   return candidate;
 };
 
+// Resolve an uploaded file (from multer .fields()) for a given field name,
+// falling back to a plain URL string sent in the body, or null.
+const resolveImageUrl = (req, fieldName, fallbackUrl) => {
+  const uploadedFile = req?.files?.[fieldName]?.[0];
+  if (uploadedFile) return `/uploads/companies/${uploadedFile.filename}`;
+  if (typeof fallbackUrl === 'string' && fallbackUrl.trim()) return fallbackUrl.trim();
+  return null;
+};
+
 /**
  * Create a company and, in one transaction:
  *  - Create a "Company Admin" role scoped to this company, with ALL permissions
@@ -55,6 +66,8 @@ const create = async ({ payload, currentUser, req }) => {
     contactEmail,
     contactPhone,
     logoUrl,
+    signatureUrl,
+    stampUrl,
     primaryColor,
     address,
     settings,
@@ -63,7 +76,10 @@ const create = async ({ payload, currentUser, req }) => {
     adminEmail,
     adminPassword,
   } = payload;
-  const resolvedLogoUrl = req?.file ? `/uploads/companies/${req.file.filename}` : logoUrl?.trim() || null;
+
+  const resolvedLogoUrl = resolveImageUrl(req, 'logo', logoUrl);
+  const resolvedSignatureUrl = resolveImageUrl(req, 'signature', signatureUrl);
+  const resolvedStampUrl = resolveImageUrl(req, 'stamp', stampUrl);
 
   if (!name) throw new BadRequestError('Company name is required');
   if (!adminEmail) throw new BadRequestError('Admin email is required');
@@ -76,7 +92,6 @@ const create = async ({ payload, currentUser, req }) => {
   const generatedPassword = adminPassword || generateRandomPassword(12);
   const passwordHash = await hashPassword(generatedPassword);
 
-  // Load all permissions once
   // Load Global Company Admin role with permissions
   const globalCompanyAdminRole = await prisma.role.findFirst({
     where: {
@@ -100,6 +115,8 @@ const create = async ({ payload, currentUser, req }) => {
         contactEmail: contactEmail || adminEmail,
         contactPhone: contactPhone || null,
         logoUrl: resolvedLogoUrl,
+        signatureUrl: resolvedSignatureUrl,
+        stampUrl: resolvedStampUrl,
         primaryColor: primaryColor || null,
         address: address || null,
         settings: settings || {},
@@ -167,7 +184,6 @@ const create = async ({ payload, currentUser, req }) => {
       email: result.adminUser.email,
       roleId: result.adminRole.id,
       mustChangePassword: true,
-      // Include the generated password in the API response ONCE so Super Admin can copy it.
       generatedPassword,
     },
   };
@@ -199,12 +215,28 @@ const update = async ({ id, payload, req }) => {
   ['name', 'contactEmail', 'contactPhone', 'primaryColor', 'address', 'settings'].forEach((k) => {
     if (payload[k] !== undefined) data[k] = payload[k];
   });
-  if (payload.logoUrl !== undefined) {
-    data.logoUrl = payload.logoUrl;
-  }
-  if (req?.file) {
-    data.logoUrl = `/uploads/companies/${req.file.filename}`;
-  }
+
+  // Each image field follows: new file wins > explicit removal clears it >
+  // plain URL string in body sets it > otherwise leave untouched.
+  const applyImageField = (fieldName, urlKey, removeKey) => {
+    const uploadedFile = req?.files?.[fieldName]?.[0];
+    if (uploadedFile) {
+      data[urlKey] = `/uploads/companies/${uploadedFile.filename}`;
+      return;
+    }
+    if (payload[removeKey] === 'true' || payload[removeKey] === true) {
+      data[urlKey] = null;
+      return;
+    }
+    if (payload[urlKey] !== undefined) {
+      data[urlKey] = payload[urlKey];
+    }
+  };
+
+  applyImageField('logo', 'logoUrl', 'removeLogo');
+  applyImageField('signature', 'signatureUrl', 'removeSignature');
+  applyImageField('stamp', 'stampUrl', 'removeStamp');
+
   if (payload.slug && payload.slug !== existing.slug) {
     data.slug = await ensureUniqueSlug(payload.slug);
   }

@@ -5,6 +5,8 @@ import type {
   PaginationMeta,
 } from '@/src/types/assessment-result';
 
+
+
 const API_BASE = process.env.NEXT_PUBLIC_API ?? '/api/v1';
 
 export class ApiError extends Error {
@@ -27,6 +29,41 @@ interface ApiResponse<T> {
 // Real shape: { success, message: "Success", data: { message, data: T, meta? } }
 type Envelope<T> = ApiResponse<{ message: string; data: T; meta?: PaginationMeta }>;
 
+/**
+ * Guarantees a real string comes out the other end, whatever shape the
+ * backend's `message` field is in: a plain string, a nested { message }
+ * object, or an express-validator-style { errors: [...] } array. This is
+ * the fix for the "[object Object]" bug — `new Error(x)` (and therefore
+ * `new ApiError(x, status)`, since it extends Error) silently coerces a
+ * non-string `x` via String(x), and String({}) is literally the text
+ * "[object Object]". Every call site below must pass this function's
+ * return value into `new ApiError(...)`, never `body.message` directly.
+ */
+function extractErrorMessage(body: any, status: number): string {
+  const raw = body?.message;
+
+  if (typeof raw === 'string' && raw.trim()) return raw;
+
+  if (raw && typeof raw === 'object') {
+    if (typeof raw.message === 'string' && raw.message.trim()) return raw.message;
+    if (Array.isArray(raw.errors) && raw.errors.length > 0) {
+      const first = raw.errors[0];
+      if (typeof first === 'string') return first;
+      if (first?.msg) return String(first.msg);
+      if (first?.message) return String(first.message);
+    }
+  }
+
+  if (Array.isArray(body?.errors) && body.errors.length > 0) {
+    const first = body.errors[0];
+    if (typeof first === 'string') return first;
+    if (first?.msg) return String(first.msg);
+    if (first?.message) return String(first.message);
+  }
+
+  return `Request failed (${status})`;
+}
+
 async function request<T>(path: string, accessToken?: string | null, init?: RequestInit): Promise<T> {
   if (!accessToken) {
     throw new ApiError('You must be signed in to do this.', 401);
@@ -43,11 +80,7 @@ async function request<T>(path: string, accessToken?: string | null, init?: Requ
   const body = await res.json().catch(() => null);
 
   if (!res.ok || body?.success === false) {
-    const msgObj = body?.message;
-    const message =
-      (typeof msgObj === 'object' && msgObj?.message) ||
-      (typeof msgObj === 'string' ? msgObj : null) ||
-      `Request failed (${res.status})`;
+    const message = extractErrorMessage(body, res.status);
     console.error('Assessment results API request failed', {
       path,
       status: res.status,
@@ -126,9 +159,51 @@ export async function downloadCandidateReportPdf(
 
   if (!res.ok) {
     const body = await res.json().catch(() => null);
-    const msg = body?.message || `Request failed (${res.status})`;
-    throw new ApiError(msg, res.status);
+    throw new ApiError(extractErrorMessage(body, res.status), res.status);
   }
 
   return await res.blob();
+}
+
+/**
+ * FIXED: this previously read `process.env.NEXT_PUBLIC_API_BASE_URL`,
+ * which doesn't exist in this project — every other function in this file
+ * uses NEXT_PUBLIC_API via the API_BASE constant above. The undefined env
+ * var stringified to the literal text "undefined" inside the template
+ * literal, producing a URL with no protocol/host. The browser then
+ * resolved that as a *relative* path against the current page
+ * (/company/results/<attemptId>), which is exactly why the network tab
+ * showed a request to /company/results/undefined/candidate-results/.../
+ * certificate — a Next.js frontend route, not the API — and always 404'd.
+ *
+ * Also switched the path from the previous `/candidate-results/${id}/certificate`
+ * to `${BASE}/candidate/${id}/certificate` (i.e.
+ * /assessment-result/candidate/:id/certificate) to mirror
+ * downloadCandidateReportPdf's working `/candidate/${id}/pdf` pattern one
+ * function above. This part is a convention-based guess, not confirmed
+ * against your backend router — if your server actually registers a
+ * separate `/candidate-results/:id/certificate` route, revert this path
+ * back to that and keep only the API_BASE fix.
+ */
+export async function downloadCandidateCertificatePdf(
+  attemptId: string,
+  accessToken: string | null | undefined,
+): Promise<Blob> {
+  if (!accessToken) {
+    throw new ApiError('You must be signed in to do this.', 401);
+  }
+
+  const res = await fetch(`${API_BASE}${BASE}/candidate/${attemptId}/certificate`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  if (!res.ok) {
+    const body = await res.json().catch(() => null);
+    throw new ApiError(body ? extractErrorMessage(body, res.status) : 'Failed to download certificate.', res.status);
+  }
+
+  return res.blob();
 }

@@ -437,3 +437,11 @@
 {"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330 304 32ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T09:18:49.224Z"}
 {"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330 304 16ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T09:18:49.244Z"}
 {"level":"info","message":"GET /uploads/companies/1786592058708-9ec53f2b-6be9-4492-983d-4a2378e2c8aa.png 304 2ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T09:18:49.248Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 148ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T10:17:49.602Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330 304 18ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T10:17:49.673Z"}
+{"level":"info","message":"GET /api/v1/companies/5aa7028d-46c0-4e35-a685-8a5cbaa3a330 304 14ms ip=127.0.0.1 user=62edc4e9-8207-4750-9f9a-ba366a3975e5","timestamp":"2026-08-13T10:17:49.689Z"}
+{"level":"info","message":"GET /uploads/companies/1786592058708-9ec53f2b-6be9-4492-983d-4a2378e2c8aa.png 304 3ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T10:17:50.015Z"}
+{"level":"info","message":"POST /api/v1/auth/logout 200 30ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T10:17:53.150Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 257ms ip=127.0.0.1 user=anon","timestamp":"2026-08-13T10:17:58.699Z"}
+{"level":"info","message":"GET /api/v1/auth/me 200 36ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-08-13T10:18:00.050Z"}
+{"level":"info","message":"GET /api/v1/auth/me 304 15ms ip=127.0.0.1 user=84c9336a-0aab-47a1-b946-d23335f4fad9","timestamp":"2026-08-13T10:18:27.332Z"}

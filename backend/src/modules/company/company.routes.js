@@ -16,9 +16,13 @@ const v = require('./company.validator');
 const router = express.Router();
 router.use(authenticate);
 
-const ALLOWED_LOGO_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.svg'];
-const ALLOWED_LOGO_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'];
+const ALLOWED_IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.svg'];
+const ALLOWED_IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'];
 const uploadDir = path.resolve(process.cwd(), config.upload.dir, 'companies');
+
+// 'logo' = company logo, 'signature' = authorized signatory's signature,
+// 'stamp' = company seal/stamp.
+const IMAGE_FIELDS = ['logo', 'signature', 'stamp'];
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -28,29 +32,36 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname).toLowerCase();
-    const safeExt = ALLOWED_LOGO_EXTENSIONS.includes(ext) ? ext : '.png';
-    cb(null, `${Date.now()}-${uuidv4()}${safeExt}`);
+    const safeExt = ALLOWED_IMAGE_EXTENSIONS.includes(ext) ? ext : '.png';
+    cb(null, `${file.fieldname}-${Date.now()}-${uuidv4()}${safeExt}`);
   },
 });
 
 const upload = multer({
   storage,
-  limits: { fileSize: 1024 * 1024 },
+  limits: { fileSize: 1024 * 1024 }, // 1 MB per file
   fileFilter: (req, file, cb) => {
+    if (!IMAGE_FIELDS.includes(file.fieldname)) {
+      return cb(new BadRequestError(`Unexpected file field: ${file.fieldname}`));
+    }
     const ext = path.extname(file.originalname).toLowerCase();
-    const isValid = ALLOWED_LOGO_MIME_TYPES.includes(file.mimetype) && ALLOWED_LOGO_EXTENSIONS.includes(ext);
+    const isValid = ALLOWED_IMAGE_MIME_TYPES.includes(file.mimetype) && ALLOWED_IMAGE_EXTENSIONS.includes(ext);
     if (!isValid) {
-      return cb(new BadRequestError('Only JPG, PNG, WEBP, or SVG logo images are allowed.'));
+      return cb(new BadRequestError('Only JPG, PNG, WEBP, or SVG images are allowed.'));
     }
     cb(null, true);
   },
 });
 
-const uploadCompanyLogo = (req, res, next) => {
-  upload.single('logo')(req, res, (err) => {
+const uploadCompanyFiles = (req, res, next) => {
+  upload.fields([
+    { name: 'logo', maxCount: 1 },
+    { name: 'signature', maxCount: 1 },
+    { name: 'stamp', maxCount: 1 },
+  ])(req, res, (err) => {
     if (err instanceof multer.MulterError) {
       if (err.code === 'LIMIT_FILE_SIZE') {
-        return next(new BadRequestError('Logo image must be 1 MB or smaller.'));
+        return next(new BadRequestError('Each image must be 1 MB or smaller.'));
       }
       return next(new BadRequestError(err.message));
     }
@@ -96,7 +107,7 @@ const uploadCompanyLogo = (req, res, next) => {
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             required: [name, adminFirstName, adminLastName, adminEmail]
@@ -105,7 +116,9 @@ const uploadCompanyLogo = (req, res, next) => {
  *               slug: { type: string }
  *               contactEmail: { type: string, format: email }
  *               contactPhone: { type: string }
- *               logoUrl: { type: string, format: uri }
+ *               logo: { type: string, format: binary }
+ *               signature: { type: string, format: binary, description: "Authorized signatory's signature image" }
+ *               stamp: { type: string, format: binary, description: "Company seal/stamp image" }
  *               primaryColor: { type: string }
  *               address: { type: string }
  *               settings: { type: object }
@@ -119,7 +132,7 @@ const uploadCompanyLogo = (req, res, next) => {
 router
   .route('/')
   .get(authorize('company.view'), validate(v.listValidator), controller.listCompanies)
-  .post(uploadCompanyLogo, authorize('company.create'), validate(v.createValidator), controller.createCompany);
+  .post(uploadCompanyFiles, authorize('company.create'), validate(v.createValidator), controller.createCompany);
 
 /**
  * @openapi
@@ -152,7 +165,7 @@ router
 router
   .route('/:id')
   .get(authorize('company.view'), validate(v.idParamValidator), controller.getCompany)
-  .put(uploadCompanyLogo, authorize('company.update'), validate(v.updateValidator), controller.updateCompany)
+  .put(uploadCompanyFiles, authorize('company.update'), validate(v.updateValidator), controller.updateCompany)
   .delete(authorize('company.delete'), validate(v.idParamValidator), controller.deleteCompany);
 
 /**

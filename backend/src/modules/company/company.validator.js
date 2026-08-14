@@ -8,6 +8,8 @@ const createValidator = [
   body('contactEmail').optional().isEmail().normalizeEmail(),
   body('contactPhone').optional().isString().isLength({ max: 50 }),
   body('logoUrl').optional().isURL(),
+  body('signatureUrl').optional().isURL(),
+  body('stampUrl').optional().isURL(),
   body('primaryColor').optional().isString().isLength({ max: 20 }),
   body('address').optional().isString().isLength({ max: 1000 }),
   body('settings').optional().isObject(),
@@ -17,7 +19,6 @@ const createValidator = [
   body('adminEmail').isEmail().normalizeEmail(),
   body('adminPassword').optional().isString().isLength({ min: 8, max: 128 }),
 ];
-
 const updateValidator = [
   param('id').isUUID(),
   body('name').optional().isString().trim().isLength({ min: 2, max: 255 }),
@@ -25,6 +26,11 @@ const updateValidator = [
   body('contactEmail').optional().isEmail().normalizeEmail(),
   body('contactPhone').optional().isString().isLength({ max: 50 }),
   body('logoUrl').optional().isURL(),
+  body('signatureUrl').optional().isURL(),
+  body('stampUrl').optional().isURL(),
+  body('removeLogo').optional().isBoolean(),
+  body('removeSignature').optional().isBoolean(),
+  body('removeStamp').optional().isBoolean(),
   body('primaryColor').optional().isString().isLength({ max: 20 }),
   body('address').optional().isString().isLength({ max: 1000 }),
   body('settings').optional().isObject(),

@@ -15,6 +15,7 @@ import {
   TrendingUp,
   Lightbulb,
   ListChecks,
+  Award,
 } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -33,7 +34,7 @@ import {
 } from 'recharts';
 import { useAuth } from '@/src/auth/AuthProvider';
 import { ScoreBadge, ScoreStageBadge, bandFor, stageFor } from '@/src/components/layout/company/result/scoreDisplay';
-import { getCandidateResult, downloadCandidateReportPdf, ApiError } from '@/src/lib/api/assessment-results';
+import { getCandidateResult, downloadCandidateReportPdf, downloadCandidateCertificatePdf, ApiError } from '@/src/lib/api/assessment-results';
 import type { CandidateResultBundle, ScoreBand, TraitScore } from '@/src/types/assessment-result';
 
 function initials(firstName: string, lastName: string) {
@@ -514,6 +515,8 @@ export default function ResultDetailPage() {
   const [bundle, setBundle] = useState<CandidateResultBundle | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [downloadingReport, setDownloadingReport] = useState(false);
+  const [downloadingCertificate, setDownloadingCertificate] = useState(false);
 
   const fetchResult = useCallback(async () => {
     setLoading(true);
@@ -533,6 +536,34 @@ export default function ResultDetailPage() {
   }, [fetchResult]);
 
   const traitBuckets = useMemo(() => (bundle ? classifyTraits(bundle) : null), [bundle]);
+
+  async function handleDownload(kind: 'report' | 'certificate') {
+    if (!accessToken || !bundle) return;
+    const setDownloading = kind === 'report' ? setDownloadingReport : setDownloadingCertificate;
+    setDownloading(true);
+    try {
+      const blob =
+        kind === 'report'
+          ? await downloadCandidateReportPdf(bundle.attemptId ?? attemptId, accessToken)
+          : await downloadCandidateCertificatePdf(bundle.attemptId ?? attemptId, accessToken);
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      const candidateName = bundle.candidate
+        ? `${bundle.candidate.firstName ?? 'Candidate'} ${bundle.candidate.lastName ?? ''}`.trim()
+        : 'Candidate';
+      const safeName = candidateName.replace(/[^a-zA-Z0-9\s_-]/g, '').replace(/\s+/g, '_');
+      link.href = url;
+      link.download = kind === 'report' ? `${safeName}_Assessment_report.pdf` : `${safeName}_Certificate.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setDownloading(false);
+    }
+  }
 
   return (
     <div className="max-w-4xl mx-auto space-y-7 overflow-x-auto">
@@ -648,30 +679,26 @@ export default function ResultDetailPage() {
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <div className="text-[12px] text-[#8891B8]">Review and download the full candidate report below.</div>
-                  <button
-                    type="button"
-                    onClick={async () => {
-                      if (!accessToken) return;
-                      try {
-                        const blob = await downloadCandidateReportPdf(bundle.attemptId ?? attemptId, accessToken);
-                        const url = window.URL.createObjectURL(blob);
-                        const link = document.createElement('a');
-                      const candidateName = bundle.candidate ? `${bundle.candidate.firstName ?? 'Candidate'} ${bundle.candidate.lastName ?? ''}`.trim() : 'Candidate';
-                      const safeName = candidateName.replace(/[^a-zA-Z0-9\s_-]/g, '').replace(/\s+/g, '_');
-                      link.href = url;
-                      link.download = `${safeName}_Assessment report.pdf`;
-                        document.body.appendChild(link);
-                        link.click();
-                        link.remove();
-                        window.URL.revokeObjectURL(url);
-                      } catch (err) {
-                        console.error(err);
-                      }
-                    }}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#3FDCC0] px-4 py-2 text-[12.5px] font-semibold text-[#08111E] transition-colors hover:bg-[#30e2b7] hover:cursor-pointer"
-                  >
-                    <Download size={16} /> Download report
-                  </button>
+                  <div className="flex items-center gap-2.5">
+                    <button
+                      type="button"
+                      onClick={() => handleDownload('certificate')}
+                      disabled={downloadingCertificate}
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-[#3FDCC0]/40 bg-transparent px-4 py-2 text-[12.5px] font-semibold text-[#3FDCC0] transition-colors hover:bg-[#3FDCC0]/10 hover:cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {downloadingCertificate ? <Loader2 size={16} className="animate-spin" /> : <Award size={16} />}
+                      {downloadingCertificate ? 'Preparing…' : 'Download certificate'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDownload('report')}
+                      disabled={downloadingReport}
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-[#3FDCC0] px-4 py-2 text-[12.5px] font-semibold text-[#08111E] transition-colors hover:bg-[#30e2b7] hover:cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {downloadingReport ? <Loader2 size={16} className="animate-spin" /> : <Download size={16} />}
+                      {downloadingReport ? 'Preparing…' : 'Download report'}
+                    </button>
+                  </div>
                 </div>
               </div>
 

@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Building2, Camera, Mail, MapPin, Phone, Save, X, Loader2 } from 'lucide-react';
+import { Building2, Camera, Mail, MapPin, Phone, Save, X, Loader2, PenTool, Stamp as StampIcon } from 'lucide-react';
 import { useAuth } from '@/src/auth/AuthProvider';
 import { getCompany, updateCompany } from '@/src/lib/api/companies';
 
-const MAX_LOGO_SIZE_BYTES = 1024 * 1024;
-const ALLOWED_LOGO_TYPES = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/svg+xml'];
+const MAX_IMAGE_SIZE_BYTES = 1024 * 1024;
+const ALLOWED_IMAGE_TYPES = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/svg+xml'];
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
@@ -15,34 +15,32 @@ const API_BASE =
 
 // The API base includes a path suffix like "/api/v1" — uploaded files are
 // served from the origin, not under that path, so it has to be stripped
-// before a relative logoUrl ("uploads/companies/xyz.png") is joined to it.
+// before a relative url ("uploads/companies/xyz.png") is joined to it.
 const FILE_ORIGIN = API_BASE.replace(/\/api(\/v\d+)?\/?$/, '');
 
 /**
- * Resolves whatever shape `logoUrl` comes back from the API in — a bare
- * relative path, a path with a leading slash, or a full URL — into
- * something an <img> tag can actually load. A relative path dropped
- * straight into `src` resolves against the *frontend's* origin, not the
- * API server, and 404s with no visible error, which is why logos have
- * looked "broken" without ever showing a console error.
+ * Resolves whatever shape a stored image url comes back from the API in —
+ * a bare relative path, a path with a leading slash, or a full URL — into
+ * something an <img> tag can actually load. Shared by logo, signature, and
+ * stamp since all three are stored the same way.
  */
-function resolveLogoUrl(logoUrl?: string | null): string | null {
-  if (!logoUrl) return null;
-  if (/^https?:\/\//i.test(logoUrl) || logoUrl.startsWith('blob:') || logoUrl.startsWith('data:')) {
-    return logoUrl;
+function resolveFileUrl(url?: string | null): string | null {
+  if (!url) return null;
+  if (/^https?:\/\//i.test(url) || url.startsWith('blob:') || url.startsWith('data:')) {
+    return url;
   }
-  return `${FILE_ORIGIN}/${logoUrl.replace(/^\/+/, '')}`;
+  return `${FILE_ORIGIN}/${url.replace(/^\/+/, '')}`;
 }
 
-function getLogoValidationError(file: File) {
+function getImageValidationError(file: File) {
   const extension = file.name.split('.').pop()?.toLowerCase();
   const hasAllowedExtension = ['jpg', 'jpeg', 'png', 'webp', 'svg'].includes(extension || '');
-  const hasAllowedMime = ALLOWED_LOGO_TYPES.includes(file.type);
+  const hasAllowedMime = ALLOWED_IMAGE_TYPES.includes(file.type);
   if (!hasAllowedExtension || !hasAllowedMime) {
     return 'Only JPG, PNG, WEBP, or SVG images are allowed.';
   }
-  if (file.size > MAX_LOGO_SIZE_BYTES) {
-    return 'Logo image must be 1 MB or smaller.';
+  if (file.size > MAX_IMAGE_SIZE_BYTES) {
+    return 'Image must be 1 MB or smaller.';
   }
   return null;
 }
@@ -96,10 +94,169 @@ function SectionCard({
 const inputClasses =
   'w-full rounded-lg bg-[#0F1330] border border-white/[0.08] px-3 py-2.5 text-[13.5px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none transition-colors focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 disabled:opacity-50 disabled:cursor-not-allowed';
 
+// ---- Shared image state, one instance per field (logo / signature / stamp) ----
+
+interface ImageFieldState {
+  savedUrl: string | null;   // resolved URL of what the server currently has
+  file: File | null;         // newly picked file, not yet saved
+  previewUrl: string | null; // object URL for `file`
+  remove: boolean;           // user asked to clear the image on next save
+  error: string | null;
+}
+
+const emptyImageState: ImageFieldState = {
+  savedUrl: null,
+  file: null,
+  previewUrl: null,
+  remove: false,
+  error: null,
+};
+
+function ImageDropzone({
+  label,
+  description,
+  hint,
+  fallbackIcon,
+  fallbackInitials,
+  state,
+  onFile,
+  onRemove,
+  disabled,
+  shape = 'square',
+}: {
+  label: string;
+  description: React.ReactNode;
+  hint: string;
+  fallbackIcon: React.ReactNode;
+  fallbackInitials?: string;
+  state: ImageFieldState;
+  onFile: (file: File) => void;
+  onRemove: () => void;
+  disabled?: boolean;
+  shape?: 'square' | 'wide';
+}) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [dragActive, setDragActive] = useState(false);
+
+  const displayed = state.previewUrl ?? state.savedUrl;
+
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setDragActive(false);
+    const file = event.dataTransfer.files?.[0];
+    if (file) onFile(file);
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) onFile(file);
+    event.target.value = '';
+  };
+
+  const boxSizeClass = shape === 'wide' ? 'h-24 w-40' : 'h-24 w-24';
+
+  return (
+    <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+      <div
+        onDragOver={(e) => {
+          e.preventDefault();
+          if (!disabled) setDragActive(true);
+        }}
+        onDragLeave={() => setDragActive(false)}
+        onDrop={disabled ? undefined : handleDrop}
+        className={`group relative shrink-0 rounded-2xl border border-dashed p-1 transition-colors ${
+          dragActive ? 'border-[#3FDCC0] bg-[#3FDCC0]/5' : 'border-white/[0.12] bg-[#0F1330]'
+        }`}
+      >
+        <div
+          className={`relative flex items-center justify-center overflow-hidden rounded-xl ${boxSizeClass}`}
+          style={{
+            backgroundImage:
+              'linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,0.04) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.04) 75%), linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.04) 75%)',
+            backgroundSize: '12px 12px',
+            backgroundPosition: '0 0, 0 6px, 6px -6px, -6px 0px',
+            backgroundColor: '#0B0F26',
+          }}
+        >
+          {displayed ? (
+            <img src={displayed} alt={label} className="h-full w-full object-contain p-2" />
+          ) : (
+            <div className="flex flex-col items-center gap-1 text-[#3FDCC0]">
+              {fallbackInitials ? (
+                <span className="text-[20px] font-semibold" style={{ fontFamily: 'var(--font-display)' }}>
+                  {fallbackInitials}
+                </span>
+              ) : (
+                fallbackIcon
+              )}
+            </div>
+          )}
+
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={disabled}
+            className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-[#0B0F26]/0 text-transparent transition-all group-hover:bg-[#0B0F26]/70 group-hover:text-[#F2F4FA] disabled:cursor-not-allowed"
+            aria-label={`Upload ${label.toLowerCase()}`}
+          >
+            <Camera size={16} />
+            <span className="text-[11px] font-medium">Change</span>
+          </button>
+        </div>
+
+        {displayed && (
+          <button
+            type="button"
+            onClick={onRemove}
+            disabled={disabled}
+            className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-[#161C3A] text-[#8891B8] shadow-sm transition-colors hover:text-[#FF6B6B] disabled:cursor-not-allowed"
+            aria-label={`Remove ${label.toLowerCase()}`}
+            title={`Remove ${label.toLowerCase()}`}
+          >
+            <X size={12} />
+          </button>
+        )}
+
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/png,image/jpeg,image/jpg,image/webp,image/svg+xml"
+          className="hidden"
+          onChange={handleInputChange}
+        />
+      </div>
+
+      <div className="flex-1 space-y-2 pt-1">
+        <p className="text-[13px] text-[#AAB2D4]">
+          {description}{' '}
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={disabled}
+            className="font-medium text-[#3FDCC0] hover:underline disabled:cursor-not-allowed"
+          >
+            browse your files
+          </button>
+          .
+        </p>
+        <p className="text-[12px] text-[#565F8C]">{hint}</p>
+        {state.error && <p className="text-[12px] text-[#FF6B6B]">{state.error}</p>}
+        {state.file && !state.error && (
+          <p className="text-[12px] text-[#3FDCC0]">"{state.file.name}" selected — save changes to upload.</p>
+        )}
+        {state.remove && !state.file && (
+          <p className="text-[12px] text-[#F2AE55]">{label} will be removed when you save.</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+type ImageField = 'logo' | 'signature' | 'stamp';
+
 export default function CompanyProfilePage() {
   const { user, accessToken } = useAuth();
   const companyId = user?.company?.id;
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -113,15 +270,11 @@ export default function CompanyProfilePage() {
     primaryColor: '',
   });
 
-  // savedLogoUrl: what the server has on file, resolved to a loadable URL.
-  // localPreviewUrl: an object URL for a file picked but not yet saved.
-  // removeLogo: user asked to clear the logo on next save.
-  const [savedLogoUrl, setSavedLogoUrl] = useState<string | null>(null);
-  const [logoFile, setLogoFile] = useState<File | null>(null);
-  const [localPreviewUrl, setLocalPreviewUrl] = useState<string | null>(null);
-  const [removeLogo, setRemoveLogo] = useState(false);
-  const [logoError, setLogoError] = useState<string | null>(null);
-  const [dragActive, setDragActive] = useState(false);
+  const [images, setImages] = useState<Record<ImageField, ImageFieldState>>({
+    logo: { ...emptyImageState },
+    signature: { ...emptyImageState },
+    stamp: { ...emptyImageState },
+  });
 
   useEffect(() => {
     if (!companyId || !accessToken) {
@@ -141,7 +294,11 @@ export default function CompanyProfilePage() {
           address: data.address ?? '',
           primaryColor: data.primaryColor ?? '',
         });
-        setSavedLogoUrl(resolveLogoUrl(data.logoUrl));
+        setImages({
+          logo: { ...emptyImageState, savedUrl: resolveFileUrl(data.logoUrl) },
+          signature: { ...emptyImageState, savedUrl: resolveFileUrl(data.signatureUrl) },
+          stamp: { ...emptyImageState, savedUrl: resolveFileUrl(data.stampUrl) },
+        });
       } catch (err) {
         setBanner({
           tone: 'error',
@@ -155,50 +312,47 @@ export default function CompanyProfilePage() {
     loadCompany();
   }, [companyId, accessToken]);
 
-  // Object URLs are only valid for the lifetime of the page — revoke the
-  // previous one whenever it's replaced or the component unmounts, or
-  // each newly picked file leaks memory.
+  // Revoke object URLs on unmount so picked-but-unsaved files don't leak.
   useEffect(() => {
     return () => {
-      if (localPreviewUrl) URL.revokeObjectURL(localPreviewUrl);
+      Object.values(images).forEach((img) => {
+        if (img.previewUrl) URL.revokeObjectURL(img.previewUrl);
+      });
     };
-  }, [localPreviewUrl]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const applyFile = (file: File | null) => {
-    if (!file) return;
-    const validationError = getLogoValidationError(file);
-    if (validationError) {
-      setLogoError(validationError);
-      return;
-    }
-    if (localPreviewUrl) URL.revokeObjectURL(localPreviewUrl);
-    setLogoFile(file);
-    setLocalPreviewUrl(URL.createObjectURL(file));
-    setRemoveLogo(false);
-    setLogoError(null);
+  const handleFile = (field: ImageField) => (file: File) => {
+    const validationError = getImageValidationError(file);
+    setImages((prev) => {
+      const current = prev[field];
+      if (validationError) {
+        return { ...prev, [field]: { ...current, error: validationError } };
+      }
+      if (current.previewUrl) URL.revokeObjectURL(current.previewUrl);
+      return {
+        ...prev,
+        [field]: {
+          ...current,
+          file,
+          previewUrl: URL.createObjectURL(file),
+          remove: false,
+          error: null,
+        },
+      };
+    });
   };
 
-  const handleLogoSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
-    applyFile(event.target.files?.[0] ?? null);
-    event.target.value = '';
+  const handleRemove = (field: ImageField) => () => {
+    setImages((prev) => {
+      const current = prev[field];
+      if (current.previewUrl) URL.revokeObjectURL(current.previewUrl);
+      return {
+        ...prev,
+        [field]: { ...emptyImageState, remove: true },
+      };
+    });
   };
-
-  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    setDragActive(false);
-    applyFile(event.dataTransfer.files?.[0] ?? null);
-  };
-
-  const handleRemoveLogo = () => {
-    if (localPreviewUrl) URL.revokeObjectURL(localPreviewUrl);
-    setLogoFile(null);
-    setLocalPreviewUrl(null);
-    setSavedLogoUrl(null);
-    setRemoveLogo(true);
-    setLogoError(null);
-  };
-
-  const displayedLogo = localPreviewUrl ?? savedLogoUrl;
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -214,8 +368,22 @@ export default function CompanyProfilePage() {
       if (form.contactPhone.trim()) payload.append('contactPhone', form.contactPhone.trim());
       if (form.address.trim()) payload.append('address', form.address.trim());
       if (form.primaryColor.trim()) payload.append('primaryColor', form.primaryColor.trim());
-      if (logoFile) payload.append('logo', logoFile);
-      if (removeLogo && !logoFile) payload.append('removeLogo', 'true');
+
+      const fieldToFormKey: Record<ImageField, { file: string; remove: string }> = {
+        logo: { file: 'logo', remove: 'removeLogo' },
+        signature: { file: 'signature', remove: 'removeSignature' },
+        stamp: { file: 'stamp', remove: 'removeStamp' },
+      };
+
+      (Object.keys(images) as ImageField[]).forEach((field) => {
+        const state = images[field];
+        const keys = fieldToFormKey[field];
+        if (state.file) {
+          payload.append(keys.file, state.file);
+        } else if (state.remove) {
+          payload.append(keys.remove, 'true');
+        }
+      });
 
       const updated = await updateCompany(companyId, payload, accessToken);
       setForm({
@@ -226,11 +394,16 @@ export default function CompanyProfilePage() {
         address: updated.address ?? '',
         primaryColor: updated.primaryColor ?? '',
       });
-      if (localPreviewUrl) URL.revokeObjectURL(localPreviewUrl);
-      setLocalPreviewUrl(null);
-      setLogoFile(null);
-      setRemoveLogo(false);
-      setSavedLogoUrl(resolveLogoUrl(updated.logoUrl));
+      setImages((prev) => {
+        Object.values(prev).forEach((img) => {
+          if (img.previewUrl) URL.revokeObjectURL(img.previewUrl);
+        });
+        return {
+          logo: { ...emptyImageState, savedUrl: resolveFileUrl(updated.logoUrl) },
+          signature: { ...emptyImageState, savedUrl: resolveFileUrl(updated.signatureUrl) },
+          stamp: { ...emptyImageState, savedUrl: resolveFileUrl(updated.stampUrl) },
+        };
+      });
       setBanner({ tone: 'success', text: 'Company profile updated successfully.' });
     } catch (err) {
       setBanner({
@@ -260,7 +433,9 @@ export default function CompanyProfilePage() {
           <h1 className="text-[26px] font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
             Your company details
           </h1>
-          <p className="text-[13.5px] text-[#8891B8] mt-1">Update branding, contact info, and company logo.</p>
+          <p className="text-[13.5px] text-[#8891B8] mt-1">
+            Update branding, contact info, logo, signature, and stamp.
+          </p>
         </div>
       </div>
 
@@ -283,105 +458,57 @@ export default function CompanyProfilePage() {
         {/* Branding */}
         <SectionCard
           eyebrow="Identity"
-          title="Branding"
+          title="Logo"
           description="Your logo appears on candidate reports, invitation emails, and the assessment portal."
         >
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
-            {/* Logo drop zone */}
-            <div
-              onDragOver={(e) => {
-                e.preventDefault();
-                setDragActive(true);
-              }}
-              onDragLeave={() => setDragActive(false)}
-              onDrop={handleDrop}
-              className={`group relative shrink-0 rounded-2xl border border-dashed p-1 transition-colors ${
-                dragActive ? 'border-[#3FDCC0] bg-[#3FDCC0]/5' : 'border-white/[0.12] bg-[#0F1330]'
-              }`}
-            >
-              <div
-                className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-xl"
-                style={{
-                  backgroundImage:
-                    'linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,0.04) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.04) 75%), linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.04) 75%)',
-                  backgroundSize: '12px 12px',
-                  backgroundPosition: '0 0, 0 6px, 6px -6px, -6px 0px',
-                  backgroundColor: '#0B0F26',
-                }}
-              >
-                {displayedLogo ? (
-                  // object-contain (not cover) so non-square logos never get
-                  // cropped — the checkerboard behind shows through any
-                  // transparent padding instead of hiding it under a crop.
-                  <img src={displayedLogo} alt="Company logo" className="h-full w-full object-contain p-2" />
-                ) : (
-                  <div className="flex flex-col items-center gap-1 text-[#3FDCC0]">
-                    {form.name ? (
-                      <span className="text-[22px] font-semibold" style={{ fontFamily: 'var(--font-display)' }}>
-                        {initialsFromName(form.name)}
-                      </span>
-                    ) : (
-                      <Building2 size={26} />
-                    )}
-                  </div>
-                )}
+          <ImageDropzone
+            label="Logo"
+            description="Drag an image onto the logo, or"
+            hint="PNG, JPG, WEBP, or SVG · up to 1 MB · square logos display best"
+            fallbackIcon={<Building2 size={26} />}
+            fallbackInitials={form.name ? initialsFromName(form.name) : undefined}
+            state={images.logo}
+            onFile={handleFile('logo')}
+            onRemove={handleRemove('logo')}
+            disabled={loading}
+          />
+        </SectionCard>
 
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-[#0B0F26]/0 text-transparent transition-all group-hover:bg-[#0B0F26]/70 group-hover:text-[#F2F4FA]"
-                  aria-label="Upload logo"
-                >
-                  <Camera size={16} />
-                  <span className="text-[11px] font-medium">Change</span>
-                </button>
-              </div>
+        {/* Signature */}
+        <SectionCard
+          eyebrow="Authorization"
+          title="Signatory signature"
+          description="Appears on generated reports and certificates as the authorized signature."
+        >
+          <ImageDropzone
+            label="Signature"
+            description="Drag a signature image here, or"
+            hint="PNG, JPG, WEBP, or SVG · up to 1 MB · transparent background recommended"
+            fallbackIcon={<PenTool size={24} />}
+            state={images.signature}
+            onFile={handleFile('signature')}
+            onRemove={handleRemove('signature')}
+            disabled={loading}
+            shape="wide"
+          />
+        </SectionCard>
 
-              {displayedLogo && (
-                <button
-                  type="button"
-                  onClick={handleRemoveLogo}
-                  className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-[#161C3A] text-[#8891B8] shadow-sm transition-colors hover:text-[#FF6B6B]"
-                  aria-label="Remove logo"
-                  title="Remove logo"
-                >
-                  <X size={12} />
-                </button>
-              )}
-
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/png,image/jpeg,image/jpg,image/webp,image/svg+xml"
-                className="hidden"
-                onChange={handleLogoSelection}
-              />
-            </div>
-
-            <div className="flex-1 space-y-2 pt-1">
-              <p className="text-[13px] text-[#AAB2D4]">
-                Drag an image onto the logo, or{' '}
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  className="font-medium text-[#3FDCC0] hover:underline"
-                >
-                  browse your files
-                </button>
-                .
-              </p>
-              <p className="text-[12px] text-[#565F8C]">PNG, JPG, WEBP, or SVG · up to 1 MB · square logos display best</p>
-              {logoError && <p className="text-[12px] text-[#FF6B6B]">{logoError}</p>}
-              {logoFile && !logoError && (
-                <p className="text-[12px] text-[#3FDCC0]">
-                  "{logoFile.name}" selected — save changes to upload.
-                </p>
-              )}
-              {removeLogo && !logoFile && (
-                <p className="text-[12px] text-[#F2AE55]">Logo will be removed when you save.</p>
-              )}
-            </div>
-          </div>
+        {/* Stamp */}
+        <SectionCard
+          eyebrow="Authorization"
+          title="Company stamp"
+          description="Your official seal, shown alongside the signature on reports and certificates."
+        >
+          <ImageDropzone
+            label="Stamp"
+            description="Drag a stamp image here, or"
+            hint="PNG, JPG, WEBP, or SVG · up to 1 MB · transparent background recommended"
+            fallbackIcon={<StampIcon size={24} />}
+            state={images.stamp}
+            onFile={handleFile('stamp')}
+            onRemove={handleRemove('stamp')}
+            disabled={loading}
+          />
         </SectionCard>
 
         {/* Company details */}

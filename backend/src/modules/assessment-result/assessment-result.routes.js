@@ -94,4 +94,12 @@ router.get(
     controller.getCandidateResultPdf
 );
 
+
+router.get(
+    "/candidate/:attemptId/certificate",
+    authorize("assessment_result.view"),
+    controller.getCandidateResultCertificatePdf
+);
+ 
+
 module.exports = router;

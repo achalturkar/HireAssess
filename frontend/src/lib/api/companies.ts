@@ -20,6 +20,8 @@ interface CompanyResponse {
   contactEmail: string | null;
   contactPhone: string | null;
   logoUrl: string | null;
+  signatureUrl: string | null;
+  stampUrl: string | null;
   primaryColor: string | null;
   address: string | null;
   status: string;
@@ -145,8 +147,6 @@ export async function getCompanyStats(companyId: string, accessToken: string | n
     throw new ApiError(msg, res.status);
   }
 
-  // backend response shape: { success, message, data: { message, data } }
-  // unwrap to return the inner data payload if present
   return (body?.data && body.data.data) ? body.data.data : body.data;
 }
 
