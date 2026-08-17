@@ -2,6 +2,21 @@
 
 const { body, param, query } = require('express-validator');
 
+
+
+const updateProfileValidator = [
+  body('firstName').optional().isString().trim().isLength({ min: 1, max: 100 }),
+  body('lastName').optional().isString().trim().isLength({ min: 1, max: 100 }),
+  body('phone').optional({ nullable: true }).isString().isLength({ max: 50 }),
+];
+
+const changePasswordValidator = [
+  body('currentPassword').isString().notEmpty(),
+  body('newPassword').isString().isLength({ min: 8, max: 128 }),
+  body('confirmPassword').isString().isLength({ min: 8, max: 128 }),
+];
+
+
 const createValidator = [
   body('firstName').isString().trim().isLength({ min: 1, max: 100 }),
   body('lastName').isString().trim().isLength({ min: 1, max: 100 }),
@@ -33,4 +48,4 @@ const listValidator = [
   query('sortOrder').optional().isIn(['asc', 'desc']),
 ];
 
-module.exports = { createValidator, updateValidator, idParamValidator, listValidator };
+module.exports = { createValidator, updateValidator, idParamValidator, listValidator, updateProfileValidator, changePasswordValidator };

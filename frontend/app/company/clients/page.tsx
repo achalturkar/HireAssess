@@ -29,7 +29,7 @@ import {
   inactivateClient,
   ApiError,
 } from '@/src/lib/api/clients';
-import { listCompanies } from '@/src/lib/api/users';
+// import { listCompanyOptions } from '@/src/lib/api/users';
 import type { Client, ClientFormValues, ClientStatus, PaginationMeta, CompanyRef } from '@/src/types/client';
 
 const PAGE_SIZE = 10;
@@ -55,8 +55,8 @@ function isAbsoluteUrl(value: string) {
 
 function StatusBadge({ status }: { status: ClientStatus }) {
   const styles: Record<ClientStatus, string> = {
-    ACTIVE: 'bg-[#3FDCC0]/15 text-[#3FDCC0]',
-    INACTIVE: 'bg-[#565F8C]/20 text-[#8891B8]',
+    ACTIVE: 'bg-[var(--primary)]/15 text-[var(--primary)]',
+    INACTIVE: 'bg-[var(--muted)]/20 text-[var(--muted)]',
   };
   return (
     <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-medium ${styles[status]}`}>
@@ -96,6 +96,8 @@ export default function ClientsPage() {
 
   const [banner, setBanner] = useState<{ text: string; tone: 'success' | 'error' } | null>(null);
 
+
+  
   useEffect(() => {
     const t = setTimeout(() => {
       setSearch(searchInput.trim());
@@ -132,13 +134,13 @@ export default function ClientsPage() {
     fetchClients();
   }, [fetchClients]);
 
-  useEffect(() => {
-    if (isSuperAdmin) {
-      listCompanies()
-        .then(setCompanies)
-        .catch(() => setCompanies([]));
-    }
-  }, [isSuperAdmin]);
+  // useEffect(() => {
+  //   if (isSuperAdmin) {
+  //     listCompanyOptions()
+  //       .then(setCompanies)
+  //       .catch(() => setCompanies([]));
+  //   }
+  // }, [isSuperAdmin]);
 
   useEffect(() => {
     if (banner) {
@@ -178,9 +180,6 @@ export default function ClientsPage() {
       payload.append('clientCode', values.clientCode.trim());
       payload.append('name', values.name.trim());
 
-      // Only forward logoUrl when it's a real external URL the user typed
-      // AND no file was picked — the backend always prefers req.file over
-      // logoUrl when both are present.
       if (!logoFile && values.logoUrl.trim() && isAbsoluteUrl(values.logoUrl)) {
         payload.append('logoUrl', values.logoUrl.trim());
       }
@@ -278,25 +277,25 @@ export default function ClientsPage() {
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <p
-            className="text-[11px] uppercase tracking-[0.14em] text-[#3FDCC0] mb-1.5"
+            className="text-[11px] uppercase tracking-[0.14em] text-[var(--primary)] mb-1.5"
             style={{ fontFamily: 'var(--font-mono)' }}
           >
             Client Management
           </p>
-          <h1 className="text-[26px] font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+          <h1 className="text-[26px] font-semibold tracking-tight text-[var(--foreground)]" style={{ fontFamily: 'var(--font-display)' }}>
             Clients
           </h1>
-          <p className="text-[13.5px] text-[#8891B8] mt-1">Manage company clients and their status</p>
+          <p className="text-[13.5px] text-[var(--muted)] mt-1">Manage company clients and their status</p>
         </div>
 
         <div className="flex items-center gap-3 flex-wrap">
-          <div className="rounded-2xl bg-[#161C3A] px-4 py-3 text-[13px] text-[#F2F4FA] border border-white/[0.08]">
-            <span className="block text-[11px] text-[#8891B8]">Total clients</span>
+          <div className="rounded-2xl bg-[var(--surface)] px-4 py-3 text-[13px] text-[var(--foreground)] border border-[var(--border)]">
+            <span className="block text-[11px] text-[var(--muted)]">Total clients</span>
             <span className="text-[20px] font-semibold">{meta.total}</span>
           </div>
           <button
             onClick={openCreate}
-            className="flex items-center gap-1.5 rounded-lg bg-[#3FDCC0] text-[#0B0F26] text-[13px] font-semibold px-4 py-2.5 hover:bg-[#3FDCC0]/90 transition-colors shrink-0"
+            className="flex items-center gap-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-[13px] font-semibold px-4 py-2.5 hover:bg-[var(--primary)]/90 transition-colors shrink-0"
           >
             <Plus size={14} strokeWidth={2.5} />
             Add client
@@ -309,7 +308,7 @@ export default function ClientsPage() {
         <div
           className={`rounded-xl border px-4 py-3 text-[13px] flex items-center justify-between ${
             banner.tone === 'success'
-              ? 'bg-[#3FDCC0]/10 border-[#3FDCC0]/25 text-[#3FDCC0]'
+              ? 'bg-[var(--primary)]/10 border-[var(--primary)]/25 text-[var(--primary)]'
               : 'bg-[#FF6B6B]/10 border-[#FF6B6B]/25 text-[#FF6B6B]'
           }`}
         >
@@ -323,14 +322,14 @@ export default function ClientsPage() {
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-3">
         <div className="relative flex-1 min-w-[220px]">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#565F8C]">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)]">
             <Search size={15} />
           </span>
           <input
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             placeholder="Search by name, code, or contact…"
-            className="w-full rounded-lg bg-[#161C3A] border border-white/[0.08] pl-9 pr-3 py-2.5 text-[13.5px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors"
+            className="w-full rounded-lg bg-[var(--surface)] border border-[var(--border)] pl-9 pr-3 py-2.5 text-[13.5px] text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:border-[var(--primary)]/50 focus:ring-1 focus:ring-[var(--primary)]/30 transition-colors"
           />
         </div>
         <select
@@ -339,7 +338,7 @@ export default function ClientsPage() {
             setStatus(e.target.value as ClientStatus | '');
             setPage(1);
           }}
-          className="rounded-lg bg-[#161C3A] border border-white/[0.08] px-3 py-2.5 text-[13px] text-[#AAB2D4] outline-none focus:border-[#3FDCC0]/50 transition-colors"
+          className="rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5 text-[13px] text-[var(--muted)] outline-none focus:border-[var(--primary)]/50 transition-colors"
         >
           <option value="">All statuses</option>
           <option value="ACTIVE">Active</option>
@@ -348,12 +347,12 @@ export default function ClientsPage() {
       </div>
 
       {/* Table */}
-      <div className="rounded-2xl border border-white/[0.08] bg-[#161C3A] overflow-hidden">
+      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-[720px] w-full text-left">
             <thead>
               <tr
-                className="text-[11px] uppercase tracking-wide text-[#565F8C] border-b border-white/[0.08]"
+                className="text-[11px] uppercase tracking-wide text-[var(--muted)] border-b border-[var(--border)]"
                 style={{ fontFamily: 'var(--font-mono)' }}
               >
               <th className="px-5 py-3 font-medium">Client</th>
@@ -367,7 +366,7 @@ export default function ClientsPage() {
           <tbody>
             {loading && (
               <tr>
-                <td colSpan={isSuperAdmin ? 6 : 5} className="px-5 py-10 text-center text-[13px] text-[#565F8C]">
+                <td colSpan={isSuperAdmin ? 6 : 5} className="px-5 py-10 text-center text-[13px] text-[var(--muted)]">
                   Loading clients…
                 </td>
               </tr>
@@ -383,7 +382,7 @@ export default function ClientsPage() {
 
             {!loading && !loadError && clients.length === 0 && (
               <tr>
-                <td colSpan={isSuperAdmin ? 6 : 5} className="px-5 py-10 text-center text-[13px] text-[#565F8C]">
+                <td colSpan={isSuperAdmin ? 6 : 5} className="px-5 py-10 text-center text-[13px] text-[var(--muted)]">
                   No clients match these filters.
                 </td>
               </tr>
@@ -395,7 +394,7 @@ export default function ClientsPage() {
                 <tr
                   key={c.id}
                   onClick={() => openView(c)}
-                  className="border-t border-white/[0.06] hover:bg-white/[0.03] cursor-pointer"
+                  className="border-t border-[var(--border)] hover:bg-[var(--surface-muted)] cursor-pointer"
                 >
                   <td className="px-5 py-3">
                     <div className="flex items-center gap-3">
@@ -403,21 +402,21 @@ export default function ClientsPage() {
                         <img
                           src={c.logoUrl}
                           alt=""
-                          className="w-8 h-8 rounded-full object-cover shrink-0 bg-white/[0.06]"
+                          className="w-8 h-8 rounded-full object-cover shrink-0 bg-[var(--surface-muted)]"
                         />
                       ) : (
                         <div
                           className={`w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-semibold shrink-0 ${
-                            i % 2 === 0 ? 'bg-[#3FDCC0]/15 text-[#3FDCC0]' : 'bg-[#F2AE55]/15 text-[#F2AE55]'
+                            i % 2 === 0 ? 'bg-[var(--primary)]/15 text-[var(--primary)]' : 'bg-[#F2AE55]/15 text-[#F2AE55]'
                           }`}
                         >
                           {initials(c.name)}
                         </div>
                       )}
                       <div className="min-w-0">
-                        <p className="text-[13.5px] text-[#F2F4FA] truncate">{c.name}</p>
+                        <p className="text-[13.5px] text-[var(--foreground)] truncate">{c.name}</p>
                         <p
-                          className="text-[11.5px] text-[#565F8C] truncate"
+                          className="text-[11.5px] text-[var(--muted)] truncate"
                           style={{ fontFamily: 'var(--font-mono)' }}
                         >
                           {c.clientCode}
@@ -426,24 +425,24 @@ export default function ClientsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-5 py-3 text-[12.5px] text-[#AAB2D4]">
-                    {c.contactName && <p className="text-[13px] text-[#F2F4FA]">{c.contactName}</p>}
+                  <td className="px-5 py-3 text-[12.5px] text-[var(--muted)]">
+                    {c.contactName && <p className="text-[13px] text-[var(--foreground)]">{c.contactName}</p>}
                     {c.contactEmail && (
-                      <p className="flex items-center gap-1.5 text-[#8891B8]">
+                      <p className="flex items-center gap-1.5 text-[var(--muted)]">
                         <Mail size={11} /> {c.contactEmail}
                       </p>
                     )}
                     {c.contactPhone && (
-                      <p className="flex items-center gap-1.5 text-[#8891B8]">
+                      <p className="flex items-center gap-1.5 text-[var(--muted)]">
                         <Phone size={11} /> {c.contactPhone}
                       </p>
                     )}
                     {!c.contactName && !c.contactEmail && !c.contactPhone && <span>—</span>}
                   </td>
                   {isSuperAdmin && (
-                    <td className="px-5 py-3 text-[13px] text-[#AAB2D4]">
+                    <td className="px-5 py-3 text-[13px] text-[var(--muted)]">
                       <span className="flex items-center gap-1.5">
-                        <Building2 size={12} className="text-[#565F8C]" />
+                        <Building2 size={12} className="text-[var(--muted)]" />
                         {c.company?.name ?? '—'}
                       </span>
                     </td>
@@ -451,7 +450,7 @@ export default function ClientsPage() {
                   <td className="px-5 py-3">
                     <StatusBadge status={c.status} />
                   </td>
-                  <td className="px-5 py-3 text-[12.5px] text-[#8891B8]" style={{ fontFamily: 'var(--font-mono)' }}>
+                  <td className="px-5 py-3 text-[12.5px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
                     {new Date(c.createdAt).toLocaleDateString(undefined, {
                       month: 'short',
                       day: 'numeric',
@@ -462,7 +461,7 @@ export default function ClientsPage() {
                     <div className="flex items-center justify-end gap-1.5">
                       <button
                         onClick={() => openView(c)}
-                        className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#AAB2D4] hover:bg-white/[0.06] transition-colors"
+                        className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--surface-muted)] transition-colors"
                         aria-label={`View ${c.name}`}
                       >
                         <Eye size={13} />
@@ -472,7 +471,7 @@ export default function ClientsPage() {
                           href={c.website}
                           target="_blank"
                           rel="noreferrer"
-                          className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#AAB2D4] hover:bg-white/[0.06] transition-colors"
+                          className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--surface-muted)] transition-colors"
                           aria-label={`Visit ${c.name} website`}
                         >
                           <Globe size={13} />
@@ -484,8 +483,8 @@ export default function ClientsPage() {
                         }
                         className={`w-7 h-7 rounded-md flex items-center justify-center transition-colors ${
                           c.status === 'ACTIVE'
-                            ? 'text-[#8891B8] hover:text-[#F2AE55] hover:bg-[#F2AE55]/10'
-                            : 'text-[#8891B8] hover:text-[#3FDCC0] hover:bg-[#3FDCC0]/10'
+                            ? 'text-[var(--muted)] hover:text-[#F2AE55] hover:bg-[#F2AE55]/10'
+                            : 'text-[var(--muted)] hover:text-[var(--primary)] hover:bg-[var(--primary)]/10'
                         }`}
                         aria-label={c.status === 'ACTIVE' ? `Deactivate ${c.name}` : `Activate ${c.name}`}
                       >
@@ -493,14 +492,14 @@ export default function ClientsPage() {
                       </button>
                       <button
                         onClick={() => openEdit(c)}
-                        className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#3FDCC0] hover:bg-[#3FDCC0]/10 transition-colors"
+                        className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:bg-[var(--primary)]/10 transition-colors"
                         aria-label={`Edit ${c.name}`}
                       >
                         <Pencil size={13} />
                       </button>
                       <button
                         onClick={() => setDeleteTarget(c)}
-                        className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/10 transition-colors"
+                        className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/10 transition-colors"
                         aria-label={`Delete ${c.name}`}
                       >
                         <Trash2 size={13} />
@@ -514,26 +513,26 @@ export default function ClientsPage() {
       </div>
 
         {/* Pagination */}
-        <div className="flex items-center justify-between px-5 py-3.5 border-t border-white/[0.08]">
-          <p className="text-[12px] text-[#565F8C]" style={{ fontFamily: 'var(--font-mono)' }}>
+        <div className="flex items-center justify-between px-5 py-3.5 border-t border-[var(--border)]">
+          <p className="text-[12px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
             {rangeLabel}
           </p>
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={meta.page <= 1 || loading}
-              className="w-7 h-7 rounded-md flex items-center justify-center text-[#AAB2D4] border border-white/[0.08] hover:bg-white/[0.05] transition-colors disabled:opacity-30"
+              className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] border border-[var(--border)] hover:bg-[var(--surface-muted)] transition-colors disabled:opacity-30"
               aria-label="Previous page"
             >
               <ChevronLeft size={14} />
             </button>
-            <span className="text-[12.5px] text-[#AAB2D4] px-2" style={{ fontFamily: 'var(--font-mono)' }}>
+            <span className="text-[12.5px] text-[var(--muted)] px-2" style={{ fontFamily: 'var(--font-mono)' }}>
               {meta.page} / {Math.max(1, meta.totalPages)}
             </span>
             <button
               onClick={() => setPage((p) => Math.min(meta.totalPages || 1, p + 1))}
               disabled={meta.page >= meta.totalPages || loading}
-              className="w-7 h-7 rounded-md flex items-center justify-center text-[#AAB2D4] border border-white/[0.08] hover:bg-white/[0.05] transition-colors disabled:opacity-30"
+              className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] border border-[var(--border)] hover:bg-[var(--surface-muted)] transition-colors disabled:opacity-30"
               aria-label="Next page"
             >
               <ChevronRight size={14} />

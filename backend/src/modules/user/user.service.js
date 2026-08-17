@@ -1,6 +1,6 @@
 'use strict';
 
-const { hashPassword, generateRandomPassword } = require('../../utils/password');
+const { hashPassword, generateRandomPassword, comparePassword } = require('../../utils/password');
 const { sendMail, buildCompanyAdminWelcomeEmail } = require('../../utils/mailer');
 const config = require('../../config');
 const logger = require('../../common/logger');
@@ -148,4 +148,68 @@ const remove = async ({ currentUser, id }) => {
   await invalidateUserAuthCache(id);
 };
 
-module.exports = { create, getById, list, update, remove };
+/* ------------------------------------------------------------------
+   Self-service: profile + password.
+   Unlike `update`/`remove` above, these are NEVER passed an `id` from
+   the request — they always operate on `currentUser.id`. That's what
+   makes them safe to expose without the `users.*` admin permissions:
+   there is no id param to tamper with, so a user can only ever act on
+   themselves.
+------------------------------------------------------------------- */
+
+const getMyProfile = async ({ currentUser }) => {
+  const user = await repo.findById(currentUser.id);
+  if (!user) throw new NotFoundError('User not found');
+  return toDto(user);
+};
+
+// Deliberately whitelisted to firstName/lastName/phone — same reasoning
+// as the comment on `update()`: roleId/status are admin-only fields and
+// must never be settable through a self-service endpoint.
+const updateProfile = async ({ currentUser, payload }) => {
+  const data = {};
+  ['firstName', 'lastName', 'phone'].forEach((k) => {
+    if (payload[k] !== undefined) data[k] = payload[k];
+  });
+  if (Object.keys(data).length === 0) {
+    throw new BadRequestError('No fields to update');
+  }
+
+  const updated = await repo.update(currentUser.id, data);
+  await invalidateUserAuthCache(currentUser.id);
+  return toDto(updated);
+};
+
+const changePassword = async ({ currentUser, payload }) => {
+  const { currentPassword, newPassword, confirmPassword } = payload;
+
+  if (newPassword !== confirmPassword) {
+    throw new BadRequestError('New password and confirmation do not match');
+  }
+  if (newPassword === currentPassword) {
+    throw new BadRequestError('New password must be different from your current password');
+  }
+
+  // repo.findById includes the full row (no `select`), so passwordHash
+  // is present here even though toDto() never returns it to clients.
+  const user = await repo.findById(currentUser.id);
+  if (!user) throw new NotFoundError('User not found');
+
+  const matches = await comparePassword(currentPassword, user.passwordHash);
+  if (!matches) throw new BadRequestError('Current password is incorrect');
+
+  const passwordHash = await hashPassword(newPassword);
+  await repo.update(currentUser.id, { passwordHash, mustChangePassword: false });
+  await invalidateUserAuthCache(currentUser.id);
+};
+
+module.exports = {
+  create,
+  getById,
+  list,
+  update,
+  remove,
+  getMyProfile,
+  updateProfile,
+  changePassword,
+};

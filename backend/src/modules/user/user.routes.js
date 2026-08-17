@@ -19,6 +19,50 @@ router.use(authenticate);
 
 /**
  * @openapi
+ * /users/me:
+ *   get:
+ *     tags: [Users]
+ *     summary: Get your own profile (no admin permission required)
+ *   put:
+ *     tags: [Users]
+ *     summary: Update your own name/phone (never roleId or status)
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               firstName: { type: string }
+ *               lastName: { type: string }
+ *               phone: { type: string }
+ */
+router
+  .route('/me')
+  .get(controller.getMyProfile)
+  .put(validate(v.updateProfileValidator), controller.updateMyProfile);
+
+/**
+ * @openapi
+ * /users/me/password:
+ *   put:
+ *     tags: [Users]
+ *     summary: Change your own password (no admin permission required)
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [currentPassword, newPassword, confirmPassword]
+ *             properties:
+ *               currentPassword: { type: string }
+ *               newPassword: { type: string, minLength: 8 }
+ *               confirmPassword: { type: string, minLength: 8 }
+ */
+router.put('/me/password', validate(v.changePasswordValidator), controller.changeMyPassword);
+
+/**
+ * @openapi
  * /users:
  *   get:
  *     tags: [Users]

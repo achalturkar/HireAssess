@@ -112,15 +112,15 @@ export default function AssessmentResultsPage() {
       {/* Header */}
       <div>
         <p
-          className="text-[11px] uppercase tracking-[0.14em] text-[#3FDCC0] mb-1.5"
+          className="text-[11px] uppercase tracking-[0.14em] text-[var(--primary)] mb-1.5"
           style={{ fontFamily: 'var(--font-mono)' }}
         >
           Scoring &amp; Reports
         </p>
-        <h1 className="text-[26px] font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+        <h1 className="text-[26px] font-semibold tracking-tight text-[var(--foreground)]" style={{ fontFamily: 'var(--font-display)' }}>
           Assessment Results
         </h1>
-        <p className="text-[13.5px] text-[#8891B8] mt-1">Review scored outcomes for completed attempts</p>
+        <p className="text-[13.5px] text-[var(--muted)] mt-1">Review scored outcomes for completed attempts</p>
       </div>
 
       {/* Filters */}
@@ -142,7 +142,7 @@ export default function AssessmentResultsPage() {
             setAssessmentId(e.target.value);
             setPage(1);
           }}
-          className="rounded-lg bg-[#161C3A] border border-white/[0.08] px-3 py-2.5 text-[13px] text-[#AAB2D4] outline-none focus:border-[#3FDCC0]/50 transition-colors h-[42px]"
+          className="rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5 text-[13px] text-[var(--muted)] outline-none focus:border-[var(--primary)]/50 transition-colors h-[42px]"
         >
           <option value="">All assessments</option>
           {assessments.map((a) => (
@@ -160,10 +160,10 @@ export default function AssessmentResultsPage() {
               value={minScoreInput}
               onChange={(e) => setMinScoreInput(e.target.value)}
               placeholder="Min"
-              className="w-full rounded-lg bg-[#161C3A] border border-white/[0.08] px-3 py-2.5 text-[13px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none focus:border-[#3FDCC0]/50 transition-colors h-[42px]"
+              className="w-full rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5 text-[13px] text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:border-[var(--primary)]/50 transition-colors h-[42px]"
             />
           </div>
-          <span className="text-[#565F8C] text-[12px]">–</span>
+          <span className="text-[var(--muted)] text-[12px]">–</span>
           <div className="relative w-24">
             <input
               type="number"
@@ -172,13 +172,13 @@ export default function AssessmentResultsPage() {
               value={maxScoreInput}
               onChange={(e) => setMaxScoreInput(e.target.value)}
               placeholder="Max"
-              className="w-full rounded-lg bg-[#161C3A] border border-white/[0.08] px-3 py-2.5 text-[13px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none focus:border-[#3FDCC0]/50 transition-colors h-[42px]"
+              className="w-full rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5 text-[13px] text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:border-[var(--primary)]/50 transition-colors h-[42px]"
             />
           </div>
         </div>
         <button
           onClick={() => setSortOrder((o) => (o === 'desc' ? 'asc' : 'desc'))}
-          className="flex items-center gap-1.5 h-[42px] px-3 rounded-lg border border-white/[0.08] text-[12.5px] text-[#AAB2D4] hover:bg-white/[0.05] transition-colors"
+          className="flex items-center gap-1.5 h-[42px] px-3 rounded-lg border border-[var(--border)] text-[12.5px] text-[var(--muted)] hover:bg-[var(--surface-muted)] transition-colors"
         >
           <SlidersHorizontal size={13} />
           {sortOrder === 'desc' ? 'Newest first' : 'Oldest first'}
@@ -186,11 +186,11 @@ export default function AssessmentResultsPage() {
       </div>
 
       {/* Table */}
-      <div className="rounded-2xl border border-white/[0.08] bg-[#161C3A] overflow-x-auto">
+      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-x-auto">
         <table className="w-full min-w-[720px] text-left">
           <thead>
             <tr
-              className="text-[11px] uppercase tracking-wide text-[#565F8C] border-b border-white/[0.08]"
+              className="text-[11px] uppercase tracking-wide text-[var(--muted)] border-b border-[var(--border)]"
               style={{ fontFamily: 'var(--font-mono)' }}
             >
               <th className="px-5 py-3 font-medium">Candidate</th>
@@ -203,7 +203,7 @@ export default function AssessmentResultsPage() {
           <tbody>
             {loading && (
               <tr>
-                <td colSpan={5} className="px-5 py-10 text-center text-[13px] text-[#565F8C]">
+                <td colSpan={5} className="px-5 py-10 text-center text-[13px] text-[var(--muted)]">
                   Loading results…
                 </td>
               </tr>
@@ -219,7 +219,7 @@ export default function AssessmentResultsPage() {
 
             {!loading && !loadError && results.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-5 py-10 text-center text-[13px] text-[#565F8C]">
+                <td colSpan={5} className="px-5 py-10 text-center text-[13px] text-[var(--muted)]">
                   No results match these filters.
                 </td>
               </tr>
@@ -230,21 +230,21 @@ export default function AssessmentResultsPage() {
               results.map((r, i) => {
                 const topTraits = [...r.report.traits].sort((a, b) => b.score - a.score).slice(0, 3);
                 return (
-                  <tr key={r.id} className="border-t border-white/[0.06] hover:bg-white/[0.03]">
+                  <tr key={r.id} className="border-t border-[var(--border)] hover:bg-[var(--surface-muted)]">
                     <td className="px-5 py-3">
                       <div className="flex items-center gap-3">
                         <div
                           className={`w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-semibold shrink-0 ${
-                            i % 2 === 0 ? 'bg-[#3FDCC0]/15 text-[#3FDCC0]' : 'bg-[#F2AE55]/15 text-[#F2AE55]'
+                            i % 2 === 0 ? 'bg-[var(--primary)]/15 text-[var(--primary)]' : 'bg-[#F2AE55]/15 text-[#F2AE55]'
                           }`}
                         >
                           {r.candidate ? initials(r.candidate.firstName, r.candidate.lastName) : '?'}
                         </div>
                         <div className="min-w-0">
-                          <Link href={`/company/candidates/${r.candidate?.id ?? ''}`} className="text-[13.5px] text-[#F2F4FA] truncate hover:text-[#3FDCC0] transition-colors">
+                          <Link href={`/company/candidates/${r.candidate?.id ?? ''}`} className="text-[13.5px] text-[var(--foreground)] truncate hover:text-[var(--primary)] transition-colors">
                             {r.candidate ? `${r.candidate.firstName} ${r.candidate.lastName}` : 'Unknown candidate'}
                           </Link>
-                          <p className="text-[11.5px] text-[#565F8C] truncate">{r.candidate?.email ?? '—'}</p>
+                          <p className="text-[11.5px] text-[var(--muted)] truncate">{r.candidate?.email ?? '—'}</p>
                         </div>
                       </div>
                     </td>
@@ -253,11 +253,11 @@ export default function AssessmentResultsPage() {
                     </td>
                     <td className="px-5 py-3">
                       <div className="flex flex-wrap gap-1.5">
-                        {topTraits.length === 0 && <span className="text-[12px] text-[#565F8C]">—</span>}
+                        {topTraits.length === 0 && <span className="text-[12px] text-[var(--muted)]">—</span>}
                         {topTraits.map((t) => (
                           <span
                             key={t.trait}
-                            className="text-[11px] text-[#AAB2D4] bg-white/[0.05] rounded-full px-2 py-1"
+                            className="text-[11px] text-[var(--muted)] bg-[var(--surface-muted)] rounded-full px-2 py-1"
                             title={`${t.trait}: ${t.score}`}
                           >
                             {t.trait}
@@ -265,13 +265,13 @@ export default function AssessmentResultsPage() {
                         ))}
                       </div>
                     </td>
-                    <td className="px-5 py-3 text-[12.5px] text-[#8891B8]" style={{ fontFamily: 'var(--font-mono)' }}>
+                    <td className="px-5 py-3 text-[12.5px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
                       {formatDate(r.createdAt)}
                     </td>
                     <td className="px-5 py-3 text-right">
                       <Link
                         href={`/company/results/${r.attemptId}`}
-                        className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[12px] text-[#8891B8] hover:text-[#3FDCC0] hover:bg-[#3FDCC0]/10 transition-colors"
+                        className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[12px] text-[var(--muted)] hover:text-[var(--primary)] hover:bg-[var(--primary)]/10 transition-colors"
                       >
                         <FileText size={13} />
                         View
@@ -284,26 +284,26 @@ export default function AssessmentResultsPage() {
         </table>
 
         {/* Pagination */}
-        <div className="flex items-center justify-between px-5 py-3.5 border-t border-white/[0.08]">
-          <p className="text-[12px] text-[#565F8C]" style={{ fontFamily: 'var(--font-mono)' }}>
+        <div className="flex items-center justify-between px-5 py-3.5 border-t border-[var(--border)]">
+          <p className="text-[12px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
             {rangeLabel}
           </p>
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={meta.page <= 1 || loading}
-              className="w-7 h-7 rounded-md flex items-center justify-center text-[#AAB2D4] border border-white/[0.08] hover:bg-white/[0.05] transition-colors disabled:opacity-30"
+              className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] border border-[var(--border)] hover:bg-[var(--surface-muted)] transition-colors disabled:opacity-30"
               aria-label="Previous page"
             >
               <ChevronLeft size={14} />
             </button>
-            <span className="text-[12.5px] text-[#AAB2D4] px-2" style={{ fontFamily: 'var(--font-mono)' }}>
+            <span className="text-[12.5px] text-[var(--muted)] px-2" style={{ fontFamily: 'var(--font-mono)' }}>
               {meta.page} / {Math.max(1, meta.totalPages)}
             </span>
             <button
               onClick={() => setPage((p) => Math.min(meta.totalPages || 1, p + 1))}
               disabled={meta.page >= meta.totalPages || loading}
-              className="w-7 h-7 rounded-md flex items-center justify-center text-[#AAB2D4] border border-white/[0.08] hover:bg-white/[0.05] transition-colors disabled:opacity-30"
+              className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] border border-[var(--border)] hover:bg-[var(--surface-muted)] transition-colors disabled:opacity-30"
               aria-label="Next page"
             >
               <ChevronRight size={14} />

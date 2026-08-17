@@ -44,8 +44,11 @@ type TransitionAction = 'start' | 'complete' | 'expire' | 'withdraw';
 
 const TERMINAL: CandidateStatus[] = ['COMPLETED', 'WITHDRAWN'];
 
+// These stay as fixed, translucent brand-accent colors (not theme tokens) —
+// they're status chips, not surface or text defaults, so the same overlay
+// reads correctly whether the page underneath is light or dark.
 const STATUS_STYLES: Record<CandidateStatus, string> = {
-  INVITED: 'bg-[#565F8C]/20 text-[#8891B8]',
+  INVITED: 'bg-[var(--surface-muted)] text-[var(--muted)]',
   IN_PROGRESS: 'bg-[#F2AE55]/15 text-[#F2AE55]',
   COMPLETED: 'bg-[#3FDCC0]/15 text-[#3FDCC0]',
   EXPIRED: 'bg-[#FF6B6B]/15 text-[#FF6B6B]',
@@ -342,15 +345,18 @@ export default function CandidatesPage() {
           >
             Candidate Management
           </p>
-          <h1 className="text-[26px] font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+          <h1
+            className="text-[26px] font-semibold tracking-tight text-[var(--foreground)]"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
             Candidates
           </h1>
-          <p className="text-[13.5px] text-[#8891B8] mt-1">Track invites and assessment progress</p>
+          <p className="text-[13.5px] text-[var(--muted)] mt-1">Track invites and assessment progress</p>
         </div>
 
         <div className="flex items-center gap-3 flex-wrap">
-          <div className="rounded-2xl bg-[#161C3A] px-4 py-3 text-[13px] text-[#F2F4FA] border border-white/[0.08]">
-            <span className="block text-[11px] text-[#8891B8]">Total candidates</span>
+          <div className="rounded-2xl bg-[var(--surface)] px-4 py-3 text-[13px] text-[var(--foreground)] border border-[var(--border)]">
+            <span className="block text-[11px] text-[var(--muted)]">Total candidates</span>
             <span className="text-[20px] font-semibold">{meta.total}</span>
           </div>
           <Link
@@ -395,14 +401,14 @@ export default function CandidatesPage() {
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-3">
         <div className="relative flex-1 min-w-[220px]">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#565F8C]">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)]">
             <Search size={15} />
           </span>
           <input
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             placeholder="Search by name, email, or phone…"
-            className="w-full rounded-lg bg-[#161C3A] border border-white/[0.08] pl-9 pr-3 py-2.5 text-[13.5px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors"
+            className="w-full rounded-lg bg-[var(--surface)] border border-[var(--border)] pl-9 pr-3 py-2.5 text-[13.5px] text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors"
           />
         </div>
         <select
@@ -411,7 +417,7 @@ export default function CandidatesPage() {
             setClientFilter(e.target.value);
             setPage(1);
           }}
-          className="rounded-lg bg-[#161C3A] border border-white/[0.08] px-3 py-2.5 text-[13px] text-[#AAB2D4] outline-none focus:border-[#3FDCC0]/50 transition-colors"
+          className="rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5 text-[13px] text-[var(--foreground)] outline-none focus:border-[#3FDCC0]/50 transition-colors"
         >
           <option value="">All clients</option>
           {clients.map((c) => (
@@ -426,7 +432,7 @@ export default function CandidatesPage() {
             setAssessmentFilter(e.target.value);
             setPage(1);
           }}
-          className="rounded-lg bg-[#161C3A] border border-white/[0.08] px-3 py-2.5 text-[13px] text-[#AAB2D4] outline-none focus:border-[#3FDCC0]/50 transition-colors"
+          className="rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5 text-[13px] text-[var(--foreground)] outline-none focus:border-[#3FDCC0]/50 transition-colors"
         >
           <option value="">All assessments</option>
           {assessments.map((a) => (
@@ -441,7 +447,7 @@ export default function CandidatesPage() {
             setStatusFilter(e.target.value as CandidateStatus | '');
             setPage(1);
           }}
-          className="rounded-lg bg-[#161C3A] border border-white/[0.08] px-3 py-2.5 text-[13px] text-[#AAB2D4] outline-none focus:border-[#3FDCC0]/50 transition-colors"
+          className="rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5 text-[13px] text-[var(--foreground)] outline-none focus:border-[#3FDCC0]/50 transition-colors"
         >
           <option value="">All statuses</option>
           <option value="INVITED">Invited</option>
@@ -453,12 +459,12 @@ export default function CandidatesPage() {
       </div>
 
       {/* Table */}
-      <div className="rounded-2xl border border-white/[0.08] bg-[#161C3A] overflow-hidden">
+      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-[720px] w-full text-left">
             <thead>
               <tr
-                className="text-[11px] uppercase tracking-wide text-[#565F8C] border-b border-white/[0.08]"
+                className="text-[11px] uppercase tracking-wide text-[var(--muted)] border-b border-[var(--border)]"
                 style={{ fontFamily: 'var(--font-mono)' }}
               >
               <th className="px-5 py-3 font-medium">Candidate</th>
@@ -472,7 +478,7 @@ export default function CandidatesPage() {
           <tbody>
             {loading && (
               <tr>
-                <td colSpan={6} className="px-5 py-10 text-center text-[13px] text-[#565F8C]">
+                <td colSpan={6} className="px-5 py-10 text-center text-[13px] text-[var(--muted)]">
                   Loading candidates…
                 </td>
               </tr>
@@ -488,7 +494,7 @@ export default function CandidatesPage() {
 
             {!loading && !loadError && candidates.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-5 py-10 text-center text-[13px] text-[#565F8C]">
+                <td colSpan={6} className="px-5 py-10 text-center text-[13px] text-[var(--muted)]">
                   No candidates match these filters.
                 </td>
               </tr>
@@ -501,7 +507,7 @@ export default function CandidatesPage() {
                 const assessment = assessmentMap.get(c.assessmentId);
                 const client = clientMap.get(c.clientId);
                 return (
-                  <tr key={c.id} className="border-t border-white/[0.06] hover:bg-white/[0.03]">
+                  <tr key={c.id} className="border-t border-[var(--border)] hover:bg-[var(--surface-muted)] transition-colors">
                     <td className="px-5 py-3">
                       <div className="flex items-center gap-3">
                         <div
@@ -511,36 +517,36 @@ export default function CandidatesPage() {
                           {initials(c.firstName, c.lastName)}
                         </div>
                         <div className="min-w-0">
-                          <p className="text-[13.5px] text-[#F2F4FA] truncate">
+                          <p className="text-[13.5px] text-[var(--foreground)] truncate">
                             {c.firstName} {c.lastName}
                           </p>
-                          <p className="text-[11.5px] text-[#565F8C] truncate flex items-center gap-1">
+                          <p className="text-[11.5px] text-[var(--muted)] truncate flex items-center gap-1">
                             <Mail size={10} /> {c.email}
                           </p>
                           {c.phone && (
-                            <p className="text-[11.5px] text-[#565F8C] truncate flex items-center gap-1">
+                            <p className="text-[11.5px] text-[var(--muted)] truncate flex items-center gap-1">
                               <Phone size={10} /> {c.phone}
                             </p>
                           )}
                         </div>
                       </div>
                     </td>
-                    <td className="px-5 py-3 text-[13px] text-[#AAB2D4]">
+                    <td className="px-5 py-3 text-[13px] text-[var(--muted)]">
                       <span className="flex items-center gap-1.5">
-                        <ClipboardList size={12} className="text-[#565F8C]" />
+                        <ClipboardList size={12} className="text-[var(--muted)]" />
                         {assessment?.name ?? '—'}
                       </span>
                     </td>
-                    <td className="px-5 py-3 text-[13px] text-[#AAB2D4]">
+                    <td className="px-5 py-3 text-[13px] text-[var(--muted)]">
                       <span className="flex items-center gap-1.5">
-                        <Users size={12} className="text-[#565F8C]" />
+                        <Users size={12} className="text-[var(--muted)]" />
                         {client?.name ?? '—'}
                       </span>
                     </td>
                     <td className="px-5 py-3">
                       <StatusBadge status={c.status} />
                     </td>
-                    <td className="px-5 py-3 text-[12.5px] text-[#8891B8]" style={{ fontFamily: 'var(--font-mono)' }}>
+                    <td className="px-5 py-3 text-[12.5px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
                       {new Date(c.createdAt).toLocaleDateString(undefined, {
                         month: 'short',
                         day: 'numeric',
@@ -556,7 +562,7 @@ export default function CandidatesPage() {
                             <button
                               key={action}
                               onClick={() => setTransitionTarget({ candidate: c, action })}
-                              className={`w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] transition-colors ${meta.hoverColor}`}
+                              className={`w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] transition-colors ${meta.hoverColor}`}
                               aria-label={`${meta.label} ${c.firstName}`}
                               title={meta.label}
                             >
@@ -566,7 +572,7 @@ export default function CandidatesPage() {
                         })}
                         <button
                           onClick={() => openEdit(c)}
-                          className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#3FDCC0] hover:bg-[#3FDCC0]/10 transition-colors"
+                          className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[#3FDCC0] hover:bg-[#3FDCC0]/10 transition-colors"
                           aria-label={`Edit ${c.firstName}`}
                         >
                           <Pencil size={13} />
@@ -574,7 +580,7 @@ export default function CandidatesPage() {
                         {isSuperAdmin && (
                           <button
                             onClick={() => setDeleteTarget(c)}
-                            className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/10 transition-colors"
+                            className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/10 transition-colors"
                             aria-label={`Delete ${c.firstName}`}
                           >
                             <Trash2 size={13} />
@@ -590,26 +596,26 @@ export default function CandidatesPage() {
       </div>
 
         {/* Pagination */}
-        <div className="flex items-center justify-between px-5 py-3.5 border-t border-white/[0.08]">
-          <p className="text-[12px] text-[#565F8C]" style={{ fontFamily: 'var(--font-mono)' }}>
+        <div className="flex items-center justify-between px-5 py-3.5 border-t border-[var(--border)]">
+          <p className="text-[12px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
             {rangeLabel}
           </p>
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={meta.page <= 1 || loading}
-              className="w-7 h-7 rounded-md flex items-center justify-center text-[#AAB2D4] border border-white/[0.08] hover:bg-white/[0.05] transition-colors disabled:opacity-30"
+              className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--foreground)] border border-[var(--border)] hover:bg-[var(--surface-muted)] transition-colors disabled:opacity-30"
               aria-label="Previous page"
             >
               <ChevronLeft size={14} />
             </button>
-            <span className="text-[12.5px] text-[#AAB2D4] px-2" style={{ fontFamily: 'var(--font-mono)' }}>
+            <span className="text-[12.5px] text-[var(--muted)] px-2" style={{ fontFamily: 'var(--font-mono)' }}>
               {meta.page} / {Math.max(1, meta.totalPages)}
             </span>
             <button
               onClick={() => setPage((p) => Math.min(meta.totalPages || 1, p + 1))}
               disabled={meta.page >= meta.totalPages || loading}
-              className="w-7 h-7 rounded-md flex items-center justify-center text-[#AAB2D4] border border-white/[0.08] hover:bg-white/[0.05] transition-colors disabled:opacity-30"
+              className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--foreground)] border border-[var(--border)] hover:bg-[var(--surface-muted)] transition-colors disabled:opacity-30"
               aria-label="Next page"
             >
               <ChevronRight size={14} />

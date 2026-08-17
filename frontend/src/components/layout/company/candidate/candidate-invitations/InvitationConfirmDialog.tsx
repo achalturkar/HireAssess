@@ -21,12 +21,12 @@ export default function InvitationConfirmDialog({
 }: Props) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-[#060819]/70 backdrop-blur-sm" onClick={submitting ? undefined : onCancel} />
-      <div className="relative w-full max-w-sm rounded-2xl border border-white/[0.08] bg-[#161C3A] shadow-2xl shadow-black/40 p-5">
-        <h2 className="text-[15px] font-semibold" style={{ fontFamily: 'var(--font-display)' }}>
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={submitting ? undefined : onCancel} />
+      <div className="relative w-full max-w-sm rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-2xl shadow-black/40 p-5">
+        <h2 className="text-[15px] font-semibold text-[var(--foreground)]" style={{ fontFamily: 'var(--font-display)' }}>
           {title}
         </h2>
-        <p className="text-[13px] text-[#AAB2D4] mt-2 leading-relaxed">{description}</p>
+        <p className="text-[13px] text-[var(--muted)] mt-2 leading-relaxed">{description}</p>
         <div className="flex items-center gap-2.5 mt-5">
           <button
             onClick={onConfirm}
@@ -42,7 +42,7 @@ export default function InvitationConfirmDialog({
           <button
             onClick={onCancel}
             disabled={submitting}
-            className="rounded-lg border border-white/[0.1] text-[#AAB2D4] text-[13.5px] font-medium py-2.5 px-4 hover:bg-white/[0.05] transition-colors disabled:opacity-50"
+            className="rounded-lg border border-[var(--border)] text-[var(--muted)] text-[13.5px] font-medium py-2.5 px-4 hover:bg-[var(--surface-muted)] hover:text-[var(--foreground)] transition-colors disabled:opacity-50"
           >
             Cancel
           </button>

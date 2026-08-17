@@ -111,21 +111,21 @@ export default function CandidatePicker({
   return (
     <div className="relative" ref={containerRef}>
       {selected ? (
-        <div className="flex items-center justify-between gap-2 rounded-lg bg-[#0F1330] border border-white/[0.08] px-3 py-2.5">
+        <div className="flex items-center justify-between gap-2 rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5">
           <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-7 h-7 rounded-full bg-[#3FDCC0]/15 text-[#3FDCC0] flex items-center justify-center text-[10.5px] font-semibold shrink-0">
+            <div className="w-7 h-7 rounded-full bg-[var(--primary)]/15 text-[var(--primary)] flex items-center justify-center text-[10.5px] font-semibold shrink-0">
               {initials(selected.firstName, selected.lastName)}
             </div>
             <div className="min-w-0">
-              <p className="text-[13px] text-[#F2F4FA] truncate">
+              <p className="text-[13px] text-[var(--foreground)] truncate">
                 {selected.firstName} {selected.lastName}
               </p>
-              <p className="text-[11px] text-[#8891B8] truncate flex items-center gap-1">
+              <p className="text-[11px] text-[var(--muted)] truncate flex items-center gap-1">
                 {selected.client?.name && (
                   <>
-                    <Building2 size={10} className="text-[#565F8C] shrink-0" />
+                    <Building2 size={10} className="text-[var(--muted)] shrink-0" />
                     {selected.client.name}
-                    <span className="text-[#565F8C]">·</span>
+                    <span className="text-[var(--muted)]">·</span>
                   </>
                 )}
                 {selected.email}
@@ -136,7 +136,7 @@ export default function CandidatePicker({
             <button
               type="button"
               onClick={clear}
-              className="w-6 h-6 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#F2F4FA] hover:bg-white/[0.06] transition-colors shrink-0"
+              className="w-6 h-6 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--surface-muted)] transition-colors shrink-0"
               aria-label="Clear selected candidate"
             >
               <X size={13} />
@@ -148,7 +148,7 @@ export default function CandidatePicker({
           type="button"
           disabled={disabled}
           onClick={() => setOpen((o) => !o)}
-          className="w-full flex items-center justify-between gap-2 rounded-lg bg-[#0F1330] border border-white/[0.08] px-3 py-2.5 text-left text-[13.5px] text-[#565F8C] hover:border-white/[0.15] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full flex items-center justify-between gap-2 rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5 text-left text-[13.5px] text-[var(--muted)] hover:border-[var(--primary)]/40 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <span className="flex items-center gap-2">
             <User size={14} />
@@ -159,24 +159,24 @@ export default function CandidatePicker({
       )}
 
       {open && (
-        <div className="absolute z-20 mt-1.5 w-full rounded-lg border border-white/[0.08] bg-[#161C3A] shadow-2xl shadow-black/40 overflow-hidden">
-          <div className="flex items-center gap-2 px-3 py-2 border-b border-white/[0.08]">
-            <Search size={13} className="text-[#565F8C] shrink-0" />
+        <div className="absolute z-20 mt-1.5 w-full rounded-lg border border-[var(--border)] bg-[var(--surface)] shadow-2xl shadow-black/10 overflow-hidden">
+          <div className="flex items-center gap-2 px-3 py-2 border-b border-[var(--border)]">
+            <Search size={13} className="text-[var(--muted)] shrink-0" />
             <input
               autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Type a name or email…"
-              className="w-full bg-transparent text-[13px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none"
+              className="w-full bg-transparent text-[13px] text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none"
             />
-            {loading && <Loader2 size={13} className="animate-spin text-[#3FDCC0] shrink-0" />}
+            {loading && <Loader2 size={13} className="animate-spin text-[var(--primary)] shrink-0" />}
           </div>
 
           <div className="max-h-64 overflow-y-auto">
             {error && <p className="px-3 py-3 text-[12.5px] text-[#FF6B6B]">{error}</p>}
 
             {!error && !loading && results.length === 0 && (
-              <p className="px-3 py-3 text-[12.5px] text-[#565F8C]">
+              <p className="px-3 py-3 text-[12.5px] text-[var(--muted)]">
                 {query ? 'No candidates match that search.' : 'No candidates found.'}
               </p>
             )}
@@ -187,21 +187,21 @@ export default function CandidatePicker({
                   key={c.id}
                   type="button"
                   onClick={() => select(c)}
-                  className="w-full flex items-center gap-2.5 px-3 py-2.5 text-left hover:bg-white/[0.05] transition-colors"
+                  className="w-full flex items-center gap-2.5 px-3 py-2.5 text-left hover:bg-[var(--surface-muted)] transition-colors"
                 >
                   <div className="w-7 h-7 rounded-full bg-[#F2AE55]/15 text-[#F2AE55] flex items-center justify-center text-[10.5px] font-semibold shrink-0">
                     {initials(c.firstName, c.lastName)}
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[13px] text-[#F2F4FA] truncate">
+                    <p className="text-[13px] text-[var(--foreground)] truncate">
                       {c.firstName} {c.lastName}
                     </p>
-                    <p className="text-[11px] text-[#8891B8] truncate flex items-center gap-1">
+                    <p className="text-[11px] text-[var(--muted)] truncate flex items-center gap-1">
                       {c.client?.name && (
                         <>
-                          <Building2 size={10} className="text-[#565F8C] shrink-0" />
+                          <Building2 size={10} className="text-[var(--muted)] shrink-0" />
                           {c.client.name}
-                          <span className="text-[#565F8C]">·</span>
+                          <span className="text-[var(--muted)]">·</span>
                         </>
                       )}
                       {c.email}

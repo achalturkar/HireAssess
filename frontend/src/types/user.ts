@@ -48,6 +48,20 @@ export interface UpdateUserPayload {
   status?: UserStatus;
 }
 
+// Self-service only — deliberately excludes roleId/status.
+// Matches the backend's updateProfile whitelist (firstName/lastName/phone).
+export interface UpdateProfilePayload {
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+}
+
+export interface ChangePasswordPayload {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
 export interface PaginationMeta {
   page: number;
   limit: number;

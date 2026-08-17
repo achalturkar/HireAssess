@@ -27,7 +27,7 @@ function initials(name: string) {
 function StatusBadge({ status }: { status: ClientStatus }) {
   const styles: Record<ClientStatus, string> = {
     ACTIVE: 'bg-[#3FDCC0]/15 text-[#3FDCC0]',
-    INACTIVE: 'bg-[#565F8C]/20 text-[#8891B8]',
+    INACTIVE: 'bg-[var(--surface-muted)] text-[var(--muted)]',
   };
   return (
     <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-medium ${styles[status]}`}>
@@ -59,14 +59,14 @@ function Field({
 }) {
   if (!value) return null;
   const content = (
-    <p className="flex items-center gap-1.5 text-[13.5px] text-[#F2F4FA]">
-      {Icon && <Icon size={12} className="text-[#565F8C] shrink-0" />}
+    <p className="flex items-center gap-1.5 text-[13.5px] text-[var(--foreground)]">
+      {Icon && <Icon size={12} className="text-[var(--muted)] shrink-0" />}
       <span className="truncate">{value}</span>
     </p>
   );
   return (
     <div className="min-w-0">
-      <p className="text-[11px] uppercase tracking-wide text-[#565F8C] mb-1" style={{ fontFamily: 'var(--font-mono)' }}>
+      <p className="text-[11px] uppercase tracking-wide text-[var(--muted)] mb-1" style={{ fontFamily: 'var(--font-mono)' }}>
         {label}
       </p>
       {href ? (
@@ -119,17 +119,17 @@ export default function ClientViewModal({
       onClick={onClose}
     >
       <div
-        className="w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl border border-white/[0.08] bg-[#161C3A] shadow-2xl"
+        className="w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-start justify-between gap-4 px-6 pt-6 pb-5 border-b border-white/[0.08]">
+        <div className="flex items-start justify-between gap-4 px-6 pt-6 pb-5 border-b border-[var(--border)]">
           <div className="flex items-center gap-3 min-w-0">
             {client.logoUrl ? (
               <img
                 src={client.logoUrl}
                 alt=""
-                className="w-12 h-12 rounded-full object-cover shrink-0 bg-white/[0.06]"
+                className="w-12 h-12 rounded-full object-cover shrink-0 bg-[var(--surface-muted)]"
               />
             ) : (
               <div className="w-12 h-12 rounded-full flex items-center justify-center text-[14px] font-semibold shrink-0 bg-[#3FDCC0]/15 text-[#3FDCC0]">
@@ -138,12 +138,12 @@ export default function ClientViewModal({
             )}
             <div className="min-w-0">
               <h2
-                className="text-[18px] font-semibold text-[#F2F4FA] truncate"
+                className="text-[18px] font-semibold text-[var(--foreground)] truncate"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
                 {client.name}
               </h2>
-              <p className="text-[12px] text-[#565F8C] truncate" style={{ fontFamily: 'var(--font-mono)' }}>
+              <p className="text-[12px] text-[var(--muted)] truncate" style={{ fontFamily: 'var(--font-mono)' }}>
                 {client.clientCode}
                 {client.industry ? ` · ${client.industry}` : ''}
               </p>
@@ -151,7 +151,7 @@ export default function ClientViewModal({
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#F2F4FA] hover:bg-white/[0.06] transition-colors shrink-0"
+            className="w-8 h-8 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--surface-muted)] transition-colors shrink-0"
             aria-label="Close"
           >
             <X size={16} />
@@ -167,7 +167,7 @@ export default function ClientViewModal({
                 href={client.website}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium bg-white/[0.06] text-[#AAB2D4] hover:text-[#3FDCC0] transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium bg-[var(--surface-muted)] text-[var(--muted)] hover:text-[#3FDCC0] transition-colors"
               >
                 <Globe size={11} />
                 Visit website
@@ -197,8 +197,8 @@ export default function ClientViewModal({
           {hasAddress && (
             <div>
               <SectionTitle>Address</SectionTitle>
-              <p className="flex items-start gap-1.5 text-[13.5px] text-[#F2F4FA] leading-relaxed">
-                <MapPin size={12} className="text-[#565F8C] shrink-0 mt-0.5" />
+              <p className="flex items-start gap-1.5 text-[13.5px] text-[var(--foreground)] leading-relaxed">
+                <MapPin size={12} className="text-[var(--muted)] shrink-0 mt-0.5" />
                 <span>
                   {addressLines.map((line) => (
                     <span key={line} className="block">
@@ -206,7 +206,7 @@ export default function ClientViewModal({
                     </span>
                   ))}
                   {(cityStatePostal || client.country) && (
-                    <span className="block text-[#AAB2D4]">
+                    <span className="block text-[var(--muted)]">
                       {[cityStatePostal, client.country].filter(Boolean).join(' · ')}
                     </span>
                   )}
@@ -234,10 +234,10 @@ export default function ClientViewModal({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-2 px-6 py-4 border-t border-white/[0.08]">
+        <div className="flex items-center justify-end gap-2 px-6 py-4 border-t border-[var(--border)]">
           <button
             onClick={onClose}
-            className="rounded-lg px-4 py-2 text-[13px] font-medium text-[#AAB2D4] hover:bg-white/[0.06] transition-colors"
+            className="rounded-lg px-4 py-2 text-[13px] font-medium text-[var(--muted)] hover:bg-[var(--surface-muted)] hover:text-[var(--foreground)] transition-colors"
           >
             Close
           </button>

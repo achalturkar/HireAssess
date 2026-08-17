@@ -183,10 +183,13 @@ export default function CandidateInvitationsPage() {
           >
             Assessment Access
           </p>
-          <h1 className="text-[26px] font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+          <h1
+            className="text-[26px] font-semibold tracking-tight text-[var(--foreground)]"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
             Candidate Invitations
           </h1>
-          <p className="text-[13.5px] text-[#8891B8] mt-1">Send, track, and manage assessment invite links</p>
+          <p className="text-[13.5px] text-[var(--muted)] mt-1">Send, track, and manage assessment invite links</p>
         </div>
         <button
           onClick={() => {
@@ -219,7 +222,7 @@ export default function CandidateInvitationsPage() {
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-3">
         <div className="relative flex-1 min-w-[220px]">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#565F8C]">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)]">
             <Search size={15} />
           </span>
           <input
@@ -229,7 +232,7 @@ export default function CandidateInvitationsPage() {
               setPage(1);
             }}
             placeholder="Search by candidate name or email…"
-            className="w-full rounded-lg bg-[#161C3A] border border-white/[0.08] pl-9 pr-3 py-2.5 text-[13.5px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors"
+            className="w-full rounded-lg bg-[var(--surface)] border border-[var(--border)] pl-9 pr-3 py-2.5 text-[13.5px] text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors"
           />
         </div>
         <select
@@ -238,7 +241,7 @@ export default function CandidateInvitationsPage() {
             setStatus(e.target.value as InvitationStatus | '');
             setPage(1);
           }}
-          className="rounded-lg bg-[#161C3A] border border-white/[0.08] px-3 py-2.5 text-[13px] text-[#AAB2D4] outline-none focus:border-[#3FDCC0]/50 transition-colors"
+          className="rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5 text-[13px] text-[var(--foreground)] outline-none focus:border-[#3FDCC0]/50 transition-colors"
         >
           <option value="">All statuses</option>
           <option value="SENT">Sent</option>
@@ -249,11 +252,11 @@ export default function CandidateInvitationsPage() {
       </div>
 
       {/* Table */}
-      <div className="rounded-2xl border border-white/[0.08] bg-[#161C3A] overflow-hidden">
+      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
         <table className="w-full text-left">
           <thead>
             <tr
-              className="text-[11px] uppercase tracking-wide text-[#565F8C] border-b border-white/[0.08]"
+              className="text-[11px] uppercase tracking-wide text-[var(--muted)] border-b border-[var(--border)]"
               style={{ fontFamily: 'var(--font-mono)' }}
             >
               <th className="px-5 py-3 font-medium">Candidate</th>
@@ -266,7 +269,7 @@ export default function CandidateInvitationsPage() {
           <tbody>
             {loading && (
               <tr>
-                <td colSpan={5} className="px-5 py-10 text-center text-[13px] text-[#565F8C]">
+                <td colSpan={5} className="px-5 py-10 text-center text-[13px] text-[var(--muted)]">
                   Loading invitations…
                 </td>
               </tr>
@@ -282,7 +285,7 @@ export default function CandidateInvitationsPage() {
 
             {!loading && !loadError && invitations.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-5 py-10 text-center text-[13px] text-[#565F8C]">
+                <td colSpan={5} className="px-5 py-10 text-center text-[13px] text-[var(--muted)]">
                   No invitations match these filters.
                 </td>
               </tr>
@@ -293,7 +296,7 @@ export default function CandidateInvitationsPage() {
               invitations.map((inv, i) => {
                 const isTerminal = inv.status === 'COMPLETED' || inv.status === 'EXPIRED';
                 return (
-                  <tr key={inv.id} className="border-t border-white/[0.06] hover:bg-white/[0.03]">
+                  <tr key={inv.id} className="border-t border-[var(--border)] hover:bg-[var(--surface-muted)] transition-colors">
                     <td className="px-5 py-3">
                       <div className="flex items-center gap-3">
                         <div
@@ -304,30 +307,30 @@ export default function CandidateInvitationsPage() {
                           {inv.candidate ? initials(inv.candidate.firstName, inv.candidate.lastName) : '?'}
                         </div>
                         <div className="min-w-0">
-                          <p className="text-[13.5px] text-[#F2F4FA] truncate">
+                          <p className="text-[13.5px] text-[var(--foreground)] truncate">
                             {inv.candidate ? `${inv.candidate.firstName} ${inv.candidate.lastName}` : 'Unknown candidate'}
                           </p>
-                          <p className="text-[11.5px] text-[#565F8C] truncate">{inv.candidate?.email ?? '—'}</p>
+                          <p className="text-[11.5px] text-[var(--muted)] truncate">{inv.candidate?.email ?? '—'}</p>
                         </div>
                       </div>
                     </td>
                     <td className="px-5 py-3">
                       <StatusBadge status={inv.status} />
                     </td>
-                    <td className="px-5 py-3 text-[12.5px] text-[#8891B8]" style={{ fontFamily: 'var(--font-mono)' }}>
+                    <td className="px-5 py-3 text-[12.5px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
                       <span className="flex items-center gap-1.5">
-                        <Clock size={11} className="text-[#565F8C]" />
+                        <Clock size={11} className="text-[var(--muted)]" />
                         {formatDateTime(inv.expiresAt)}
                       </span>
                     </td>
-                    <td className="px-5 py-3 text-[12.5px] text-[#8891B8]" style={{ fontFamily: 'var(--font-mono)' }}>
+                    <td className="px-5 py-3 text-[12.5px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
                       {formatDateTime(inv.createdAt)}
                     </td>
                     <td className="px-5 py-3">
                       <div className="flex items-center justify-end gap-1.5">
                         <button
                           onClick={() => copyLink(inv)}
-                          className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#AAB2D4] hover:bg-white/[0.06] transition-colors"
+                          className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--surface-muted)] transition-colors"
                           aria-label="Copy invitation link"
                           title="Copy invitation link"
                         >
@@ -337,7 +340,7 @@ export default function CandidateInvitationsPage() {
                           <button
                             onClick={() => handleResend(inv)}
                             disabled={resendingId === inv.id}
-                            className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#3FDCC0] hover:bg-[#3FDCC0]/10 transition-colors disabled:opacity-40"
+                            className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[#3FDCC0] hover:bg-[#3FDCC0]/10 transition-colors disabled:opacity-40"
                             aria-label="Resend invitation"
                             title="Resend invitation"
                           >
@@ -347,7 +350,7 @@ export default function CandidateInvitationsPage() {
                         {!isTerminal && (
                           <button
                             onClick={() => setExpireTarget(inv)}
-                            className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/10 transition-colors"
+                            className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/10 transition-colors"
                             aria-label="Expire invitation"
                             title="Expire invitation"
                           >
@@ -363,25 +366,25 @@ export default function CandidateInvitationsPage() {
         </table>
 
         {/* Pagination */}
-        <div className="flex items-center justify-between px-5 py-3.5 border-t border-white/[0.08]">
-          <p className="text-[12px] text-[#565F8C]" style={{ fontFamily: 'var(--font-mono)' }}>
+        <div className="flex items-center justify-between px-5 py-3.5 border-t border-[var(--border)]">
+          <p className="text-[12px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
             {rangeLabel}
           </p>
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={meta.page <= 1 || loading}
-              className="px-2.5 h-7 rounded-md flex items-center justify-center text-[12.5px] text-[#AAB2D4] border border-white/[0.08] hover:bg-white/[0.05] transition-colors disabled:opacity-30"
+              className="px-2.5 h-7 rounded-md flex items-center justify-center text-[12.5px] text-[var(--foreground)] border border-[var(--border)] hover:bg-[var(--surface-muted)] transition-colors disabled:opacity-30"
             >
               Prev
             </button>
-            <span className="text-[12.5px] text-[#AAB2D4] px-2" style={{ fontFamily: 'var(--font-mono)' }}>
+            <span className="text-[12.5px] text-[var(--muted)] px-2" style={{ fontFamily: 'var(--font-mono)' }}>
               {meta.page} / {Math.max(1, meta.totalPages)}
             </span>
             <button
               onClick={() => setPage((p) => Math.min(meta.totalPages || 1, p + 1))}
               disabled={meta.page >= meta.totalPages || loading}
-              className="px-2.5 h-7 rounded-md flex items-center justify-center text-[12.5px] text-[#AAB2D4] border border-white/[0.08] hover:bg-white/[0.05] transition-colors disabled:opacity-30"
+              className="px-2.5 h-7 rounded-md flex items-center justify-center text-[12.5px] text-[var(--foreground)] border border-[var(--border)] hover:bg-[var(--surface-muted)] transition-colors disabled:opacity-30"
             >
               Next
             </button>

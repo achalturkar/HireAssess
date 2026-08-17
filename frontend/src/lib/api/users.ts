@@ -4,35 +4,14 @@ import type {
   CompanyRef,
   CreateUserPayload,
   UpdateUserPayload,
+  UpdateProfilePayload,
+  ChangePasswordPayload,
   ListUsersParams,
   PaginationMeta,
 } from '@/src/types/user';
+import { authFetch, ApiError } from './http';
 
-// Adjust if your app proxies API calls differently (e.g. through Next.js rewrites).
-const API_BASE = process.env.NEXT_PUBLIC_API ?? '/api/v1';
-
-class ApiError extends Error {
-  status: number;
-  constructor(message: string, status: number) {
-    super(message);
-    this.status = status;
-  }
-}
-
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
-    credentials: 'include',
-    headers: { 'Content-Type': 'application/json', ...(init?.headers ?? {}) },
-    ...init,
-  });
-
-  const body = await res.json().catch(() => null);
-
-  if (!res.ok) {
-    throw new ApiError(body?.message ?? `Request failed (${res.status})`, res.status);
-  }
-  return body as T;
-}
+export { ApiError };
 
 function buildQuery(params: Record<string, string | number | undefined>) {
   const qs = new URLSearchParams();
@@ -44,7 +23,8 @@ function buildQuery(params: Record<string, string | number | undefined>) {
 }
 
 export async function listUsers(
-  params: ListUsersParams,
+  token: string | null,
+  params: ListUsersParams
 ): Promise<{ items: User[]; meta: PaginationMeta }> {
   const query = buildQuery({
     page: params.page,
@@ -55,47 +35,80 @@ export async function listUsers(
     sortBy: params.sortBy,
     sortOrder: params.sortOrder,
   });
-  const res = await request<{ data: User[]; meta: PaginationMeta }>(`/users${query}`);
-  return { items: res.data, meta: res.meta };
+  const json = await authFetch(`/users${query}`, token, { method: 'GET' });
+  return { items: json.data as User[], meta: json.meta as PaginationMeta };
 }
 
-export async function getUser(id: string): Promise<User> {
-  const res = await request<{ data: User }>(`/users/${id}`);
-  return res.data;
+export async function getUser(token: string | null, id: string): Promise<User> {
+  const json = await authFetch(`/users/${id}`, token, { method: 'GET' });
+  return json.data as User;
 }
 
-export async function createUser(payload: CreateUserPayload): Promise<User> {
-  const res = await request<{ data: User }>('/users', {
+export async function createUser(token: string | null, payload: CreateUserPayload): Promise<User> {
+  const json = await authFetch('/users', token, {
     method: 'POST',
     body: JSON.stringify(payload),
   });
-  return res.data;
+  return json.data as User;
 }
 
-export async function updateUser(id: string, payload: UpdateUserPayload): Promise<User> {
-  const res = await request<{ data: User }>(`/users/${id}`, {
+export async function updateUser(
+  token: string | null,
+  id: string,
+  payload: UpdateUserPayload
+): Promise<User> {
+  const json = await authFetch(`/users/${id}`, token, {
     method: 'PUT',
     body: JSON.stringify(payload),
   });
-  return res.data;
+  return json.data as User;
 }
 
-export async function deleteUser(id: string): Promise<void> {
-  await request<{ message: string }>(`/users/${id}`, { method: 'DELETE' });
+export async function deleteUser(token: string | null, id: string): Promise<void> {
+  await authFetch(`/users/${id}`, token, { method: 'DELETE' });
 }
 
-// Lightweight lookups for the create/edit form. Adjust the response shape
-// (`res.data`) if your /roles and /companies endpoints differ.
-export async function listRoles(companyId?: string): Promise<RoleRef[]> {
+/* ------------------------------------------------------------------
+   Self-service: /users/me, /users/me/password
+   No admin permission required — the backend scopes these to the
+   caller's own id, so there's no :id param here to worry about.
+------------------------------------------------------------------- */
+
+export async function getMyProfile(token: string | null): Promise<User> {
+  const json = await authFetch('/users/me', token, { method: 'GET' });
+  return json.data as User;
+}
+
+export async function updateProfile(
+  token: string | null,
+  payload: UpdateProfilePayload
+): Promise<User> {
+  const json = await authFetch('/users/me', token, {
+    method: 'PUT',
+    body: JSON.stringify(payload),
+  });
+  return json.data as User;
+}
+
+export async function changePassword(
+  token: string | null,
+  payload: ChangePasswordPayload
+): Promise<void> {
+  await authFetch('/users/me/password', token, {
+    method: 'PUT',
+    body: JSON.stringify(payload),
+  });
+}
+
+// Lightweight lookups for the create/edit form.
+export async function listRolesForCompany(token: string | null, companyId?: string): Promise<RoleRef[]> {
   const query = buildQuery({ companyId, limit: 100 });
-  const res = await request<{ data: RoleRef[] }>(`/roles${query}`);
-  return res.data;
+  const json = await authFetch(`/roles${query}`, token, { method: 'GET' });
+  return (json.data as RoleRef[]).filter((r) => !r.isSuperAdmin);
 }
 
-export async function listCompanies(search?: string): Promise<CompanyRef[]> {
+export async function listCompanyOptions(token: string | null, search?: string): Promise<CompanyRef[]> {
   const query = buildQuery({ search, limit: 50 });
-  const res = await request<{ data: CompanyRef[] }>(`/companies${query}`);
-  return res.data;
+  const json = await authFetch(`/companies${query}`, token, { method: 'GET' });
+  return json.data as CompanyRef[];
 }
-
-export { ApiError };

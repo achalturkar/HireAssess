@@ -16,6 +16,8 @@ import {
   Lightbulb,
   ListChecks,
   Award,
+    Eye,
+
 } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -210,14 +212,14 @@ function ScoreGauge({ score, size = 132, stage }: { score: number; size?: number
       <ResponsiveContainer width="100%" height="100%">
         <RadialBarChart innerRadius="74%" outerRadius="100%" data={data} startAngle={90} endAngle={-270} barSize={Math.max(10, size * 0.09)}>
           <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false} />
-          <RadialBar dataKey="value" cornerRadius={8} background={{ fill: 'rgba(255,255,255,0.06)' }} />
+          <RadialBar dataKey="value" cornerRadius={8} background={{ fill: 'var(--border)' }} />
         </RadialBarChart>
       </ResponsiveContainer>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="font-semibold text-[#F2F4FA]" style={{ fontFamily: 'var(--font-display)', fontSize: size * 0.22 }}>
+        <span className="font-semibold text-[var(--foreground)]" style={{ fontFamily: 'var(--font-display)', fontSize: size * 0.22 }}>
           {score}
         </span>
-        <span className="text-[#8891B8] uppercase tracking-wide" style={{ fontSize: Math.max(9, size * 0.075) }}>
+        <span className="text-[var(--muted)] uppercase tracking-wide" style={{ fontSize: Math.max(9, size * 0.075) }}>
           {label} · /100
         </span>
       </div>
@@ -235,9 +237,9 @@ function ScoreBandLegend() {
   ];
 
   return (
-    <div className="mt-3 rounded-2xl border border-white/[0.08] bg-[#10152A] p-4 text-[12px] text-[#8891B8]">
-      <p className="uppercase tracking-[0.24em] text-[#AAB2D4] text-[11px] mb-3">Score stage guide</p>
-      <div className="rounded-full overflow-hidden border border-white/[0.08] bg-white/[0.03]">
+    <div className="mt-3 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 text-[12px] text-[var(--muted)]">
+      <p className="uppercase tracking-[0.24em] text-[var(--muted)] text-[11px] mb-3">Score stage guide</p>
+      <div className="rounded-full overflow-hidden border border-[var(--border)] bg-[var(--surface)]">
         <div className="flex h-3">
           {stages.map((stage) => (
             <div
@@ -250,12 +252,12 @@ function ScoreBandLegend() {
       </div>
       <div className="mt-3 grid gap-2 sm:grid-cols-5 text-center">
         {stages.map((stage) => (
-          <div key={stage.label} className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-2">
+          <div key={stage.label} className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-2">
             <div className="mb-1 flex items-center justify-center gap-2">
               <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: stage.color }} />
-              <p className="text-[12px] text-[#F2F4FA] font-semibold leading-none">{stage.label}</p>
+              <p className="text-[12px] text-[var(--foreground)] font-semibold leading-none">{stage.label}</p>
             </div>
-            <p className="text-[11px] text-[#AAB2D4]">{stage.range}</p>
+            <p className="text-[11px] text-[var(--muted)]">{stage.range}</p>
           </div>
         ))}
       </div>
@@ -269,13 +271,13 @@ function TraitBarsChart({ traits }: { traits: TraitScore[] }) {
   return (
     <ResponsiveContainer width="100%" height={height}>
       <BarChart data={data} layout="vertical" margin={{ top: 4, right: 28, bottom: 4, left: 4 }} barCategoryGap={14}>
-        <CartesianGrid horizontal={false} stroke="rgba(255,255,255,0.06)" />
-        <XAxis type="number" domain={[0, 100]} tick={{ fill: '#565F8C', fontSize: 11 }} axisLine={{ stroke: 'rgba(255,255,255,0.08)' }} tickLine={false} />
-        <YAxis type="category" dataKey="trait" width={190} tick={{ fill: '#AAB2D4', fontSize: 12 }} axisLine={false} tickLine={false} />
+        <CartesianGrid horizontal={false} stroke="var(--border)" />
+        <XAxis type="number" domain={[0, 100]} tick={{ fill: 'var(--muted)', fontSize: 11 }} axisLine={{ stroke: 'var(--border)' }} tickLine={false} />
+        <YAxis type="category" dataKey="trait" width={190} tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
         <Tooltip
-          cursor={{ fill: 'rgba(255,255,255,0.04)' }}
-          contentStyle={{ background: '#161C3A', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, fontSize: 12, color: '#F2F4FA' }}
-          labelStyle={{ color: '#AAB2D4' }}
+          cursor={{ fill: 'var(--surface-muted)' }}
+          contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, fontSize: 12, color: 'var(--foreground)' }}
+          labelStyle={{ color: 'var(--muted)' }}
           formatter={(value, _name, props) => {
             const score = typeof value === 'number' ? value : Number(value ?? 0);
             const band = props?.payload?.[0]?.payload?.band ?? '';
@@ -304,7 +306,7 @@ function WeakAreas({ traits }: { traits: TraitScore[] }) {
       <ul className="space-y-1.5">
         {weak.map((t) => (
           <li key={t.trait} className="text-[12.5px] text-[#F2D5D5] leading-relaxed">
-            <span className="font-medium text-[#F2F4FA]">{t.trait}</span> — scored {t.score}/100. The candidate needs to
+            <span className="font-medium text-[var(--foreground)]">{t.trait}</span> — scored {t.score}/100. The candidate needs to
             work on this point before this can be considered a strength.
           </li>
         ))}
@@ -332,12 +334,12 @@ function TraitSection({
   const hasData = shown.length > 0;
 
   return (
-    <div className="rounded-2xl border border-white/[0.08] bg-[#161C3A] p-6" style={{ boxShadow: `inset 0 0 0 1px ${soft}` }}>
+    <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6" style={{ boxShadow: `inset 0 0 0 1px ${soft}` }}>
       <div className="mb-5">
-        <h2 className="text-[15px] font-semibold text-[#F2F4FA]" style={{ fontFamily: 'var(--font-display)' }}>
+        <h2 className="text-[15px] font-semibold text-[var(--foreground)]" style={{ fontFamily: 'var(--font-display)' }}>
           {title}
         </h2>
-        <p className="text-[12.5px] text-[#8891B8] mt-1 max-w-md">{description}</p>
+        <p className="text-[12.5px] text-[var(--muted)] mt-1 max-w-md">{description}</p>
       </div>
       {hasData ? (
         <>
@@ -345,8 +347,8 @@ function TraitSection({
           <WeakAreas traits={shown} />
         </>
       ) : (
-        <div className="rounded-xl border border-dashed border-white/[0.1] py-10 text-center">
-          <p className="text-[13px] text-[#565F8C]">{emptyMessage}</p>
+        <div className="rounded-xl border border-dashed border-[var(--border)] py-10 text-center">
+          <p className="text-[13px] text-[var(--muted)]">{emptyMessage}</p>
         </div>
       )}
     </div>
@@ -367,25 +369,25 @@ function QuestionDistributionCard({ bundle }: { bundle: CandidateResultBundle })
   ].filter((d) => d.value > 0);
 
   return (
-    <div className="rounded-2xl border border-white/[0.08] bg-[#161C3A] p-6">
+    <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
       <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
         <div>
-          <h2 className="text-[14px] font-semibold text-[#F2F4FA]" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className="text-[14px] font-semibold text-[var(--foreground)]" style={{ fontFamily: 'var(--font-display)' }}>
             Question distribution
           </h2>
-          <p className="text-[12.5px] text-[#8891B8] mt-1">{total} questions across all sections</p>
+          <p className="text-[12.5px] text-[var(--muted)] mt-1">{total} questions across all sections</p>
         </div>
-        <div className="flex items-center gap-2 rounded-full bg-white/[0.05] px-3.5 py-2">
-          <ListChecks size={13} className="text-[#3FDCC0]" />
-          <span className="text-[12.5px] text-[#F2F4FA]">
+        <div className="flex items-center gap-2 rounded-full bg-[var(--surface-muted)] px-3.5 py-2">
+          <ListChecks size={13} className="text-[var(--primary)]" />
+          <span className="text-[12.5px] text-[var(--foreground)]">
             {attempted} / {bundle.questions.length} attempted
           </span>
         </div>
       </div>
 
       {total === 0 ? (
-        <div className="rounded-xl border border-dashed border-white/[0.1] py-10 text-center">
-          <p className="text-[13px] text-[#565F8C]">No questions recorded for this attempt.</p>
+        <div className="rounded-xl border border-dashed border-[var(--border)] py-10 text-center">
+          <p className="text-[13px] text-[var(--muted)]">No questions recorded for this attempt.</p>
         </div>
       ) : (
         <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -398,7 +400,7 @@ function QuestionDistributionCard({ bundle }: { bundle: CandidateResultBundle })
                   ))}
                 </Pie>
                 <Tooltip
-                  contentStyle={{ background: '#161C3A', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, fontSize: 12, color: '#F2F4FA' }}
+                  contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, fontSize: 12, color: 'var(--foreground)' }}
                   formatter={(value, name) => {
                     const count = typeof value === 'number' ? value : Number(value ?? 0);
                     return [`${count} questions`, name];
@@ -413,12 +415,12 @@ function QuestionDistributionCard({ bundle }: { bundle: CandidateResultBundle })
               { name: 'Analytical', value: analyticalCount, color: SECTION_THEME.analytical.accent },
               { name: 'Logical', value: logicalCount, color: SECTION_THEME.logical.accent },
             ].map((d) => (
-              <div key={d.name} className="flex items-center justify-between rounded-lg bg-white/[0.03] px-3.5 py-2.5">
-                <span className="flex items-center gap-2.5 text-[13px] text-[#F2F4FA]">
+              <div key={d.name} className="flex items-center justify-between rounded-lg bg-[var(--surface-muted)] px-3.5 py-2.5">
+                <span className="flex items-center gap-2.5 text-[13px] text-[var(--foreground)]">
                   <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: d.color }} />
                   {d.name}
                 </span>
-                <span className="text-[13px] text-[#AAB2D4]" style={{ fontFamily: 'var(--font-mono)' }}>
+                <span className="text-[13px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
                   {d.value} · {total ? Math.round((d.value / total) * 100) : 0}%
                 </span>
               </div>
@@ -438,27 +440,27 @@ function StrengthsAndWeaknesses({ traits }: { traits: TraitScore[] }) {
   if (!traits.length) return null;
 
   return (
-    <div className="rounded-2xl border border-white/[0.08] bg-[#161C3A] p-6">
-      <h2 className="text-[15px] font-semibold text-[#F2F4FA] mb-1" style={{ fontFamily: 'var(--font-display)' }}>
+    <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+      <h2 className="text-[15px] font-semibold text-[var(--foreground)] mb-1" style={{ fontFamily: 'var(--font-display)' }}>
         Strengths &amp; Growth Areas
       </h2>
-      <p className="text-[12.5px] text-[#8891B8] mb-5">Top-performing traits versus the areas most in need of development</p>
+      <p className="text-[12.5px] text-[var(--muted)] mb-5">Top-performing traits versus the areas most in need of development</p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Strengths */}
         <div>
-          <p className="flex items-center gap-1.5 text-[11px] uppercase tracking-wide text-[#3FDCC0] mb-3">
+          <p className="flex items-center gap-1.5 text-[11px] uppercase tracking-wide text-[var(--primary)] mb-3">
             <TrendingUp size={12} />
             Top strengths
           </p>
           <ResponsiveContainer width="100%" height={Math.max(140, strengths.length * 38 + 10)}>
             <BarChart data={strengths} layout="vertical" margin={{ top: 0, right: 20, bottom: 0, left: 4 }} barCategoryGap={10}>
-              <CartesianGrid horizontal={false} stroke="rgba(255,255,255,0.06)" />
-              <XAxis type="number" domain={[0, 100]} tick={{ fill: '#565F8C', fontSize: 10 }} axisLine={false} tickLine={false} />
-              <YAxis type="category" dataKey="trait" width={170} tick={{ fill: '#AAB2D4', fontSize: 11.5 }} axisLine={false} tickLine={false} />
+              <CartesianGrid horizontal={false} stroke="var(--border)" />
+              <XAxis type="number" domain={[0, 100]} tick={{ fill: 'var(--muted)', fontSize: 10 }} axisLine={false} tickLine={false} />
+              <YAxis type="category" dataKey="trait" width={170} tick={{ fill: 'var(--muted)', fontSize: 11.5 }} axisLine={false} tickLine={false} />
               <Tooltip
-                cursor={{ fill: 'rgba(255,255,255,0.04)' }}
-                contentStyle={{ background: '#161C3A', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, fontSize: 12, color: '#F2F4FA' }}
+                cursor={{ fill: 'var(--surface-muted)' }}
+                contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, fontSize: 12, color: 'var(--foreground)' }}
               />
               <Bar dataKey="score" radius={[0, 6, 6, 0]} maxBarSize={16} fill="#3FDCC0" />
             </BarChart>
@@ -473,12 +475,12 @@ function StrengthsAndWeaknesses({ traits }: { traits: TraitScore[] }) {
           </p>
           <ResponsiveContainer width="100%" height={Math.max(140, weaknesses.length * 38 + 10)}>
             <BarChart data={weaknesses} layout="vertical" margin={{ top: 0, right: 20, bottom: 0, left: 4 }} barCategoryGap={10}>
-              <CartesianGrid horizontal={false} stroke="rgba(255,255,255,0.06)" />
-              <XAxis type="number" domain={[0, 100]} tick={{ fill: '#565F8C', fontSize: 10 }} axisLine={false} tickLine={false} />
-              <YAxis type="category" dataKey="trait" width={170} tick={{ fill: '#AAB2D4', fontSize: 11.5 }} axisLine={false} tickLine={false} />
+              <CartesianGrid horizontal={false} stroke="var(--border)" />
+              <XAxis type="number" domain={[0, 100]} tick={{ fill: 'var(--muted)', fontSize: 10 }} axisLine={false} tickLine={false} />
+              <YAxis type="category" dataKey="trait" width={170} tick={{ fill: 'var(--muted)', fontSize: 11.5 }} axisLine={false} tickLine={false} />
               <Tooltip
-                cursor={{ fill: 'rgba(255,255,255,0.04)' }}
-                contentStyle={{ background: '#161C3A', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, fontSize: 12, color: '#F2F4FA' }}
+                cursor={{ fill: 'var(--surface-muted)' }}
+                contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, fontSize: 12, color: 'var(--foreground)' }}
               />
               <Bar dataKey="score" radius={[0, 6, 6, 0]} maxBarSize={16} fill="#FF6B6B" />
             </BarChart>
@@ -495,7 +497,7 @@ function StrengthsAndWeaknesses({ traits }: { traits: TraitScore[] }) {
         <ul className="space-y-2.5">
           {weaknesses.map((t) => (
             <li key={t.trait} className="text-[12.5px] text-[#F2F0DE] leading-relaxed">
-              <span className="font-medium text-[#F2F4FA]">{t.trait}:</span> {getImprovementTip(t.trait)}
+              <span className="font-medium text-[var(--foreground)]">{t.trait}:</span> {getImprovementTip(t.trait)}
             </li>
           ))}
         </ul>
@@ -517,6 +519,7 @@ export default function ResultDetailPage() {
   const [error, setError] = useState<string | null>(null);
   const [downloadingReport, setDownloadingReport] = useState(false);
   const [downloadingCertificate, setDownloadingCertificate] = useState(false);
+  const [showQuestions, setShowQuestions] = useState(false);
 
   const fetchResult = useCallback(async () => {
     setLoading(true);
@@ -567,14 +570,14 @@ export default function ResultDetailPage() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-7 overflow-x-auto">
-      <button onClick={() => router.push('/company/results')} className="flex items-center gap-1.5 text-[12.5px] text-[#8891B8] hover:text-[#F2F4FA] transition-colors">
+      <button onClick={() => router.push('/company/results')} className="flex items-center gap-1.5 text-[12.5px] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
         <ArrowLeft size={13} />
         Back to results
       </button>
 
       {loading && (
-        <div className="flex flex-col items-center justify-center py-24 text-[#8891B8]">
-          <Loader2 size={22} className="animate-spin text-[#3FDCC0]" />
+        <div className="flex flex-col items-center justify-center py-24 text-[var(--muted)]">
+          <Loader2 size={22} className="animate-spin text-[var(--primary)]" />
           <p className="text-[13.5px] mt-3">Loading result…</p>
         </div>
       )}
@@ -584,26 +587,26 @@ export default function ResultDetailPage() {
           <span className="w-11 h-11 rounded-full bg-[#FF6B6B]/15 text-[#FF6B6B] flex items-center justify-center mb-3">
             <AlertTriangle size={20} />
           </span>
-          <p className="text-[14px] text-[#F2F4FA] font-medium">Couldn&apos;t load this result</p>
-          <p className="text-[13px] text-[#8891B8] mt-1">{error}</p>
+          <p className="text-[14px] text-[var(--foreground)] font-medium">Couldn&apos;t load this result</p>
+          <p className="text-[13px] text-[var(--muted)] mt-1">{error}</p>
         </div>
       )}
 
       {!loading && !error && bundle && traitBuckets && (
         <>
           {/* Header card */}
-          <div className="rounded-2xl border border-white/[0.08] bg-[#161C3A] p-6 overflow-x-auto">
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 overflow-x-auto">
             <div className="min-w-[760px] grid gap-6 xl:grid-cols-[1.75fr_minmax(320px,0.95fr)] items-start">
               <div className="space-y-6">
                 <div className="flex items-center gap-3.5">
-                  <div className="w-11 h-11 rounded-full bg-[#3FDCC0]/15 text-[#3FDCC0] flex items-center justify-center text-[14px] font-semibold shrink-0">
+                  <div className="w-11 h-11 rounded-full bg-[var(--primary)]/15 text-[var(--primary)] flex items-center justify-center text-[14px] font-semibold shrink-0">
                     {bundle.candidate ? initials(bundle.candidate.firstName, bundle.candidate.lastName) : '?'}
                   </div>
                   <div>
-                    <h1 className="text-[18px] font-semibold text-[#F2F4FA]" style={{ fontFamily: 'var(--font-display)' }}>
+                    <h1 className="text-[18px] font-semibold text-[var(--foreground)]" style={{ fontFamily: 'var(--font-display)' }}>
                       {bundle.candidate ? `${bundle.candidate.firstName} ${bundle.candidate.lastName}` : 'Unknown candidate'}
                     </h1>
-                    <div className="flex flex-wrap items-center gap-3 mt-1.5 text-[12.5px] text-[#8891B8]">
+                    <div className="flex flex-wrap items-center gap-3 mt-1.5 text-[12.5px] text-[var(--muted)]">
                       {bundle.candidate?.email && (
                         <span className="flex items-center gap-1.5">
                           <Mail size={11} /> {bundle.candidate.email}
@@ -616,37 +619,37 @@ export default function ResultDetailPage() {
                       )}
                     </div>
                     {bundle.assessment?.description && (
-                      <p className="mt-4 text-[13px] leading-6 text-[#AAB2D4] max-w-2xl">{bundle.assessment.description}</p>
+                      <p className="mt-4 text-[13px] leading-6 text-[var(--muted)] max-w-2xl">{bundle.assessment.description}</p>
                     )}
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="rounded-2xl border border-white/[0.08] bg-[#10152A] p-4 text-[12.5px] text-[#8891B8]">
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-[#AAB2D4] mb-2">Assessment</p>
-                    <p className="text-[13px] text-[#F2F4FA]">{bundle.assessment?.name ?? 'Unknown assessment'}</p>
+                  <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 text-[12.5px] text-[var(--muted)]">
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--muted)] mb-2">Assessment</p>
+                    <p className="text-[13px] text-[var(--foreground)]">{bundle.assessment?.name ?? 'Unknown assessment'}</p>
                   </div>
-                  <div className="rounded-2xl border border-white/[0.08] bg-[#10152A] p-4 text-[12.5px] text-[#8891B8]">
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-[#AAB2D4] mb-2">Client</p>
-                    <p className="text-[13px] text-[#F2F4FA]">{bundle.assessment?.client?.name ?? 'Unassigned'}</p>
+                  <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 text-[12.5px] text-[var(--muted)]">
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--muted)] mb-2">Client</p>
+                    <p className="text-[13px] text-[var(--foreground)]">{bundle.assessment?.client?.name ?? 'Unassigned'}</p>
                   </div>
-                  <div className="rounded-2xl border border-white/[0.08] bg-[#10152A] p-4 text-[12.5px] text-[#8891B8]">
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-[#AAB2D4] mb-2">Questions</p>
-                    <p className="text-[13px] text-[#F2F4FA]">{bundle.questions.length}</p>
+                  <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 text-[12.5px] text-[var(--muted)]">
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--muted)] mb-2">Questions</p>
+                    <p className="text-[13px] text-[var(--foreground)]">{bundle.questions.length}</p>
                   </div>
-                  <div className="rounded-2xl border border-white/[0.08] bg-[#10152A] p-4 text-[12.5px] text-[#8891B8]">
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-[#AAB2D4] mb-2">Duration</p>
-                    <p className="text-[13px] text-[#F2F4FA]">
+                  <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 text-[12.5px] text-[var(--muted)]">
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--muted)] mb-2">Duration</p>
+                    <p className="text-[13px] text-[var(--foreground)]">
                       {bundle.assessment?.durationMinutes ? `${bundle.assessment.durationMinutes} min` : 'Unknown'}
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-white/[0.08] bg-[#10152A] p-4 text-[12.5px] text-[#8891B8]">
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-[#AAB2D4] mb-2">Started</p>
-                    <p className="text-[13px] text-[#F2F4FA]">{formatTimestamp(bundle.startedAt)}</p>
+                  <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 text-[12.5px] text-[var(--muted)]">
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--muted)] mb-2">Started</p>
+                    <p className="text-[13px] text-[var(--foreground)]">{formatTimestamp(bundle.startedAt)}</p>
                   </div>
-                  <div className="rounded-2xl border border-white/[0.08] bg-[#10152A] p-4 text-[12.5px] text-[#8891B8]">
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-[#AAB2D4] mb-2">Submitted</p>
-                    <p className="text-[13px] text-[#F2F4FA]">{formatTimestamp(bundle.submittedAt)}</p>
+                  <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 text-[12.5px] text-[var(--muted)]">
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--muted)] mb-2">Submitted</p>
+                    <p className="text-[13px] text-[var(--foreground)]">{formatTimestamp(bundle.submittedAt)}</p>
                   </div>
                 </div>
 
@@ -655,56 +658,32 @@ export default function ResultDetailPage() {
                   const topTraits = sortedTraits.slice(0, 3);
                   const bottomTraits = [...sortedTraits].slice(-3).reverse();
                   return (
-                    <div className="rounded-2xl border border-white/[0.08] bg-[#10152A] p-5 text-[12.5px] text-[#8891B8]">
-                      <p className="uppercase tracking-[0.24em] text-[#AAB2D4] text-[11px] mb-3">Performance summary</p>
-                      <p className="text-[13px] leading-6 text-[#F2F4FA]">
+                    <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] p-5 text-[12.5px] text-[var(--muted)]">
+                      <p className="uppercase tracking-[0.24em] text-[var(--muted)] text-[11px] mb-3">Performance summary</p>
+                      <p className="text-[13px] leading-6 text-[var(--foreground)]">
                         {getSummaryText(bundle.overallScore, bundle.report.overall.band, topTraits, bottomTraits)}
                       </p>
                     </div>
                   );
                 })()}
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[12.5px] text-[#8891B8]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[12.5px] text-[var(--muted)]">
                   {bundle.attemptId && (
                     <p>
-                      <span className="font-semibold text-[#F2F4FA]">Attempt ID:</span> {bundle.attemptId}
+                      <span className="font-semibold text-[var(--foreground)]">Attempt ID:</span> {bundle.attemptId}
                     </p>
                   )}
                   {bundle.assignment?.assignedTo && (
                     <p>
-                      <span className="font-semibold text-[#F2F4FA]">Assigned to:</span> {bundle.assignment.assignedTo}
+                      <span className="font-semibold text-[var(--foreground)]">Assigned to:</span> {bundle.assignment.assignedTo}
                     </p>
                   )}
-                </div>
-
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                  <div className="text-[12px] text-[#8891B8]">Review and download the full candidate report below.</div>
-                  <div className="flex items-center gap-2.5">
-                    <button
-                      type="button"
-                      onClick={() => handleDownload('certificate')}
-                      disabled={downloadingCertificate}
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-[#3FDCC0]/40 bg-transparent px-4 py-2 text-[12.5px] font-semibold text-[#3FDCC0] transition-colors hover:bg-[#3FDCC0]/10 hover:cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
-                    >
-                      {downloadingCertificate ? <Loader2 size={16} className="animate-spin" /> : <Award size={16} />}
-                      {downloadingCertificate ? 'Preparing…' : 'Download certificate'}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => handleDownload('report')}
-                      disabled={downloadingReport}
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-[#3FDCC0] px-4 py-2 text-[12.5px] font-semibold text-[#08111E] transition-colors hover:bg-[#30e2b7] hover:cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
-                    >
-                      {downloadingReport ? <Loader2 size={16} className="animate-spin" /> : <Download size={16} />}
-                      {downloadingReport ? 'Preparing…' : 'Download report'}
-                    </button>
-                  </div>
                 </div>
               </div>
 
               {/* Overall score as a circular gauge out of 100 */}
               <div className="flex flex-col items-center gap-2">
-                <p className="text-[11px] uppercase tracking-wide text-[#565F8C]" style={{ fontFamily: 'var(--font-mono)' }}>
+                <p className="text-[11px] uppercase tracking-wide text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
                   Overall score
                 </p>
                 <ScoreGauge score={bundle.overallScore} size={140} stage={bundle.report.overall.stage} />
@@ -714,6 +693,31 @@ export default function ResultDetailPage() {
                 </div>
                 <ScoreBandLegend />
               </div>
+            </div>
+          </div>
+
+          {/* Downloads — its own card, separate from the header content above */}
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="text-[12px] text-[var(--muted)]">Review and download the full candidate report below.</div>
+            <div className="flex items-center gap-2.5">
+              <button
+                type="button"
+                onClick={() => handleDownload('certificate')}
+                disabled={downloadingCertificate}
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--primary)]/40 bg-transparent px-4 py-2 text-[12.5px] font-semibold text-[var(--primary)] transition-colors hover:bg-[var(--primary)]/10 hover:cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {downloadingCertificate ? <Loader2 size={16} className="animate-spin" /> : <Award size={16} />}
+                {downloadingCertificate ? 'Preparing…' : 'Download certificate'}
+              </button>
+              <button
+                type="button"
+                onClick={() => handleDownload('report')}
+                disabled={downloadingReport}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-4 py-2 text-[12.5px] font-semibold text-[var(--primary-foreground)] transition-colors hover:bg-[var(--primary)]/90 hover:cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {downloadingReport ? <Loader2 size={16} className="animate-spin" /> : <Download size={16} />}
+                {downloadingReport ? 'Preparing…' : 'Download report'}
+              </button>
             </div>
           </div>
 
@@ -751,47 +755,70 @@ export default function ResultDetailPage() {
             emptyMessage="No logical reasoning questions were included in this attempt."
           />
 
-          {/* Question-by-question review */}
-          <div className="rounded-2xl border border-white/[0.08] bg-[#161C3A] overflow-hidden">
-            <div className="px-6 py-4 border-b border-white/[0.08]">
-              <h2 className="text-[14px] font-semibold text-[#F2F4FA]" style={{ fontFamily: 'var(--font-display)' }}>
-                Question-by-question review
-              </h2>
-              <p className="text-[12.5px] text-[#8891B8] mt-0.5">{bundle.questions.length} questions</p>
-            </div>
-            <div className="divide-y divide-white/[0.06]">
-              {bundle.questions.map((qa, i) => {
-                const answered = Boolean(qa.answer && qa.answer.answer !== undefined && qa.answer.answer !== null);
-                const questionId = qa.question?.id ?? qa.answer?.questionId ?? `question-${i + 1}`;
-                return (
-                  <div key={questionId} className="px-6 py-4">
-                    <div className="flex items-start gap-3">
-                      <span className="mt-0.5 shrink-0 text-[#565F8C]">
-                        {answered ? <CircleCheck size={15} className="text-[#3FDCC0]" /> : <CircleX size={15} className="text-[#FF6B6B]" />}
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center justify-between gap-3">
-                          <p className="text-[11px] uppercase tracking-wide text-[#565F8C]" style={{ fontFamily: 'var(--font-mono)' }}>
-                            Question {i + 1}
-                            {qa.question?.category ? ` · ${qa.question.category}` : ''}
-                          </p>
-                          {typeof qa.answer?.score === 'number' && (
-                            <span className="text-[11px] text-[#8891B8]" style={{ fontFamily: 'var(--font-mono)' }}>
-                              score: {qa.answer.score}
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-[13.5px] text-[#F2F4FA] mt-1.5 leading-relaxed">{questionText(qa.question)}</p>
-                        <p className="text-[13px] text-[#AAB2D4] mt-1.5">{answerText(qa.question, qa.answer)}</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-              {bundle.questions.length === 0 && (
-                <p className="px-6 py-8 text-center text-[13px] text-[#565F8C]">No questions recorded for this attempt.</p>
+        {/* Question-by-question review */}
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
+            <div className="px-6 py-4 border-b border-[var(--border)] flex items-center justify-between gap-3">
+              <div>
+                <h2 className="text-[14px] font-semibold text-[var(--foreground)]" style={{ fontFamily: 'var(--font-display)' }}>
+                  Question-by-question review
+                </h2>
+                <p className="text-[12.5px] text-[var(--muted)] mt-0.5">{bundle.questions.length} questions</p>
+              </div>
+              {!showQuestions && bundle.questions.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setShowQuestions(true)}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] px-3.5 py-2 text-[12.5px] font-medium text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--surface-muted)] transition-colors shrink-0"
+                >
+                  <Eye size={13} />
+                  View questions
+                </button>
               )}
             </div>
+
+            {showQuestions ? (
+              <div className="divide-y divide-[var(--border)]">
+                {bundle.questions.map((qa, i) => {
+                  const answered = Boolean(qa.answer && qa.answer.answer !== undefined && qa.answer.answer !== null);
+                  const questionId = qa.question?.id ?? qa.answer?.questionId ?? `question-${i + 1}`;
+                  return (
+                    <div key={questionId} className="px-6 py-4">
+                      <div className="flex items-start gap-3">
+                        <span className="mt-0.5 shrink-0 text-[var(--muted)]">
+                          {answered ? <CircleCheck size={15} className="text-[var(--primary)]" /> : <CircleX size={15} className="text-[#FF6B6B]" />}
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center justify-between gap-3">
+                            <p className="text-[11px] uppercase tracking-wide text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
+                              Question {i + 1}
+                              {qa.question?.category ? ` · ${qa.question.category}` : ''}
+                            </p>
+                            {typeof qa.answer?.score === 'number' && (
+                              <span className="text-[11px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
+                                score: {qa.answer.score}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[13.5px] text-[var(--foreground)] mt-1.5 leading-relaxed">{questionText(qa.question)}</p>
+                          <p className="text-[13px] text-[var(--muted)] mt-1.5">{answerText(qa.question, qa.answer)}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+                {bundle.questions.length === 0 && (
+                  <p className="px-6 py-8 text-center text-[13px] text-[var(--muted)]">No questions recorded for this attempt.</p>
+                )}
+              </div>
+            ) : (
+              <div className="px-6 py-10 text-center">
+                <p className="text-[13px] text-[var(--muted)]">
+                  {bundle.questions.length > 0
+                    ? 'Click "View questions" to load the full question-by-question breakdown.'
+                    : 'No questions recorded for this attempt.'}
+                </p>
+              </div>
+            )}
           </div>
         </>
       )}

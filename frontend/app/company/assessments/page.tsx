@@ -31,7 +31,7 @@ import {
   ApiError,
 } from '@/src/lib/api/assessments';
 import { listClients } from '@/src/lib/api/clients';
-import { listCompanies } from '@/src/lib/api/users';
+// import { listCompanies } from '@/src/lib/api/users';
 import type {
   Assessment,
   AssessmentFormValues,
@@ -45,14 +45,14 @@ import type { CompanyRef } from '@/src/types/user';
 const PAGE_SIZE = 10;
 
 const LEVEL_STYLES: Record<AssessmentLevel, string> = {
-  ENTRY: 'bg-[#3FDCC0]/15 text-[#3FDCC0]',
+  ENTRY: 'bg-[var(--primary)]/15 text-[var(--primary)]',
   MID: 'bg-[#F2AE55]/15 text-[#F2AE55]',
   TOP: 'bg-[#FF6B6B]/15 text-[#FF6B6B]',
 };
 
 const STATUS_STYLES: Record<AssessmentStatus, string> = {
-  ACTIVE: 'bg-[#3FDCC0]/15 text-[#3FDCC0]',
-  INACTIVE: 'bg-[#565F8C]/20 text-[#8891B8]',
+  ACTIVE: 'bg-[var(--primary)]/15 text-[var(--primary)]',
+  INACTIVE: 'bg-[var(--muted)]/20 text-[var(--muted)]',
   DRAFT: 'bg-[#F2AE55]/15 text-[#F2AE55]',
 };
 
@@ -157,13 +157,13 @@ export default function AssessmentsPage() {
       });
   }, [accessToken]);
 
-  useEffect(() => {
-    if (isSuperAdmin) {
-      listCompanies()
-        .then(setCompanies)
-        .catch(() => setCompanies([]));
-    }
-  }, [isSuperAdmin]);
+  // useEffect(() => {
+  //   if (isSuperAdmin) {
+  //     listCompanies()
+  //       .then(setCompanies)
+  //       .catch(() => setCompanies([]));
+  //   }
+  // }, [isSuperAdmin]);
 
   useEffect(() => {
     if (banner) {
@@ -300,26 +300,26 @@ export default function AssessmentsPage() {
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <p
-            className="text-[11px] uppercase tracking-[0.14em] text-[#3FDCC0] mb-1.5"
+            className="text-[11px] uppercase tracking-[0.14em] text-[var(--primary)] mb-1.5"
             style={{ fontFamily: 'var(--font-mono)' }}
           >
             Assessment Management
           </p>
-          <h1 className="text-[26px] font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+          <h1 className="text-[26px] font-semibold tracking-tight text-[var(--foreground)]" style={{ fontFamily: 'var(--font-display)' }}>
             Assessments
           </h1>
-          <p className="text-[13.5px] text-[#8891B8] mt-1">
+          <p className="text-[13.5px] text-[var(--muted)] mt-1">
             {isSuperAdmin ? 'Manage assessments across every company' : 'Manage your company’s assessments'}
           </p>
         </div>
         <div className="flex items-center gap-3 flex-wrap">
-          <div className="rounded-2xl bg-[#161C3A] px-4 py-3 text-[13px] text-[#F2F4FA] border border-white/[0.08]">
-            <span className="block text-[11px] text-[#8891B8]">Total assessments</span>
+          <div className="rounded-2xl bg-[var(--surface)] px-4 py-3 text-[13px] text-[var(--foreground)] border border-[var(--border)]">
+            <span className="block text-[11px] text-[var(--muted)]">Total assessments</span>
             <span className="text-[20px] font-semibold">{meta.total}</span>
           </div>
           <button
             onClick={openCreate}
-            className="flex items-center gap-1.5 rounded-lg bg-[#3FDCC0] text-[#0B0F26] text-[13px] font-semibold px-4 py-2.5 hover:bg-[#3FDCC0]/90 transition-colors shrink-0"
+            className="flex items-center gap-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-[13px] font-semibold px-4 py-2.5 hover:bg-[var(--primary)]/90 transition-colors shrink-0"
           >
             <Plus size={14} strokeWidth={2.5} />
             Add assessment
@@ -332,7 +332,7 @@ export default function AssessmentsPage() {
         <div
           className={`rounded-xl border px-4 py-3 text-[13px] flex items-center justify-between ${
             banner.tone === 'success'
-              ? 'bg-[#3FDCC0]/10 border-[#3FDCC0]/25 text-[#3FDCC0]'
+              ? 'bg-[var(--primary)]/10 border-[var(--primary)]/25 text-[var(--primary)]'
               : 'bg-[#FF6B6B]/10 border-[#FF6B6B]/25 text-[#FF6B6B]'
           }`}
         >
@@ -352,14 +352,14 @@ export default function AssessmentsPage() {
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-3">
         <div className="relative flex-1 min-w-[220px]">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#565F8C]">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)]">
             <Search size={15} />
           </span>
           <input
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             placeholder="Search by assessment name…"
-            className="w-full rounded-lg bg-[#161C3A] border border-white/[0.08] pl-9 pr-3 py-2.5 text-[13.5px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors"
+            className="w-full rounded-lg bg-[var(--surface)] border border-[var(--border)] pl-9 pr-3 py-2.5 text-[13.5px] text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:border-[var(--primary)]/50 focus:ring-1 focus:ring-[var(--primary)]/30 transition-colors"
           />
         </div>
         <select
@@ -368,7 +368,7 @@ export default function AssessmentsPage() {
             setClientFilter(e.target.value);
             setPage(1);
           }}
-          className="rounded-lg bg-[#161C3A] border border-white/[0.08] px-3 py-2.5 text-[13px] text-[#AAB2D4] outline-none focus:border-[#3FDCC0]/50 transition-colors"
+          className="rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5 text-[13px] text-[var(--muted)] outline-none focus:border-[var(--primary)]/50 transition-colors"
         >
           <option value="">All clients</option>
           {clients.map((c) => (
@@ -383,7 +383,7 @@ export default function AssessmentsPage() {
             setLevelFilter(e.target.value as AssessmentLevel | '');
             setPage(1);
           }}
-          className="rounded-lg bg-[#161C3A] border border-white/[0.08] px-3 py-2.5 text-[13px] text-[#AAB2D4] outline-none focus:border-[#3FDCC0]/50 transition-colors"
+          className="rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5 text-[13px] text-[var(--muted)] outline-none focus:border-[var(--primary)]/50 transition-colors"
         >
           <option value="">All levels</option>
           <option value="ENTRY">Entry</option>
@@ -396,7 +396,7 @@ export default function AssessmentsPage() {
             setStatusFilter(e.target.value as AssessmentStatus | '');
             setPage(1);
           }}
-          className="rounded-lg bg-[#161C3A] border border-white/[0.08] px-3 py-2.5 text-[13px] text-[#AAB2D4] outline-none focus:border-[#3FDCC0]/50 transition-colors"
+          className="rounded-lg bg-[var(--surface)] border border-[var(--border)] px-3 py-2.5 text-[13px] text-[var(--muted)] outline-none focus:border-[var(--primary)]/50 transition-colors"
         >
           <option value="">All statuses</option>
           <option value="ACTIVE">Active</option>
@@ -406,12 +406,12 @@ export default function AssessmentsPage() {
       </div>
 
       {/* Table */}
-      <div className="rounded-2xl border border-white/[0.08] bg-[#161C3A] overflow-hidden">
+      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-[720px] w-full text-left">
             <thead>
               <tr
-                className="text-[11px] uppercase tracking-wide text-[#565F8C] border-b border-white/[0.08]"
+                className="text-[11px] uppercase tracking-wide text-[var(--muted)] border-b border-[var(--border)]"
                 style={{ fontFamily: 'var(--font-mono)' }}
               >
               <th className="px-5 py-3 font-medium">Assessment</th>
@@ -427,7 +427,7 @@ export default function AssessmentsPage() {
           <tbody>
             {loading && (
               <tr>
-                <td colSpan={isSuperAdmin ? 8 : 7} className="px-5 py-10 text-center text-[13px] text-[#565F8C]">
+                <td colSpan={isSuperAdmin ? 8 : 7} className="px-5 py-10 text-center text-[13px] text-[var(--muted)]">
                   Loading assessments…
                 </td>
               </tr>
@@ -443,7 +443,7 @@ export default function AssessmentsPage() {
 
             {!loading && !loadError && assessments.length === 0 && (
               <tr>
-                <td colSpan={isSuperAdmin ? 8 : 7} className="px-5 py-10 text-center text-[13px] text-[#565F8C]">
+                <td colSpan={isSuperAdmin ? 8 : 7} className="px-5 py-10 text-center text-[13px] text-[var(--muted)]">
                   No assessments match these filters.
                 </td>
               </tr>
@@ -460,25 +460,25 @@ export default function AssessmentsPage() {
                     a.analyticalCount +
                     a.logicalReasoningCount;
                 return (
-                  <tr key={a.id} className="border-t border-white/[0.06] hover:bg-white/[0.03]">
+                  <tr key={a.id} className="border-t border-[var(--border)] hover:bg-[var(--surface-muted)]">
                     <td className="px-5 py-3">
                       <div className="flex items-center gap-2.5">
-                        <span className="w-8 h-8 rounded-lg bg-[#3FDCC0]/15 text-[#3FDCC0] flex items-center justify-center shrink-0">
+                        <span className="w-8 h-8 rounded-lg bg-[var(--primary)]/15 text-[var(--primary)] flex items-center justify-center shrink-0">
                           <ClipboardList size={14} />
                         </span>
-                        <p className="text-[13.5px] text-[#F2F4FA] truncate max-w-[220px]">{a.name}</p>
+                        <p className="text-[13.5px] text-[var(--foreground)] truncate max-w-[220px]">{a.name}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-3 text-[13px] text-[#AAB2D4]">
+                    <td className="px-5 py-3 text-[13px] text-[var(--muted)]">
                       <span className="flex items-center gap-1.5">
-                        <Users size={12} className="text-[#565F8C]" />
+                        <Users size={12} className="text-[var(--muted)]" />
                         {client?.name ?? '—'}
                       </span>
                     </td>
                     {isSuperAdmin && (
-                      <td className="px-5 py-3 text-[13px] text-[#AAB2D4]">
+                      <td className="px-5 py-3 text-[13px] text-[var(--muted)]">
                         <span className="flex items-center gap-1.5">
-                          <Building2 size={12} className="text-[#565F8C]" />
+                          <Building2 size={12} className="text-[var(--muted)]" />
                           {companyMap.get(a.companyId) ?? '—'}
                         </span>
                       </td>
@@ -488,7 +488,7 @@ export default function AssessmentsPage() {
                     </td>
                     <td className="px-5 py-3">
                       <div
-                        className="flex flex-wrap items-center gap-2.5 text-[11.5px] text-[#8891B8]"
+                        className="flex flex-wrap items-center gap-2.5 text-[11.5px] text-[var(--muted)]"
                         style={{ fontFamily: 'var(--font-mono)' }}
                         title={`${a.likertCount} Likert · ${a.sjqCount} SJQ · ${a.forcedChoiceCount} Forced choice · ${a.analyticalCount} Analytical · ${a.logicalReasoningCount} Logical reasoning`}
                       >
@@ -507,10 +507,10 @@ export default function AssessmentsPage() {
                         <span className="flex items-center gap-1">
                           <Building2 size={11} /> {a.logicalReasoningCount}
                         </span>
-                        <span className="text-[#565F8C]">({total})</span>
+                        <span className="text-[var(--muted)]">({total})</span>
                       </div>
                     </td>
-                    <td className="px-5 py-3 text-[12.5px] text-[#8891B8]" style={{ fontFamily: 'var(--font-mono)' }}>
+                    <td className="px-5 py-3 text-[12.5px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
                       <span className="flex items-center gap-1.5">
                         <Clock size={11} />
                         {a.durationMinutes}m
@@ -530,8 +530,8 @@ export default function AssessmentsPage() {
                           }
                           className={`w-7 h-7 rounded-md flex items-center justify-center transition-colors ${
                             a.status === 'ACTIVE'
-                              ? 'text-[#8891B8] hover:text-[#F2AE55] hover:bg-[#F2AE55]/10'
-                              : 'text-[#8891B8] hover:text-[#3FDCC0] hover:bg-[#3FDCC0]/10'
+                              ? 'text-[var(--muted)] hover:text-[#F2AE55] hover:bg-[#F2AE55]/10'
+                              : 'text-[var(--muted)] hover:text-[var(--primary)] hover:bg-[var(--primary)]/10'
                           }`}
                           aria-label={a.status === 'ACTIVE' ? `Deactivate ${a.name}` : `Activate ${a.name}`}
                         >
@@ -539,14 +539,14 @@ export default function AssessmentsPage() {
                         </button>
                         <button
                           onClick={() => openEdit(a)}
-                          className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#3FDCC0] hover:bg-[#3FDCC0]/10 transition-colors"
+                          className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:bg-[var(--primary)]/10 transition-colors"
                           aria-label={`Edit ${a.name}`}
                         >
                           <Pencil size={13} />
                         </button>
                         <button
                           onClick={() => setDeleteTarget(a)}
-                          className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/10 transition-colors"
+                          className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/10 transition-colors"
                           aria-label={`Delete ${a.name}`}
                         >
                           <Trash2 size={13} />
@@ -561,26 +561,26 @@ export default function AssessmentsPage() {
       </div>
 
         {/* Pagination */}
-        <div className="flex items-center justify-between px-5 py-3.5 border-t border-white/[0.08]">
-          <p className="text-[12px] text-[#565F8C]" style={{ fontFamily: 'var(--font-mono)' }}>
+        <div className="flex items-center justify-between px-5 py-3.5 border-t border-[var(--border)]">
+          <p className="text-[12px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
             {rangeLabel}
           </p>
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={meta.page <= 1 || loading}
-              className="w-7 h-7 rounded-md flex items-center justify-center text-[#AAB2D4] border border-white/[0.08] hover:bg-white/[0.05] transition-colors disabled:opacity-30"
+              className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] border border-[var(--border)] hover:bg-[var(--surface-muted)] transition-colors disabled:opacity-30"
               aria-label="Previous page"
             >
               <ChevronLeft size={14} />
             </button>
-            <span className="text-[12.5px] text-[#AAB2D4] px-2" style={{ fontFamily: 'var(--font-mono)' }}>
+            <span className="text-[12.5px] text-[var(--muted)] px-2" style={{ fontFamily: 'var(--font-mono)' }}>
               {meta.page} / {Math.max(1, meta.totalPages)}
             </span>
             <button
               onClick={() => setPage((p) => Math.min(meta.totalPages || 1, p + 1))}
               disabled={meta.page >= meta.totalPages || loading}
-              className="w-7 h-7 rounded-md flex items-center justify-center text-[#AAB2D4] border border-white/[0.08] hover:bg-white/[0.05] transition-colors disabled:opacity-30"
+              className="w-7 h-7 rounded-md flex items-center justify-center text-[var(--muted)] border border-[var(--border)] hover:bg-[var(--surface-muted)] transition-colors disabled:opacity-30"
               aria-label="Next page"
             >
               <ChevronRight size={14} />

@@ -42,4 +42,34 @@ const deleteUser = asyncHandler(async (req, res) => {
   return success(res, { message: 'User deleted (soft)' });
 });
 
-module.exports = { createUser, getUser, listUsers, updateUser, deleteUser };
+/* ------------------------------------------------------------------
+   Self-service: /users/me/*
+------------------------------------------------------------------- */
+
+const getMyProfile = asyncHandler(async (req, res) => {
+  const data = await service.getMyProfile({ currentUser: req.user });
+  return success(res, { message: 'Profile', data });
+});
+
+const updateMyProfile = asyncHandler(async (req, res) => {
+  const data = await service.updateProfile({ currentUser: req.user, payload: req.body });
+  await writeAudit({ req, action: 'users.updateProfile', entity: 'User', entityId: req.user.id });
+  return success(res, { message: 'Profile updated', data });
+});
+
+const changeMyPassword = asyncHandler(async (req, res) => {
+  await service.changePassword({ currentUser: req.user, payload: req.body });
+  await writeAudit({ req, action: 'users.changePassword', entity: 'User', entityId: req.user.id });
+  return success(res, { message: 'Password changed successfully' });
+});
+
+module.exports = {
+  createUser,
+  getUser,
+  listUsers,
+  updateUser,
+  deleteUser,
+  getMyProfile,
+  updateMyProfile,
+  changeMyPassword,
+};

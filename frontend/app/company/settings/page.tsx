@@ -2,954 +2,698 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import {
-  Building2,
-  Users,
-  Bell,
+  User as UserIcon,
   ShieldCheck,
-  CreditCard,
-  Plug,
-  Timer,
-  Languages,
-  AlertTriangle,
-  Check,
-  Camera,
-  Plus,
-  Trash2,
-  Mail,
-  Copy,
   KeyRound,
-  Globe,
+  Building2,
+  Check,
+  X,
   Eye,
-  Shuffle,
-  Clock,
-  CalendarDays,
-  Download,
-  Archive,
+  EyeOff,
+  Loader2,
+  AlertCircle,
+  Camera,
+  Lock,
 } from 'lucide-react';
 import { useAuth } from '@/src/auth/AuthProvider';
-import ClientConfirmDialog from '@/src/components/layout/company/client/ClientConfirmDialog';
-import type { CompanySettings } from '@/src/types/settings';
+import { ApiError } from '@/src/lib/api';
+import { updateProfile, changePassword } from '@/src/lib/api/users';
+import { getCompany, updateCompany } from '@/src/lib/api/companies';
+import type { User } from '@/src/types/user';
 
 /* ------------------------------------------------------------------
-   No settings backend yet — this seeds the page with local defaults
-   (using the signed-in user/company where available) and keeps every
-   edit in React state. All "Save" actions just update local state and
-   show a banner. When a settings API exists, swap DEFAULT_SETTINGS +
-   the persist() body below for real GET/PATCH calls — every section
-   component already receives values/onChange/onSave as props, so
-   nothing else needs to change.
+   Theme tokens — same CSS variables as the rest of the app
+   (--surface, --surface-muted, --border, --foreground, --muted,
+   --primary, --primary-foreground from globals.css).
 ------------------------------------------------------------------- */
 
-function buildDefaultSettings(companyName?: string): CompanySettings {
-  return {
-    profile: {
-      name: companyName ?? 'Your Company',
-      domain: '',
-      size: '11–50 employees',
-      industry: 'Recruiting & Staffing',
-    },
-    assessmentDefaults: {
-      timeLimitMinutes: 45,
-      scoringMethod: 'Weighted by difficulty',
-      passThreshold: 70,
-      shuffleQuestions: true,
-      proctoring: true,
-      flagTabSwitch: true,
-      autoSubmit: true,
-    },
-    team: [],
-    notifications: {
-      submissions: true,
-      flagged: true,
-      weeklyDigest: false,
-      productUpdates: false,
-    },
-    preferences: {
-      language: 'English (US)',
-      timezone: '(GMT+5:30) Kolkata',
-      dateFormat: 'DD/MM/YYYY',
-      weekStart: 'Monday',
-    },
-    security: {
-      twoFactor: false,
-      sso: false,
-      apiKeyMasked: '••••••••••••••••',
-    },
-    billing: {
-      plan: 'Starter',
-      cardLabel: 'No card on file',
-    },
-    integrations: [],
-  };
+const card = 'bg-[var(--surface)] border border-[var(--border)]';
+const cardBorderB = 'border-[var(--border)]';
+const textPrimary = 'text-[var(--foreground)]';
+const textMuted = 'text-[var(--muted)]';
+const inputBase =
+  'w-full rounded-lg bg-[var(--surface-muted)] border border-[var(--border)] px-3 py-2.5 text-[13.5px] text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none focus:border-[var(--primary)]/50 focus:ring-1 focus:ring-[var(--primary)]/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
+const tealChip = 'bg-[var(--primary)]/15 text-[var(--primary)]';
+
+type Tab = 'profile' | 'security' | 'company';
+
+function isApiError(err: unknown): err is ApiError {
+  return err instanceof Error && 'status' in err;
+}
+
+function initials(firstName?: string, lastName?: string) {
+  return `${firstName?.[0] ?? ''}${lastName?.[0] ?? ''}`.toUpperCase() || '?';
 }
 
 /* ------------------------------------------------------------------
-   Palette matches the rest of the app (ClientsPage etc):
-   bg           #0B0F26   page background
-   surface      #161C3A   card / input background
-   border       white/[0.08]
-   text         #F2F4FA
-   muted        #AAB2D4 / #8891B8 / #565F8C (darkest)
-   accent       #3FDCC0   teal — primary actions, "on" states
-   amber        #F2AE55   secondary — pending/attention states
-   danger       #FF6B6B
-   fonts        var(--font-mono) for eyebrows/labels, var(--font-display) for headings
+   Password strength — same logic used on the login/reset-password
+   flows, kept consistent app-wide.
 ------------------------------------------------------------------- */
 
-type SectionKey =
-  | 'profile'
-  | 'assessments'
-  | 'team'
-  | 'notifications'
-  | 'preferences'
-  | 'security'
-  | 'billing'
-  | 'integrations'
-  | 'danger';
-
-const NAV: { key: SectionKey; label: string; icon: React.ReactNode }[] = [
-  { key: 'profile', label: 'Company profile', icon: <Building2 size={15} /> },
-  { key: 'assessments', label: 'Assessment defaults', icon: <Timer size={15} /> },
-  { key: 'team', label: 'Team & roles', icon: <Users size={15} /> },
-  { key: 'notifications', label: 'Notifications', icon: <Bell size={15} /> },
-  { key: 'preferences', label: 'Preferences', icon: <Languages size={15} /> },
-  { key: 'security', label: 'Security', icon: <ShieldCheck size={15} /> },
-  { key: 'billing', label: 'Billing', icon: <CreditCard size={15} /> },
-  { key: 'integrations', label: 'Integrations', icon: <Plug size={15} /> },
-  { key: 'danger', label: 'Danger zone', icon: <AlertTriangle size={15} /> },
+const REQUIREMENTS: { label: string; test: (v: string) => boolean }[] = [
+  { label: 'At least 8 characters', test: (v) => v.length >= 8 },
+  { label: 'One uppercase letter', test: (v) => /[A-Z]/.test(v) },
+  { label: 'One lowercase letter', test: (v) => /[a-z]/.test(v) },
+  { label: 'One number', test: (v) => /[0-9]/.test(v) },
+  { label: 'One special character', test: (v) => /[^A-Za-z0-9]/.test(v) },
 ];
 
-/* ------------------------------------------------------------------
-   Shared primitives, styled to match ClientsPage's inputs/buttons
-------------------------------------------------------------------- */
-
-function Card({ children, tone = 'default' }: { children: React.ReactNode; tone?: 'default' | 'danger' }) {
-  return (
-    <div
-      className={`rounded-2xl border bg-[#161C3A] overflow-hidden ${
-        tone === 'danger' ? 'border-[#FF6B6B]/25' : 'border-white/[0.08]'
-      }`}
-    >
-      {children}
-    </div>
-  );
+function strengthMeta(score: number) {
+  if (score <= 1) return { label: 'Weak', color: '#FF6B6B' };
+  if (score <= 3) return { label: 'Fair', color: '#F2AE55' };
+  return { label: score === 4 ? 'Good' : 'Strong', color: 'var(--primary)' };
 }
 
-function CardHeader({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) {
-  return (
-    <div className="px-6 pt-6 pb-4 border-b border-white/[0.08]">
-      <p className="text-[11px] uppercase tracking-[0.14em] text-[#3FDCC0] mb-1.5" style={{ fontFamily: 'var(--font-mono)' }}>
-        {eyebrow}
-      </p>
-      <h2 className="text-[17px] font-semibold text-[#F2F4FA]" style={{ fontFamily: 'var(--font-display)' }}>
-        {title}
-      </h2>
-      {description && <p className="text-[13px] text-[#8891B8] mt-1">{description}</p>}
-    </div>
-  );
-}
+export default function AccountSettingsPage() {
+  const { user, accessToken, setUser } = useAuth() as {
+    user: User | null;
+    accessToken: string | null;
+    setUser?: (u: User) => void;
+  };
 
-function CardFooter({ children }: { children: React.ReactNode }) {
-  return <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-white/[0.08]">{children}</div>;
-}
+  const [tab, setTab] = useState<Tab>('profile');
+  const isCompanyAdmin = Boolean(user?.role?.isCompanyAdmin || user?.role?.isSuperAdmin);
 
-function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-6 py-3.5 border-b border-white/[0.06] last:border-b-0">
-      <div>
-        <p className="text-[13px] font-medium text-[#F2F4FA]">{label}</p>
-        {hint && <p className="text-[11.5px] text-[#565F8C] mt-0.5 leading-relaxed">{hint}</p>}
-      </div>
-      <div className="sm:col-span-2">{children}</div>
-    </div>
-  );
-}
-
-function TextInput({ className = '', ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <input
-      {...props}
-      className={`w-full rounded-lg bg-[#0B0F26] border border-white/[0.08] px-3 py-2 text-[13px] text-[#F2F4FA] placeholder:text-[#565F8C] outline-none focus:border-[#3FDCC0]/50 focus:ring-1 focus:ring-[#3FDCC0]/30 transition-colors ${className}`}
-    />
-  );
-}
-
-function SelectInput({
-  value,
-  onChange,
-  options,
-  className = '',
-}: {
-  value: string;
-  onChange: (v: string) => void;
-  options: string[];
-  className?: string;
-}) {
-  return (
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className={`rounded-lg bg-[#0B0F26] border border-white/[0.08] px-3 py-2 text-[13px] text-[#AAB2D4] outline-none focus:border-[#3FDCC0]/50 transition-colors ${className}`}
-    >
-      {options.map((o) => (
-        <option key={o} value={o}>
-          {o}
-        </option>
-      ))}
-    </select>
-  );
-}
-
-function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) {
-  return (
-    <button
-      role="switch"
-      aria-checked={checked}
-      onClick={() => onChange(!checked)}
-      className={`relative rounded-full transition-colors ${checked ? 'bg-[#3FDCC0]' : 'bg-white/[0.12]'}`}
-      style={{ width: 40, height: 22 }}
-    >
-      <span
-        className="absolute top-0.5 rounded-full bg-[#0B0F26] transition-transform"
-        style={{
-          width: 16,
-          height: 16,
-          left: 3,
-          transform: checked ? 'translateX(18px)' : 'translateX(0)',
-        }}
-      />
-    </button>
-  );
-}
-
-function PrimaryButton({
-  children,
-  onClick,
-  disabled,
-  icon,
-}: {
-  children: React.ReactNode;
-  onClick?: () => void;
-  disabled?: boolean;
-  icon?: React.ReactNode;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      className="flex items-center gap-1.5 rounded-lg bg-[#3FDCC0] text-[#0B0F26] text-[13px] font-semibold px-4 py-2.5 hover:bg-[#3FDCC0]/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-    >
-      {icon}
-      {children}
-    </button>
-  );
-}
-
-function GhostButton({
-  children,
-  onClick,
-  icon,
-  danger = false,
-}: {
-  children: React.ReactNode;
-  onClick?: () => void;
-  icon?: React.ReactNode;
-  danger?: boolean;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={`flex items-center gap-1.5 rounded-lg border border-white/[0.08] text-[13px] font-medium px-3.5 py-2 transition-colors ${
-        danger ? 'text-[#FF6B6B] hover:bg-[#FF6B6B]/10' : 'text-[#AAB2D4] hover:bg-white/[0.05]'
-      }`}
-    >
-      {icon}
-      {children}
-    </button>
-  );
-}
-
-function Badge({ children, tone = 'accent' }: { children: React.ReactNode; tone?: 'accent' | 'amber' }) {
-  const styles = tone === 'accent' ? 'bg-[#3FDCC0]/15 text-[#3FDCC0]' : 'bg-[#F2AE55]/15 text-[#F2AE55]';
-  return (
-    <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-medium ${styles}`}>
-      {children}
-    </span>
-  );
-}
-
-function initials(name: string) {
-  return name
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join('')
-    .toUpperCase();
-}
-
-/* ------------------------------------------------------------------
-   Section components
-------------------------------------------------------------------- */
-
-function ProfileSection({
-  values,
-  onChange,
-  onSave,
-  saving,
-}: {
-  values: CompanySettings['profile'];
-  onChange: (v: CompanySettings['profile']) => void;
-  onSave: () => void;
-  saving: boolean;
-}) {
-  return (
-    <Card>
-      <CardHeader
-        eyebrow="Workspace"
-        title="Company profile"
-        description="This appears on every assessment invite candidates receive."
-      />
-      <div className="px-6">
-        <div className="flex items-center gap-4 py-4 border-b border-white/[0.06]">
-          <div className="w-14 h-14 rounded-full bg-[#3FDCC0]/15 text-[#3FDCC0] flex items-center justify-center text-[15px] font-semibold shrink-0">
-            {initials(values.name || 'C')}
-          </div>
-          <button className="flex items-center gap-1.5 text-[12.5px] font-medium text-[#3FDCC0]">
-            <Camera size={13} /> Upload logo
-          </button>
-        </div>
-        <Field label="Company name">
-          <TextInput value={values.name} onChange={(e) => onChange({ ...values, name: e.target.value })} />
-        </Field>
-        <Field label="Careers domain" hint="Candidates see this in their invite email.">
-          <div className="flex items-center gap-2">
-            <Globe size={14} className="text-[#565F8C] shrink-0" />
-            <TextInput value={values.domain} onChange={(e) => onChange({ ...values, domain: e.target.value })} />
-          </div>
-        </Field>
-        <Field label="Company size">
-          <SelectInput
-            value={values.size}
-            onChange={(v) => onChange({ ...values, size: v })}
-            options={['1–10 employees', '11–50 employees', '51–200 employees', '200+ employees']}
-            className="w-full"
-          />
-        </Field>
-        <Field label="Industry">
-          <SelectInput
-            value={values.industry}
-            onChange={(v) => onChange({ ...values, industry: v })}
-            options={['Recruiting & Staffing', 'Technology', 'Finance', 'Healthcare', 'Retail', 'Other']}
-            className="w-full"
-          />
-        </Field>
-      </div>
-      <CardFooter>
-        <PrimaryButton onClick={onSave} disabled={saving} icon={<Check size={14} />}>
-          {saving ? 'Saving…' : 'Save changes'}
-        </PrimaryButton>
-      </CardFooter>
-    </Card>
-  );
-}
-
-function AssessmentDefaultsSection({
-  values,
-  onChange,
-  onSave,
-  saving,
-}: {
-  values: CompanySettings['assessmentDefaults'];
-  onChange: (v: CompanySettings['assessmentDefaults']) => void;
-  onSave: () => void;
-  saving: boolean;
-}) {
-  return (
-    <Card>
-      <CardHeader
-        eyebrow="Testing"
-        title="Assessment defaults"
-        description="Applied to every new assessment. Individual tests can still override these."
-      />
-      <div className="px-6">
-        <Field label="Default time limit" hint="Minutes given per assessment.">
-          <div className="flex items-center gap-2">
-            <Timer size={14} className="text-[#565F8C] shrink-0" />
-            <TextInput
-              type="number"
-              value={values.timeLimitMinutes}
-              onChange={(e) => onChange({ ...values, timeLimitMinutes: Number(e.target.value) })}
-              className="max-w-[100px]"
-            />
-            <span className="text-[13px] text-[#565F8C]">minutes</span>
-          </div>
-        </Field>
-        <Field label="Scoring method">
-          <SelectInput
-            value={values.scoringMethod}
-            onChange={(v) => onChange({ ...values, scoringMethod: v })}
-            options={['Weighted by difficulty', 'Equal weight per question', 'Pass/fail per section']}
-            className="w-full"
-          />
-        </Field>
-        <Field label="Pass threshold" hint="Minimum score to auto-advance a candidate.">
-          <div className="flex items-center gap-2">
-            <TextInput
-              type="number"
-              value={values.passThreshold}
-              onChange={(e) => onChange({ ...values, passThreshold: Number(e.target.value) })}
-              className="max-w-[100px]"
-            />
-            <span className="text-[13px] text-[#565F8C]">%</span>
-          </div>
-        </Field>
-        <div className="flex items-center justify-between py-3.5 border-b border-white/[0.06]">
-          <div className="flex items-start gap-2.5">
-            <Shuffle size={15} className="text-[#565F8C] mt-0.5" />
-            <div>
-              <p className="text-[13px] font-medium text-[#F2F4FA]">Shuffle question order</p>
-              <p className="text-[11.5px] text-[#565F8C] mt-0.5">Reduces answer-sharing between candidates.</p>
-            </div>
-          </div>
-          <Toggle checked={values.shuffleQuestions} onChange={(v) => onChange({ ...values, shuffleQuestions: v })} />
-        </div>
-        <div className="flex items-center justify-between py-3.5 border-b border-white/[0.06]">
-          <div className="flex items-start gap-2.5">
-            <Eye size={15} className="text-[#565F8C] mt-0.5" />
-            <div>
-              <p className="text-[13px] font-medium text-[#F2F4FA]">Webcam proctoring</p>
-              <p className="text-[11.5px] text-[#565F8C] mt-0.5">Records candidates during the assessment for later review.</p>
-            </div>
-          </div>
-          <Toggle checked={values.proctoring} onChange={(v) => onChange({ ...values, proctoring: v })} />
-        </div>
-        <div className="flex items-center justify-between py-3.5 border-b border-white/[0.06]">
-          <div>
-            <p className="text-[13px] font-medium text-[#F2F4FA]">Flag tab switching</p>
-            <p className="text-[11.5px] text-[#565F8C] mt-0.5">Notes it in the report if a candidate leaves the test tab.</p>
-          </div>
-          <Toggle checked={values.flagTabSwitch} onChange={(v) => onChange({ ...values, flagTabSwitch: v })} />
-        </div>
-        <div className="flex items-center justify-between py-3.5">
-          <div>
-            <p className="text-[13px] font-medium text-[#F2F4FA]">Auto-submit at time limit</p>
-            <p className="text-[11.5px] text-[#565F8C] mt-0.5">Off means candidates can finish late, flagged as overtime.</p>
-          </div>
-          <Toggle checked={values.autoSubmit} onChange={(v) => onChange({ ...values, autoSubmit: v })} />
-        </div>
-      </div>
-      <CardFooter>
-        <PrimaryButton onClick={onSave} disabled={saving} icon={<Check size={14} />}>
-          {saving ? 'Saving…' : 'Save changes'}
-        </PrimaryButton>
-      </CardFooter>
-    </Card>
-  );
-}
-
-function TeamSection({ members, onInvite, onRemove }: {
-  members: CompanySettings['team'];
-  onInvite: () => void;
-  onRemove: (email: string) => void;
-}) {
-  return (
-    <Card>
-      <CardHeader
-        eyebrow="Access"
-        title="Team & roles"
-        description="Reviewers can score assessments. Admins can also edit test content and billing."
-      />
-      <div className="px-6">
-        {members.map((m) => (
-          <div key={m.email} className="flex items-center justify-between py-3.5 border-b border-white/[0.06] last:border-b-0">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-[#3FDCC0]/15 text-[#3FDCC0] flex items-center justify-center text-[11px] font-semibold shrink-0">
-                {initials(m.name)}
-              </div>
-              <div>
-                <p className="text-[13px] font-medium text-[#F2F4FA]">{m.name}</p>
-                <p className="text-[11.5px] text-[#8891B8]">{m.email}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Badge tone={m.role === 'Owner' ? 'accent' : 'amber'}>{m.role}</Badge>
-              <button
-                onClick={() => onRemove(m.email)}
-                className="w-7 h-7 rounded-md flex items-center justify-center text-[#8891B8] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/10 transition-colors"
-                aria-label={`Remove ${m.name}`}
-              >
-                <Trash2 size={13} />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-      <CardFooter>
-        <div className="flex items-center gap-1.5 text-[12px] text-[#565F8C] mr-auto">
-          <Mail size={12} /> Invite by email
-        </div>
-        <PrimaryButton onClick={onInvite} icon={<Plus size={14} />}>
-          Invite teammate
-        </PrimaryButton>
-      </CardFooter>
-    </Card>
-  );
-}
-
-function NotificationsSection({
-  values,
-  onChange,
-}: {
-  values: CompanySettings['notifications'];
-  onChange: (v: CompanySettings['notifications']) => void;
-}) {
-  const rows: { key: keyof CompanySettings['notifications']; label: string; hint: string }[] = [
-    { key: 'submissions', label: 'New submission', hint: 'A candidate completes an assessment.' },
-    { key: 'flagged', label: 'Flagged responses', hint: 'Proctoring flags unusual activity during a test.' },
-    { key: 'weeklyDigest', label: 'Weekly digest', hint: 'A Monday summary of pipeline activity.' },
-    { key: 'productUpdates', label: 'Product updates', hint: 'New question types and platform features.' },
+  const TABS: { key: Tab; label: string; icon: React.ReactNode }[] = [
+    { key: 'profile', label: 'Profile', icon: <UserIcon size={15} /> },
+    { key: 'security', label: 'Password', icon: <KeyRound size={15} /> },
+    ...(user?.companyId ? [{ key: 'company' as Tab, label: 'Company', icon: <Building2 size={15} /> }] : []),
   ];
-  return (
-    <Card>
-      <CardHeader eyebrow="Alerts" title="Notifications" description="Choose what's worth an email." />
-      <div className="px-6">
-        {rows.map((r) => (
-          <div key={r.key} className="flex items-center justify-between py-3.5 border-b border-white/[0.06] last:border-b-0">
-            <div>
-              <p className="text-[13px] font-medium text-[#F2F4FA]">{r.label}</p>
-              <p className="text-[11.5px] text-[#565F8C] mt-0.5">{r.hint}</p>
-            </div>
-            <Toggle checked={values[r.key]} onChange={(v) => onChange({ ...values, [r.key]: v })} />
-          </div>
-        ))}
-      </div>
-    </Card>
-  );
-}
-
-function PreferencesSection({
-  values,
-  onChange,
-  onSave,
-  saving,
-}: {
-  values: CompanySettings['preferences'];
-  onChange: (v: CompanySettings['preferences']) => void;
-  onSave: () => void;
-  saving: boolean;
-}) {
-  return (
-    <Card>
-      <CardHeader eyebrow="Locale" title="Preferences" description="How dates, times and language appear across your workspace." />
-      <div className="px-6">
-        <Field label="Language">
-          <div className="flex items-center gap-2">
-            <Languages size={14} className="text-[#565F8C] shrink-0" />
-            <SelectInput
-              value={values.language}
-              onChange={(v) => onChange({ ...values, language: v })}
-              options={['English (US)', 'English (UK)', 'Hindi', 'Spanish', 'French', 'German']}
-              className="w-full"
-            />
-          </div>
-        </Field>
-        <Field label="Timezone" hint="Used for scheduling deadlines and reminder emails.">
-          <div className="flex items-center gap-2">
-            <Clock size={14} className="text-[#565F8C] shrink-0" />
-            <SelectInput
-              value={values.timezone}
-              onChange={(v) => onChange({ ...values, timezone: v })}
-              options={[
-                '(GMT+5:30) Kolkata',
-                '(GMT+0:00) London',
-                '(GMT-5:00) New York',
-                '(GMT-8:00) Los Angeles',
-                '(GMT+9:00) Tokyo',
-              ]}
-              className="w-full"
-            />
-          </div>
-        </Field>
-        <Field label="Date format">
-          <div className="flex items-center gap-2">
-            <CalendarDays size={14} className="text-[#565F8C] shrink-0" />
-            <SelectInput
-              value={values.dateFormat}
-              onChange={(v) => onChange({ ...values, dateFormat: v })}
-              options={['DD/MM/YYYY', 'MM/DD/YYYY', 'YYYY-MM-DD']}
-              className="w-full"
-            />
-          </div>
-        </Field>
-        <Field label="Week starts on">
-          <SelectInput
-            value={values.weekStart}
-            onChange={(v) => onChange({ ...values, weekStart: v })}
-            options={['Sunday', 'Monday']}
-            className="w-full"
-          />
-        </Field>
-      </div>
-      <CardFooter>
-        <PrimaryButton onClick={onSave} disabled={saving} icon={<Check size={14} />}>
-          {saving ? 'Saving…' : 'Save changes'}
-        </PrimaryButton>
-      </CardFooter>
-    </Card>
-  );
-}
-
-function SecuritySection({
-  values,
-  onChange,
-}: {
-  values: CompanySettings['security'];
-  onChange: (v: CompanySettings['security']) => void;
-}) {
-  return (
-    <Card>
-      <CardHeader eyebrow="Protection" title="Security" description="Keep the workspace and candidate data locked down." />
-      <div className="px-6">
-        <div className="flex items-center justify-between py-3.5 border-b border-white/[0.06]">
-          <div>
-            <p className="text-[13px] font-medium text-[#F2F4FA]">Two-factor authentication</p>
-            <p className="text-[11.5px] text-[#565F8C] mt-0.5">Require a verification code at sign-in for every teammate.</p>
-          </div>
-          <Toggle checked={values.twoFactor} onChange={(v) => onChange({ ...values, twoFactor: v })} />
-        </div>
-        <div className="flex items-center justify-between py-3.5 border-b border-white/[0.06]">
-          <div>
-            <p className="text-[13px] font-medium text-[#F2F4FA]">Single sign-on (SAML)</p>
-            <p className="text-[11.5px] text-[#565F8C] mt-0.5">Available on the Enterprise plan.</p>
-          </div>
-          <Toggle checked={values.sso} onChange={(v) => onChange({ ...values, sso: v })} />
-        </div>
-        <div className="py-3.5">
-          <p className="text-[13px] font-medium text-[#F2F4FA] mb-2">API key</p>
-          <div
-            className="flex items-center justify-between rounded-lg bg-[#0B0F26] border border-white/[0.08] px-3 py-2 text-[12.5px] text-[#8891B8]"
-            style={{ fontFamily: 'var(--font-mono)' }}
-          >
-            <span className="flex items-center gap-2">
-              <KeyRound size={13} /> {values.apiKeyMasked}
-            </span>
-            <button
-              onClick={() => navigator.clipboard?.writeText(values.apiKeyMasked)}
-              className="text-[#3FDCC0]"
-              aria-label="Copy API key"
-            >
-              <Copy size={13} />
-            </button>
-          </div>
-        </div>
-      </div>
-    </Card>
-  );
-}
-
-function BillingSection({ values }: { values: CompanySettings['billing'] }) {
-  return (
-    <Card>
-      <CardHeader eyebrow="Plan" title="Billing" description="Manage your subscription and payment details." />
-      <div className="px-6">
-        <div className="flex items-center justify-between py-4 border-b border-white/[0.06]">
-          <div>
-            <p className="text-[13px] font-medium text-[#F2F4FA]">{values.plan} plan</p>
-            <p className="text-[11.5px] text-[#565F8C] mt-0.5">Up to 200 assessment sends per month, unlimited reviewers.</p>
-          </div>
-          <GhostButton>Change plan</GhostButton>
-        </div>
-        <div className="flex items-center justify-between py-4">
-          <div>
-            <p className="text-[13px] font-medium text-[#F2F4FA]">Payment method</p>
-            <p className="text-[11.5px] text-[#565F8C] mt-0.5">{values.cardLabel}</p>
-          </div>
-          <GhostButton>Update card</GhostButton>
-        </div>
-      </div>
-    </Card>
-  );
-}
-
-function IntegrationsSection({ items }: { items: CompanySettings['integrations'] }) {
-  return (
-    <Card>
-      <CardHeader eyebrow="Connections" title="Integrations" description="Link the tools your team already works in." />
-      <div className="px-6">
-        {items.map((it) => (
-          <div key={it.name} className="flex items-center justify-between py-3.5 border-b border-white/[0.06] last:border-b-0">
-            <div>
-              <p className="text-[13px] font-medium text-[#F2F4FA]">{it.name}</p>
-              <p className="text-[11.5px] text-[#565F8C] mt-0.5">{it.description}</p>
-            </div>
-            {it.connected ? (
-              <Badge tone="accent">
-                <Check size={11} /> Connected
-              </Badge>
-            ) : (
-              <GhostButton>Connect</GhostButton>
-            )}
-          </div>
-        ))}
-      </div>
-    </Card>
-  );
-}
-
-function DangerZoneSection({
-  companyName,
-  onExport,
-  onArchive,
-  onDelete,
-}: {
-  companyName: string;
-  onExport: () => void;
-  onArchive: () => void;
-  onDelete: () => void;
-}) {
-  const [confirmText, setConfirmText] = useState('');
-  return (
-    <Card tone="danger">
-      <CardHeader eyebrow="Irreversible" title="Danger zone" description="These actions affect your whole workspace. Proceed carefully." />
-      <div className="px-6">
-        <div className="flex items-center justify-between py-4 border-b border-white/[0.06]">
-          <div className="flex items-start gap-2.5">
-            <Download size={15} className="text-[#565F8C] mt-0.5" />
-            <div>
-              <p className="text-[13px] font-medium text-[#F2F4FA]">Export all data</p>
-              <p className="text-[11.5px] text-[#565F8C] mt-0.5 max-w-md leading-relaxed">
-                Download every candidate, assessment and result. Large exports are emailed as a download link.
-              </p>
-            </div>
-          </div>
-          <GhostButton onClick={onExport} icon={<Download size={13} />}>
-            Export
-          </GhostButton>
-        </div>
-        <div className="flex items-center justify-between py-4 border-b border-white/[0.06]">
-          <div className="flex items-start gap-2.5">
-            <Archive size={15} className="text-[#565F8C] mt-0.5" />
-            <div>
-              <p className="text-[13px] font-medium text-[#F2F4FA]">Archive workspace</p>
-              <p className="text-[11.5px] text-[#565F8C] mt-0.5 max-w-md leading-relaxed">
-                Pauses billing and hides the workspace from your team. Data is kept for 90 days and can be restored.
-              </p>
-            </div>
-          </div>
-          <GhostButton onClick={onArchive}>Archive</GhostButton>
-        </div>
-        <div className="py-4">
-          <div className="flex items-start gap-2.5 mb-3">
-            <AlertTriangle size={15} className="text-[#FF6B6B] mt-0.5" />
-            <div>
-              <p className="text-[13px] font-medium text-[#FF6B6B]">Delete workspace permanently</p>
-              <p className="text-[11.5px] text-[#565F8C] mt-0.5 max-w-md leading-relaxed">
-                Deletes {companyName}, every assessment, and all candidate results immediately. This cannot be undone.
-              </p>
-            </div>
-          </div>
-          <div className="rounded-xl bg-[#FF6B6B]/10 border border-[#FF6B6B]/25 p-4">
-            <p className="text-[11.5px] text-[#F2F4FA] mb-2">
-              Type <span style={{ fontFamily: 'var(--font-mono)' }}>{companyName}</span> to confirm.
-            </p>
-            <div className="flex items-center gap-3">
-              <TextInput
-                value={confirmText}
-                onChange={(e) => setConfirmText(e.target.value)}
-                placeholder={companyName}
-                className="max-w-[240px]"
-              />
-              <button
-                disabled={confirmText !== companyName}
-                onClick={onDelete}
-                className="flex items-center gap-1.5 rounded-lg text-[13px] font-semibold px-4 py-2.5 transition-colors bg-[#FF6B6B] text-[#0B0F26] disabled:bg-white/[0.08] disabled:text-[#565F8C] disabled:cursor-not-allowed"
-              >
-                <Trash2 size={14} /> Delete workspace
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Card>
-  );
-}
-
-/* ------------------------------------------------------------------
-   Page
-------------------------------------------------------------------- */
-
-export default function CompanySettingsPage() {
-  const { user: currentUser } = useAuth();
-
-  const [active, setActive] = useState<SectionKey>('profile');
-  // currentUser's exact shape depends on your AuthProvider — adjust this
-  // field if the company name lives somewhere else on the user object.
-  const [settings, setSettings] = useState<CompanySettings>(() => buildDefaultSettings());
-  const [saving, setSaving] = useState(false);
-  const [banner, setBanner] = useState<{ text: string; tone: 'success' | 'error' } | null>(null);
-  const [deleteOpen, setDeleteOpen] = useState(false);
-  const [deleting, setDeleting] = useState(false);
-
-  useEffect(() => {
-    if (banner) {
-      const t = setTimeout(() => setBanner(null), 6000);
-      return () => clearTimeout(t);
-    }
-  }, [banner]);
-
-  // Local-only "save" — no backend yet, so this just confirms the state
-  // change with a banner. Swap the body for a real PATCH call once a
-  // settings API exists; every caller below already passes the right patch.
-  const persist = (_patch: Partial<CompanySettings>) => {
-    setSaving(true);
-    setTimeout(() => {
-      setSaving(false);
-      setBanner({ text: 'Settings saved.', tone: 'success' });
-    }, 300);
-  };
-
-  const handleDeleteWorkspace = () => {
-    setDeleting(true);
-    setTimeout(() => {
-      setDeleting(false);
-      setDeleteOpen(false);
-      setBanner({ text: 'Workspace deletion started.', tone: 'success' });
-    }, 300);
-  };
-
-  const activeLabel = useMemo(() => NAV.find((n) => n.key === active)?.label ?? '', [active]);
 
   return (
-    <div className="max-w-6xl mx-auto space-y-7">
-      {/* Header */}
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.14em] text-[#3FDCC0] mb-1.5" style={{ fontFamily: 'var(--font-mono)' }}>
-            Company Settings
-          </p>
-          <h1 className="text-[26px] font-semibold tracking-tight text-[#F2F4FA]" style={{ fontFamily: 'var(--font-display)' }}>
-            {activeLabel}
-          </h1>
-          {/* <p className="text-[13.5px] text-[#8891B8] mt-1">Signed in as {currentUser?.name ?? 'you'}</p> */}
-        </div>
+    <div className="max-w-4xl mx-auto space-y-7">
+      <div>
+        <p className="text-[11px] uppercase tracking-[0.14em] text-[var(--primary)] mb-1.5" style={{ fontFamily: 'var(--font-mono)' }}>
+          Account
+        </p>
+        <h1 className={`text-[26px] font-semibold tracking-tight ${textPrimary}`} style={{ fontFamily: 'var(--font-display)' }}>
+          Account Settings
+        </h1>
+        <p className={`text-[13.5px] mt-1 ${textMuted}`}>Manage your profile, password, and company details.</p>
       </div>
-
-      {/* Banner */}
-      {banner && (
-        <div
-          className={`rounded-xl border px-4 py-3 text-[13px] flex items-center justify-between ${
-            banner.tone === 'success'
-              ? 'bg-[#3FDCC0]/10 border-[#3FDCC0]/25 text-[#3FDCC0]'
-              : 'bg-[#FF6B6B]/10 border-[#FF6B6B]/25 text-[#FF6B6B]'
-          }`}
-        >
-          <span>{banner.text}</span>
-          <button onClick={() => setBanner(null)} className="opacity-70 hover:opacity-100 ml-3">
-            ✕
-          </button>
-        </div>
-      )}
 
       <div className="flex flex-col md:flex-row gap-7">
-        {/* Nav */}
-        <div className="md:w-56 shrink-0">
-          <nav className="flex md:flex-col gap-1 overflow-x-auto md:overflow-visible pb-1 md:pb-0">
-            {NAV.map((item) => {
-              const isActive = item.key === active;
-              return (
-                <button
-                  key={item.key}
-                  onClick={() => setActive(item.key)}
-                  className={`flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] font-medium whitespace-nowrap text-left transition-colors ${
-                    isActive ? 'bg-[#3FDCC0]/15 text-[#3FDCC0]' : 'text-[#AAB2D4] hover:bg-white/[0.05]'
-                  }`}
-                >
-                  {item.icon}
-                  {item.label}
-                </button>
-              );
-            })}
+        <div className="md:w-52 shrink-0">
+          <nav className="flex md:flex-col gap-1 overflow-x-auto md:overflow-visible">
+            {TABS.map((t) => (
+              <button
+                key={t.key}
+                onClick={() => setTab(t.key)}
+                className={`flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] font-medium whitespace-nowrap text-left transition-colors ${
+                  tab === t.key ? tealChip : `${textMuted} hover:bg-[var(--surface-muted)]`
+                }`}
+              >
+                {t.icon}
+                {t.label}
+              </button>
+            ))}
           </nav>
         </div>
 
-        {/* Active section */}
         <div className="flex-1 min-w-0">
-          {active === 'profile' && (
-            <ProfileSection
-              values={settings.profile}
-              onChange={(v) => setSettings({ ...settings, profile: v })}
-              onSave={() => persist({ profile: settings.profile })}
-              saving={saving}
-            />
-          )}
-          {active === 'assessments' && (
-            <AssessmentDefaultsSection
-              values={settings.assessmentDefaults}
-              onChange={(v) => setSettings({ ...settings, assessmentDefaults: v })}
-              onSave={() => persist({ assessmentDefaults: settings.assessmentDefaults })}
-              saving={saving}
-            />
-          )}
-          {active === 'team' && (
-            <TeamSection
-              members={settings.team}
-              onInvite={() => setBanner({ text: 'Invite sent.', tone: 'success' })}
-              onRemove={(email) =>
-                setSettings({ ...settings, team: settings.team.filter((m) => m.email !== email) })
-              }
-            />
-          )}
-          {active === 'notifications' && (
-            <NotificationsSection
-              values={settings.notifications}
-              onChange={(v) => {
-                setSettings({ ...settings, notifications: v });
-                persist({ notifications: v });
-              }}
-            />
-          )}
-          {active === 'preferences' && (
-            <PreferencesSection
-              values={settings.preferences}
-              onChange={(v) => setSettings({ ...settings, preferences: v })}
-              onSave={() => persist({ preferences: settings.preferences })}
-              saving={saving}
-            />
-          )}
-          {active === 'security' && (
-            <SecuritySection
-              values={settings.security}
-              onChange={(v) => {
-                setSettings({ ...settings, security: v });
-                persist({ security: v });
-              }}
-            />
-          )}
-          {active === 'billing' && <BillingSection values={settings.billing} />}
-          {active === 'integrations' && <IntegrationsSection items={settings.integrations} />}
-          {active === 'danger' && (
-            <DangerZoneSection
-              companyName={settings.profile.name}
-              onExport={() => setBanner({ text: 'Export started — you’ll get an email shortly.', tone: 'success' })}
-              onArchive={() => setBanner({ text: 'Workspace archived.', tone: 'success' })}
-              onDelete={() => setDeleteOpen(true)}
-            />
+          {tab === 'profile' && <ProfileTab user={user} accessToken={accessToken} setUser={setUser} />}
+          {tab === 'security' && <SecurityTab accessToken={accessToken} />}
+          {tab === 'company' && user?.companyId && (
+            <CompanyTab companyId={user.companyId} accessToken={accessToken} canEdit={isCompanyAdmin} />
           )}
         </div>
       </div>
+    </div>
+  );
+}
 
-      {deleteOpen && (
-        <ClientConfirmDialog
-          title="Delete workspace?"
-          description={`This permanently deletes "${settings.profile.name}" and all of its assessments and candidate results. This cannot be undone.`}
-          confirmLabel="Delete workspace"
-          tone="danger"
-          submitting={deleting}
-          onConfirm={handleDeleteWorkspace}
-          onCancel={() => setDeleteOpen(false)}
-        />
+/* ------------------------------------------------------------------
+   Profile
+------------------------------------------------------------------- */
+
+function ProfileTab({
+  user,
+  accessToken,
+  setUser,
+}: {
+  user: User | null;
+  accessToken: string | null;
+  setUser?: (u: User) => void;
+}) {
+  const [firstName, setFirstName] = useState(user?.firstName ?? '');
+  const [lastName, setLastName] = useState(user?.lastName ?? '');
+  const [phone, setPhone] = useState(user?.phone ?? '');
+
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+
+  // The header block below reads from this, NOT from the `user` prop
+  // directly. Relying on the prop meant the displayed name only updated
+  // if AuthProvider's setUser (a) exists and (b) correctly propagates a
+  // new object through context — unconfirmed, and apparently not
+  // happening. This guarantees the header reflects a successful save
+  // immediately, regardless of what AuthProvider does with setUser.
+  const [displayUser, setDisplayUser] = useState(user);
+
+  useEffect(() => {
+    setFirstName(user?.firstName ?? '');
+    setLastName(user?.lastName ?? '');
+    // setPhone(user?.phone ?? '');
+    setDisplayUser(user);
+  }, [user?.id]);
+
+  if (!displayUser) {
+    return <div className={`rounded-2xl p-6 text-[13px] ${textMuted} ${card}`}>Loading…</div>;
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(false);
+    setSaving(true);
+    try {
+      // Self-service endpoint (/users/me) — no id, and no roleId/status,
+      // matching UpdateProfilePayload's whitelist.
+      const updated = await updateProfile(accessToken, { firstName, lastName, phone });
+      setDisplayUser(updated);
+      setUser?.(updated); // best-effort global sync, not depended on above
+      setSuccess(true);
+    } catch (err) {
+      setError(isApiError(err) ? err.message : 'Failed to update your profile.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="space-y-5">
+      {success && (
+        <div className="rounded-xl border px-4 py-3 text-[13px] flex items-center gap-2.5 bg-[var(--primary)]/10 border-[var(--primary)]/25 text-[var(--primary)]">
+          <Check size={15} className="shrink-0" />
+          Profile updated.
+        </div>
       )}
+      {error && (
+        <div className="rounded-xl border px-4 py-3 text-[13px] flex items-start gap-2.5 bg-[#FF6B6B]/10 border-[#FF6B6B]/25 text-[#FF6B6B]">
+          <AlertCircle size={15} className="shrink-0 mt-0.5" />
+          {error}
+        </div>
+      )}
+
+      <div className={`rounded-2xl overflow-hidden ${card}`}>
+        <div className={`px-6 py-5 border-b flex items-center gap-3.5 ${cardBorderB}`}>
+          <div className={`w-12 h-12 rounded-full flex items-center justify-center text-[15px] font-semibold shrink-0 ${tealChip}`}>
+            {initials(displayUser.firstName, displayUser.lastName)}
+          </div>
+          <div className="min-w-0">
+            <p className={`text-[15px] font-semibold truncate ${textPrimary}`} style={{ fontFamily: 'var(--font-display)' }}>
+              {displayUser.firstName} {displayUser.lastName}
+            </p>
+            <div className="flex items-center gap-2 mt-1 flex-wrap">
+              {displayUser.role && (
+                <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium ${tealChip}`}>
+                  <ShieldCheck size={11} /> {displayUser.role.name}
+                </span>
+              )}
+              {displayUser.company && (
+                <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium bg-[var(--muted)]/15 text-[var(--muted)]">
+                  <Building2 size={11} /> {displayUser.company.name}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="px-6 py-5 space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className={`block text-[11.5px] font-medium mb-1.5 ${textMuted}`}>First name</label>
+              <input className={inputBase} value={firstName} onChange={(e) => setFirstName(e.target.value)} required disabled={saving} />
+            </div>
+            <div>
+              <label className={`block text-[11.5px] font-medium mb-1.5 ${textMuted}`}>Last name</label>
+              <input className={inputBase} value={lastName} onChange={(e) => setLastName(e.target.value)} required disabled={saving} />
+            </div>
+          </div>
+
+          <div>
+            <label className={`block text-[11.5px] font-medium mb-1.5 ${textMuted}`}>Phone</label>
+            <input
+              className={inputBase}
+              value={phone ?? ''}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="+1 555 000 0000"
+              disabled={saving}
+            />
+          </div>
+
+          <div>
+            <label className={`block text-[11.5px] font-medium mb-1.5 ${textMuted}`}>Email</label>
+            <input className={`${inputBase} opacity-60 cursor-not-allowed`} value={displayUser.email} disabled />
+            <p className={`text-[11px] mt-1.5 ${textMuted}`}>Contact an administrator to change your email address.</p>
+          </div>
+
+          <div className="flex justify-end pt-1">
+            <button
+              type="submit"
+              disabled={saving}
+              className="flex items-center gap-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-[13px] font-semibold px-4 py-2.5 hover:bg-[var(--primary)]/90 transition-colors disabled:opacity-40"
+            >
+              {saving ? <Loader2 size={14} className="animate-spin" /> : <Check size={14} />}
+              {saving ? 'Saving…' : 'Save changes'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+   Security / change password
+------------------------------------------------------------------- */
+
+function PasswordField({
+  label,
+  value,
+  onChange,
+  show,
+  onToggleShow,
+  placeholder,
+  invalid,
+  rightAdornment,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  show: boolean;
+  onToggleShow: () => void;
+  placeholder: string;
+  invalid?: boolean;
+  rightAdornment?: React.ReactNode;
+}) {
+  return (
+    <div className="space-y-1.5">
+      <label className={`text-[12px] ${textMuted}`}>{label}</label>
+      <div className="relative">
+        <span className={`absolute left-3 top-1/2 -translate-y-1/2 ${textMuted}`}>
+          <Lock size={14} />
+        </span>
+        <input
+          type={show ? 'text' : 'password'}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          required
+          placeholder={placeholder}
+          className={`${inputBase} pl-9 pr-16 ${invalid ? 'border-[#FF6B6B]/50 focus:border-[#FF6B6B]/60 focus:ring-[#FF6B6B]/20' : ''}`}
+        />
+        <span className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-2">
+          {rightAdornment}
+          <button type="button" onClick={onToggleShow} className={`${textMuted} hover:text-[var(--foreground)] transition-colors`} tabIndex={-1}>
+            {show ? <EyeOff size={15} /> : <Eye size={15} />}
+          </button>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function SecurityTab({ accessToken }: { accessToken: string | null }) {
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showCurrent, setShowCurrent] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  const checks = useMemo(() => REQUIREMENTS.map((r) => ({ ...r, passed: r.test(newPassword) })), [newPassword]);
+  const score = checks.filter((c) => c.passed).length;
+  const strength = strengthMeta(score);
+  const showStrength = newPassword.length > 0;
+
+  const confirmTouched = confirmPassword.length > 0;
+  const passwordsMatch = confirmPassword === newPassword && confirmPassword.length > 0;
+  const passwordsMismatch = confirmTouched && !passwordsMatch;
+  const samePasswordWarning = currentPassword.length > 0 && newPassword.length > 0 && currentPassword === newPassword;
+
+  const canSubmit =
+    currentPassword.length > 0 && newPassword.length > 0 && passwordsMatch && score === REQUIREMENTS.length && !samePasswordWarning && !loading;
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setSuccess(false);
+    if (newPassword !== confirmPassword) return setError('New password and confirmation do not match.');
+    if (score < REQUIREMENTS.length) return setError('Please meet all password requirements before continuing.');
+    if (samePasswordWarning) return setError('New password must be different from your current password.');
+
+    setLoading(true);
+    try {
+      await changePassword(accessToken, { currentPassword, newPassword, confirmPassword });
+      setSuccess(true);
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    } catch (err) {
+      setError(isApiError(err) ? err.message : 'Failed to change password.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="space-y-5">
+      {success && (
+        <div className="rounded-xl border px-4 py-3 text-[13px] flex items-center gap-2.5 bg-[var(--primary)]/10 border-[var(--primary)]/25 text-[var(--primary)]">
+          <ShieldCheck size={15} className="shrink-0" />
+          Your password was changed successfully.
+        </div>
+      )}
+      {error && (
+        <div className="rounded-xl border px-4 py-3 text-[13px] flex items-start gap-2.5 bg-[#FF6B6B]/10 border-[#FF6B6B]/25 text-[#FF6B6B]">
+          <AlertCircle size={15} className="shrink-0 mt-0.5" />
+          {error}
+        </div>
+      )}
+
+      <div className={`rounded-2xl overflow-hidden ${card}`}>
+        <div className={`px-6 pt-6 pb-4 border-b flex items-center gap-2.5 ${cardBorderB}`}>
+          <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${tealChip}`}>
+            <KeyRound size={15} />
+          </div>
+          <div>
+            <h2 className={`text-[14px] font-semibold ${textPrimary}`} style={{ fontFamily: 'var(--font-display)' }}>
+              Change password
+            </h2>
+            <p className={`text-[11.5px] ${textMuted}`}>You'll stay signed in on this device after changing it.</p>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="px-6 py-5 space-y-5">
+          <PasswordField
+            label="Current password"
+            value={currentPassword}
+            onChange={setCurrentPassword}
+            show={showCurrent}
+            onToggleShow={() => setShowCurrent((v) => !v)}
+            placeholder="Enter your current password"
+          />
+
+          <div>
+            <PasswordField
+              label="New password"
+              value={newPassword}
+              onChange={setNewPassword}
+              show={showNew}
+              onToggleShow={() => setShowNew((v) => !v)}
+              placeholder="Enter a new password"
+              invalid={samePasswordWarning}
+            />
+            {samePasswordWarning && <p className="text-[11px] text-[#FF6B6B] mt-1.5">New password must be different from your current one.</p>}
+
+            {showStrength && (
+              <div className="pt-2.5">
+                <div className="flex items-center gap-1.5 mb-2">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <div key={i} className="h-1 flex-1 rounded-full overflow-hidden bg-[var(--border)]">
+                      <div className="h-full rounded-full transition-all duration-300" style={{ width: i < score ? '100%' : '0%', background: strength.color }} />
+                    </div>
+                  ))}
+                </div>
+                <span className="text-[11px] font-medium" style={{ color: strength.color }}>
+                  {strength.label}
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1 mt-2">
+                  {checks.map((c) => (
+                    <div key={c.label} className="flex items-center gap-1.5">
+                      {c.passed ? <Check size={11} className="text-[var(--primary)] shrink-0" /> : <X size={11} className={`shrink-0 ${textMuted}`} />}
+                      <span className={`text-[11px] ${c.passed ? 'text-[var(--primary)]' : textMuted}`}>{c.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div>
+            <PasswordField
+              label="Confirm new password"
+              value={confirmPassword}
+              onChange={setConfirmPassword}
+              show={showConfirm}
+              onToggleShow={() => setShowConfirm((v) => !v)}
+              placeholder="Re-enter your new password"
+              invalid={passwordsMismatch}
+              rightAdornment={confirmTouched ? passwordsMatch ? <Check size={14} className="text-[var(--primary)]" /> : <X size={14} className="text-[#FF6B6B]" /> : null}
+            />
+            {passwordsMismatch && <p className="text-[11px] text-[#FF6B6B] mt-1.5">Passwords don't match yet.</p>}
+          </div>
+
+          <div className="flex justify-end pt-1">
+            <button
+              type="submit"
+              disabled={!canSubmit}
+              className="flex items-center gap-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-[13px] font-semibold px-4 py-2.5 hover:bg-[var(--primary)]/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              {loading ? <Loader2 size={14} className="animate-spin" /> : null}
+              {loading ? 'Changing…' : 'Change password'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+   Company — visible to everyone with a companyId; editable only for
+   isCompanyAdmin / isSuperAdmin, mirroring how company.service.js's
+   update() is a distinct, more privileged action from a self profile
+   edit.
+------------------------------------------------------------------- */
+
+interface CompanyFormState {
+  name: string;
+  contactEmail: string;
+  contactPhone: string;
+  address: string;
+  primaryColor: string;
+}
+
+function CompanyTab({ companyId, accessToken, canEdit }: { companyId: string; accessToken: string | null; canEdit: boolean }) {
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [form, setForm] = useState<CompanyFormState>({ name: '', contactEmail: '', contactPhone: '', address: '', primaryColor: '' });
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [removeLogo, setRemoveLogo] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      setLoading(true);
+      setLoadError(null);
+      try {
+        const c = await getCompany(companyId, accessToken);
+        if (cancelled) return;
+        setForm({
+          name: c.name ?? '',
+          contactEmail: c.contactEmail ?? '',
+          contactPhone: c.contactPhone ?? '',
+          address: c.address ?? '',
+          primaryColor: c.primaryColor ?? '',
+        });
+        setLogoPreview(c.logoUrl);
+      } catch (err) {
+        if (!cancelled) setLoadError(isApiError(err) ? err.message : 'Failed to load company details.');
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [companyId, accessToken]);
+
+  const handleLogoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+    if (!file) return;
+    setLogoFile(file);
+    setRemoveLogo(false);
+    setLogoPreview(URL.createObjectURL(file));
+  };
+
+  const handleRemoveLogo = () => {
+    setLogoFile(null);
+    setRemoveLogo(true);
+    setLogoPreview(null);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!canEdit) return;
+    setError(null);
+    setSuccess(false);
+    setSaving(true);
+    try {
+      const payload = new FormData();
+      payload.append('name', form.name.trim());
+      if (form.contactEmail.trim()) payload.append('contactEmail', form.contactEmail.trim());
+      if (form.contactPhone.trim()) payload.append('contactPhone', form.contactPhone.trim());
+      if (form.address.trim()) payload.append('address', form.address.trim());
+      if (form.primaryColor.trim()) payload.append('primaryColor', form.primaryColor.trim());
+      if (logoFile) payload.append('logo', logoFile);
+      if (removeLogo) payload.append('removeLogo', 'true');
+
+      const updated = await updateCompany(companyId, payload, accessToken);
+      setLogoPreview(updated.logoUrl);
+      setLogoFile(null);
+      setRemoveLogo(false);
+      setSuccess(true);
+    } catch (err) {
+      setError(isApiError(err) ? err.message : 'Failed to update company.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className={`rounded-2xl p-6 text-[13px] flex items-center gap-2 ${textMuted} ${card}`}>
+        <Loader2 size={14} className="animate-spin" /> Loading company…
+      </div>
+    );
+  }
+  if (loadError) {
+    return <div className="rounded-2xl p-6 text-[13px] bg-[#FF6B6B]/10 border border-[#FF6B6B]/25 text-[#FF6B6B]">{loadError}</div>;
+  }
+
+  return (
+    <div className="space-y-5">
+      {success && (
+        <div className="rounded-xl border px-4 py-3 text-[13px] flex items-center gap-2.5 bg-[var(--primary)]/10 border-[var(--primary)]/25 text-[var(--primary)]">
+          <Check size={15} className="shrink-0" />
+          Company details updated.
+        </div>
+      )}
+      {error && (
+        <div className="rounded-xl border px-4 py-3 text-[13px] flex items-start gap-2.5 bg-[#FF6B6B]/10 border-[#FF6B6B]/25 text-[#FF6B6B]">
+          <AlertCircle size={15} className="shrink-0 mt-0.5" />
+          {error}
+        </div>
+      )}
+
+      <div className={`rounded-2xl overflow-hidden ${card}`}>
+        <div className={`px-6 pt-6 pb-4 border-b flex items-center gap-2.5 ${cardBorderB}`}>
+          <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${tealChip}`}>
+            <Building2 size={15} />
+          </div>
+          <div>
+            <h2 className={`text-[14px] font-semibold ${textPrimary}`} style={{ fontFamily: 'var(--font-display)' }}>
+              Company details
+            </h2>
+            <p className={`text-[11.5px] ${textMuted}`}>
+              {canEdit ? 'Visible on invites and reports issued by your company.' : 'Only company admins can edit these details.'}
+            </p>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="px-6 py-5 space-y-5">
+          <div className="flex items-center gap-4">
+            <div className="w-16 h-16 rounded-xl bg-[var(--surface-muted)] border border-[var(--border)] flex items-center justify-center overflow-hidden shrink-0">
+              {logoPreview ? (
+                <img src={logoPreview} alt="Company logo" className="w-full h-full object-cover" />
+              ) : (
+                <Building2 size={22} className={textMuted} />
+              )}
+            </div>
+            {canEdit && (
+              <div className="flex items-center gap-2">
+                <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-[var(--primary)]/25 bg-[var(--primary)]/10 px-3 py-2 text-[12px] font-medium text-[var(--primary)] hover:bg-[var(--primary)]/20 transition-colors">
+                  <Camera size={13} />
+                  Change logo
+                  <input type="file" accept="image/png,image/jpeg,image/jpg,image/webp,image/svg+xml" className="hidden" onChange={handleLogoSelect} />
+                </label>
+                {logoPreview && (
+                  <button type="button" onClick={handleRemoveLogo} className="text-[12px] text-[#FF6B6B] hover:underline">
+                    Remove
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className={`block text-[11.5px] font-medium mb-1.5 ${textMuted}`}>Company name</label>
+              <input
+                className={inputBase}
+                value={form.name}
+                onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                disabled={!canEdit || saving}
+                required
+              />
+            </div>
+            <div>
+              <label className={`block text-[11.5px] font-medium mb-1.5 ${textMuted}`}>Primary color</label>
+              <input
+                className={inputBase}
+                value={form.primaryColor}
+                onChange={(e) => setForm((f) => ({ ...f, primaryColor: e.target.value }))}
+                placeholder="#3FDCC0"
+                disabled={!canEdit || saving}
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className={`block text-[11.5px] font-medium mb-1.5 ${textMuted}`}>Contact email</label>
+              <input
+                type="email"
+                className={inputBase}
+                value={form.contactEmail}
+                onChange={(e) => setForm((f) => ({ ...f, contactEmail: e.target.value }))}
+                disabled={!canEdit || saving}
+              />
+            </div>
+            <div>
+              <label className={`block text-[11.5px] font-medium mb-1.5 ${textMuted}`}>Contact phone</label>
+              <input
+                className={inputBase}
+                value={form.contactPhone}
+                onChange={(e) => setForm((f) => ({ ...f, contactPhone: e.target.value }))}
+                disabled={!canEdit || saving}
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className={`block text-[11.5px] font-medium mb-1.5 ${textMuted}`}>Address</label>
+            <textarea
+              className={`${inputBase} min-h-[80px] resize-none`}
+              value={form.address}
+              onChange={(e) => setForm((f) => ({ ...f, address: e.target.value }))}
+              disabled={!canEdit || saving}
+            />
+          </div>
+
+          {canEdit && (
+            <div className="flex justify-end pt-1">
+              <button
+                type="submit"
+                disabled={saving}
+                className="flex items-center gap-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-[13px] font-semibold px-4 py-2.5 hover:bg-[var(--primary)]/90 transition-colors disabled:opacity-40"
+              >
+                {saving ? <Loader2 size={14} className="animate-spin" /> : <Check size={14} />}
+                {saving ? 'Saving…' : 'Save changes'}
+              </button>
+            </div>
+          )}
+        </form>
+      </div>
     </div>
   );
 }

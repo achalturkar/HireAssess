@@ -6,21 +6,6 @@
     "auditLog": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\.ac9db157c99c254a0d4711550f9e62ebc4875034-audit.json",
     "files": [
         {
-            "date": 1785524265190,
-            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-01.log",
-            "hash": "d41dffaa4bb896f70afac1fd494bf398c16b4ae9315b5429655f91573352d0b0"
-        },
-        {
-            "date": 1785612905411,
-            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-02.log",
-            "hash": "3c90a1f0039ad621d2dcbece3395ef6f3699ad5e635238e8b355f2c9bb28d2ec"
-        },
-        {
-            "date": 1785740079854,
-            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-03.log",
-            "hash": "b4011737daeab95c05e9711dcd74b08aab86236d2709b182fdc2bdbad17503ca"
-        },
-        {
             "date": 1785821895905,
             "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-04.log",
             "hash": "b7900151d9b649e05cd52f29cf317c09175975818e03e5d3ba5842344e507741"
@@ -69,6 +54,21 @@
             "date": 1786686598009,
             "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-14.log",
             "hash": "e5ba79ef30ac1b0a9e86ee5022158fcf60b4739f09d4aaa1cef2f5edbd330548"
+        },
+        {
+            "date": 1786781333707,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-15.log",
+            "hash": "8bc1b476e4b72966077753a2757e52ff776e8c0a46af084cd5849cbbd70c4606"
+        },
+        {
+            "date": 1786878290800,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-16.log",
+            "hash": "01f02a1eb3d9a129e03d3186ef7507dafa39ed2d52d70b83a1ad2df23e07b3ce"
+        },
+        {
+            "date": 1786985628753,
+            "name": "C:\\Users\\Roshan Verma\\Desktop\\HireAssess\\backend\\logs\\app-2026-08-17.log",
+            "hash": "8568c73a42c1c068517c5df5129ddfaeca7388b54854fa2de7bdbb8c57d65c52"
         }
     ],
     "hashType": "sha256"
