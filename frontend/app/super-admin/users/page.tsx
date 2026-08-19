@@ -9,8 +9,8 @@ import {
   createUser,
   updateUser,
   deleteUser,
-  listRoles,
-  listCompanies,
+  listRolesForCompany,
+  listCompanyOptions,
   ApiError,
 } from '@/src/lib/api/users';
 import type { User, RoleRef, CompanyRef, UserStatus, PaginationMeta } from '@/src/types/user';
@@ -93,7 +93,7 @@ function StatusBadge({ status }: { status: UserStatus }) {
 }
 
 export default function UsersPage() {
-  const { user: currentUser } = useAuth();
+  const { user: currentUser, accessToken } = useAuth();
   const isSuperAdmin = Boolean(currentUser?.role?.isSuperAdmin);
 
   const [users, setUsers] = useState<User[]>([]);
@@ -132,7 +132,14 @@ export default function UsersPage() {
     setLoading(true);
     setLoadError(null);
     try {
-      const res = await listUsers({ page, limit: PAGE_SIZE, search, status, sortBy: 'createdAt', sortOrder: 'desc' });
+      const res = await listUsers(accessToken, {
+        page,
+        limit: PAGE_SIZE,
+        search,
+        status,
+        sortBy: 'createdAt',
+        sortOrder: 'desc',
+      });
       setUsers(res.items);
       setMeta(res.meta);
     } catch (err) {
@@ -140,7 +147,7 @@ export default function UsersPage() {
     } finally {
       setLoading(false);
     }
-  }, [page, search, status]);
+  }, [page, search, status, accessToken]);
 
   useEffect(() => {
     fetchUsers();
@@ -158,8 +165,13 @@ export default function UsersPage() {
     setActiveUser(null);
     setModalMode('create');
     try {
-      const [r, c] = await Promise.all([listRoles(), isSuperAdmin ? listCompanies() : Promise.resolve([])]);
-      setRoles(r.filter((role) => !role.isSuperAdmin));
+      // listRolesForCompany already filters out isSuperAdmin roles itself,
+      // so no need to re-filter here the way the old listRoles() call did.
+      const [r, c] = await Promise.all([
+        listRolesForCompany(accessToken),
+        isSuperAdmin ? listCompanyOptions(accessToken) : Promise.resolve([]),
+      ]);
+      setRoles(r);
       setCompanies(c);
     } catch {
       setFormError('Could not load roles/companies for this form.');
@@ -171,8 +183,8 @@ export default function UsersPage() {
     setActiveUser(u);
     setModalMode('edit');
     try {
-      const r = await listRoles(u.companyId ?? undefined);
-      setRoles(r.filter((role) => !role.isSuperAdmin));
+      const r = await listRolesForCompany(accessToken, u.companyId ?? undefined);
+      setRoles(r);
     } catch {
       setFormError('Could not load roles for this form.');
     }
@@ -199,7 +211,7 @@ export default function UsersPage() {
     setFormError(null);
     try {
       if (modalMode === 'create') {
-        const created = await createUser({
+        const created = await createUser(accessToken, {
           firstName: values.firstName.trim(),
           lastName: values.lastName.trim(),
           email: values.email.trim(),
@@ -215,7 +227,7 @@ export default function UsersPage() {
           tone: 'success',
         });
       } else if (activeUser) {
-        await updateUser(activeUser.id, {
+        await updateUser(accessToken, activeUser.id, {
           firstName: values.firstName.trim(),
           lastName: values.lastName.trim(),
           phone: values.phone.trim() || undefined,
@@ -238,7 +250,7 @@ export default function UsersPage() {
     if (!deleteTarget) return;
     setDeleting(true);
     try {
-      await deleteUser(deleteTarget.id);
+      await deleteUser(accessToken, deleteTarget.id);
       setBanner({ text: `${deleteTarget.firstName} ${deleteTarget.lastName} was deleted.`, tone: 'success' });
       setDeleteTarget(null);
       fetchUsers();
@@ -478,7 +490,7 @@ export default function UsersPage() {
       {deleteTarget && (
         <ConfirmDialog
           title="Delete user?"
-          description={`This will deactivate ${deleteTarget.firstName} ${deleteTarget.lastName} (${deleteTarget.email}) and revoke their access. This can be reversed by an admin.`}
+          description={`This will deactivate ${deleteTarget.firstName} ${deleteTarget.lastName} (${deleteTarget.email}). This can be reversed by an admin.`}
           confirmLabel="Delete user"
           submitting={deleting}
           onConfirm={handleDelete}
